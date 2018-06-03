@@ -42,7 +42,7 @@ El curso pretende proveer de herramientas analíticas para independizar al alumn
 
 <div class="boxed">
 
-* *Estas son mis 5principales razones por la que elijo R* `[@R-base]`
+* *Estas son mis 5principales razones por la que elijo R* [@R-base]
 
   1. Software libre
 
@@ -62,7 +62,6 @@ El cronograma del curso puede encontrarse [aqui](https://docs.google.com/documen
 Los datasets que serán usados durante el curso pueden bajarse desde 
 [aqui](https://github.com/juanchiem/R_Intro/tree/master/data)
 
-[@R-bookdown]
 
 
 

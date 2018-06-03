@@ -11,7 +11,7 @@ library(tidyverse)
 #https://www.listendata.com/2016/08/dplyr-tutorial.html
 ```
 
-# Manipulación {#manip}
+# Manipular {#manip}
 
 Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset analítico. 
 

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R para fitopatólogos</title>
+  <meta name="description" content="R para fitopatólogos">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R para fitopatólogos" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R para fitopatólogos" />
+  
+  
+  
+
+<meta name="author" content="Juan P. Edwards Molina">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="import.html">
+<link rel="next" href="explore.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.2</b> Instalación de paquetes</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.3</b> Configuración de la sesión</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.4</b> R como calculadora</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#vectores"><i class="fa fa-check"></i><b>1.5</b> Vectores</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#operaciones-com-vectores"><i class="fa fa-check"></i><b>1.5.1</b> Operaciones com vectores</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#secuencia"><i class="fa fa-check"></i><b>1.5.2</b> Secuencia</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#numeros-aleatorios---distribuciones"><i class="fa fa-check"></i><b>1.5.3</b> Números aleatorios - distribuciones</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#propiedades"><i class="fa fa-check"></i><b>1.5.4</b> Propiedades</a></li>
+<li class="chapter" data-level="1.5.5" data-path="intro.html"><a href="intro.html#factores"><i class="fa fa-check"></i><b>1.5.5</b> Factores</a></li>
+<li class="chapter" data-level="1.5.6" data-path="intro.html"><a href="intro.html#indexaion"><i class="fa fa-check"></i><b>1.5.6</b> Indexaión</a></li>
+<li class="chapter" data-level="1.5.7" data-path="intro.html"><a href="intro.html#condicion"><i class="fa fa-check"></i><b>1.5.7</b> Condición</a></li>
+<li class="chapter" data-level="1.5.8" data-path="intro.html"><a href="intro.html#valores-especiles"><i class="fa fa-check"></i><b>1.5.8</b> Valores especiles</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#data-frames"><i class="fa fa-check"></i><b>1.6</b> Data frames</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>1.6.1</b> Filtrado de datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#listas"><i class="fa fa-check"></i><b>1.7</b> Listas</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.8</b> Funciones</a></li>
+<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.9</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.10" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.10</b> Tablas resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Importar</a><ul>
+<li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>2.1</b> Organización de planillas a ser importadas a R</a></li>
+<li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>2.2</b> Vías de importación</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>3</b> Manipular</a><ul>
+<li class="chapter" data-level="3.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>3.1</b> <code>select</code></a></li>
+<li class="chapter" data-level="3.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>3.2</b> <code>filter</code></a></li>
+<li class="chapter" data-level="3.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>3.3</b> <code>mutate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>3.4</b> <code>arrange</code></a></li>
+<li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> <code>summarise</code></a></li>
+<li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-canola"><i class="fa fa-check"></i><b>3.6</b> Dataset “canola”</a></li>
+<li class="chapter" data-level="3.7" data-path="manip.html"><a href="manip.html#extra-casualizar-unidades-experimentais"><i class="fa fa-check"></i><b>3.7</b> Extra: casualizar unidades experimentais</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Explorar</a></li>
+<li class="chapter" data-level="5" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>5</b> Modelar</a></li>
+<li class="chapter" data-level="6" data-path="comun.html"><a href="comun.html"><i class="fa fa-check"></i><b>6</b> Comunicar</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para fitopatólogos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manip" class="section level1">
+<h1><span class="header-section-number">3</span> Manipular</h1>
+<p>Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset analítico.</p>
+<p>Recordando que un dataset debe ser completo con dimensiones n_fila x n_columna, donde:</p>
+<p>1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando</p>
+<p>2- Cada columna representa una variable (descriptiva o respuesta).</p>
+<p>3- Cada celda debe tener su observación (en caso de faltar el dato será un NA)</p>
+<p><img src="tibbles.png" /></p>
+<p><code>tidyr</code> y <code>dplyr</code> son paquetes que facilitan la manipulación de los datasets y son parte de la colección de paquetes de <code>tidyverse</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>Ambos paquetes hacen uso de las facilidades del operador <code>%&gt;%</code> (pipe, tubo en español) lo que facilita su interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejandose a una receta de torta…)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">x <span class="op">%&gt;%</span><span class="st"> </span>sum <span class="op">%&gt;%</span><span class="st"> </span>sqrt</a></code></pre></div>
+<p>Su equivalente de código básico es:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x))</a></code></pre></div>
+<p>Importemos los datos “soja” para ver alguno ejemplos.</p>
+<p><strong>Red de ensayos de fungicidas para el control de mancha anillada en soja</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">soy &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">soy</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># browseURL(&quot;https://osf.io/jpfet/&quot;)</span></a></code></pre></div>
+<blockquote>
+<p>Describa el dataset.</p>
+</blockquote>
+<p><strong>study</strong>: identificador arbitrario para cada experimento</p>
+<p><strong>year</strong>: año del experimento</p>
+<p><strong>location</strong>: localidad do experimento</p>
+<p><strong>cultivar</strong>: cultivar de soja utilizado</p>
+<p><strong>fungic</strong>: tratamiento fungicida</p>
+<p><strong>block</strong>: repeticiones</p>
+<p><strong>sev</strong>: severidad (%) evaluada en R6</p>
+<p><strong>yield</strong>: rendimiento en madurez fisiológica (kg/ha)</p>
+<p><br></p>
+<p>Los cinco verbos (funciones) principales de <code>dplyr</code> son:</p>
+<p><code>filter</code> - filtra líneas (idem excel)</p>
+<p><code>mutate</code> - crea nuevas variables agregandose a las columnas existentes en nuestro dataset</p>
+<p><code>arrange</code> - ordena la base con algun criterio especificado</p>
+<p><code>summarise</code> - aplica una operacion matemática indicada</p>
+<p><br></p>
+<p>Primero vamos a explorar el dataset que acabamos de importar:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">summary</span>(soy)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">str</span>(soy)</a></code></pre></div>
+<p>Haremos que las variables tipo caracter sean convertidas a factores:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">soy &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.character, as.factor)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">summary</span>(soy)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">str</span>(soy)</a></code></pre></div>
+<div id="select" class="section level2">
+<h2><span class="header-section-number">3.1</span> <code>select</code></h2>
+<p>Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study, year, cultivar, fungic, rep, sev, yield)</a></code></pre></div>
+<p>Es posible usar intervalos de varibles con <code>:</code>.</p>
+<p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Yld_level, <span class="op">-</span>YR_class, <span class="op">-</span>gr_hab, <span class="op">-</span>sev_check)</a></code></pre></div>
+</div>
+<div id="filter" class="section level2">
+<h2><span class="header-section-number">3.2</span> <code>filter</code></h2>
+<p>Semejante a <code>subset</code>. Condiciones separadas por comas equivalen a <code>&amp;</code> de <code>subset</code>.
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">==</span><span class="st"> &#39;ZZ_CHECK&#39;</span>)</a></code></pre></div>
+<p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>))</a></code></pre></div>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">3.3</span> <code>mutate</code></h2>
+<p>Creación de nuevas variables (a partir de las existentes)</p>
+<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg">normalmente</a>, las desviaciones estándar no son homogéneas, o ambas.</p>
+<p>Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico).</p>
+<p>Como fitopatólogos, la no normalidad es lo predominante.</p>
+<p>El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)</p>
+<p>Dos transformaciones son mayormente sugeridas para la severidad:</p>
+<ul>
+<li><p>Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero.
+(El resultado está dado en radianes, no grados, con unrango de −π/2 a π/2.)</p></li>
+<li><p>Transformación logit:</p></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">soy1 &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sev_arc =</span> <span class="kw">asin</span>(<span class="kw">sqrt</span>(sev<span class="op">/</span><span class="dv">100</span>)),</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">         <span class="dt">sev_logit =</span>  car<span class="op">::</span><span class="kw">logit</span>(sev, <span class="dt">percents=</span><span class="ot">TRUE</span>),<span class="co"># log(sev/100/(1-sev/100)), #  </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">         <span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) </a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co"># browseURL(&quot;http://strata.uga.edu/8370/rtips/proportions.html&quot;)</span></a></code></pre></div>
+</div>
+<div id="arrange" class="section level2">
+<h2><span class="header-section-number">3.4</span> <code>arrange</code></h2>
+<p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar “desc”&quot; para ordem decrescente.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">soy1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">soy1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</a></code></pre></div>
+</div>
+<div id="summarise" class="section level2">
+<h2><span class="header-section-number">3.5</span> <code>summarise</code></h2>
+<p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)</p>
+<p>Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">            <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </a></code></pre></div>
+<blockquote>
+<p>Calculen el rendimiento mínimo y máximo por fungicida</p>
+</blockquote>
+<p>Algunas funciones interesantes para la descripción del dataset: <code>n()</code>, <code>n_distinct()</code>.</p>
+<ul>
+<li>Cuantos ensayos fueron realizados por año:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n_distinct</span>(study)) </a></code></pre></div>
+<ul>
+<li>Cuantas parcelas tenia cada ensayo y cual fue la severdiad máxima en cada um deles:</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(study, year, cultivar) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">plots =</span> <span class="kw">n</span>()) </a></code></pre></div>
+<p>Note que agora desejamos manter o resto das variaveis descritivas dos ensaios, por isso alem do “study” escrevemos <code>group_by(study, year, state, location, cultivar)</code> (Típica tabela de descrição de ensaios para artigos ou teses)</p>
+<blockquote>
+<p>Adicione a coluna potencial de rendimento (rend_pot), considerando o maximo
+rendimento observado.</p>
+</blockquote>
+<blockquote>
+<p>Crie as seguintes tabelas: i) by_location, detalhando de ordem decrescente quantos ensaios foram realizados em cada local; ii) by_cultivar; iii) by_fungicide.</p>
+</blockquote>
+<blockquote>
+<p>Crie uma tabela “by_check” calculando a média da severidade no “CHECK” (sev_check).</p>
+</blockquote>
+<blockquote>
+<p>Usando a função <code>ifelse</code> crie uma nova variavel categórica “pressão de doença”&quot; considerando a “sev_check”: Low ou High</p>
+</blockquote>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">by_check =<span class="st">  </span>soy <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;CHECK&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(study) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">sev_check =</span> <span class="kw">round</span>(<span class="kw">mean</span>(sev, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),<span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Dis_level =</span> <span class="kw">ifelse</span>(sev_check <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>))<span class="er">)</span> </a></code></pre></div>
+<ul>
+<li>Funções auxiliares</li>
+</ul>
+<p><code>join</code> junta dois data.frames através de pontos em comun.</p>
+<p>Por exemplo, se queremos anexar as variáveis “sev_check” e “Dis_level” para o banco de dados completo:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</a></code></pre></div>
+<blockquote>
+<p>Crie as variaveis “dif_sev” e “dif_yield”, de cada plot respeito aos checks.</p>
+</blockquote>
+</div>
+<div id="dataset-canola" class="section level2">
+<h2><span class="header-section-number">3.6</span> Dataset “canola”</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">canola</a></code></pre></div>
+<p>Isto seria uma forma “wide” de representação do dataset (cru).</p>
+<p>Para analisar o efeito do tratemento fungicida precisamos calcular a área abaixo da curva (AUC) do progresso da doença. Para isto precissamos passar <canola> ao formato “long”. A função <code>gather</code> (do inglês “reunir”, pacote <code>tidyr</code>) empilha as colunas que desejemos.</p>
+<p><img src="tidyr.png" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># criaremos uma variavel &quot;tt&quot; com os nomes das colunas com numeros, </span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co"># e outra &quot;incp&quot; (incidencia em proporção) com os valores correspondientes.</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">can_long &lt;-<span class="st"> </span>canola <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">015</span><span class="st">`</span>, <span class="st">`</span><span class="dt">058</span><span class="st">`</span>, <span class="st">`</span><span class="dt">095</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, </a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;incp&quot;</span>) </a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co"># gather(tt, incp, -c(par:bk)) ;)</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co">#save(canola, can_long, file = &quot;canolass.RData&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">can_long</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co"># Precisamos que tt seja classe &quot;numeric&quot; para certos calculos</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</a></code></pre></div>
+<p>Precissamos de um valor de AUC por parcela. Vamos a fazer isso com auxilio das funções <code>group_by</code> <code>summarize</code> <code>mutate_each_</code> do pacote <code>dplyr</code> e <code>separate</code> do pacote <code>tidyr</code>.</p>
+<p>Notese tambem podem ser usados funções de outros pacotes, como será usada a função <code>auc</code>do pacote <code>MESS</code>, que calcula a AUC simplesmente assim <code>auc(x, y, type = &quot;spline&quot;)</code>. Como o pacote <code>MESS</code>só será usado uma vez nesta sessão não é necessário ativar ele com <code>library()</code>, simplesmente colocando <code>MESS::</code> ele será usado unicamente neste bloco de código.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">auc &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(par) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> MESS<span class="op">::</span><span class="kw">auc</span>(tt, incp, <span class="dt">type =</span> <span class="st">&quot;spline&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">separate</span>(par, <span class="dt">into=</span> <span class="kw">c</span>(<span class="st">&quot;bk&quot;</span>, <span class="st">&quot;trt&quot;</span>), <span class="dt">sep=</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate_each_</span>(<span class="kw">funs</span>(factor), <span class="kw">c</span>(<span class="st">&quot;bk&quot;</span>,<span class="st">&quot;trt&quot;</span>))</a></code></pre></div>
+<p>Agora sim, canola está pronto para entrar ao próximo passo: modelado.</p>
+</div>
+<div id="extra-casualizar-unidades-experimentais" class="section level2">
+<h2><span class="header-section-number">3.7</span> Extra: casualizar unidades experimentais</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(agricolae)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co"># Complete Randomized Design  </span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">trt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">repeticion &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6">DIC &lt;-<span class="st"> </span><span class="kw">design.crd</span>(trt, <span class="dt">r=</span>repeticion, <span class="dt">seed=</span><span class="dv">0</span>, <span class="dt">serie=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">(planilha_dic &lt;-<span class="st"> </span>DIC<span class="op">$</span>book)</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="co"># Randomized Complete Block Design</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">trt &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">rep &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb22-12" data-line-number="12">DBCA &lt;-<span class="st"> </span><span class="kw">design.rcbd</span>(trt, <span class="dt">r=</span>rep, <span class="dt">first=</span><span class="ot">FALSE</span>, <span class="dt">seed=</span><span class="dv">111</span>, <span class="dt">kinds =</span> <span class="st">&quot;Super-Duper&quot;</span>, <span class="dt">serie=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb22-13" data-line-number="13">(planilha_DBCA &lt;-<span class="st"> </span>DBCA<span class="op">$</span>book)</a>
+<a class="sourceLine" id="cb22-14" data-line-number="14">planilha_DBCA2&lt;-<span class="st"> </span><span class="kw">zigzag</span>(DBCA) <span class="co"># zigzag numeration</span></a>
+<a class="sourceLine" id="cb22-15" data-line-number="15"><span class="kw">print</span>(DBCA<span class="op">$</span>sketch)</a>
+<a class="sourceLine" id="cb22-16" data-line-number="16"><span class="kw">write_csv</span>(planilha_DBCA2, <span class="st">&quot;campo.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb22-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb22-18" data-line-number="18"><span class="co"># split-plot design</span></a>
+<a class="sourceLine" id="cb22-19" data-line-number="19">t1&lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)</a>
+<a class="sourceLine" id="cb22-20" data-line-number="20">t2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb22-21" data-line-number="21">split &lt;-<span class="kw">design.split</span>(t1, t2, <span class="dt">r=</span><span class="dv">3</span>, <span class="dt">serie=</span><span class="dv">2</span>, <span class="dt">seed=</span><span class="dv">45</span>, <span class="dt">kinds=</span><span class="st">&quot;Super-Duper&quot;</span>)<span class="co">#seed=45</span></a>
+<a class="sourceLine" id="cb22-22" data-line-number="22">(planilha_split &lt;-split<span class="op">$</span>book) <span class="co"># field book</span></a></code></pre></div>
+<p><strong>References</strong></p>
+<ul>
+<li>R for data science. Garrett Grolemund &amp; Hadley Wickham. Online: <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a></li>
+<li>Curso de R do Instituto de Matemática e Estatística da Universidade de São Paulo (IME-USP)
+Online: <a href="http://curso-r.com" class="uri">http://curso-r.com</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="explore.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-manipular.Rmd",
+"text": "Edit"
+},
+"download": ["R-Ipave.pdf", "R-Ipave.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
