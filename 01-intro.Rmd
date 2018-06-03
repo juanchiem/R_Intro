@@ -561,5 +561,5 @@ text_tab4 <- data.frame(
     )
 )
 
-kable(text_tab3) %>% kable_styling(full_width = F)
+kable(text_tab4) %>% kable_styling(full_width = F)
 ```

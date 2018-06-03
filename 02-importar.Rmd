@@ -3,7 +3,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE, 
                       message = FALSE, 
                       eval=FALSE, 
-                      fig.path = "figures/", 
                       fig.width = 12,
                       fig.height = 8)
 options(width = 90)
@@ -11,13 +10,11 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Datasets {#import}
+# Importar {#import}
 
 ## Organización de planillas a ser importadas a R
 
-Un primer paso en nuestras investigaciones (fundacional, determinante del resto de flujo de trabajo) es la toma de datos. Nos debemos a los datos. Es nuestra razón de ser como investigadores. 
-
-Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
+Un primer paso en nuestras investigaciones (fundacional, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
 
 En particular prefiero que las planillas excel sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
 R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!
@@ -88,7 +85,7 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda...
 * sin negritas
 * caracteres puros
 
-## Importación 
+## Vías de importación 
 
 Son múltiples las necesidades y vías de importación de datos a nuestra sesión de R.
 
@@ -100,14 +97,14 @@ La forma más rápida es vía clicks de mouse en el panel de entorno de la sesi�
 
 O bien desde código del script:
     
-     Archivos excel 
+* Archivos excel 
 
 ```{r}
 dat <- readxl::read_excel("nombre_del_archivo.xls", ...)
 # Noten que usamos una función del paquete "readxl", por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con "::"
 ```
-    
-    Archivos de texto .csv
+  
+* Archivos de texto .csv
     
 ```{r}
 dat <- read.csv("nombre_del_archivo.csv", header = TRUE, sep = ",", dec = ".")# puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.
