@@ -1,0 +1,3 @@
+# Explorar {#explore}
+
+We describe our methods in this chapter.

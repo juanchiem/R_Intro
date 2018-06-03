@@ -1,0 +1,40 @@
+--- 
+title: "R para fitopatólogos"
+author: "Juan P. Edwards Molina"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Motivación {-}
+
+*"Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación de verdad. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”*
+
+(Tradução de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.)
+
+Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
+
+![](workflow.jpg) 
+
+El curso pretende proveer de herramientas informáticas libres para independizar al alumno/investigador en las distintas etapas de este workflow. Para ello, basados en datos reales de experimentos del área de fitopatología, aprenderemos a usar los siguientes programas
+
+<div class="boxed">
+
+* **Estas son mis top 5 razones por la que elijo R**
+
+  1. Software libre
+
+  2. Aprender un lenguaje de programación: ejercicio mental/lógica. Aprender estadística resulta mucho mas ameno.
+
+  3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
+
+  4. Gran flexibilidad y elegancia de los gráficos
+
+  5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+</div>
+
+</br>
+
+El cronograma del curso puede encontrarse [aqui](https://docs.google.com/document/d/1POFS1mb5yP8gv7J5Mfyt-WPB-bA7Yu5rovnDbV8yWM4/edit?usp=sharing)

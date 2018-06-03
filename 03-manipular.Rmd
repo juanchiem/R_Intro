@@ -1,0 +1,361 @@
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.path = "figures/", 
+                      fig.width = 12, 
+                      fig.height = 8)
+options(width = 90)
+library(tidyverse)
+#https://www.listendata.com/2016/08/dplyr-tutorial.html
+```
+
+# Manipulación {#manip}
+
+Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset analítico. 
+
+Recordando que un dataset debe ser: completo y tiene las dimensiones fila x columna:
+
+1- Cada fila representa una observación (debe contener toda la info de la unidad experimental)
+
+2- Cada columna representa una variable
+
+3- Cada celda debe tener su propia observación 
+
+![](tibbles.png) 
+
+`tidyr` y `dplyr` son los paquetes más útiles para realizar la manipulación de los datasets.
+
+```{r}
+library(tidyverse)
+```
+
+Ambos paquetes hacen uso de las facilidades del operador pipe (`%>%`) lo que facilita su interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejandose a una receta de torta...)
+
+Ej: 
+
+```{r}
+x <- c(1, 2, 3, 4)
+x %>% sum %>% sqrt
+```
+
+La forma clásica de escribir este mismo cálculo sería:
+
+```{r}
+sqrt(sum(x))
+```
+
+
+Importemos los datos "soja" para explicar alguno ejemplos.
+
+**Red de ensayos de fungicidas para el control de mancha anillada en soja**
+
+```{r}
+soy <- readr::read_csv("data/soja_mancha.csv")
+soy
+# browseURL("https://osf.io/jpfet/")
+```
+
+El dataset contiene 372 filas y 9 columnas, descriptas a continuación:
+
+**study**: identificador arbitrario para cada experimento
+
+**year**: año del experimento
+
+**location**: localidad do experimento
+
+**cultivar**: cultivar de soja utilizado
+
+**fungic**: tratamiento fungicida 
+
+**block**: repeticiones
+
+**sev**: severidad (%) evaluada en R6 
+
+**yield**: rendimiento en madurez fisiológica (kg/ha)
+
+<br>
+
+Los cinco verbos (funciones) principales de `dplyr` son:
+
+`filter` - filtra líneas (idem excel)
+
+`mutate` - crea nuevas variables agregandose a las columnas existentes en nuestro dataset
+
+`arrange` - ordena la base con algun criterio especificado
+
+`summarise` - aplica una operacion matemática indicada
+
+<br>
+
+Primero vamos a explorar el dataset que acabamos de importar:
+
+```{r}
+summary(soy)
+str(soy)
+```
+
+Haremos que las variables tipo caracter sean convertidas a factores:
+
+```{r}
+soy <- soy %>% mutate_if(is.character, as.factor)
+summary(soy)
+str(soy)
+```
+
+## `select`
+
+Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield. 
+
+```{r}
+soy %>% 
+  select(study, year, cultivar, fungic, rep, sev, yield)
+```
+
+Es posible usar intervalos de varibles con `:`.
+
+Una selección “negativa” de las variables no deseadas daría un mismo resultado:
+
+```{r}
+soy %>% 
+  select(-Yld_level, -YR_class, -gr_hab, -sev_check)
+```
+
+
+## `filter`
+
+Semejante a `subset`. Condiciones separadas por comas equivalen a `&` de `subset`.
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)
+
+```{r}
+soy %>% 
+  select(study:yield) %>% 
+  filter(fungic == 'ZZ_CHECK')
+```
+
+Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset
+
+```{r}
+soy %>% 
+  select(study:yield) %>% 
+  filter(fungic %in% c("ZZ_CHECK","CZM"))
+```
+
+## `mutate`
+
+Creación de nuevas variables (a partir de las existentes)
+
+Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen [normalmente](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg), las desviaciones estándar no son homogéneas, o ambas. 
+
+Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico). 
+
+Como fitopatólogos, la no normalidad es lo predominante. 
+
+El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)
+
+Dos transformaciones son mayormente sugeridas para la severidad: 
+
+* Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero. 
+(El resultado está dado en radianes, no grados, con unrango de −π/2 a π/2.) 
+
+* Transformación logit: 
+
+```{r}
+soy1 <- soy %>% 
+  select(study:yield) %>% 
+  filter(fungic %in% c("ZZ_CHECK","CZM")) %>% 
+  mutate(sev_arc = asin(sqrt(sev/100)),
+         sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
+         yield_tn = yield/1000) 
+
+# browseURL("http://strata.uga.edu/8370/rtips/proportions.html")
+```
+
+## `arrange`
+
+Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar "desc"" para ordem decrescente.
+
+```{r}
+soy1 %>% arrange(year, cultivar)
+soy1 %>% arrange(year, desc(cultivar))
+```
+
+## `summarise`
+
+Generalmente acompañada de la función `group_by` la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)  
+
+Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos: 
+
+```{r}
+soy %>% 
+  group_by(fungic) %>% 
+  summarise(yield_mean =  mean(yield),
+            yield_sd = sd(yield)) 
+```
+
+> Calculen el rendimiento mínimo y máximo por fungicida
+
+Algunas funciones interesantes para la descripción del dataset: `n()`, `n_distinct()`.
+
+- Cuantos ensayos fueron realizados por año:
+ 
+```{r}
+soy %>% group_by(year) %>% 
+  summarize(n = n_distinct(study)) 
+```
+
+- Cuantas parcelas tenia cada ensayo y cual fue la severdiad máxima en cada um deles:
+
+```{r}
+soy %>% 
+  group_by(study, year, cultivar) %>% 
+  summarize(plots = n()) 
+```
+
+Note que agora desejamos manter o resto das variaveis descritivas dos ensaios, por isso  alem do "study" escrevemos `group_by(study, year, state, location, cultivar)` (Típica tabela de descrição de ensaios para artigos ou teses)
+
+> Adicione a coluna potencial de rendimento (rend_pot), considerando o maximo 
+rendimento observado.
+
+> Crie as seguintes tabelas: i) by_location, detalhando de ordem decrescente quantos ensaios foram realizados em cada local; ii)  by_cultivar;  iii) by_fungicide.
+
+```{r, include=FALSE}
+by_location <- soy  %>%   
+  group_by(location) %>% 
+  summarize(n = n_distinct(study)) %>% 
+  arrange(-n)
+
+by_cultivar <- soy  %>%   
+  group_by(cultivar) %>% 
+  summarize(n = n_distinct(study)) %>% 
+  arrange(-n)
+
+by_fungicide <- soy %>%  
+  group_by(fungic) %>% 
+  summarize(n = n_distinct(study)) %>% 
+  arrange(-n)
+```
+
+> Crie uma tabela "by_check" calculando a média da severidade no "CHECK" (sev_check).
+
+> Usando a função `ifelse` crie uma nova variavel categórica "pressão de doença"" considerando a "sev_check": Low ou High
+
+
+```{r}
+by_check =  soy %>%  
+  filter(fungic=="CHECK") %>%
+  group_by(study) %>% 
+  summarize(sev_check = round(mean(sev, na.rm = TRUE),1)) %>% 
+  mutate(Dis_level = ifelse(sev_check < 30, "Low", "High"))) 
+```
+
+- Funções auxiliares 
+
+`join` junta dois data.frames através de pontos em comun.
+
+Por exemplo, se queremos anexar as variáveis "sev_check" e "Dis_level" para o banco de dados completo:
+
+```{r}
+soy %>% full_join(by_check, by="study")
+```
+
+> Crie as variaveis "dif_sev" e "dif_yield", de cada plot respeito aos checks.
+
+## Dataset "canola"
+
+```{r}
+canola
+```
+
+Isto seria uma forma "wide" de representação do dataset (cru).
+
+Para analisar o efeito do tratemento fungicida precisamos calcular a área abaixo da curva (AUC) do progresso da doença. Para isto precissamos passar <canola> ao formato "long". A função `gather` (do inglês "reunir", pacote `tidyr`) empilha as colunas que desejemos.
+
+![](tidyr.png)
+
+```{r}
+# criaremos uma variavel "tt" com os nomes das colunas com numeros, 
+# e outra "incp" (incidencia em proporção) com os valores correspondientes.
+
+can_long <- canola %>%  
+  gather(`015`, `058`, `095`, `146`, `165`, `180`, `248`, 
+         key = "tt", value = "incp") 
+# gather(tt, incp, -c(par:bk)) ;)
+#save(canola, can_long, file = "canolass.RData")
+```
+
+```{r}
+can_long
+
+# Precisamos que tt seja classe "numeric" para certos calculos
+can_long$tt <- as.numeric(can_long$tt)
+```
+
+Precissamos de um valor de AUC por parcela. Vamos a fazer isso com auxilio das funções `group_by` `summarize` ` mutate_each_` do pacote `dplyr` e `separate` do pacote `tidyr`. 
+
+Notese tambem podem ser usados funções de outros pacotes, como será usada a função `auc`do pacote `MESS`, que calcula a AUC simplesmente assim `auc(x, y, type = "spline")`. Como o pacote `MESS`só será usado uma vez nesta sessão não é necessário ativar ele com `library()`, simplesmente colocando `MESS::` ele será usado unicamente neste bloco de código.  
+
+```{r}
+auc <- can_long %>%
+  group_by(par) %>%
+  summarize(AUC = MESS::auc(tt, incp, type = "spline")) %>% 
+  separate(par, into= c("bk", "trt"), sep=1) %>%  
+  mutate_each_(funs(factor), c("bk","trt"))
+```
+
+Agora sim, canola está pronto para entrar ao próximo passo: modelado.
+
+## Extra: casualizar unidades experimentais
+
+```{r}
+library(agricolae)
+
+# Complete Randomized Design  
+trt <- c("A", "B", "C")
+repeticion <- 4
+DIC <- design.crd(trt, r=repeticion, seed=0, serie=0)
+(planilha_dic <- DIC$book)
+
+# Randomized Complete Block Design
+trt <- LETTERS[1:20]
+rep <- 5
+DBCA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, kinds = "Super-Duper", serie=2)
+(planilha_DBCA <- DBCA$book)
+planilha_DBCA2<- zigzag(DBCA) # zigzag numeration
+print(DBCA$sketch)
+write_csv(planilha_DBCA2, "campo.csv")
+
+# split-plot design
+t1<-c("A","B","C","D")
+t2<-c(1,2,3)
+split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
+(planilha_split <-split$book) # field book
+
+```
+
+**References**
+
+- R for data science. Garrett Grolemund & Hadley Wickham. Online: http://r4ds.had.co.nz/ 
+- Curso de R do Instituto de Matemática e Estatística da Universidade de São Paulo (IME-USP)
+Online: http://curso-r.com 
+
+```{r, include=F}
+wide = read_csv("soja_mancha.csv")
+wide
+str(wide)
+
+wide <- wide %>% mutate_if(is.character, as.factor)
+
+long = wide %>% gather(var_rep, value, -(study:fungic)) %>% 
+  separate(var_rep, into=c("var", "rep")) %>%
+  spread(var, value) %>%
+  mutate(sev=round(sev,1),
+         yield=round(yield,0), 
+         rep = factor(rep)) %>% 
+  select(study, year, state, location, cultivar, fungic, rep, sev, yield) %>% 
+  arrange(study, rep)
+
+```
+
+

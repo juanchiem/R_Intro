@@ -1,0 +1,523 @@
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.path = "figures/", 
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+#http://happygitwithr.com/bookdown-cheat-sheet.html
+library(kableExtra)
+```
+
+# Introducción {#intro}
+
+## Instalación de programas
+
+1° [R](https://cran.r-project.org/) 
+
+2° [R studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
+
+RStudio
+
+![](rstudio.png)
+
+## Instalación de paquetes 
+
+Existen varias vias de instalación de paquetes:
+
+- Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
+
+- Paquetes no oficiales via Github: `devtools::install_github("rstudio/shiny")` 
+
+- Via archivo comprimido .zip/.tar.gz: `install.packages("C:/caminho/pacote.zip", repos = NULL)`
+
+```{r}
+install.packages(c("tidyverse", "agricolae"))
+```
+
+Una vez instalado, hay que cargar los paquetes que contienen las funciones de nuestro interés:
+
+`library(nombre-del-paquete)`
+
+## Configuración de la sesión
+
+Una cuestión fundamental de cada sesión es saber cual es el **directorio de trabajo**, que por default se configurará en el disco "C:/...documentos", por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo. 
+
+Una forma de averiguar el actual directorio de trabajo es tipear en la consola `getwd()`, o bien en el panel de visualización, en la primer pestaña de la izquierda: el fichero.
+
+Par indicar cual será nuestro directorio de trabajo usamos el atajo **Ctrl + Shift + h** y seleccionamos manualmente la carpeta.  
+
+Varios tipos de archivos serán creados durante una sesión: 
+
+* datos (hojas de cálculo)
+* scripts
+* gráficos
+* reportes de resultados
+
+Estos objetos deben estar bien organizados en subcarpetas para su rápido acceso y retome de trabajo en cualquier instante, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá resguardado de posibles pérdidas (backup) sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
+
+Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por  concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. 
+
+> Crear una sesión en sus computadoras
+
+> Crear un script R Markdown
+
+```{r}
+getwd() 
+setwd("C:\Usuario\Documentos\Curso") # Calma! Ctrl + Shift + h
+getwd() 
+```
+
+Donde se guardaria el siguiente gráfico?
+
+```{r}
+plot(pressure, type = 'b', pch = 19)
+```
+
+
+## R como calculadora 
+
+Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al final del capítulo) 
+
+```{r, eval=FALSE}
+4 + 9
+4 - 
+  3 *
+  1
+# 4%1
+4>3
+4 == 3
+4 == 4
+
+(4 + 5 ) * 7 - (36/18)^3
+```
+
+> Esta bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
+Agregue parentesis para que la expresion de un resultado contrario.
+
+> Rendimiento de trigo en función de la severidad de fusariose de la espiga: "The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index. 
+Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat"     
+<br>
+i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+
+```{r}
+4.1 - 0.038 * 10
+(1-(3.72/4.1))*100
+```
+
+Algunos calculos 
+
+```{r}
+sqrt(3) # 3^0.5
+2^(1/3) # ^(1/n)
+log(10)
+log(10, base=10)
+exp(1)
+log(10, base=exp(1))
+exp(4)
+log10(10^4)
+
+round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
+```
+
+Note que R está en inglês (decimales “.”, nombre de las funciones)
+y es “case sensitive”!!
+
+
+**Tipos de Objetos** 
+
+![](obj.png) 
+
+
+```{r}
+atom <- 3
+atom
+```
+
+No exemplo acima, salvamos o valor 3 em atom, e sempre que o R encontrar o nome a ele vai substituir por 3.
+
+Existem várias **classes** básicas ou “atômicas” de elementos no R
+
+```{r}
+class(atom)
+```
+
+## Vectores
+
+```{r}
+# concatenação de elementos atomicos
+v <- c(8, 7, 9, 10, 10, 111) 
+class(v)
+
+(b <- c("A", "b"))
+class(b)
+is.character(b)
+is.numeric(b)
+
+(m <- c(TRUE, FALSE, T, F)) ; class(m)
+
+# Propriedades de v
+# ?length
+length(v)  
+summary(v) 
+#v <- edit(v)
+sort(v)
+```
+
+### Operaciones com vectores
+
+```{r, eval=FALSE}
+v - 1
+
+# Medidas de posición
+mean(v) 
+median(v)
+
+# Medidas de dispersión
+var(v)
+sd(v)
+sqrt(var(v))
+
+IQR(v)
+range(v)
+
+quantile(v, 0.1)
+max(v)
+min(v)
+sum(v)
+```
+
+> Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+
+### Secuencia
+
+```{r, eval=FALSE}
+1:7  
+seq(from = 0, to = 20, #by=2) # 
+ length=4) 
+
+# The seq() function allows you to generate sequences of numbers:
+seq(from = 0, to = 10, by = 2)
+
+rep(1:3, times=3) #  , each=3   
+
+```
+
+### Números aleatorios - distribuciones
+
+```{r, eval=FALSE}
+a = rnorm(100, mean=3, sd=2) 
+range(a)
+runif(5) # 
+hist(a)
+hist(a, prob=TRUE)
+lines(density(a), col="blue", lwd=2) # add a density estimate with defaults
+
+plot(a)
+plot(cumsum(a))
+boxplot(a)
+```
+
+
+### Propiedades 
+
+Se colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
+
+```{r, eval=FALSE}
+y <- c(1.7, "a")  ## character
+y <- c(TRUE, 2)   ## numeric
+y <- c(TRUE, "a") ## character
+```
+
+Forzando las clases explicitamente
+
+
+`as.character(), as.numeric(), as.integer() e as.logical()`
+
+### Factores
+
+Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).
+
+```{r, eval=FALSE}
+resist <- c("R", "S", "S", "S", "R")
+class(resist)
+fator <- as.factor(resist)
+fator
+as.numeric(fator)
+
+pie(table(resist))
+barplot(table(resist))
+```
+
+De factor para numérico
+
+```{r, eval=FALSE}
+niv_res <- factor(c("1", "5", "7", "9"))
+sum(niv_res)
+niv_res1 = as.numeric(niv_res)
+mean(niv_res1)
+niv_res2 = as.numeric(as.character(niv_res))
+mean(niv_res2)
+```
+
+### Indexaión
+
+```{r}
+y[ ]
+y[2]
+y[1:3]
+```
+
+> selecione os elementos 1° e 3°
+
+### Condición
+
+```{r}
+# ifelse(condición, valor_si_TRUE, valor_si_FALSE)
+ifelse(a<2, "Low", "High")
+```
+
+> Foram avaliados 10 clones de porta-enxertos de citros segundo sua resistência a Gomose de Tronco (Phytophthora parasitica). Os diâmetros da lesão (cm) no ponto de inoculação foram: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.  Criar um vetor "resist" com as categorias S ou R, sendo que serão considerados "S" aqueles clones com lesões acima da mediana, e "R" clones com lesões abaixo da mediana. 
+
+### Valores especiles 
+
+Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
+
+- NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.
+
+- NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.
+
+- Inf (Infinito) es un número muy grande, por ejemplo, 1/0 e 10^310. Acepta signo negativo -Inf.
+
+- NULL representa  ausencia de información. 
+
+Use las funiones `is.na()`, `is.nan()`, `is.infinite()` e `is.null()` para testear si un objeto es uno de esos valores.
+
+```{r}
+# NaN é o resultado de uma operação matemática inválida. Significa Not A Number
+0/0
+is.nan(0/0)
+is.na(0/0)
+
+# NULL é o vazio do R. É como se o objeto não existisse
+a = NULL
+a
+
+# NA é uma constante lógica do R. Siginifica Not Available. NA pode ser 
+# convertido para quase todos os tipos de vetores do R. É usado principalmente para
+# indicar valores faltantes.
+y <- c(2, 4, NA, 6)
+is.na(y)
+is.nan(y)
+mean(y)
+mean(y, na.rm = T)
+
+# Inf é significa infinito. É o resultado de operações matemáticas cujo limite é infinito.
+1/0
+1/Inf
+```
+
+> Calcule a média de y
+
+
+## Data frames
+
+Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiais objetos de nuestros estudios.
+
+En los paquetes de R, hay muchos data frames disponibles para fines didácticos. Un ejemplo muy usado es el dataset "iris".
+
+```{r}
+?iris
+iris # ya activo desde inicio de sesión por default
+
+
+library(agricolae)
+disease # que ocurrió
+data(disease)
+```
+
+
+> Explore o dataset iris con las siguientes funciones con iris y anote sus resultados
+    - head() 
+    - tail() 
+    - dim() 
+    - names() 
+    - str() 
+
+### Filtrado de datasets
+
+**data[linea, columna]**
+
+```{r}
+iris[1,]
+iris[,1]
+iris[1,1]
+
+iris$Sepal.Length
+levels(iris$Species)
+summary(iris$Sepal.Length)
+```
+
+> Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna. iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
+
+* Funcion subset 
+
+Filtremos a la variedad Species reteniendo solo a "setosa" 
+
+```{r}
+iris_setosa <- subset(iris, Species="setosa")
+```
+
+Filtremos a la variedad Species reteniendo solo a "setosa" + "virginica"
+
+```{r}
+iris_set.virginica <- subset(iris, Species %in% c("setosa", "virginica"))
+```
+
+Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length > 5
+
+```{r}
+iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
+```
+
+> Que pasa si cambiamos el operador `&` por `|`?
+
+## Listas
+
+Objetos que aceptan elementos de clases diferentes.
+
+```{r}
+x <- list(a = 1:5, b = c("a", "b"), c = TRUE)
+x
+```
+
+```{r}
+x$a       # 
+x[1]       # 
+#sum(x[1])
+x[[1]]     # 
+sum(x[[1]])
+x["c"]     # 
+
+```
+
+## Funciones 
+
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, **mean** es la función que calcula la média, **round** é a função que redondea un número, etc.
+
+```{r}
+numb <- 1:6
+round(mean(numb)) # floor() # ceiling() trunc() 
+```
+
+```{r}
+square.it <- function(x) {
+  x^2
+  }
+
+square.it(3)
+```
+
+>  O modelo logistico  [y=1/(1+ (1/y0-1)exp(-rt))] onde r é uma taxa constante, y0 é o nivel de doença em t=0, foi ajustado para descrever o progresso da severidade da mancha marrom da soja. Crie a função do progresso da doença.
+
+```{r}
+mancha_marron<- function(y0, r, t)
+{
+  1/(1+ (1/y0-1)*exp(-r*t))
+}
+mancha_marron(0.01, .2, 20)
+
+```
+
+
+## S.O.S.!!
+
+- En el mismo R: `?auc`;  `??auc` 
+
+- Googlear: “r generate a sequence of uppercase letters”  
+
+- **Stack Overflow**: foros de pregunta y respuesta ampliamente utilizados por todos los lenguajes de programación. En algunos paises, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!
+
+**¿Cómo hacer una buena pregunta en el stack overflow?**
+
+- Ser consciso pero gentil...
+
+- Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si pueden reproducir su error (detallar paquetes y version de R en caso necesario). 
+
+
+## Tablas resumen {#tablas_resumen}
+
+
+- Operadores aritméticos 
+
+```{r, echo=FALSE, eval=TRUE}
+text_tbl <- data.frame(
+  Operador = c(
+    "x + y", 
+    "x - y", 
+    "x * y", 
+    "x / y",
+    "x %/% y",
+    "x %% y",
+    "x ^ y"),
+  Detalle = c("Adición de x con y",
+              "Substracción de y en x",
+              "Multiplicación", 
+              "División de x por y", 
+              "Parte inteira da divisão de x por y",
+              "Resto da divisão de x por y (módulo)",
+              "x elevado a y-ésima potencia")
+)
+
+kable(text_tbl) %>% kable_styling(full_width = F)
+```
+
+<br><br>
+
+- Operadores lógicos
+
+|Operador|Descrição | 
+|:-------|----------|
+|x < y   |x menor que y?|
+|x <= y  |x menor ou igual a y?|
+|x > y   |x maior que y?|
+|x >= y  |x maior ou igual a y?|
+|x == y  |x igual a y?|
+|x != y  |x diferente de y?|
+|!x	     |Negativa de x|
+|x$\mid$y|x ou y são verdadeiros?|
+|x & y	 |x e y são verdadeiros?|
+
+<br><br>
+
+- Funciones matemáticas
+
+|   Função    |           Descrição                   | 
+|:------------|---------------------------------------|
+|   sqrt(x)   | Raíz de $x$                           |
+|    exp(x)   | Exponencial de $x$                    |
+|    log(x)   | Logaritmo natural de $x$              |
+|   log10(x)  | Logaritmo base 10                     |
+|    sum(x)   | Soma dos elementos de $x$          |  
+|   prod(x)   | Produto dos elementos de $x$       |  
+|    sin(x)   | Seno                                  |  
+|    cos(x)   | Coseno                                |  
+|    tan(x)   | Tangente                              |  
+|  round(x,n) | Arredonda a $n$ dígitos                |  
+|  cumsum(x)  | Calcula as somas acumuladas          |  
+|             | ($x_1, x_1 + x_2, + x_1 +\ldots+x_n$) |  
+
+- Shortcuts
+
+|   Teclas    |           Descrição                    
+|:-----------:|:---------------------------------------:
+| Alt Shift K | panel do todos os atalhos
+| Ctrl Z / Ctrl Shift Z |Undo/Redo 
+| Alt  -      | <-
+| Ctrl  r     | roda a linha completa onde esteja o cursor 
+| Ctrl  l     | limpa a consola
+| Ctrl Shift c| Silencia a linha 
+| Ctrl  i     | organiza hierarquicamente as o bloco de codigo 
+
