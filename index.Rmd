@@ -8,15 +8,29 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.width = 12,
+                      fig.height = 8)
+
+options(width = 90)
+```
 # Motivación {-}
 
 *"Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación de verdad. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”*
+
+![](fig/top.jpg) 
+
 
 (Tradução de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.)
 
 Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
 
-![](workflow.jpg) 
+![](fig/workflow.jpg) 
 
 El curso pretende proveer de herramientas informáticas libres para independizar al alumno/investigador en las distintas etapas de este workflow. Para ello, basados en datos reales de experimentos del área de fitopatología, aprenderemos a usar los siguientes programas
 

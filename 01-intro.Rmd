@@ -1,12 +1,14 @@
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
+library(knitr)
+opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE, 
                       eval=FALSE, 
-                      fig.path = "figures/", 
                       fig.width = 12,
                       fig.height = 8)
+
 options(width = 90)
+
 #http://happygitwithr.com/bookdown-cheat-sheet.html
 library(kableExtra)
 ```
@@ -21,7 +23,7 @@ library(kableExtra)
 
 RStudio
 
-![](rstudio.png)
+![](fig/rstudio.png)
 
 ## Instalación de paquetes 
 
@@ -125,10 +127,9 @@ round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 Note que R está en inglês (decimales “.”, nombre de las funciones)
 y es “case sensitive”!!
 
-
 **Tipos de Objetos** 
 
-![](obj.png) 
+![](fig/obj.png) 
 
 
 ```{r}
@@ -453,7 +454,7 @@ mancha_marron(0.01, .2, 20)
 - Operadores aritméticos 
 
 ```{r, echo=FALSE, eval=TRUE}
-text_tbl <- data.frame(
+text_tab1 <- data.frame(
   Operador = c(
     "x + y", 
     "x - y", 
@@ -471,53 +472,94 @@ text_tbl <- data.frame(
               "x elevado a y-ésima potencia")
 )
 
-kable(text_tbl) %>% kable_styling(full_width = F)
+kable(text_tab1) %>% kable_styling(full_width = F)
 ```
 
 <br><br>
 
 - Operadores lógicos
 
-|Operador|Descrição | 
-|:-------|----------|
-|x < y   |x menor que y?|
-|x <= y  |x menor ou igual a y?|
-|x > y   |x maior que y?|
-|x >= y  |x maior ou igual a y?|
-|x == y  |x igual a y?|
-|x != y  |x diferente de y?|
-|!x	     |Negativa de x|
-|x$\mid$y|x ou y são verdadeiros?|
-|x & y	 |x e y são verdadeiros?|
+```{r, echo=FALSE, eval=TRUE}
+text_tab2 <- data.frame(
+  Operador = c(
+    "x < y", 
+    "x <= y", 
+    "x > y", 
+    "x >= y",
+    "x == y",
+    "x != y"),
+  Detalle = c(
+    "x menor que y?",
+    "x menor o igual que y?",
+    "x mayor que y?",
+    "x mayor o igual que y?",
+    "x igual que y?",
+    "x diferente que y?"
+  )
+)
+
+kable(text_tab2) %>% kable_styling(full_width = F)
+```
+
 
 <br><br>
 
 - Funciones matemáticas
 
-|   Função    |           Descrição                   | 
-|:------------|---------------------------------------|
-|   sqrt(x)   | Raíz de $x$                           |
-|    exp(x)   | Exponencial de $x$                    |
-|    log(x)   | Logaritmo natural de $x$              |
-|   log10(x)  | Logaritmo base 10                     |
-|    sum(x)   | Soma dos elementos de $x$          |  
-|   prod(x)   | Produto dos elementos de $x$       |  
-|    sin(x)   | Seno                                  |  
-|    cos(x)   | Coseno                                |  
-|    tan(x)   | Tangente                              |  
-|  round(x,n) | Arredonda a $n$ dígitos                |  
-|  cumsum(x)  | Calcula as somas acumuladas          |  
-|             | ($x_1, x_1 + x_2, + x_1 +\ldots+x_n$) |  
 
-- Shortcuts
+```{r, echo=FALSE, eval=TRUE}
+text_tab3 <- data.frame(
+  
+  Operador = c(
+    "sqrt(x)", 
+    "sqrt(y)", 
+    "log(x)", 
+    "log10(x)",
+    "sum(x)",
+    "prod(x)",
+    "round(x, n)"
+    ),
+  
+  Detalle = c(
+    "raiz de x",
+    "exponencial de x?",
+    "logaritmo natural de x = ln",
+    "Logaritmo base 10 de x?",
+    "suma todos los elementos de x",
+    "producto de todos los elementos de x",
+    "redondea x a n-digitos"
+    )
+)
 
-|   Teclas    |           Descrição                    
-|:-----------:|:---------------------------------------:
-| Alt Shift K | panel do todos os atalhos
-| Ctrl Z / Ctrl Shift Z |Undo/Redo 
-| Alt  -      | <-
-| Ctrl  r     | roda a linha completa onde esteja o cursor 
-| Ctrl  l     | limpa a consola
-| Ctrl Shift c| Silencia a linha 
-| Ctrl  i     | organiza hierarquicamente as o bloco de codigo 
+kable(text_tab3) %>% kable_styling(full_width = F)
+```
 
+
+- Atajos más usados
+
+```{r, echo=FALSE, eval=TRUE}
+text_tab4 <- data.frame(
+  
+  Teclas = c(
+    "Alt Shift K", 
+    "Ctrl Z / Ctrl Shift Z", 
+    "Alt  -", 
+    "Ctrl r",
+    "Ctrl l",
+    "Ctrl Shift c",
+    "Ctrl i"
+    ),
+  
+  Detalle = c(
+    "panel de todos los atajos",
+    "undo/redo",
+    "<-",
+    "corre la linea/bloque completa de codigo",
+    "limpia la consola",
+    "silencia la linea",
+    "organiza el bloque de código"
+    )
+)
+
+kable(text_tab3) %>% kable_styling(full_width = F)
+```
