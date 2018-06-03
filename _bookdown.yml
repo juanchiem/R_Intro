@@ -1,4 +1,5 @@
 book_filename: "R-Ipave"
+output_dir: "docs"
 language:
   ui:
     chapter_name: ""
