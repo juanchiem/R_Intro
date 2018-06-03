@@ -19,9 +19,9 @@ library(kableExtra)
 
 2° [R studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
 
-RStudio
-
-![](fig/rstudio.png)
+```{r, echo=FALSE, eval=TRUE, fig.cap="Paneles de RStudio", fig.align='center'}
+knitr::include_graphics("fig/rstudio.png")
+```
 
 ## Instalación de paquetes 
 
@@ -30,8 +30,6 @@ Existen varias vias de instalación de paquetes:
 - Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
 
 - Paquetes no oficiales via Github: `devtools::install_github("rstudio/shiny")` 
-
-- Via archivo comprimido .zip/.tar.gz: `install.packages("C:/caminho/pacote.zip", repos = NULL)`
 
 ```{r}
 install.packages(c("tidyverse", "agricolae"))

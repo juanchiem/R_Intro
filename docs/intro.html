@@ -197,8 +197,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.1</span> Instalación de programas</h2>
 <p>1° <a href="https://cran.r-project.org/">R</a></p>
 <p>2° <a href="https://www.rstudio.com/products/rstudio/download/">R studio</a> (bajar la versión Free)</p>
-<p>RStudio</p>
-<p><img src="fig/rstudio.png" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="fig/rstudio.png" alt="Paneles de RStudio"  />
+<p class="caption">
+Figure 1.1: Paneles de RStudio
+</p>
+</div>
 </div>
 <div id="instalacion-de-paquetes" class="section level2">
 <h2><span class="header-section-number">1.2</span> Instalación de paquetes</h2>
@@ -206,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>Via CRAN (Comprehensive R Archive Network): <code>install.packages(&quot;nombre_del_paquete&quot;)</code> O simplemente en el panel de paquetes.</p></li>
 <li><p>Paquetes no oficiales via Github: <code>devtools::install_github(&quot;rstudio/shiny&quot;)</code></p></li>
-<li><p>Via archivo comprimido .zip/.tar.gz: <code>install.packages(&quot;C:/caminho/pacote.zip&quot;, repos = NULL)</code></p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;agricolae&quot;</span>))</a></code></pre></div>
 <p>Una vez instalado, hay que cargar los paquetes que contienen las funciones de nuestro interés:</p>
