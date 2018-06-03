@@ -15,39 +15,36 @@ library(tidyverse)
 
 Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset analítico. 
 
-Recordando que un dataset debe ser: completo y tiene las dimensiones fila x columna:
+Recordando que un dataset debe ser completo con dimensiones n_fila x n_columna, donde:
 
-1- Cada fila representa una observación (debe contener toda la info de la unidad experimental)
+1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
 
-2- Cada columna representa una variable
+2- Cada columna representa una variable (descriptiva o respuesta).
 
-3- Cada celda debe tener su propia observación 
+3- Cada celda debe tener su observación (en caso de faltar el dato será un NA) 
 
 ![](tibbles.png) 
 
-`tidyr` y `dplyr` son los paquetes más útiles para realizar la manipulación de los datasets.
+`tidyr` y `dplyr` son paquetes que facilitan la manipulación de los datasets y son parte de la colección de paquetes de `tidyverse`
 
 ```{r}
 library(tidyverse)
 ```
 
-Ambos paquetes hacen uso de las facilidades del operador pipe (`%>%`) lo que facilita su interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejandose a una receta de torta...)
-
-Ej: 
+Ambos paquetes hacen uso de las facilidades del operador `%>%` (pipe, tubo en español) lo que facilita su interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejandose a una receta de torta...)
 
 ```{r}
 x <- c(1, 2, 3, 4)
 x %>% sum %>% sqrt
 ```
 
-La forma clásica de escribir este mismo cálculo sería:
+Su equivalente de código básico es:
 
 ```{r}
 sqrt(sum(x))
 ```
 
-
-Importemos los datos "soja" para explicar alguno ejemplos.
+Importemos los datos "soja" para ver alguno ejemplos.
 
 **Red de ensayos de fungicidas para el control de mancha anillada en soja**
 
@@ -57,7 +54,7 @@ soy
 # browseURL("https://osf.io/jpfet/")
 ```
 
-El dataset contiene 372 filas y 9 columnas, descriptas a continuación:
+> Describa el dataset. 
 
 **study**: identificador arbitrario para cada experimento
 
@@ -74,6 +71,8 @@ El dataset contiene 372 filas y 9 columnas, descriptas a continuación:
 **sev**: severidad (%) evaluada en R6 
 
 **yield**: rendimiento en madurez fisiológica (kg/ha)
+
+
 
 <br>
 

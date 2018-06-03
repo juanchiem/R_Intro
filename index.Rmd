@@ -4,6 +4,8 @@ author: "Juan P. Edwards Molina"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
@@ -32,11 +34,15 @@ Podríamos resumir nuestro trabajo como científicos, desde la recolección de d
 
 ![](fig/workflow.jpg) 
 
-El curso pretende proveer de herramientas informáticas libres para independizar al alumno/investigador en las distintas etapas de este workflow. Para ello, basados en datos reales de experimentos del área de fitopatología, aprenderemos a usar los siguientes programas
+<div style="text-align: right"> (adaptado de "R for Data Science", Grolemund G. & Wickham H.) </div>
+
+</br>
+
+El curso pretende proveer de herramientas analíticas para independizar al alumno/investigador en las distintas etapas de este workflow. Para ello, usaremos datos (reales o simulados) típicos del área de fitopatología o afines. 
 
 <div class="boxed">
 
-* **Estas son mis top 5 razones por la que elijo R**
+* *Estas son mis 5principales razones por la que elijo R* `[@R-base]`
 
   1. Software libre
 
@@ -52,3 +58,11 @@ El curso pretende proveer de herramientas informáticas libres para independizar
 </br>
 
 El cronograma del curso puede encontrarse [aqui](https://docs.google.com/document/d/1POFS1mb5yP8gv7J5Mfyt-WPB-bA7Yu5rovnDbV8yWM4/edit?usp=sharing)
+
+Los datasets que serán usados durante el curso pueden bajarse desde 
+[aqui](https://github.com/juanchiem/R_Intro/tree/master/data)
+
+[@R-bookdown]
+
+
+

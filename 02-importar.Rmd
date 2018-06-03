@@ -87,7 +87,7 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda...
 
 ## Vías de importación 
 
-Son múltiples las necesidades y vías de importación de datos a nuestra sesión de R.
+Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.
 
 Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xls (planillas tradicionales) o .csv (texto separado con comas, mucho mas livianos). 
 
