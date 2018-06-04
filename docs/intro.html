@@ -137,23 +137,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.2</b> Instalación de paquetes</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.3</b> Configuración de la sesión</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.4</b> R como calculadora</a></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#vectores"><i class="fa fa-check"></i><b>1.5</b> Vectores</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#operaciones-com-vectores"><i class="fa fa-check"></i><b>1.5.1</b> Operaciones com vectores</a></li>
-<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#secuencia"><i class="fa fa-check"></i><b>1.5.2</b> Secuencia</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#numeros-aleatorios---distribuciones"><i class="fa fa-check"></i><b>1.5.3</b> Números aleatorios - distribuciones</a></li>
-<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#propiedades"><i class="fa fa-check"></i><b>1.5.4</b> Propiedades</a></li>
-<li class="chapter" data-level="1.5.5" data-path="intro.html"><a href="intro.html#factores"><i class="fa fa-check"></i><b>1.5.5</b> Factores</a></li>
-<li class="chapter" data-level="1.5.6" data-path="intro.html"><a href="intro.html#indexaion"><i class="fa fa-check"></i><b>1.5.6</b> Indexaión</a></li>
-<li class="chapter" data-level="1.5.7" data-path="intro.html"><a href="intro.html#condicion"><i class="fa fa-check"></i><b>1.5.7</b> Condición</a></li>
-<li class="chapter" data-level="1.5.8" data-path="intro.html"><a href="intro.html#valores-especiles"><i class="fa fa-check"></i><b>1.5.8</b> Valores especiles</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#tipos-de-objetos"><i class="fa fa-check"></i><b>1.5</b> Tipos de Objetos</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#vectores"><i class="fa fa-check"></i><b>1.5.1</b> Vectores</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#data-frames"><i class="fa fa-check"></i><b>1.5.2</b> Data frames</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>1.5.3</b> Filtrado de datasets</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#listas"><i class="fa fa-check"></i><b>1.5.4</b> Listas</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#data-frames"><i class="fa fa-check"></i><b>1.6</b> Data frames</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>1.6.1</b> Filtrado de datasets</a></li>
-</ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#listas"><i class="fa fa-check"></i><b>1.7</b> Listas</a></li>
-<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.8</b> Funciones</a></li>
-<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.9</b> S.O.S.!!</a></li>
-<li class="chapter" data-level="1.10" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.10</b> Tablas resumen</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.6</b> Funciones</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.7</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.8</b> Tablas resumen</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Importar</a><ul>
 <li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>2.1</b> Organización de planillas a ser importadas a R</a></li>
@@ -212,15 +204,15 @@ Figure 1.1: Paneles de RStudio
 <li><p>Paquetes no oficiales via Github: <code>devtools::install_github(&quot;rstudio/shiny&quot;)</code></p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;agricolae&quot;</span>))</a></code></pre></div>
-<p>Una vez instalado, hay que cargar los paquetes que contienen las funciones de nuestro interés:</p>
+<p>Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión:</p>
 <p><code>library(nombre-del-paquete)</code></p>
 </div>
 <div id="configuracion-de-la-sesion" class="section level2">
 <h2><span class="header-section-number">1.3</span> Configuración de la sesión</h2>
-<p>Una cuestión fundamental de cada sesión es saber cual es el <strong>directorio de trabajo</strong>, que por default se configurará en el disco “C:/…documentos”, por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo.</p>
-<p>Una forma de averiguar el actual directorio de trabajo es tipear en la consola <code>getwd()</code>, o bien en el panel de visualización, en la primer pestaña de la izquierda: el fichero.</p>
-<p>Par indicar cual será nuestro directorio de trabajo usamos el atajo <strong>Ctrl + Shift + h</strong> y seleccionamos manualmente la carpeta.</p>
-<p>Varios tipos de archivos serán creados durante una sesión:</p>
+<p>Un punto fundamental de cada sesión es saber cual es el <strong>directorio de trabajo</strong>, que por default se configurará en el disco “C:/…documentos”, por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo.</p>
+<p>Una forma de averiguar el actual directorio de trabajo es tipear en la consola <code>getwd()</code>, o bien en el panel de outputs, en la primer pestaña de la izquierda tendremos abierta esa carpeta donde está indicada el directorio de trabajo.</p>
+<p>Para indicar cual será nuestro directorio de trabajo usamos el atajo <strong>Ctrl + Shift + h</strong> y seleccionamos manualmente la carpeta.</p>
+<p>Varios tipos de archivos serán usados/creados durante una sesión:</p>
 <ul>
 <li>datos (hojas de cálculo)</li>
 <li>scripts</li>
@@ -228,12 +220,12 @@ Figure 1.1: Paneles de RStudio
 <li>reportes de resultados</li>
 </ul>
 <p>Estos objetos deben estar bien organizados en subcarpetas para su rápido acceso y retome de trabajo en cualquier instante, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá resguardado de posibles pérdidas (backup) sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.</p>
-<p>Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores.</p>
+<p>Como dijimos, una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores.</p>
 <blockquote>
 <p>Crear una sesión en sus computadoras</p>
 </blockquote>
 <blockquote>
-<p>Crear un script R Markdown</p>
+<p>Crear un script</p>
 </blockquote>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">getwd</span>() </a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">setwd</span>(<span class="st">&quot;C:\Usuario\Documentos\Curso&quot;</span>) <span class="co"># Calma! Ctrl + Shift + h</span></a>
@@ -255,18 +247,19 @@ Figure 1.1: Paneles de RStudio
 <a class="sourceLine" id="cb4-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ) <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">36</span><span class="op">/</span><span class="dv">18</span>)<span class="op">^</span><span class="dv">3</span></a></code></pre></div>
 <blockquote>
-<p>Esta bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
-Agregue parentesis para que la expresion de un resultado contrario.</p>
+<p>Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
+Agregue parentesis para que la expresión de un resultado contrario.</p>
 </blockquote>
-<blockquote>
-<p>Rendimiento de trigo en función de la severidad de fusariose de la espiga: “The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index.
-Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat”<br />
-<br>
-i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
-</blockquote>
+<div style="float:right;position: relative; top: 0px;">
+<p><img src="fig/fhb.jpg" width="70%" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<p>Ej: <strong>Rendimiento de trigo en función de la severidad de fusariosis de la espiga</strong> <em>“The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index. Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat”</em></p>
+<ol style="list-style-type: lower-roman">
+<li>Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</li>
+</ol>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="fl">4.1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.038</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">(<span class="dv">1</span><span class="op">-</span>(<span class="fl">3.72</span><span class="op">/</span><span class="fl">4.1</span>))<span class="op">*</span><span class="dv">100</span></a></code></pre></div>
-<p>Algunos cálculos (ver Tabla <a href="#tab:mat"><strong>??</strong></a> )</p>
+<p>Algunos cálculos</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">3</span>) <span class="co"># 3^0.5</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="dv">2</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="co"># ^(1/n)</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">log</span>(<span class="dv">10</span>)</a>
@@ -277,20 +270,21 @@ i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de s
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw">log10</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb6-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></a></code></pre></div>
-<p>Note que R está en inglês (decimales “.”, nombre de las funciones)
-y es “case sensitive”!!</p>
-<p><strong>Tipos de Objetos</strong></p>
+<p>(Note que R está en inglês (decimales “.”, nombre de las funciones)
+y es “case sensitive”!!)</p>
+</div>
+<div id="tipos-de-objetos" class="section level2">
+<h2><span class="header-section-number">1.5</span> Tipos de Objetos</h2>
 <p><img src="fig/obj.png" /></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">atom &lt;-<span class="st"> </span><span class="dv">3</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">atom</a></code></pre></div>
-<p>No exemplo acima, salvamos o valor 3 em atom, e sempre que o R encontrar o nome a ele vai substituir por 3.</p>
-<p>Existem várias <strong>classes</strong> básicas ou “atômicas” de elementos no R</p>
+<p>El anterior ejemplo, guardamos el valor 3 en “atom”, y siempre que R encuentre ese nombre atom lo entenderá como un 3.</p>
+<p>Existen varias <strong>clases</strong> básicas o “atómicas” de elementos en R</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">class</span>(atom)</a></code></pre></div>
-</div>
-<div id="vectores" class="section level2">
-<h2><span class="header-section-number">1.5</span> Vectores</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># concatenação de elementos atomicos</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">111</span>) </a>
+<div id="vectores" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> Vectores</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># concatenación de elementos atómicos</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">111</span>)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">class</span>(v)</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;b&quot;</span>))</a>
@@ -300,14 +294,15 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb9-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">(m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T, F)) ; <span class="kw">class</span>(m)</a>
 <a class="sourceLine" id="cb9-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co"># Propriedades de v</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co"># Propiedades de v</span></a>
 <a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co"># ?length</span></a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="kw">length</span>(v)  </a>
 <a class="sourceLine" id="cb9-15" data-line-number="15"><span class="kw">summary</span>(v) </a>
 <a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#v &lt;- edit(v)</span></a>
 <a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw">sort</span>(v)</a></code></pre></div>
-<div id="operaciones-com-vectores" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> Operaciones com vectores</h3>
+<ul>
+<li>Operaciones com vectores</li>
+</ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">v <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># Medidas de posición</span></a>
@@ -329,51 +324,50 @@ y es “case sensitive”!!</p>
 <blockquote>
 <p>Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
 </blockquote>
-</div>
-<div id="secuencia" class="section level3">
-<h3><span class="header-section-number">1.5.2</span> Secuencia</h3>
+<ul>
+<li>Secuencia</li>
+</ul>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span><span class="dv">7</span>  </a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="co">#by=2) # </span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"> <span class="dt">length=</span><span class="dv">4</span>) </a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co"># The seq() function allows you to generate sequences of numbers:</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">3</span>) <span class="co">#  , each=3   </span></a></code></pre></div>
-</div>
-<div id="numeros-aleatorios---distribuciones" class="section level3">
-<h3><span class="header-section-number">1.5.3</span> Números aleatorios - distribuciones</h3>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">3</span>) <span class="co">#  , each=3   </span></a></code></pre></div>
+<ul>
+<li>Números aleatorios - distribuciones</li>
+</ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">a =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">3</span>, <span class="dt">sd=</span><span class="dv">2</span>) </a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">range</span>(a)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">runif</span>(<span class="dv">5</span>) <span class="co"># </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">hist</span>(a)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">hist</span>(a, <span class="dt">prob=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="kw">lines</span>(<span class="kw">density</span>(a), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>) <span class="co"># add a density estimate with defaults</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="kw">plot</span>(a)</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">plot</span>(<span class="kw">cumsum</span>(a))</a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">boxplot</span>(a)</a></code></pre></div>
-</div>
-<div id="propiedades" class="section level3">
-<h3><span class="header-section-number">1.5.4</span> Propiedades</h3>
-<p>Se colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a “1.7” se fuera creado junto con “a”.</p>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">hist</span>(a)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">hist</span>(a, <span class="dt">prob=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">lines</span>(<span class="kw">density</span>(a), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>) <span class="co"># add a density estimate with defaults</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="kw">plot</span>(a)</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">plot</span>(<span class="kw">cumsum</span>(a))</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="kw">boxplot</span>(a)</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">b =<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>) <span class="co"># </span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">hist</span>(b)</a></code></pre></div>
+<ul>
+<li>Propiedades de vectores</li>
+</ul>
+<p>Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a “1.7” se fuera creado junto con “a”.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)  ## character</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>)   ## numeric</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="st">&quot;a&quot;</span>) ## character</a></code></pre></div>
 <p>Forzando las clases explicitamente</p>
 <p><code>as.character(), as.numeric(), as.integer() e as.logical()</code></p>
-</div>
-<div id="factores" class="section level3">
-<h3><span class="header-section-number">1.5.5</span> Factores</h3>
+<ul>
+<li>Factores</li>
+</ul>
 <p>Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">resist &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;R&quot;</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">class</span>(resist)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">fator &lt;-<span class="st"> </span><span class="kw">as.factor</span>(resist)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">fator</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">as.numeric</span>(fator)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">res_f &lt;-<span class="st"> </span><span class="kw">as.factor</span>(resist)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">res_f</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="kw">as.numeric</span>(res_f)</a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw">pie</span>(<span class="kw">table</span>(resist))</a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">barplot</span>(<span class="kw">table</span>(resist))</a></code></pre></div>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw">table</span>(resist)</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">pie</span>(<span class="kw">table</span>(resist))</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="kw">barplot</span>(<span class="kw">table</span>(resist))</a></code></pre></div>
 <p>De factor para numérico</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">niv_res &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;9&quot;</span>))</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">sum</span>(niv_res)</a>
@@ -381,26 +375,26 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">mean</span>(niv_res1)</a>
 <a class="sourceLine" id="cb15-5" data-line-number="5">niv_res2 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(niv_res))</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw">mean</span>(niv_res2)</a></code></pre></div>
-</div>
-<div id="indexaion" class="section level3">
-<h3><span class="header-section-number">1.5.6</span> Indexaión</h3>
+<ul>
+<li>Indexación</li>
+</ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">y[ ]</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">y[<span class="dv">2</span>]</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3">y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <blockquote>
 <p>selecione os elementos 1° e 3°</p>
 </blockquote>
-</div>
-<div id="condicion" class="section level3">
-<h3><span class="header-section-number">1.5.7</span> Condición</h3>
+<ul>
+<li>Condición</li>
+</ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># ifelse(condición, valor_si_TRUE, valor_si_FALSE)</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">ifelse</span>(a<span class="op">&lt;</span><span class="dv">2</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)</a></code></pre></div>
 <blockquote>
-<p>Foram avaliados 10 clones de porta-enxertos de citros segundo sua resistência a Gomose de Tronco (Phytophthora parasitica). Os diâmetros da lesão (cm) no ponto de inoculação foram: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11. Criar um vetor “resist” com as categorias S ou R, sendo que serão considerados “S” aqueles clones com lesões acima da mediana, e “R” clones com lesões abaixo da mediana.</p>
+<p>Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11. Crear un vector “resist” con las categorías S o R, “S” aquellos clones con lesiones por encima de la mediana, y “R” clones con lesiones por debajo de la mediana.</p>
 </blockquote>
-</div>
-<div id="valores-especiles" class="section level3">
-<h3><span class="header-section-number">1.5.8</span> Valores especiles</h3>
+<ul>
+<li>Valores especiales</li>
+</ul>
 <p>Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.</p>
 <ul>
 <li><p>NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.</p></li>
@@ -409,12 +403,12 @@ y es “case sensitive”!!</p>
 <li><p>NULL representa ausencia de información.</p></li>
 </ul>
 <p>Use las funiones <code>is.na()</code>, <code>is.nan()</code>, <code>is.infinite()</code> e <code>is.null()</code> para testear si un objeto es uno de esos valores.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># NaN é o resultado de uma operação matemática inválida. Significa Not A Number</span></a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># NaN es el resultado de una operación matemática inválida. Significa Not A Number</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb18-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># NULL é o vazio do R. É como se o objeto não existisse</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># NULL es el vacio de R. Es como si el objeto no existiese</span></a>
 <a class="sourceLine" id="cb18-7" data-line-number="7">a =<span class="st"> </span><span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb18-8" data-line-number="8">a</a>
 <a class="sourceLine" id="cb18-9" data-line-number="9"></a>
@@ -427,25 +421,23 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb18-16" data-line-number="16"><span class="kw">mean</span>(y)</a>
 <a class="sourceLine" id="cb18-17" data-line-number="17"><span class="kw">mean</span>(y, <span class="dt">na.rm =</span> T)</a>
 <a class="sourceLine" id="cb18-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="co"># Inf é significa infinito. É o resultado de operações matemáticas cujo limite é infinito.</span></a>
+<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="co"># Inf significa infinito. Es el resultado de operaiones matemáticas cuyo limite es infinito.</span></a>
 <a class="sourceLine" id="cb18-20" data-line-number="20"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb18-21" data-line-number="21"><span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></a></code></pre></div>
 <blockquote>
-<p>Calcule a média de y</p>
+<p>Calcule el promedio de y (use la ayuda de R en caso necesario)</p>
 </blockquote>
 </div>
-</div>
-<div id="data-frames" class="section level2">
-<h2><span class="header-section-number">1.6</span> Data frames</h2>
-<p>Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiais objetos de nuestros estudios.</p>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> Data frames</h3>
+<p>Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiales objetos de nuestros estudios.</p>
 <p>En los paquetes de R, hay muchos data frames disponibles para fines didácticos. Un ejemplo muy usado es el dataset “iris”.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">?iris</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">iris <span class="co"># ya activo desde inicio de sesión por default</span></a>
 <a class="sourceLine" id="cb19-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">library</span>(agricolae)</a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">disease <span class="co"># que ocurrió</span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="kw">data</span>(disease)</a></code></pre></div>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">library</span>(agricolae)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">disease <span class="co"># que ocurrió</span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="kw">data</span>(disease)</a></code></pre></div>
 <blockquote>
 <p>Explore o dataset iris con las siguientes funciones con iris y anote sus resultados
 - head()
@@ -454,8 +446,9 @@ y es “case sensitive”!!</p>
 - names()
 - str()</p>
 </blockquote>
+</div>
 <div id="filtrado-de-datasets" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Filtrado de datasets</h3>
+<h3><span class="header-section-number">1.5.3</span> Filtrado de datasets</h3>
 <p><strong>data[linea, columna]</strong></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">iris[<span class="dv">1</span>,]</a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">iris[,<span class="dv">1</span>]</a>
@@ -480,9 +473,8 @@ y es “case sensitive”!!</p>
 <p>Que pasa si cambiamos el operador <code>&amp;</code> por <code>|</code>?</p>
 </blockquote>
 </div>
-</div>
-<div id="listas" class="section level2">
-<h2><span class="header-section-number">1.7</span> Listas</h2>
+<div id="listas" class="section level3">
+<h3><span class="header-section-number">1.5.4</span> Listas</h3>
 <p>Objetos que aceptan elementos de clases diferentes.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb24-2" data-line-number="2">x</a></code></pre></div>
@@ -493,8 +485,9 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb25-5" data-line-number="5"><span class="kw">sum</span>(x[[<span class="dv">1</span>]])</a>
 <a class="sourceLine" id="cb25-6" data-line-number="6">x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></a></code></pre></div>
 </div>
+</div>
 <div id="funciones" class="section level2">
-<h2><span class="header-section-number">1.8</span> Funciones</h2>
+<h2><span class="header-section-number">1.6</span> Funciones</h2>
 <p>Generalmente, el nombre de las funciones es intuitivo, por ejemplo, <strong>mean</strong> es la función que calcula la média, <strong>round</strong> é a função que redondea un número, etc.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></a></code></pre></div>
@@ -504,7 +497,7 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb27-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw">square.it</span>(<span class="dv">3</span>)</a></code></pre></div>
 <blockquote>
-<p>O modelo logistico [y=1/(1+ (1/y0-1)exp(-rt))] onde r é uma taxa constante, y0 é o nivel de doença em t=0, foi ajustado para descrever o progresso da severidade da mancha marrom da soja. Crie a função do progresso da doença.</p>
+<p>El modelo logístico [y=1/(1+ (1/y0-1)exp(-rt))] donde r es una tasa constante, y0 es el nivel de enfermedad en t=0, foi ajustado para describir el progreso de la severidad de la mancha marron de la soja. Crear la función del progreso de la enfermedad.</p>
 </blockquote>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mancha_marron&lt;-<span class="st"> </span><span class="cf">function</span>(y0, r, t)</a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">{</a>
@@ -513,7 +506,7 @@ y es “case sensitive”!!</p>
 <a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw">mancha_marron</span>(<span class="fl">0.01</span>, <span class="fl">.2</span>, <span class="dv">20</span>)</a></code></pre></div>
 </div>
 <div id="s.o.s." class="section level2">
-<h2><span class="header-section-number">1.9</span> S.O.S.!!</h2>
+<h2><span class="header-section-number">1.7</span> S.O.S.!!</h2>
 <ul>
 <li><p>En el mismo R: <code>?auc</code>; <code>??auc</code></p></li>
 <li><p>Googlear: “r generate a sequence of uppercase letters”</p></li>
@@ -526,7 +519,7 @@ y es “case sensitive”!!</p>
 </ul>
 </div>
 <div id="tablas_resumen" class="section level2">
-<h2><span class="header-section-number">1.10</span> Tablas resumen</h2>
+<h2><span class="header-section-number">1.8</span> Tablas resumen</h2>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:op-arit">Table 1.1: </span>Operadores artiméticos
@@ -547,7 +540,7 @@ Detalle
 x + y
 </td>
 <td style="text-align:left;">
-Adición de x con y
+Suma de x e y
 </td>
 </tr>
 <tr>
@@ -555,7 +548,7 @@ Adición de x con y
 x - y
 </td>
 <td style="text-align:left;">
-Substracción de y en x
+Resta de x menos y
 </td>
 </tr>
 <tr>
@@ -579,7 +572,7 @@ División de x por y
 x %/% y
 </td>
 <td style="text-align:left;">
-Parte inteira da divisão de x por y
+Parte intera de la división de x por y
 </td>
 </tr>
 <tr>
@@ -587,7 +580,7 @@ Parte inteira da divisão de x por y
 x %% y
 </td>
 <td style="text-align:left;">
-Resto da divisão de x por y (módulo)
+Resto de la división de x por y
 </td>
 </tr>
 <tr>

@@ -35,19 +35,19 @@ Existen varias vias de instalación de paquetes:
 install.packages(c("tidyverse", "agricolae"))
 ```
 
-Una vez instalado, hay que cargar los paquetes que contienen las funciones de nuestro interés:
+Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión:
 
 `library(nombre-del-paquete)`
 
 ## Configuración de la sesión
 
-Una cuestión fundamental de cada sesión es saber cual es el **directorio de trabajo**, que por default se configurará en el disco "C:/...documentos", por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo. 
+Un punto fundamental de cada sesión es saber cual es el **directorio de trabajo**, que por default se configurará en el disco "C:/...documentos", por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo. 
 
-Una forma de averiguar el actual directorio de trabajo es tipear en la consola `getwd()`, o bien en el panel de visualización, en la primer pestaña de la izquierda: el fichero.
+Una forma de averiguar el actual directorio de trabajo es tipear en la consola `getwd()`, o bien en el panel de outputs, en la primer pestaña de la izquierda tendremos abierta esa carpeta donde está indicada el directorio de trabajo. 
 
-Par indicar cual será nuestro directorio de trabajo usamos el atajo **Ctrl + Shift + h** y seleccionamos manualmente la carpeta.  
+Para indicar cual será nuestro directorio de trabajo usamos el atajo **Ctrl + Shift + h** y seleccionamos manualmente la carpeta.  
 
-Varios tipos de archivos serán creados durante una sesión: 
+Varios tipos de archivos serán usados/creados durante una sesión: 
 
 * datos (hojas de cálculo)
 * scripts
@@ -56,11 +56,11 @@ Varios tipos de archivos serán creados durante una sesión:
 
 Estos objetos deben estar bien organizados en subcarpetas para su rápido acceso y retome de trabajo en cualquier instante, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá resguardado de posibles pérdidas (backup) sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
 
-Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por  concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. 
+Como dijimos, una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por  concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. 
 
 > Crear una sesión en sus computadoras
 
-> Crear un script R Markdown
+> Crear un script 
 
 ```{r}
 getwd() 
@@ -92,12 +92,17 @@ Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al 
 (4 + 5 ) * 7 - (36/18)^3
 ```
 
-> Esta bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
-Agregue parentesis para que la expresion de un resultado contrario.
+> Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
+Agregue parentesis para que la expresión de un resultado contrario.
 
-> Rendimiento de trigo en función de la severidad de fusariose de la espiga: "The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index. 
-Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat"     
-<br>
+<div style= "float:right;position: relative; top: 0px;">
+```{r echo=FALSE, eval=TRUE, out.width = '70%', fig.align='right'}
+knitr::include_graphics("fig/fhb.jpg")
+```
+</div>
+
+Ej: **Rendimiento de trigo en función de la severidad de fusariosis de la espiga** _"The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index. Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat"_     
+
 i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
 
 ```{r}
@@ -105,7 +110,7 @@ i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de s
 (1-(3.72/4.1))*100
 ```
 
-Algunos cálculos (ver Tabla \@ref(tab:mat) )
+Algunos cálculos
 
 ```{r}
 sqrt(3) # 3^0.5
@@ -120,32 +125,31 @@ log10(10^4)
 round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 ```
 
-Note que R está en inglês (decimales “.”, nombre de las funciones)
-y es “case sensitive”!!
+(Note que R está en inglês (decimales “.”, nombre de las funciones)
+y es “case sensitive”!!)
 
-**Tipos de Objetos** 
+## Tipos de Objetos 
 
 ![](fig/obj.png) 
-
 
 ```{r}
 atom <- 3
 atom
 ```
 
-No exemplo acima, salvamos o valor 3 em atom, e sempre que o R encontrar o nome a ele vai substituir por 3.
+El anterior ejemplo, guardamos el valor 3 en "atom", y siempre que R encuentre ese nombre atom lo entenderá como un 3.
 
-Existem várias **classes** básicas ou “atômicas” de elementos no R
+Existen varias **clases** básicas o “atómicas” de elementos en R
 
 ```{r}
 class(atom)
 ```
 
-## Vectores
+### Vectores
 
 ```{r}
-# concatenação de elementos atomicos
-v <- c(8, 7, 9, 10, 10, 111) 
+# concatenación de elementos atómicos
+v <- c(8, 7, 9, 10, 10, 111)
 class(v)
 
 (b <- c("A", "b"))
@@ -155,7 +159,7 @@ is.numeric(b)
 
 (m <- c(TRUE, FALSE, T, F)) ; class(m)
 
-# Propriedades de v
+# Propiedades de v
 # ?length
 length(v)  
 summary(v) 
@@ -163,7 +167,7 @@ summary(v)
 sort(v)
 ```
 
-### Operaciones com vectores
+* Operaciones com vectores
 
 ```{r, eval=FALSE}
 v - 1
@@ -188,39 +192,36 @@ sum(v)
 
 > Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
 
-### Secuencia
+* Secuencia
 
 ```{r, eval=FALSE}
 1:7  
 seq(from = 0, to = 20, #by=2) # 
  length=4) 
 
-# The seq() function allows you to generate sequences of numbers:
-seq(from = 0, to = 10, by = 2)
-
 rep(1:3, times=3) #  , each=3   
-
 ```
 
-### Números aleatorios - distribuciones
+* Números aleatorios - distribuciones
 
 ```{r, eval=FALSE}
 a = rnorm(100, mean=3, sd=2) 
 range(a)
-runif(5) # 
 hist(a)
 hist(a, prob=TRUE)
 lines(density(a), col="blue", lwd=2) # add a density estimate with defaults
-
 plot(a)
 plot(cumsum(a))
 boxplot(a)
+
+b = runif(100) # 
+hist(b)
 ```
 
 
-### Propiedades 
+* Propiedades de vectores 
 
-Se colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
+Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
 
 ```{r, eval=FALSE}
 y <- c(1.7, "a")  ## character
@@ -230,20 +231,20 @@ y <- c(TRUE, "a") ## character
 
 Forzando las clases explicitamente
 
-
 `as.character(), as.numeric(), as.integer() e as.logical()`
 
-### Factores
+* Factores
 
 Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).
 
 ```{r, eval=FALSE}
 resist <- c("R", "S", "S", "S", "R")
 class(resist)
-fator <- as.factor(resist)
-fator
-as.numeric(fator)
+res_f <- as.factor(resist)
+res_f
+as.numeric(res_f)
 
+table(resist)
 pie(table(resist))
 barplot(table(resist))
 ```
@@ -259,7 +260,7 @@ niv_res2 = as.numeric(as.character(niv_res))
 mean(niv_res2)
 ```
 
-### Indexaión
+* Indexación
 
 ```{r}
 y[ ]
@@ -269,16 +270,16 @@ y[1:3]
 
 > selecione os elementos 1° e 3°
 
-### Condición
+* Condición
 
 ```{r}
 # ifelse(condición, valor_si_TRUE, valor_si_FALSE)
 ifelse(a<2, "Low", "High")
 ```
 
-> Foram avaliados 10 clones de porta-enxertos de citros segundo sua resistência a Gomose de Tronco (Phytophthora parasitica). Os diâmetros da lesão (cm) no ponto de inoculação foram: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.  Criar um vetor "resist" com as categorias S ou R, sendo que serão considerados "S" aqueles clones com lesões acima da mediana, e "R" clones com lesões abaixo da mediana. 
+> Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11. Crear un vector "resist" con las categorías S o R, "S" aquellos clones con lesiones por encima de la mediana, y "R" clones con lesiones por debajo de la mediana.
 
-### Valores especiles 
+* Valores especiales 
 
 Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
 
@@ -293,12 +294,12 @@ Existen valores reservados para representar datos faltantes, infinitos, e indefi
 Use las funiones `is.na()`, `is.nan()`, `is.infinite()` e `is.null()` para testear si un objeto es uno de esos valores.
 
 ```{r}
-# NaN é o resultado de uma operação matemática inválida. Significa Not A Number
+# NaN es el resultado de una operación matemática inválida. Significa Not A Number
 0/0
 is.nan(0/0)
 is.na(0/0)
 
-# NULL é o vazio do R. É como se o objeto não existisse
+# NULL es el vacio de R. Es como si el objeto no existiese
 a = NULL
 a
 
@@ -311,17 +312,16 @@ is.nan(y)
 mean(y)
 mean(y, na.rm = T)
 
-# Inf é significa infinito. É o resultado de operações matemáticas cujo limite é infinito.
+# Inf significa infinito. Es el resultado de operaiones matemáticas cuyo limite es infinito.
 1/0
 1/Inf
 ```
 
-> Calcule a média de y
+> Calcule el promedio de y (use la ayuda de R en caso necesario)
 
+### Data frames
 
-## Data frames
-
-Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiais objetos de nuestros estudios.
+Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiales objetos de nuestros estudios.
 
 En los paquetes de R, hay muchos data frames disponibles para fines didácticos. Un ejemplo muy usado es el dataset "iris".
 
@@ -329,12 +329,10 @@ En los paquetes de R, hay muchos data frames disponibles para fines didácticos.
 ?iris
 iris # ya activo desde inicio de sesión por default
 
-
 library(agricolae)
 disease # que ocurrió
 data(disease)
 ```
-
 
 > Explore o dataset iris con las siguientes funciones con iris y anote sus resultados
     - head() 
@@ -381,7 +379,7 @@ iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
 
 > Que pasa si cambiamos el operador `&` por `|`?
 
-## Listas
+### Listas
 
 Objetos que aceptan elementos de clases diferentes.
 
@@ -417,7 +415,7 @@ square.it <- function(x) {
 square.it(3)
 ```
 
->  O modelo logistico  [y=1/(1+ (1/y0-1)exp(-rt))] onde r é uma taxa constante, y0 é o nivel de doença em t=0, foi ajustado para descrever o progresso da severidade da mancha marrom da soja. Crie a função do progresso da doença.
+>  El modelo logístico  [y=1/(1+ (1/y0-1)exp(-rt))] donde r es una tasa constante, y0 es el nivel de enfermedad en t=0, foi ajustado para describir el progreso de la severidad de la mancha marron de la soja. Crear la función del progreso de la enfermedad.
 
 ```{r}
 mancha_marron<- function(y0, r, t)
@@ -425,9 +423,7 @@ mancha_marron<- function(y0, r, t)
   1/(1+ (1/y0-1)*exp(-r*t))
 }
 mancha_marron(0.01, .2, 20)
-
 ```
-
 
 ## S.O.S.!!
 
@@ -456,12 +452,12 @@ text_tab1 <- data.frame(
     "x %/% y",
     "x %% y",
     "x ^ y"),
-  Detalle = c("Adición de x con y",
-              "Substracción de y en x",
+  Detalle = c("Suma de x e y",
+              "Resta de x menos y",
               "Multiplicación", 
               "División de x por y", 
-              "Parte inteira da divisão de x por y",
-              "Resto da divisão de x por y (módulo)",
+              "Parte intera de la división de x por y",
+              "Resto de la división de x por y",
               "x elevado a y-ésima potencia")
 )
 
@@ -474,7 +470,6 @@ knitr::kable(text_tab1,
 ```
 
 <br><br>
-
 
 ```{r, echo=FALSE, eval=TRUE}
 text_tab2 <- data.frame(
