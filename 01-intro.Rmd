@@ -185,6 +185,8 @@ IQR(v)
 range(v)
 
 quantile(v, 0.1)
+ecdf(v)(7)
+
 max(v)
 min(v)
 sum(v)
@@ -355,7 +357,7 @@ levels(iris$Species)
 summary(iris$Sepal.Length)
 ```
 
-> Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna. iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
+> Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
 
 * Funcion subset 
 
@@ -400,7 +402,7 @@ x["c"]     #
 
 ## Funciones 
 
-Generalmente, el nombre de las funciones es intuitivo, por ejemplo, **mean** es la función que calcula la média, **round** é a função que redondea un número, etc.
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, **mean** es la función que calcula la media, **round** es la funión que redondea un número, etc.
 
 ```{r}
 numb <- 1:6
@@ -415,15 +417,6 @@ square.it <- function(x) {
 square.it(3)
 ```
 
->  El modelo logístico  [y=1/(1+ (1/y0-1)exp(-rt))] donde r es una tasa constante, y0 es el nivel de enfermedad en t=0, foi ajustado para describir el progreso de la severidad de la mancha marron de la soja. Crear la función del progreso de la enfermedad.
-
-```{r}
-mancha_marron<- function(y0, r, t)
-{
-  1/(1+ (1/y0-1)*exp(-r*t))
-}
-mancha_marron(0.01, .2, 20)
-```
 
 ## S.O.S.!!
 

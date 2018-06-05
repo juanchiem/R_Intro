@@ -152,13 +152,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>2.2</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>3</b> Manipular</a><ul>
-<li class="chapter" data-level="3.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>3.1</b> <code>select</code></a></li>
-<li class="chapter" data-level="3.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>3.2</b> <code>filter</code></a></li>
-<li class="chapter" data-level="3.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>3.3</b> <code>mutate</code></a></li>
-<li class="chapter" data-level="3.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>3.4</b> <code>arrange</code></a></li>
-<li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> <code>summarise</code></a></li>
-<li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-canola"><i class="fa fa-check"></i><b>3.6</b> Dataset “canola”</a></li>
-<li class="chapter" data-level="3.7" data-path="manip.html"><a href="manip.html#extra-casualizar-unidades-experimentais"><i class="fa fa-check"></i><b>3.7</b> Extra: casualizar unidades experimentais</a></li>
+<li class="chapter" data-level="3.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>3.1</b> select</a></li>
+<li class="chapter" data-level="3.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>3.2</b> filter</a></li>
+<li class="chapter" data-level="3.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>3.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>3.4</b> arrange</a></li>
+<li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> summarise</a></li>
+<li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>3.6</b> Dataset “can_phoma”</a></li>
+<li class="chapter" data-level="3.7" data-path="manip.html"><a href="manip.html#extra-aleatorizar-unidades-experimentales"><i class="fa fa-check"></i><b>3.7</b> Extra: aleatorizar unidades experimentales</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Explorar</a></li>
 <li class="chapter" data-level="5" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>5</b> Modelar</a></li>
@@ -318,9 +318,11 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb10-13" data-line-number="13"><span class="kw">range</span>(v)</a>
 <a class="sourceLine" id="cb10-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb10-15" data-line-number="15"><span class="kw">quantile</span>(v, <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="kw">max</span>(v)</a>
-<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="kw">min</span>(v)</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="kw">sum</span>(v)</a></code></pre></div>
+<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="kw">ecdf</span>(v)(<span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="kw">max</span>(v)</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="kw">min</span>(v)</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="kw">sum</span>(v)</a></code></pre></div>
 <blockquote>
 <p>Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
 </blockquote>
@@ -458,7 +460,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb20-6" data-line-number="6"><span class="kw">levels</span>(iris<span class="op">$</span>Species)</a>
 <a class="sourceLine" id="cb20-7" data-line-number="7"><span class="kw">summary</span>(iris<span class="op">$</span>Sepal.Length)</a></code></pre></div>
 <blockquote>
-<p>Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna. iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4.</p>
+<p>Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4.</p>
 </blockquote>
 <ul>
 <li>Funcion subset</li>
@@ -488,7 +490,7 @@ y es “case sensitive”!!)</p>
 </div>
 <div id="funciones" class="section level2">
 <h2><span class="header-section-number">1.6</span> Funciones</h2>
-<p>Generalmente, el nombre de las funciones es intuitivo, por ejemplo, <strong>mean</strong> es la función que calcula la média, <strong>round</strong> é a função que redondea un número, etc.</p>
+<p>Generalmente, el nombre de las funciones es intuitivo, por ejemplo, <strong>mean</strong> es la función que calcula la media, <strong>round</strong> es la funión que redondea un número, etc.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></a></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">square.it &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -496,14 +498,6 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  }</a>
 <a class="sourceLine" id="cb27-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw">square.it</span>(<span class="dv">3</span>)</a></code></pre></div>
-<blockquote>
-<p>El modelo logístico [y=1/(1+ (1/y0-1)exp(-rt))] donde r es una tasa constante, y0 es el nivel de enfermedad en t=0, foi ajustado para describir el progreso de la severidad de la mancha marron de la soja. Crear la función del progreso de la enfermedad.</p>
-</blockquote>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mancha_marron&lt;-<span class="st"> </span><span class="cf">function</span>(y0, r, t)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span>y0<span class="dv">-1</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>r<span class="op">*</span>t))</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="kw">mancha_marron</span>(<span class="fl">0.01</span>, <span class="fl">.2</span>, <span class="dv">20</span>)</a></code></pre></div>
 </div>
 <div id="s.o.s." class="section level2">
 <h2><span class="header-section-number">1.7</span> S.O.S.!!</h2>
