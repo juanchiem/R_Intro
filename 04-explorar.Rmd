@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE,
 options(width = 90)
 ```
 
+```{r}
+library(tidyverse)
+```
+
 Una vez que nuestros datos han sido importados y manipulados podriamos comenzar la exploración nuérica y visual de los mismos. 
 
 La visualización de datos es parte fundamental del flujo de trabajo de un análisis de datos, tanto para explorar los datos, como para explicar / comunicar los resultados. Es decir, dominar las herramientas de visualización resulta imprescindible para un científico cuya materia prima son los datos.
@@ -23,37 +27,94 @@ Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la sim
 A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.
 
 ```{r}
-load("C:/Users/Juan/Dropbox/Curso R/data/datos_sesion1.RData")
-#ls()
+url1 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv"
+soy <- read.csv(textConnection(RCurl::getURL(url1))) 
 ```
 
-Retomando el dataset "remolacha", y duplicando las variables descriptivas para hacer los gráficos 
+Nos quedaremos solo con dos cultivares: "BMX_Potencia_RR" y "M9144_RR" (nos aseguraremos que no queden ningun otro nivel del factor cultivar)
 
 ```{r}
-dat = remolacha %>% 
+soy1 <- soy %>%
+  filter(cultivar %in% c("BMX_Potencia_RR", "M9144_RR")) %>%
+  droplevels()
+```
+
+Exploración del dataset
+
+```{r}
+ftable(xtabs(~ study + cultivar, soy1))
+```
+
+Estableceremos quien es el dataset a ser graficado y quienes son las variables en los ejes x e y: 
+
+```{r}
+p0 = ggplot(soy1, aes(x=sev, y=yield))
+p0
+```
+
+Agregaremos las observaciones 
+
+```{r}
+p0  + geom_point()
+```
+
+Identificaremos a que cultivar corresponden las observaciones y agregaremos una línea de tendencia general para cada cultivar:
+
+```{r}
+p0 + geom_point(aes(color = cultivar)) +
+  geom_smooth(method="lm", aes(color = cultivar))
+```
+
+Qué pueden concluir al respecto?
+
+Ahora dividiremos a cada cultivar en paneles individuales e identificaremos las tendencias intra-estudio.   
+
+```{r}
+p0 + geom_point(alpha=0.2)+
+  geom_smooth(method="lm", aes(group = study))+
+  facet_wrap(~cultivar)+
+  labs(x="Disease severity (%)", y = "Yield (kg/ha)") +
+  theme_bw()
+```
+
+Cambiaron los resultados? que puede concluir ahora?
+
+
+### Dataset: Remolacha
+
+```{r}
+url2 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/beet.csv"
+beet <- read.csv(textConnection(RCurl::getURL(url2)), sep= ";", skip=10, na.strings = ".") 
+```
+
+
+Generaremos las variables descriptivas por extenso para hacer los gráficos 
+
+```{r}
+beet <- beet %>% 
   mutate(trt1 = ifelse(trt == '1',"Check","Inoculated"),
          Cultivar = ifelse(geno == '1',"Boro","Bohan"),
          exp1 = ifelse(exp == '1',"Autumn experiment","Spring experiment")
          ) %>% 
     mutate_if(is.character, as.factor) 
-dat
+str(beet)
 ```
 
 Inspección numérica del dataset (desglosamos las unidades experimentales)
 
 ```{r}
-ftable(xtabs(~ exp + geno + trt + pot, dat))
+ftable(xtabs(~ exp + geno + trt + pot, beet))
 ```
 
 ```{r}
-pairs(dat[,6:8])
-GGally::ggpairs(dat[,6:8])
+pairs(beet[,6:8])
+GGally::ggpairs(beet[,6:8])
 ```
 
-* Biomasa de raiz (corra el siguiente código seleccionando primero la 1° fila, luego las 1°+2°, y luego todas)
+* Biomasa de raiz (ejecute el siguiente código seleccionando primero la 1° fila, luego las 1°+2°, y luego todas)
 
 ```{r}
-ggplot(dat, aes(x=trt1, y=root)) + 
+ggplot(beet, aes(x=trt1, y=root)) + 
   geom_boxplot() +
   # geom_jitter(width = 0.1)+
   facet_grid(Cultivar ~ exp, labeller = label_both)
