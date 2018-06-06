@@ -104,4 +104,4 @@ unid_exp -4
 
 Sin interaccion trt x geno pero efecto simple de ambos factores: trt afecto el peso de las raizes de ambos genotipos en igual magnitud (P<0.001) y el geno 2 tuvo mayor peso de raices (P=0.02).
 
-
+# https://cran.r-project.org/web/packages/emmeans/vignettes/messy-data.html
