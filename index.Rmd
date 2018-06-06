@@ -62,5 +62,7 @@ El cronograma del curso puede encontrarse [aqui](https://docs.google.com/documen
 Los datasets que serán usados durante el curso pueden bajarse desde 
 [aqui](https://github.com/juanchiem/R_Intro/tree/master/data)
 
+Usaremos los paquetes oficiales: `tidyverse` `agricolae` `car` `emmeans` `gsheet` `GGally`
+
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://github.com/juanchiem/R_Intro/tree/master/cheatsheets)
 

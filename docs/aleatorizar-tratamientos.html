@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manip.html">
-<link rel="next" href="model.html">
+<link rel="prev" href="comun.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -186,72 +186,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="explore" class="section level1">
-<h1><span class="header-section-number">4</span> Explorar</h1>
-<p>Una vez que nuestros datos han sido importados y manipulados podriamos comenzar la exploración nuérica y visual de los mismos.</p>
-<p>La visualización de datos es parte fundamental del flujo de trabajo de un análisis de datos, tanto para explorar los datos, como para explicar / comunicar los resultados. Es decir, dominar las herramientas de visualización resulta imprescindible para un científico cuya materia prima son los datos.</p>
-<p>Los gráficos exploratorios requieren una mínima elaboración, la suficiente para entenderlos y detectar datos anormales (probablemente por error de digitación o outliers).</p>
-<p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> se puede utilizar tanto para la creación rápida de gráficos como para gráficos complejos y detallados (con fines de publicaciones científicas). Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
-<p>Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la simple visualización de las observaciones con alguna medida de posición como ser la media o mediana. Cuando las observaciones son 5 o más es común acompanãr la media de posición (media o mediana) por alguna medida de dispersión: desvio estándar, error estándar o intervalo de confianza de la media (95% IC).</p>
-<p>A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;C:/Users/Juan/Dropbox/Curso R/data/datos_sesion1.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#ls()</span></a></code></pre></div>
-<p>Retomando el dataset “remolacha”, y duplicando las variables descriptivas para hacer los gráficos</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">dat =<span class="st"> </span>remolacha <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trt1 =</span> <span class="kw">ifelse</span>(trt <span class="op">==</span><span class="st"> &#39;1&#39;</span>,<span class="st">&quot;Check&quot;</span>,<span class="st">&quot;Inoculated&quot;</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">         <span class="dt">Cultivar =</span> <span class="kw">ifelse</span>(geno <span class="op">==</span><span class="st"> &#39;1&#39;</span>,<span class="st">&quot;Boro&quot;</span>,<span class="st">&quot;Bohan&quot;</span>),</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">         <span class="dt">exp1 =</span> <span class="kw">ifelse</span>(exp <span class="op">==</span><span class="st"> &#39;1&#39;</span>,<span class="st">&quot;Autumn experiment&quot;</span>,<span class="st">&quot;Spring experiment&quot;</span>)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">         ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">    </span><span class="kw">mutate_if</span>(is.character, as.factor) </a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">dat</a></code></pre></div>
-<p>Inspección numérica del dataset (desglosamos las unidades experimentales)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>exp <span class="op">+</span><span class="st"> </span>geno <span class="op">+</span><span class="st"> </span>trt <span class="op">+</span><span class="st"> </span>pot, dat))</a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">pairs</span>(dat[,<span class="dv">6</span><span class="op">:</span><span class="dv">8</span>])</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">GGally<span class="op">::</span><span class="kw">ggpairs</span>(dat[,<span class="dv">6</span><span class="op">:</span><span class="dv">8</span>])</a></code></pre></div>
+<div id="aleatorizar-tratamientos" class="section level1">
+<h1><span class="header-section-number">7</span> Aleatorizar tratamientos</h1>
+<div id="diseno-completo-aleatorizado" class="section level3">
+<h3><span class="header-section-number">7.0.1</span> Diseño completo aleatorizado</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(agricolae)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">trt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">repeticion &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">DCA &lt;-<span class="st"> </span><span class="kw">design.crd</span>(trt, <span class="dt">r=</span>repeticion, <span class="dt">seed=</span><span class="dv">0</span>, <span class="dt">serie=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">(planilha_dic &lt;-<span class="st"> </span>DCA<span class="op">$</span>book)</a></code></pre></div>
+<pre><code>##    plots r trt
+## 1      1 1   B
+## 2      2 1   A
+## 3      3 2   B
+## 4      4 1   C
+## 5      5 2   A
+## 6      6 2   C
+## 7      7 3   A
+## 8      8 3   C
+## 9      9 4   C
+## 10    10 4   A
+## 11    11 3   B
+## 12    12 4   B</code></pre>
+</div>
+<div id="diseno-en-bloques-completos-aleatorizados" class="section level3">
+<h3><span class="header-section-number">7.0.2</span> Diseño en bloques completos aleatorizados</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">trt &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">rep &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">DCBA &lt;-<span class="st"> </span><span class="kw">design.rcbd</span>(trt, <span class="dt">r=</span>rep, <span class="dt">first=</span><span class="ot">FALSE</span>, <span class="dt">seed=</span><span class="dv">111</span>, </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                    <span class="dt">kinds =</span> <span class="st">&quot;Super-Duper&quot;</span>, <span class="dt">serie=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># write_csv(planilha_DBCA2, &quot;campo.csv&quot;)</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">head</span>(DCBA<span class="op">$</span>book, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##    plots block trt
+## 1    101     1   A
+## 2    102     1   B
+## 3    103     1   C
+## 4    104     1   D
+## 5    105     1   E
+## 6    106     1   F
+## 7    107     1   G
+## 8    108     1   H
+## 9    109     1   I
+## 10   110     1   J</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">print</span>(DCBA<span class="op">$</span>sketch)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,] &quot;A&quot;  &quot;B&quot;  &quot;C&quot;  &quot;D&quot;  &quot;E&quot;  &quot;F&quot;  &quot;G&quot;  &quot;H&quot;  &quot;I&quot;  &quot;J&quot;  
+## [2,] &quot;C&quot;  &quot;E&quot;  &quot;G&quot;  &quot;H&quot;  &quot;B&quot;  &quot;D&quot;  &quot;I&quot;  &quot;J&quot;  &quot;F&quot;  &quot;A&quot;  
+## [3,] &quot;D&quot;  &quot;H&quot;  &quot;G&quot;  &quot;E&quot;  &quot;J&quot;  &quot;F&quot;  &quot;I&quot;  &quot;A&quot;  &quot;B&quot;  &quot;C&quot;  
+## [4,] &quot;B&quot;  &quot;F&quot;  &quot;I&quot;  &quot;G&quot;  &quot;A&quot;  &quot;H&quot;  &quot;D&quot;  &quot;E&quot;  &quot;J&quot;  &quot;C&quot;  
+## [5,] &quot;H&quot;  &quot;G&quot;  &quot;A&quot;  &quot;B&quot;  &quot;I&quot;  &quot;D&quot;  &quot;E&quot;  &quot;F&quot;  &quot;C&quot;  &quot;J&quot;</code></pre>
 <ul>
-<li>Biomasa de raiz (corra el siguiente código seleccionando primero la 1° fila, luego las 1°+2°, y luego todas)</li>
+<li>libro zig-zag</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x=</span>trt1, <span class="dt">y=</span>root)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="co"># geom_jitter(width = 0.1)+</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_grid</span>(Cultivar <span class="op">~</span><span class="st"> </span>exp, <span class="dt">labeller =</span> label_both)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="co"># facet_grid(exp ~ Cultivar, labeller = label_both)</span></a></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">summary</span>(dat<span class="op">$</span>root)</a></code></pre></div>
-<blockquote>
-<p>Explore visualmente la biomasa aerea</p>
-</blockquote>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">root1 =<span class="st"> </span><span class="kw">lm</span>(root <span class="op">~</span><span class="st"> </span>Cultivar <span class="op">*</span><span class="st"> </span>trt1, <span class="dt">data =</span> <span class="kw">subset</span>(dat, dat<span class="op">$</span>exp<span class="op">==</span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">anova</span>(root1)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(root1, <span class="dt">which=</span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">emmeans</span>(root1, <span class="op">~</span><span class="st"> </span>trt1 <span class="op">|</span><span class="st"> </span>Cultivar)</a></code></pre></div>
-<p>Sin efecto ni de trat ni de geno</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">root3  &lt;-<span class="st"> </span><span class="kw">lm</span>(root <span class="op">~</span><span class="st"> </span>Cultivar <span class="op">*</span><span class="st"> </span>trt1, <span class="dt">data =</span> <span class="kw">subset</span>(dat, dat<span class="op">$</span>exp<span class="op">==</span><span class="dv">2</span>)) <span class="co">#+ factor(pot)/factor(pl),</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">anova</span>(root3)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">summary</span>(root3)</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">plot</span>(root3, <span class="dt">which=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(root3)) <span class="co"># p &lt;0.05 NO NORMALIDAD</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">emmeans</span>(root3, <span class="op">~</span><span class="st"> </span>trt1 <span class="op">|</span><span class="st"> </span>Cultivar)</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>exp <span class="op">+</span><span class="st"> </span>geno <span class="op">+</span><span class="st"> </span>trt <span class="op">+</span><span class="st"> </span>pot, dat))</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">unid_exp =<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">8</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="co"># 96</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12">unid_exp <span class="dv">-4</span> </a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="dv">92-16-1-7-1-1</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#https://ms.mcmaster.ca/peter/s2ma3/s2ma3_0001/factorialdf.html</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw">summary</span>(dat[dat<span class="op">$</span>exp<span class="op">==</span><span class="dv">2</span>, <span class="st">&quot;root&quot;</span>])</a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#(IJK - 1) = (I - 1) + (J - 1) + (I -1)(J - 1) + IJ(K - 1)</span></a></code></pre></div>
-<p>Sin interaccion trt x geno pero efecto simple de ambos factores: trt afecto el peso de las raizes de ambos genotipos en igual magnitud (P&lt;0.001) y el geno 2 tuvo mayor peso de raices (P=0.02).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">zigzag</span>(DCBA),<span class="dv">10</span>) <span class="co"># zigzag numeration</span></a></code></pre></div>
+<pre><code>##    plots block trt
+## 1    101     1   A
+## 2    102     1   B
+## 3    103     1   C
+## 4    104     1   D
+## 5    105     1   E
+## 6    106     1   F
+## 7    107     1   G
+## 8    108     1   H
+## 9    109     1   I
+## 10   110     1   J</code></pre>
+</div>
+<div id="parcelas-divididas" class="section level3">
+<h3><span class="header-section-number">7.0.3</span> Parcelas divididas</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">t1&lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">t2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">split &lt;-<span class="kw">design.split</span>(t1, t2, <span class="dt">r=</span><span class="dv">3</span>, <span class="dt">serie=</span><span class="dv">2</span>, <span class="dt">seed=</span><span class="dv">45</span>, <span class="dt">kinds=</span><span class="st">&quot;Super-Duper&quot;</span>)<span class="co">#seed=45</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">head</span>(split<span class="op">$</span>book,<span class="dv">10</span>) <span class="co"># field book</span></a></code></pre></div>
+<pre><code>##    plots splots block t1 t2
+## 1    101      1     1  C  2
+## 2    101      2     1  C  1
+## 3    101      3     1  C  3
+## 4    102      1     1  B  3
+## 5    102      2     1  B  2
+## 6    102      3     1  B  1
+## 7    103      1     1  D  1
+## 8    103      2     1  D  2
+## 9    103      3     1  D  3
+## 10   104      1     1  A  2</code></pre>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="manip.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comun.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -281,7 +310,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-explorar.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-aleatorizar.Rmd",
 "text": "Edit"
 },
 "download": ["R-Ipave.pdf", "R-Ipave.epub"],

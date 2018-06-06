@@ -1,0 +1,61 @@
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=TRUE, 
+                      fig.path = "figures/", 
+                      fig.width = 12, 
+                      fig.height = 8)
+options(width = 90)
+library(tidyverse)
+#https://www.listendata.com/2016/08/dplyr-tutorial.html
+```
+
+# Aleatorizar tratamientos 
+
+### Diseño completo aleatorizado  
+
+```{r}
+library(agricolae)
+
+trt <- c("A", "B", "C")
+repeticion <- 4
+DCA <- design.crd(trt, r=repeticion, seed=0, serie=0)
+(planilha_dic <- DCA$book)
+```
+
+### Diseño en bloques completos aleatorizados
+
+
+```{r}
+trt <- LETTERS[1:10]
+rep <- 5
+DCBA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, 
+                    kinds = "Super-Duper", serie=2)
+# write_csv(planilha_DBCA2, "campo.csv")
+
+
+head(DCBA$book, 10)
+print(DCBA$sketch)
+```
+
+* libro zig-zag
+
+```{r}
+head(zigzag(DCBA),10) # zigzag numeration
+```
+
+
+### Parcelas divididas
+
+```{r}
+t1<-c("A","B","C","D")
+t2<-c(1,2,3)
+split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
+```
+
+```{r, eval=TRUE}
+head(split$book,10) # field book
+
+```
+

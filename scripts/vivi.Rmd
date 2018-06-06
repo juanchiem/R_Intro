@@ -1,0 +1,278 @@
+---
+title: "An?lisis Vivi"
+output:
+  html_document:
+    css: my-style.css
+    theme: readable
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
+---
+
+```{r Packages setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+options(width = 90)
+library(tidyverse)
+library(emmeans)
+
+theme_juan <- function (base, legend_pos, leg_jus ) {
+  theme_bw(base_size = base) %+replace% 
+            theme(
+              panel.grid.minor = element_blank(),
+              # panel.grid.major = element_blank(),
+              legend.position=legend_pos,
+              legend.justification= leg_jus,
+              legend.margin=margin(1,1,1,1),
+              panel.spacing=grid::unit(0,"lines")
+              )
+}
+```
+
+## Estructura de los datos
+
+```{r}
+dat <- readxl:: read_excel(
+"C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/Vivi/data/BNYVV - Viviana Camelo.xlsx",
+# "C:/Users/Juan/Dropbox/Papers/1 In progress/Vivi/data/BNYVV - Viviana Camelo.xlsx", 
+     col_types = c("text", "text", "text", 
+         "text", "text", "numeric", "numeric", 
+         "numeric")) %>% 
+  mutate_if(is.character, as.factor) 
+
+xtabs(~ geno + trt + exp, dat)
+# levels(dat$trt1) <- c("NI", "I") 
+dat$trt1 <- ifelse(dat$trt == '1',"Check","Inoculated")
+dat$Cultivar <- ifelse(dat$geno == '1',"Boro","Bohan")
+dat$exp1 <- ifelse(dat$exp == '1',"Autumn experiment","Spring experiment")
+```
+
+# Fresh matter
+
+```{r}
+ggplot(subset(dat, dat$exp==2), aes(x=root, fill=trt1)) + 
+  geom_histogram(alpha=0.2, position="identity")+ 
+  facet_grid(Cultivar~.)
+
+  
+ggplot(dat, aes(x=trt1, y=freshm)) + 
+  # geom_point(alpha=0.2) +
+  geom_boxplot(width =0.2) +
+  facet_grid(exp ~ geno, labeller = label_both) 
+```
+
+Aparentemente en el exp 1 no hubieron diferencias entre trt, pero podria haber entre cultivares.
+
+## An?lisis Global
+
+```{r fresh matter}
+fm1 = lm(freshm ~ exp * geno * trt, dat)
+anova(fm1)
+# anova(update(fm1, .~. -exp:geno:trt -geno:trt -exp:geno))
+```
+
+No hubo interaccion triple exp x geno x trt (P=0.315), pero si exp x trt (P=0.004) . O sea, la diferencia entre trt vario entre exp. 
+
+Analizamos cada exp por separado. 
+
+## Exp 1 
+
+```{r}
+fm2 = lm(freshm ~ trt * geno, data = subset(dat, dat$exp==1))
+anova(fm2)
+summary(fm2)
+emmeans(fm2, ~ trt | geno)
+```
+
+El tratamiento no afecto el peso fresco, para ningun genotipo.
+El peso fresco del genotipo 2 fue marginalmente mayor (P=0.07557)   
+
+## Exp 2 
+
+```{r}
+fm3 = lm(freshm ~ geno * trt, data = subset(dat, dat$exp==2))
+anova(fm3)
+```
+
+No hubo interacci?n geno x trt, pero si efecto simple de ambos factores: trt (P<0.001) geno (P<0.001), la inoculacion afect? el peso fresco de ambos genotipos en igual magnitud, y el peso del geno 2 fue superior.  
+
+
+# Dry matter
+
+```{r dry matter}
+ggplot(dat, aes(x=trt1, y=drym)) + 
+  # geom_point(alpha=0.2) +
+  geom_boxplot(width =0.2) +
+  facet_grid(exp ~ geno, labeller = label_both) 
+```
+
+```{r}
+summary(dat$drym)
+```
+
+Aerial dry matter ranged from 0.01 g to 13.48 g with a median value of 4.27 g.
+
+## An?lisis Global
+
+```{r}
+dm1 = lm(drym ~ exp * geno * trt, dat)
+anova(dm1)
+```
+
+## Exp1
+
+```{r}
+dm2 = lm(drym ~ Cultivar * trt1, data = subset(dat, dat$exp==1))
+anova(dm2)
+# summary(dm2)
+emmeans(dm2, ~ trt1 | Cultivar)
+```
+
+Sin diferencias 
+
+## Exp 2
+
+```{r}
+dm3 = lm(drym ~ Cultivar * trt1, data = subset(dat, dat$exp==2))
+anova(dm3)
+summary(dm3)
+emmeans(dm3, ~ trt1 | Cultivar)
+
+```
+
+No hubo interacci?n geno x trt, pero si efecto simple de ambos factores: trt (P<0.001) geno (P<0.001), la inoculacion afect? el peso fresco de ambos genotipos en igual magnitud, y el peso del geno 2 fue superior. 
+
+> Como fresh matter y dry matter tuvieron los mismos resultados, yo reportaria solo una variable (dry matter) y pondria que fue analizada fresh matter (por ej) y que siguio la misma tendencia. sino seria muy reiterativo y no agrega informacion
+
+
+## Graficos de paper dry matter
+
+```{r, eval=TRUE}
+pd = position_dodge(width = 0.2)
+
+p_aerialDM = ggplot(dat, aes(x=Cultivar, y=drym)) + 
+  # stat_summary(aes(group=geno),color = "grey70", linetype =2,
+  #              fun.y = mean, geom = "line", size = 0.5)+
+  stat_summary(aes(group=trt), fun.data = mean_cl_boot,
+               size = 0.05, position=pd) +
+  stat_summary(aes(group=trt, shape = trt1), size = 2,
+               fun.y="mean", geom="point", position=pd, show.legend = TRUE) +
+  facet_wrap(~exp1) +
+  scale_y_continuous(breaks = seq(0, 9, by = 1))+  
+  labs(y="Aerial dry matter (g)", x="" )+
+  theme_juan(9, "top", "center")
+
+# ggsave(w=5, h=4, units="cm", dpi=150, scale = 2,
+# "C:/Users/Juan/Dropbox/Papers/1 In progress/Vivi/plots/drym.tiff") 
+# "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/Vivi/plots/drym.tiff")
+```
+
+(Vivi/plots/drym.tiff)
+
+# Raices
+
+```{r}
+ggplot(dat, aes(x=trt1, y=root)) + 
+  # geom_point(alpha=0.2) +
+  geom_boxplot(width =0.2) +
+  facet_grid(exp ~ geno, labeller = label_both) 
+```
+
+```{r}
+summary(dat$root)
+```
+
+Root dry matter ranged from 0.72 g to 365.4 g with a median value of 79.12 g.  
+
+## An?lisis Global 
+
+```{r root matter}
+root1 = lm(root ~ exp * geno * trt, dat)
+anova(root1)
+```
+
+## Exp 1
+```{r}
+root2 = lm(root ~ Cultivar * trt1, data = subset(dat, dat$exp==1))
+anova(root2)
+# plot(root2, which=1)
+
+emmeans(root2, ~ trt1 | Cultivar)
+```
+
+Sin efecto ni de trat ni de geno
+
+## Exp 2 
+
+```{r}
+root3 = lm(root ~ Cultivar * trt1, data = subset(dat, dat$exp==2))
+anova(root3)
+# plot(root3, which=1)
+
+emmeans(root3, ~ trt1 | Cultivar)
+
+```
+
+Sin interaccion trt x geno pero efecto simple de ambos factores: trt afecto el peso de las raizes de ambos genotipos en igual magnitud (P<0.001) y el geno 2 tuvo mayor peso de raices (P=0.02).
+
+
+## Graficos de paper raiz 
+
+```{r, eval=TRUE}
+p_rootDM = ggplot(dat, aes(x=Cultivar, y=root)) + 
+  stat_summary(aes(group=trt), fun.data = mean_cl_boot,
+               size = 0.05, position=pd) +
+  stat_summary(aes(group=trt, shape = trt1), size = 2,
+               fun.y="mean", geom="point", position=pd, show.legend = FALSE) +
+    # stat_summary(aes(group=geno),color = "grey70", linetype =2,
+  #              fun.y = mean, geom = "line", size = 0.5)+
+  # stat_summary(aes(group=geno), fun.data = mean_cl_boot,
+  #              size = 0.05, position=pd) +
+  # stat_summary(aes(group=geno, shape = Cultivar), size = 2,
+  #              fun.y="mean", geom="point", position=pd, show.legend = FALSE) +
+  facet_wrap(~exp1) +
+  # scale_y_continuous(breaks = seq(0, 9, by = 1))+  
+  labs(y="Root dry matter (g)", x="Cultivar" )+
+  theme_juan(9, "top", "center")
+p_rootDM
+
+# ggsave(w=5, h=4, units="cm", dpi=150, scale = 2,
+# # "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/Vivi/plots/raiz.tiff")
+# "C:/Users/Juan/Dropbox/Papers/1 In progress/Vivi/plots/root.tiff") 
+
+```
+(Vivi/plots/raiz.tiff)
+
+# Plot paper combinado
+
+```{r}
+
+library(cowplot)
+
+plot_grid( rel_heights = c(3.6,3),
+  
+p_aerialDM +
+  labs(x="", y="Aerial biomass (g)") + 
+  theme(plot.margin = unit(c(0,0.5,-0.3,0), "cm"),
+        axis.text.x=element_blank(),
+        legend.title=element_blank(), 
+        panel.grid.major.y = element_blank())  
+, 
+  
+p_rootDM + 
+  # geom_text(data = c16_text, aes(label = lab), size=3) +
+  labs(y="Root biomass (g)")+
+  theme(plot.margin = unit(c(-0.3,0.5,0.1,0), "cm"),
+        strip.background = element_blank(), 
+        strip.text.x = element_blank(),
+        panel.grid.major.y = element_blank())   
+, 
+  nrow = 2, align = "v", scale=1)
+
+ggsave(w=5, h=6, units="cm", dpi=150, scale = 2,
+"C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/Vivi/plots/both_DM.tiff")
+# "C:/Users/Juan/Dropbox/Papers/1 In progress/Vivi/plots/both_DM.tiff")
+
+```
+(Vivi/plots/both_DM.tiff)
+

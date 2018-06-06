@@ -1,7 +1,9 @@
 survey = readr::read_csv("data/survey.csv")
 ftable(xtabs(~  year + loc + farm, survey))
 
-dat_inc = dat %>%
+library(tidyverse)
+
+dat_inc = survey %>%
   group_by(year, loc, farm) %>%
   summarise(inc = mean(sev>0, na.rm=TRUE)) #dis>0
 

@@ -1,3 +1,101 @@
 # Explorar {#explore}
 
-En construcción
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+```
+
+Una vez que nuestros datos han sido importados y manipulados podriamos comenzar la exploración nuérica y visual de los mismos. 
+
+La visualización de datos es parte fundamental del flujo de trabajo de un análisis de datos, tanto para explorar los datos, como para explicar / comunicar los resultados. Es decir, dominar las herramientas de visualización resulta imprescindible para un científico cuya materia prima son los datos.
+
+Los gráficos exploratorios requieren una mínima elaboración, la suficiente para entenderlos y detectar datos anormales (probablemente por error de digitación o outliers).
+
+El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) se puede utilizar tanto para la creación rápida de gráficos como para gráficos complejos y detallados (con fines de publicaciones científicas). Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).
+
+Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la simple visualización de las observaciones con alguna medida de posición como ser la media o mediana. Cuando las observaciones son 5 o más es común acompanãr la media de posición (media o mediana)  por alguna medida de dispersión: desvio estándar, error estándar o intervalo de confianza de la media (95% IC).
+
+A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.
+
+```{r}
+load("C:/Users/Juan/Dropbox/Curso R/data/datos_sesion1.RData")
+#ls()
+```
+
+Retomando el dataset "remolacha", y duplicando las variables descriptivas para hacer los gráficos 
+
+```{r}
+dat = remolacha %>% 
+  mutate(trt1 = ifelse(trt == '1',"Check","Inoculated"),
+         Cultivar = ifelse(geno == '1',"Boro","Bohan"),
+         exp1 = ifelse(exp == '1',"Autumn experiment","Spring experiment")
+         ) %>% 
+    mutate_if(is.character, as.factor) 
+dat
+```
+
+Inspección numérica del dataset (desglosamos las unidades experimentales)
+
+```{r}
+ftable(xtabs(~ exp + geno + trt + pot, dat))
+```
+
+```{r}
+pairs(dat[,6:8])
+GGally::ggpairs(dat[,6:8])
+```
+
+* Biomasa de raiz (corra el siguiente código seleccionando primero la 1° fila, luego las 1°+2°, y luego todas)
+
+```{r}
+ggplot(dat, aes(x=trt1, y=root)) + 
+  geom_boxplot() +
+  # geom_jitter(width = 0.1)+
+  facet_grid(Cultivar ~ exp, labeller = label_both)
+  # facet_grid(exp ~ Cultivar, labeller = label_both)
+```
+
+```{r}
+summary(dat$root)
+```
+
+> Explore visualmente la biomasa aerea
+
+```{r}
+root1 = lm(root ~ Cultivar * trt1, data = subset(dat, dat$exp==1))
+anova(root1)
+plot(root1, which=1:2)
+emmeans(root1, ~ trt1 | Cultivar)
+```
+Sin efecto ni de trat ni de geno
+
+```{r}
+root3  <- lm(root ~ Cultivar * trt1, data = subset(dat, dat$exp==2)) #+ factor(pot)/factor(pl),
+anova(root3)
+summary(root3)
+plot(root3, which=3)
+shapiro.test(residuals(root3)) # p <0.05 NO NORMALIDAD
+
+emmeans(root3, ~ trt1 | Cultivar)
+
+ftable(xtabs(~ exp + geno + trt + pot, dat))
+
+unid_exp = 2 *2 * 8 * 3 # 96
+unid_exp -4 
+92-16-1-7-1-1
+#https://ms.mcmaster.ca/peter/s2ma3/s2ma3_0001/factorialdf.html
+summary(dat[dat$exp==2, "root"])
+
+#(IJK - 1) = (I - 1) + (J - 1) + (I -1)(J - 1) + IJ(K - 1)
+
+
+```
+
+Sin interaccion trt x geno pero efecto simple de ambos factores: trt afecto el peso de las raizes de ambos genotipos en igual magnitud (P<0.001) y el geno 2 tuvo mayor peso de raices (P=0.02).
+
+

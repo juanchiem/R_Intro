@@ -275,30 +275,3 @@ auc <- can_long %>%
 ```
 
 Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
-
-## Extra: aleatorizar unidades experimentales
-
-```{r}
-library(agricolae)
-
-# Complete Randomized Design  
-trt <- c("A", "B", "C")
-repeticion <- 4
-DCA <- design.crd(trt, r=repeticion, seed=0, serie=0)
-(planilha_dic <- DCA$book)
-
-# Randomized Complete Block Design
-trt <- LETTERS[1:20]
-rep <- 5
-DCBA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, kinds = "Super-Duper", serie=2)
-(planilla_DCBA <- DCBA$book)
-planilla_DCBA2<- zigzag(DCBA) # zigzag numeration
-print(DCBA$sketch)
-write_csv(planilha_DBCA2, "campo.csv")
-
-# split-plot design
-t1<-c("A","B","C","D")
-t2<-c(1,2,3)
-split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
-(planilla_split <-split$book) # field book
-```
