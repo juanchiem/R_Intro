@@ -1,4 +1,4 @@
-# Explorar {#explore}
+# Visualizar {#explore}
 
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
