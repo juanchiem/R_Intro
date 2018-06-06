@@ -11,7 +11,7 @@ library(tidyverse)
 #https://www.listendata.com/2016/08/dplyr-tutorial.html
 ```
 
-# Aleatorizar tratamientos 
+## Aleatorizar tratamientos 
 
 ### Diseño completo aleatorizado  
 
