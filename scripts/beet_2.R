@@ -7,8 +7,10 @@ ggplot(subset(beet, exp==2), aes(x=trt, y=root)) +
   facet_wrap(~geno)
 
 fit1 = lm(sqrt(root) ~ geno * trt + pot/pl, data = subset(beet, exp==2))
-fit2 = lm(sqrt(root) ~ geno * trt, data = subset(beet, exp==2))
-anova(fit1, fit2)
+fit2 = lm(sqrt(root) ~ geno * trt + pot, data = subset(beet, exp==2))
+fit3 = lm(sqrt(root) ~ geno * trt, data = subset(beet, exp==2))
+
+anova(fit1, fit2, fit3)
 
 anova(fit2) #96-1-4-1-1-1
 plot(fit2, which=1)

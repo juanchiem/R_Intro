@@ -1,0 +1,31 @@
+--- 
+title: "Efecto de la protección quimica sobre la sarna del manzano"
+author: "Juan P. Edwards Molina"
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, 
+               warning = FALSE, 
+               message = FALSE, 
+               eval=FALSE)
+
+options(width = 90)
+```
+
+La sarna del manzano (**Venturia inaequalis**) es una enfermedad endémica en el valle de Rio Negro y afecta el peso de frutas y su calidad comercial.  
+
+![](foto_del_sintoma.jpg) 
+
+Un experimento con diseño completamente aleatorizado fue realizado en 2017 para evaluar el efecto de dos fungicidas sobre el peso de las frutas de manzano (variedad ZZZ). 
+Los fungicidas (azoxistrobin o propiconazole) fueron aplicados al estado de hinchazon de yema, floración y cuajado de frutos. Plantas no protegidas con fungicidas fueron consideradas testigos. 
+La evaluación del peso de la fruta de manzano fue realizada tomando 30 frutas por planta (10 plantas por tratamiento) al momento de cosecha.  
+
+
+
