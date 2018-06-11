@@ -4,7 +4,8 @@ beet[1:5] <- lapply(beet[1:5], as.factor)
 
 ggplot(subset(beet, exp==2), aes(x=trt, y=root)) +
   geom_boxplot() +
-  facet_wrap(~geno)
+  facet_wrap(~geno)+
+  geom_smooth()
 
 fit1 = lm(sqrt(root) ~ geno * trt + pot/pl, data = subset(beet, exp==2))
 fit2 = lm(sqrt(root) ~ geno * trt + pot, data = subset(beet, exp==2))
