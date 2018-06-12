@@ -31,8 +31,7 @@ DCA <- design.crd(trt, r=repeticion, seed=0, serie=0)
 trt <- LETTERS[1:10]
 rep <- 5
 DCBA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, 
-                    kinds = "Super-Duper", serie=2)
-# write_csv(planilha_DBCA2, "campo.csv")
+                    kinds = "Super-Duper", serie=2) # write_csv(planilha_DBCA2, "campo.csv")
 
 
 head(DCBA$book, 10)
