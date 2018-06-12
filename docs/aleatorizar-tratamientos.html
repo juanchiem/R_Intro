@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="comun.html">
+<link rel="prev" href="explore.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -158,13 +158,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> summarise</a></li>
 <li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>3.6</b> Dataset “can_phoma”</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Explorar</a></li>
-<li class="chapter" data-level="5" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>5</b> Modelar</a></li>
-<li class="chapter" data-level="6" data-path="comun.html"><a href="comun.html"><i class="fa fa-check"></i><b>6</b> Comunicar</a></li>
-<li class="chapter" data-level="7" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html"><i class="fa fa-check"></i><b>7</b> Aleatorizar tratamientos</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-completo-aleatorizado"><i class="fa fa-check"></i><b>7.0.1</b> Diseño completo aleatorizado</a></li>
-<li class="chapter" data-level="7.0.2" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-en-bloques-completos-aleatorizados"><i class="fa fa-check"></i><b>7.0.2</b> Diseño en bloques completos aleatorizados</a></li>
-<li class="chapter" data-level="7.0.3" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#parcelas-divididas"><i class="fa fa-check"></i><b>7.0.3</b> Parcelas divididas</a></li>
+<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Visualizar</a></li>
+<li class="chapter" data-level="5" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html"><i class="fa fa-check"></i><b>5</b> Aleatorizar tratamientos</a><ul>
+<li class="chapter" data-level="5.1" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-completo-aleatorizado"><i class="fa fa-check"></i><b>5.1</b> Diseño completo aleatorizado</a></li>
+<li class="chapter" data-level="5.2" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-en-bloques-completos-aleatorizados"><i class="fa fa-check"></i><b>5.2</b> Diseño en bloques completos aleatorizados</a></li>
+<li class="chapter" data-level="5.3" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#parcelas-divididas"><i class="fa fa-check"></i><b>5.3</b> Parcelas divididas</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -187,9 +185,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="aleatorizar-tratamientos" class="section level1">
-<h1><span class="header-section-number">7</span> Aleatorizar tratamientos</h1>
-<div id="diseno-completo-aleatorizado" class="section level3">
-<h3><span class="header-section-number">7.0.1</span> Diseño completo aleatorizado</h3>
+<h1><span class="header-section-number">5</span> Aleatorizar tratamientos</h1>
+<div id="diseno-completo-aleatorizado" class="section level2">
+<h2><span class="header-section-number">5.1</span> Diseño completo aleatorizado</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(agricolae)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">trt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
@@ -198,28 +196,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-6" data-line-number="6">(planilha_dic &lt;-<span class="st"> </span>DCA<span class="op">$</span>book)</a></code></pre></div>
 <pre><code>##    plots r trt
 ## 1      1 1   B
-## 2      2 1   A
-## 3      3 2   B
-## 4      4 1   C
-## 5      5 2   A
-## 6      6 2   C
-## 7      7 3   A
+## 2      2 2   B
+## 3      3 1   C
+## 4      4 2   C
+## 5      5 1   A
+## 6      6 3   B
+## 7      7 2   A
 ## 8      8 3   C
-## 9      9 4   C
-## 10    10 4   A
-## 11    11 3   B
-## 12    12 4   B</code></pre>
+## 9      9 3   A
+## 10    10 4   B
+## 11    11 4   A
+## 12    12 4   C</code></pre>
 </div>
-<div id="diseno-en-bloques-completos-aleatorizados" class="section level3">
-<h3><span class="header-section-number">7.0.2</span> Diseño en bloques completos aleatorizados</h3>
+<div id="diseno-en-bloques-completos-aleatorizados" class="section level2">
+<h2><span class="header-section-number">5.2</span> Diseño en bloques completos aleatorizados</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">trt &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">rep &lt;-<span class="st"> </span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">DCBA &lt;-<span class="st"> </span><span class="kw">design.rcbd</span>(trt, <span class="dt">r=</span>rep, <span class="dt">first=</span><span class="ot">FALSE</span>, <span class="dt">seed=</span><span class="dv">111</span>, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                    <span class="dt">kinds =</span> <span class="st">&quot;Super-Duper&quot;</span>, <span class="dt">serie=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># write_csv(planilha_DBCA2, &quot;campo.csv&quot;)</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                    <span class="dt">kinds =</span> <span class="st">&quot;Super-Duper&quot;</span>, <span class="dt">serie=</span><span class="dv">2</span>) <span class="co"># write_csv(planilha_DBCA2, &quot;campo.csv&quot;)</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">head</span>(DCBA<span class="op">$</span>book, <span class="dv">10</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">head</span>(DCBA<span class="op">$</span>book, <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##    plots block trt
 ## 1    101     1   A
 ## 2    102     1   B
@@ -254,8 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 9    109     1   I
 ## 10   110     1   J</code></pre>
 </div>
-<div id="parcelas-divididas" class="section level3">
-<h3><span class="header-section-number">7.0.3</span> Parcelas divididas</h3>
+<div id="parcelas-divididas" class="section level2">
+<h2><span class="header-section-number">5.3</span> Parcelas divididas</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">t1&lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">t2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">split &lt;-<span class="kw">design.split</span>(t1, t2, <span class="dt">r=</span><span class="dv">3</span>, <span class="dt">serie=</span><span class="dv">2</span>, <span class="dt">seed=</span><span class="dv">45</span>, <span class="dt">kinds=</span><span class="st">&quot;Super-Duper&quot;</span>)<span class="co">#seed=45</span></a></code></pre></div>
@@ -279,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="comun.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="explore.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -310,7 +307,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-aleatorizar.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-aleatorizar.Rmd",
 "text": "Edit"
 },
 "download": ["R-Ipave.pdf", "R-Ipave.epub"],
