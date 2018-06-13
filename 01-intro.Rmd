@@ -167,7 +167,7 @@ summary(v)
 sort(v)
 ```
 
-* Operaciones com vectores
+* Operaciones con vectores
 
 ```{r, eval=FALSE}
 v - 1
