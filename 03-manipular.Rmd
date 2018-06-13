@@ -230,7 +230,7 @@ by_check =  soy %>%
 
 `join` junta dos data.frames a través de puntos em común.
 
-Por ejemplo, si queremos anexar las variables "sev_check" e "Dis_level" al dataset soy:
+Por ejemplo, si queremos anexar las variables "sev_check" y "Dis_level" al dataset soy:
 
 ```{r}
 soy %>% full_join(by_check, by="study")
