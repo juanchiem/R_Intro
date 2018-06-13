@@ -270,7 +270,7 @@ y[2]
 y[1:3]
 ```
 
-> selecione os elementos 1° e 3°
+> Seleccione los elementos 1° y 3°
 
 * Condición
 
