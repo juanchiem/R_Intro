@@ -58,7 +58,7 @@ soy
 
 **year**: año del experimento
 
-**location**: localidad do experimento
+**location**: localidad del experimento
 
 **cultivar**: cultivar de soja utilizado
 
@@ -215,7 +215,7 @@ soy %>%
 
 > Adicione una columna de potencial de rendimento del ensayo (rend_pot), considerando el máximo rendimiento observado en ese ensayo.
 
-> Usando la función `ifelse` cree una nueva variable categórica "presión de enfermedad" considerando a "sev_check": Low ou High
+> Usando la función `ifelse` cree una nueva variable categórica "presión de enfermedad" considerando a "sev_check": Low o High
 
 
 ```{r}
@@ -244,7 +244,7 @@ can_phoma
 
 Esto seria uma forma "wide" de representación del dataset (crudo).
 
-Para analizar el efecto del tratemiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", pacote `tidyr`) apila las columnas que indiquemos.
+Para analizar el efecto del tratemiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
 
 ![](fig/tidyr.png)
 
@@ -262,7 +262,7 @@ can_long <- can_phoma %>%
 ```{r}
 can_long
 
-# Precisamos que tt sea clase "numerica" para certos cálculos
+# Precisamos que tt sea clase "numérica" para ciertos cálculos
 can_long$tt <- as.numeric(can_long$tt)
 ```
 
