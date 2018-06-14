@@ -75,20 +75,17 @@ data("decathlon")
 
 ```{r}
 # https://rpubs.com/Joaquin_AR/287787
-neutro = data.frame(subset(exp3, pH=="neutro"))
-
+neutro = data.frame(subset(exp3, ph=="neutro"))
+neutro = na.omit(neutro)
 neu <- neutro[,-11]
 rownames(neu) <- neutro[,"id"]
 
 library(FactoMineR)
-res.pca = PCA(complete.cases(neu[,5:10]), 
-              scale.unit=TRUE, ncp=5, graph=T)
+res.pca = PCA(neu[,5:10], scale.unit=TRUE, ncp=5, graph=T)
+plot.PCA(res.pca, axes=c(1, 2), choix="ind")
 #scale.unit: to choose whether to scale the data or not 
 #ncp: number of dimensions kept in the result
 #graph: to choose whether to plot the graphs or not
-pca1 <- prcomp(neu[complete.cases(neu), 5:10], scale = TRUE)
-biplot(pca1)
-summary(pca1)
 ```
 
 ## Alcalino
