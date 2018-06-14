@@ -1,0 +1,106 @@
+---
+title: "exp3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+options(width = 90)
+library(tidyverse)
+# library(emmeans)
+# library(multcomp)
+```
+
+```{r dataset}
+exp3 <- readxl::read_excel(
+   "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/data/exp3.xlsx")
+# "C:/Users/ciacci.maria/Dropbox/sorgo_belen/data/exp1.xlsx")
+exp3
+exp3$ps <- exp3$ps*1000
+```
+
+```{r dat to long, echo=FALSE}
+long3 <- exp3 %>%  
+  gather(-(trt:planta),  
+         key = "var", value = "val")
+```
+
+# Exploracion 
+
+```{r}
+# xtabs(~ ferti + cond + dias, long)
+
+pd = position_dodge(width = 0.5)
+
+ggplot(long3[complete.cases(long3), ], 
+       aes(x=factor(hibr), y=val, group=trt, color=factor(trt))) +
+  geom_jitter(alpha=0.5, size=0.8, width=0.2)+
+  stat_summary(aes(group=trt), fun.data = mean_cl_boot,
+               size = 0.05, position=pd) +
+  stat_summary(aes(group=trt), size = 2,
+               fun.y="mean", geom="point", position=pd, show.legend = FALSE)+
+  facet_wrap(var~ph, scales = "free")
+  
+# ggsave(filename = "exp3.png", 
+#        path = "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/plots")
+
+```
+
+# Componentes principales 
+
+```{r}
+library(GGally)
+exp3[,5:11]
+ggpairs(exp3, columns = 5:11, ggplot2::aes(colour=factor(ph)),
+        columnLabels = c("Altura", "Peso seco", "Fosforo total", "Zinc", "Nitrogeno", "Hierro", "Spad"))
+```
+
+```{r}
+exp3$id <- paste0(substring(exp3$trt, 1, 1), exp3$hibr, ".",exp3$planta)
+
+
+
+res.pca = PCA(exp3[,5:11], scale.unit=TRUE, ncp=5,graph=T)
+
+plot.PCA(res.pca, axes=c(1, 2), choix="ind")
+data("decathlon")
+
+```
+
+
+```{r}
+```
+
+## Neutro
+
+```{r}
+# https://rpubs.com/Joaquin_AR/287787
+neutro = data.frame(subset(exp3, pH=="neutro"))
+
+neu <- neutro[,-11]
+rownames(neu) <- neutro[,"id"]
+
+library(FactoMineR)
+res.pca = PCA(complete.cases(neu[,5:10]), 
+              scale.unit=TRUE, ncp=5, graph=T)
+#scale.unit: to choose whether to scale the data or not 
+#ncp: number of dimensions kept in the result
+#graph: to choose whether to plot the graphs or not
+pca1 <- prcomp(neu[complete.cases(neu), 5:10], scale = TRUE)
+biplot(pca1)
+summary(pca1)
+```
+
+## Alcalino
+
+```{r}
+alca = as.data.frame(subset(dat, pH=="alcalino"))
+alc <- data.frame(alca[,-11], row.names=alca[,11])
+pca2 <- prcomp(alc[complete.cases(alc), 5:10], scale = TRUE)
+biplot(pca2)
+summary(pca2)
+```
+
+
+
+
