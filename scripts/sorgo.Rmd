@@ -13,10 +13,12 @@ library(tidyverse)
 
 ```{r dataset}
 exp3 <- readxl::read_excel(
-   "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/data/exp3.xlsx")
-# "C:/Users/ciacci.maria/Dropbox/sorgo_belen/data/exp1.xlsx")
+# "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/data/exp3.xlsx") # juan
+# "C:/Users/ciacci.maria/Dropbox/sorgo_belen/data/exp1.xlsx") # belen
+"~/GitHub/R_Intro/data/exp3.xlsx") # mauro
 exp3
 exp3$ps <- exp3$ps*1000
+exp3$altura <- exp3$altura*100
 ```
 
 ```{r dat to long, echo=FALSE}
@@ -51,32 +53,28 @@ ggplot(long3[complete.cases(long3), ],
 ```{r}
 library(GGally)
 exp3[,5:11]
+
 ggpairs(exp3, columns = 5:11, ggplot2::aes(colour=factor(ph)),
-        columnLabels = c("Altura", "Peso seco", "Fosforo total", "Zinc", "Nitrogeno", "Hierro", "Spad"))
+    columnLabels = c("Altura", "Peso seco", "Fosforo total", "Zinc", "Nitrogeno", "Hierro", "Spad"))
 ```
 
 ```{r}
 exp3$id <- paste0(substring(exp3$trt, 1, 1), exp3$hibr, ".",exp3$planta)
-
-
-
 res.pca = PCA(exp3[,5:11], scale.unit=TRUE, ncp=5,graph=T)
-
 plot.PCA(res.pca, axes=c(1, 2), choix="ind")
-data("decathlon")
-
 ```
 
-
-```{r}
-```
 
 ## Neutro
 
 ```{r}
 # https://rpubs.com/Joaquin_AR/287787
 neutro = data.frame(subset(exp3, ph=="neutro"))
+<<<<<<< HEAD
 neutro = na.omit(neutro)
+=======
+
+>>>>>>> 384bf012a1d1a081baa59783802f2340f8abff0a
 neu <- neutro[,-11]
 rownames(neu) <- neutro[,"id"]
 
@@ -97,7 +95,3 @@ pca2 <- prcomp(alc[complete.cases(alc), 5:10], scale = TRUE)
 biplot(pca2)
 summary(pca2)
 ```
-
-
-
-
