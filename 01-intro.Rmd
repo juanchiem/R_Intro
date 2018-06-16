@@ -167,7 +167,7 @@ summary(v)
 sort(v)
 ```
 
-* Operaciones com vectores
+* Operaciones con vectores
 
 ```{r, eval=FALSE}
 v - 1
@@ -192,7 +192,7 @@ min(v)
 sum(v)
 ```
 
-> Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
 
 * Secuencia
 
@@ -270,7 +270,7 @@ y[2]
 y[1:3]
 ```
 
-> selecione os elementos 1° e 3°
+> Seleccione los elementos 1° y 3°
 
 * Condición
 
@@ -305,8 +305,8 @@ is.na(0/0)
 a = NULL
 a
 
-# NA é uma constante lógica do R. Siginifica Not Available. NA pode ser 
-# convertido para quase todos os tipos de vetores do R. É usado principalmente para
+# NA es una constante lógica de R. Significa Not Available. NA puede ser 
+# convertido para casi todos los tipos de vectores de R. Se usa principalmente para
 # indicar valores faltantes.
 y <- c(2, 4, NA, 6)
 is.na(y)
@@ -314,7 +314,7 @@ is.nan(y)
 mean(y)
 mean(y, na.rm = T)
 
-# Inf significa infinito. Es el resultado de operaiones matemáticas cuyo limite es infinito.
+# Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.
 1/0
 1/Inf
 ```
@@ -336,7 +336,7 @@ disease # que ocurrió
 data(disease)
 ```
 
-> Explore o dataset iris con las siguientes funciones con iris y anote sus resultados
+> Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
     - head() 
     - tail() 
     - dim() 
@@ -449,7 +449,7 @@ text_tab1 <- data.frame(
               "Resta de x menos y",
               "Multiplicación", 
               "División de x por y", 
-              "Parte intera de la división de x por y",
+              "Parte entera de la división de x por y",
               "Resto de la división de x por y",
               "x elevado a y-ésima potencia")
 )
@@ -458,7 +458,7 @@ text_tab1 <- data.frame(
 
 ```{r op-arit, tidy=FALSE, eval=TRUE, echo = FALSE}
 knitr::kable(text_tab1, 
-             caption = 'Operadores artiméticos',
+             caption = 'Operadores aritméticos',
              booktabs = TRUE) %>% kable_styling(full_width = F)
 ```
 
@@ -558,7 +558,7 @@ text_tab4 <- data.frame(
 
 ```{r shortcuts, tidy=FALSE, eval=TRUE, echo = FALSE}
 knitr::kable(text_tab4, 
-             caption = 'Algunos atajos comumentes usados',
+             caption = 'Algunos atajos comúnentes usados',
              booktabs = TRUE) %>% kable_styling(full_width = F)
 
 ```

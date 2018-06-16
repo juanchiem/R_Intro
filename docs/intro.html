@@ -158,11 +158,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>3.4</b> arrange</a></li>
 <li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> summarise</a></li>
 <li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>3.6</b> Dataset “can_phoma”</a></li>
-<li class="chapter" data-level="3.7" data-path="manip.html"><a href="manip.html#extra-aleatorizar-unidades-experimentales"><i class="fa fa-check"></i><b>3.7</b> Extra: aleatorizar unidades experimentales</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Explorar</a></li>
-<li class="chapter" data-level="5" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>5</b> Modelar</a></li>
-<li class="chapter" data-level="6" data-path="comun.html"><a href="comun.html"><i class="fa fa-check"></i><b>6</b> Comunicar</a></li>
+<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Visualizar</a></li>
+<li class="chapter" data-level="5" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html"><i class="fa fa-check"></i><b>5</b> Aleatorizar tratamientos</a><ul>
+<li class="chapter" data-level="5.1" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-completo-aleatorizado"><i class="fa fa-check"></i><b>5.1</b> Diseño completo aleatorizado</a></li>
+<li class="chapter" data-level="5.2" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-en-bloques-completos-aleatorizados"><i class="fa fa-check"></i><b>5.2</b> Diseño en bloques completos aleatorizados</a></li>
+<li class="chapter" data-level="5.3" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#parcelas-divididas"><i class="fa fa-check"></i><b>5.3</b> Parcelas divididas</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -190,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1° <a href="https://cran.r-project.org/">R</a></p>
 <p>2° <a href="https://www.rstudio.com/products/rstudio/download/">R studio</a> (bajar la versión Free)</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="fig/rstudio.png" alt="Paneles de RStudio"  />
+<img src="fig/rstudio.png" alt="Paneles de RStudio" width="678" />
 <p class="caption">
 Figure 1.1: Paneles de RStudio
 </p>
@@ -301,7 +303,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#v &lt;- edit(v)</span></a>
 <a class="sourceLine" id="cb9-17" data-line-number="17"><span class="kw">sort</span>(v)</a></code></pre></div>
 <ul>
-<li>Operaciones com vectores</li>
+<li>Operaciones con vectores</li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">v <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"></a>
@@ -324,7 +326,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb10-19" data-line-number="19"><span class="kw">min</span>(v)</a>
 <a class="sourceLine" id="cb10-20" data-line-number="20"><span class="kw">sum</span>(v)</a></code></pre></div>
 <blockquote>
-<p>Crie tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
+<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
 </blockquote>
 <ul>
 <li>Secuencia</li>
@@ -384,7 +386,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb16-2" data-line-number="2">y[<span class="dv">2</span>]</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3">y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <blockquote>
-<p>selecione os elementos 1° e 3°</p>
+<p>Seleccione los elementos 1° y 3°</p>
 </blockquote>
 <ul>
 <li>Condición</li>
@@ -414,8 +416,8 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb18-7" data-line-number="7">a =<span class="st"> </span><span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb18-8" data-line-number="8">a</a>
 <a class="sourceLine" id="cb18-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co"># NA é uma constante lógica do R. Siginifica Not Available. NA pode ser </span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="co"># convertido para quase todos os tipos de vetores do R. É usado principalmente para</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co"># NA es una constante lógica de R. Significa Not Available. NA puede ser </span></a>
+<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="co"># convertido para casi todos los tipos de vectores de R. Se usa principalmente para</span></a>
 <a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co"># indicar valores faltantes.</span></a>
 <a class="sourceLine" id="cb18-13" data-line-number="13">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb18-14" data-line-number="14"><span class="kw">is.na</span>(y)</a>
@@ -423,7 +425,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb18-16" data-line-number="16"><span class="kw">mean</span>(y)</a>
 <a class="sourceLine" id="cb18-17" data-line-number="17"><span class="kw">mean</span>(y, <span class="dt">na.rm =</span> T)</a>
 <a class="sourceLine" id="cb18-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="co"># Inf significa infinito. Es el resultado de operaiones matemáticas cuyo limite es infinito.</span></a>
+<a class="sourceLine" id="cb18-19" data-line-number="19"><span class="co"># Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.</span></a>
 <a class="sourceLine" id="cb18-20" data-line-number="20"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb18-21" data-line-number="21"><span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></a></code></pre></div>
 <blockquote>
@@ -441,7 +443,7 @@ y es “case sensitive”!!)</p>
 <a class="sourceLine" id="cb19-5" data-line-number="5">disease <span class="co"># que ocurrió</span></a>
 <a class="sourceLine" id="cb19-6" data-line-number="6"><span class="kw">data</span>(disease)</a></code></pre></div>
 <blockquote>
-<p>Explore o dataset iris con las siguientes funciones con iris y anote sus resultados
+<p>Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
 - head()
 - tail()
 - dim()
@@ -516,7 +518,7 @@ y es “case sensitive”!!)</p>
 <h2><span class="header-section-number">1.8</span> Tablas resumen</h2>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:op-arit">Table 1.1: </span>Operadores artiméticos
+<span id="tab:op-arit">Table 1.1: </span>Operadores aritméticos
 </caption>
 <thead>
 <tr>
@@ -566,7 +568,7 @@ División de x por y
 x %/% y
 </td>
 <td style="text-align:left;">
-Parte intera de la división de x por y
+Parte entera de la división de x por y
 </td>
 </tr>
 <tr>
@@ -729,7 +731,7 @@ redondea x a n-digitos
 </table>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:shortcuts">Table 1.4: </span>Algunos atajos comumentes usados
+<span id="tab:shortcuts">Table 1.4: </span>Algunos atajos comúnentes usados
 </caption>
 <thead>
 <tr>

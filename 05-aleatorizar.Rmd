@@ -13,7 +13,7 @@ library(tidyverse)
 
 # Aleatorizar tratamientos 
 
-### Diseño completo aleatorizado  
+## Diseño completo aleatorizado  
 
 ```{r}
 library(agricolae)
@@ -24,15 +24,14 @@ DCA <- design.crd(trt, r=repeticion, seed=0, serie=0)
 (planilha_dic <- DCA$book)
 ```
 
-### Diseño en bloques completos aleatorizados
+## Diseño en bloques completos aleatorizados
 
 
 ```{r}
 trt <- LETTERS[1:10]
 rep <- 5
 DCBA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, 
-                    kinds = "Super-Duper", serie=2)
-# write_csv(planilha_DBCA2, "campo.csv")
+                    kinds = "Super-Duper", serie=2) # write_csv(planilha_DBCA2, "campo.csv")
 
 
 head(DCBA$book, 10)
@@ -46,7 +45,7 @@ head(zigzag(DCBA),10) # zigzag numeration
 ```
 
 
-### Parcelas divididas
+## Parcelas divididas
 
 ```{r}
 t1<-c("A","B","C","D")
@@ -56,6 +55,5 @@ split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
 
 ```{r, eval=TRUE}
 head(split$book,10) # field book
-
 ```
 
