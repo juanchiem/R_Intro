@@ -28,7 +28,7 @@ options(width = 90)
 ![](fig/top.jpg) 
 
 
-(Tradução de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer.)
+(Traducción de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer)
 
 Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
 
