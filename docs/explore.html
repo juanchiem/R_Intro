@@ -22,7 +22,7 @@
   
   
 
-<meta name="author" content="Juan P. Edwards Molina">
+<meta name="author" content="">
 
 
 
@@ -158,7 +158,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>3.5</b> summarise</a></li>
 <li class="chapter" data-level="3.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>3.6</b> Dataset “can_phoma”</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Visualizar</a></li>
+<li class="chapter" data-level="4" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>4</b> Visualizar</a><ul>
+<li class="chapter" data-level="4.1" data-path="explore.html"><a href="explore.html#mancha-anillada-en-soja"><i class="fa fa-check"></i><b>4.1</b> Mancha anillada en soja</a></li>
+<li class="chapter" data-level="4.2" data-path="explore.html"><a href="explore.html#phoma-en-canola"><i class="fa fa-check"></i><b>4.2</b> Phoma en canola</a></li>
+<li class="chapter" data-level="4.3" data-path="explore.html"><a href="explore.html#fertilizacion-en-sorgo"><i class="fa fa-check"></i><b>4.3</b> Fertilización en sorgo</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html"><i class="fa fa-check"></i><b>5</b> Aleatorizar tratamientos</a><ul>
 <li class="chapter" data-level="5.1" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-completo-aleatorizado"><i class="fa fa-check"></i><b>5.1</b> Diseño completo aleatorizado</a></li>
 <li class="chapter" data-level="5.2" data-path="aleatorizar-tratamientos.html"><a href="aleatorizar-tratamientos.html#diseno-en-bloques-completos-aleatorizados"><i class="fa fa-check"></i><b>5.2</b> Diseño en bloques completos aleatorizados</a></li>
@@ -193,6 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> se puede utilizar tanto para la creación rápida de gráficos como para gráficos complejos y detallados (con fines de publicaciones científicas). Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
 <p>Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la simple visualización de las observaciones con alguna medida de posición como ser la media o mediana. Cuando las observaciones son 5 o más es común acompanãr la media de posición (media o mediana) por alguna medida de dispersión: desvio estándar, error estándar o intervalo de confianza de la media (95% IC).</p>
 <p>A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.</p>
+<div id="mancha-anillada-en-soja" class="section level2">
+<h2><span class="header-section-number">4.1</span> Mancha anillada en soja</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">url1 &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv&quot;</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">soy &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">textConnection</span>(RCurl<span class="op">::</span><span class="kw">getURL</span>(url1))) </a></code></pre></div>
 <p>Nos quedaremos solo con dos cultivares: “BMX_Potencia_RR” y “M9144_RR” (nos aseguraremos que no queden ningun otro nivel del factor cultivar)</p>
@@ -238,7 +244,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="R-Ipave_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Cambiaron los resultados? que puede concluir ahora?</p>
+</div>
+<div id="phoma-en-canola" class="section level2">
+<h2><span class="header-section-number">4.2</span> Phoma en canola</h2>
+</div>
+<div id="fertilizacion-en-sorgo" class="section level2">
+<h2><span class="header-section-number">4.3</span> Fertilización en sorgo</h2>
 
+</div>
 </div>
             </section>
 

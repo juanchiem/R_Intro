@@ -24,6 +24,8 @@ Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la sim
 
 A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.
 
+## Mancha anillada en soja
+
 ```{r}
 url1 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv"
 soy <- read.csv(textConnection(RCurl::getURL(url1))) 
@@ -76,3 +78,18 @@ p0 + geom_point(alpha=0.2)+
 ```
 
 Cambiaron los resultados? que puede concluir ahora?
+
+## Mancha foliar por phoma en canola
+
+(DOI: 10.1007/s13313-017-0507-y)
+
+## Fertilización con N y S en sorgo 
+
+
+## Relevamiento de xylella en Olivares
+
+(datos simulados)
+
+Fitopatometria (Large, 1966) es la rama de la fitopatología que mide involves the measurement
+and quantification of plant disease and is therefore of fundamental importance
+in the study and analysis of plant disease epidemics. 

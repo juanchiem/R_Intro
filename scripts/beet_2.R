@@ -1,3 +1,4 @@
+library(tidyverse)
 url2 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/beet.csv"
 beet <- read.csv(textConnection(RCurl::getURL(url2)), sep= ";", skip=10, na.strings = ".", header = T, dec=",")
 beet[1:5] <- lapply(beet[1:5], as.factor)
@@ -19,23 +20,19 @@ plot(fit2, which=1)
 library(emmeans)
 emmeans(fit1, ~ trt | geno, type = "response")
 
-
 # str(beet[beet$exp==2, "root"])
 # summary(beet[beet$exp==2, "root"])
 
 
 ### Dataset: Remolacha
 
-```{r}
 url2 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/beet.csv"
 beet <- read.csv(textConnection(RCurl::getURL(url2)), sep= ";", skip=10, na.strings = ".", header = T, dec=",")
 str(beet)
-```
 
 
-Generaremos las variables descriptivas por extenso para hacer los gráficos
+# Generaremos las variables descriptivas por extenso para hacer los gráficos
 
-```{r}
 beet <- beet %>%
   mutate(trt1 = ifelse(trt == '1',"Check","Inoculated"),
          Cultivar = ifelse(geno == '1',"Boro","Bohan"),
@@ -44,21 +41,15 @@ beet <- beet %>%
   mutate_if(is.character, as.factor)
 str(beet)
 summary(beet)
-```
 
-Inspección numérica del dataset (desglosamos las unidades experimentales)
+# Inspección numérica del dataset (desglosamos las unidades experimentales)
 
-```{r}
 ftable(xtabs(~ exp + geno + trt + pot, beet))
-```
 
-```{r}
 GGally::ggpairs(beet[,6:8])
-```
 
 * Biomasa de raiz (ejecute el siguiente código seleccionando primero la 1° fila, luego las 1°+2°, y luego todas)
 
-```{r}
 ggplot(beet, aes(x=trt1, y=root)) +
   geom_boxplot() +
   geom_jitter(width = 0.1)+

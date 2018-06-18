@@ -1,6 +1,6 @@
 --- 
 title: "R para fitopatólogos"
-author: "Juan P. Edwards Molina"
+author: " "
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

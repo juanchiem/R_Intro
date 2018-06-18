@@ -1,6 +1,8 @@
 survey = readr::read_csv("data/survey.csv")
 ftable(xtabs(~  year + loc + farm, survey))
 
+tail(survey)
+
 library(tidyverse)
 
 dat_inc = survey %>%
