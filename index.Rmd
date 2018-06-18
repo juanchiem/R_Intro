@@ -61,9 +61,9 @@ El curso pretende proveer de herramientas analíticas para independizar al alumn
 El cronograma del curso puede encontrarse [aqui](https://docs.google.com/document/d/1POFS1mb5yP8gv7J5Mfyt-WPB-bA7Yu5rovnDbV8yWM4/edit?usp=sharing)
 
 Los datasets que serán usados durante el curso pueden bajarse desde 
-[aqui](https://github.com/juanchiem/R_Intro/tree/master/data)
+[aqui](https://drive.google.com/open?id=1uKGx0ck3nCdFb8q7s0ykd7tKjJoPlZFcUU3iTMCPajI)
 
 Usaremos los paquetes oficiales: `tidyverse` `agricolae` `car` `emmeans` `gsheet` `GGally`
 
-Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://github.com/juanchiem/R_Intro/tree/master/cheatsheets)
+Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
 
