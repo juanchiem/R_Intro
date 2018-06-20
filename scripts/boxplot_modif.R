@@ -28,7 +28,3 @@ abline(v = c(lim_inf, lim_sup), lty =2, col= "blue")
 
 b = c(6.749,12,15,16,16,17,19,34)
 boxplot(b, horizontal = T)
-
-# 68 95 and 99.7 rule
-# mean = Ex / n
-# S = sqrt( (Ex- mean)^2 / n-1)
