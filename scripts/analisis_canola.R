@@ -1,3 +1,4 @@
+# https://stats.stackexchange.com/questions/76226/interpreting-the-residuals-vs-fitted-values-plot-for-verifying-the-assumptions
 library(gsheet)
 url1="https://docs.google.com/spreadsheets/d/135CDYxoU9KF-Gl32461EWpX0LlXbsSGZ4t_i-0VPpko/edit?usp=sharing"
 can_phoma = gsheet2tbl(url1)
@@ -22,8 +23,8 @@ ggplot(can_long, aes(x=tt, y=incp)) +
 
 can_sum <- can_long %>%
   group_by(trt, bk, sev_cancro) %>%
-  summarize(max_inc= max(incp*100), 
-            auc_inc = agricolae::audpc(incp*100, tt)) %>% 
+  summarize(max_inc= max(incp*100),
+            auc_inc = agricolae::audpc(incp*100, tt)) %>%
   mutate(sev_log = car::logit(sev_cancro, percents=TRUE))
 
 ggplot(can_sum, aes(x=trt, y=auc_inc))+
@@ -32,7 +33,7 @@ ggplot(can_sum, aes(x=trt, y=auc_inc))+
 
 library(GGally)
 
-ggpairs(can_sum, columns = 3:5, 
+ggpairs(can_sum, columns = 3:5,
         columnLabels = c("Severidad de cbt", "Incidencia máxima", "AUC"))
 
 m1 = lm(auc_inc ~ factor(trt) + factor(bk), data=can_sum)
@@ -78,24 +79,24 @@ boxplot(sev_log ~ trt, data = can_sum)
 
 plot(sev_cancro ~ auc_inc, data = can_sum)
 auc_cbt <- lm(sev_cancro ~ auc_inc, data = can_sum)
-summary(auc_cbt) ; sum(resid(auc_cbt)^2) 
+summary(auc_cbt) ; sum(resid(auc_cbt)^2)
 
 plot(sev_cancro ~ max_inc, data = can_sum)
 max_cbt <- lm(sev_cancro ~ max_inc, data = can_sum)
-summary(max_cbt) ; sum(resid(max_cbt)^2) 
+summary(max_cbt) ; sum(resid(max_cbt)^2)
 
 # modelo exponencial
 m.exp <- nls(sev_cancro ~ exp(a + b * max_inc), data = can_sum, start = list(a = 0, b = 0))
 summary(m.exp) ; sum(resid(m.exp)^2)
-plot(can_sum$max_inc, can_sum$sev_cancro, 
+plot(can_sum$max_inc, can_sum$sev_cancro,
      ylim=c(0,65), xlim=c(0,60), main = "Exponential model")
 lines(sort(can_sum$max_inc), predict(m.exp, list(max_inc = sort(can_sum$max_inc))))
 plot(resid(m.exp) ~ fitted(m.exp))#1 ;  plot(m.exp) #2
 
-# Power model 
+# Power model
 m.power <- nls(sev_cancro ~ a * max_inc^b, data = can_sum, start = list(a=1, b=1))
-sum(resid(m.power)^2) 
-plot(can_sum$max_inc, can_sum$sev_cancro, 
+sum(resid(m.power)^2)
+plot(can_sum$max_inc, can_sum$sev_cancro,
      ylim=c(0,65), xlim=c(0,60), main = "Power model")
 lines(sort(can_sum$max_inc), predict(m.power, list(max_inc = sort(can_sum$max_inc))), col="red")
 plot(resid(m.power) ~ fitted(m.power))#1 ;  plot(m.exp) #2
