@@ -17,7 +17,7 @@ library(kableExtra)
 
 1° [R](https://cran.r-project.org/) 
 
-2° [R studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
+2° [R Studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
 
 ```{r, echo=FALSE, eval=TRUE, fig.cap="Paneles de RStudio", fig.align='center'}
 knitr::include_graphics("fig/rstudio.png")
@@ -327,9 +327,9 @@ mean(y, na.rm = T)
 
 ### Data frames
 
-Conjunto de vectores (columnas) con mismo tamaño (lineas). Esas columnas pueden ser de clases diferentes. Son los princiales objetos de nuestros estudios.
+Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.
 
-En los paquetes de R, hay muchos data frames disponibles para fines didácticos. Un ejemplo muy usado es el dataset "iris".
+En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete `base` es el dataset "iris".
 
 ```{r}
 ?iris
@@ -349,7 +349,7 @@ data(disease)
 
 ### Filtrado de datasets
 
-**data[linea, columna]**
+**data[fila, columna]**
 
 ```{r}
 iris[1,]
@@ -361,9 +361,9 @@ levels(iris$Species)
 summary(iris$Sepal.Length)
 ```
 
-> Selecione la segunda i) linea; ii) columna. iii) Seleccione la observación ubicada en la 2° linea y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
+> Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
 
-* Funcion subset 
+* Función `subset`
 
 Filtremos a la variedad Species reteniendo solo a "setosa" 
 
@@ -406,7 +406,7 @@ x["c"]     #
 
 ## Funciones 
 
-Generalmente, el nombre de las funciones es intuitivo, por ejemplo, **mean** es la función que calcula la media, **round** es la funión que redondea un número, etc.
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número.
 
 ```{r}
 numb <- 1:6
@@ -424,7 +424,7 @@ square.it(3)
 
 ## S.O.S.!!
 
-- En el mismo R: `?auc`;  `??auc` 
+- En el mismo R: `?auc`;  `??auc`; F1 sobre la función 
 
 - Googlear: “r generate a sequence of uppercase letters”  
 
@@ -434,7 +434,7 @@ square.it(3)
 
 - Ser consciso pero gentil...
 
-- Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si pueden reproducir su error (detallar paquetes y version de R en caso necesario). 
+- Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y version de R en caso necesario) `library(reprex)`. 
 
 
 ## Tablas resumen {#tablas_resumen}
@@ -498,8 +498,8 @@ knitr::kable(text_tab2,
 
 ```
 
-<br><br>
-
+<br>
+<br>
 
 ```{r, echo=FALSE, eval=TRUE, tidy=FALSE}
 text_tab3 <- data.frame(
@@ -534,10 +534,11 @@ knitr::kable(text_tab3,
              booktabs = TRUE) %>% kable_styling(full_width = F)
 ```
 
+<br>
+<br>
 
 ```{r, tidy=FALSE, eval=TRUE, echo = FALSE}
 text_tab4 <- data.frame(
-  
   Teclas = c(
     "Alt Shift K", 
     "Ctrl Z / Ctrl Shift Z", 
@@ -561,10 +562,12 @@ text_tab4 <- data.frame(
 
 ```
 
+
 ```{r shortcuts, tidy=FALSE, eval=TRUE, echo = FALSE}
 knitr::kable(text_tab4, 
              caption = 'Algunos atajos comúnentes usados',
              booktabs = TRUE) %>% kable_styling(full_width = F)
 
 ```
+
 
