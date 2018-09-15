@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: juanchiem/R_Intro
 ---
 
 ```{r include=FALSE}
@@ -39,31 +39,28 @@ Podríamos resumir nuestro trabajo como científicos, desde la recolección de d
 
 </br>
 
-El curso pretende proveer de herramientas analíticas para independizar al alumno/investigador en las distintas etapas de este workflow. Para ello, usaremos datos (reales o simulados) típicos del área de fitopatología o afines. 
+El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. No es un curso de estadística.... 
+
+<div style="text-align: center">
+<b>Estas son algunas razones por la que elegimos R</b> [@R-base]
+</div>
 
 <div class="boxed">
-
-* *Estas son mis 5 principales razones por la que elijo R* [@R-base]
 
   1. Software libre
 
   2. Aprender un lenguaje de programación: ejercicio mental/lógica. Aprender estadística resulta mucho mas ameno.
+
+<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></div>
 
   3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
 
   4. Gran flexibilidad y elegancia de los gráficos
 
   5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+  
 </div>
 
 </br>
 
-El cronograma del curso puede encontrarse [aqui](https://docs.google.com/document/d/1POFS1mb5yP8gv7J5Mfyt-WPB-bA7Yu5rovnDbV8yWM4/edit?usp=sharing)
-
-Los datasets que serán usados durante el curso pueden bajarse desde 
-[aqui](https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t)
-
-Usaremos los paquetes oficiales: `tidyverse` `agricolae` `car` `emmeans` `gsheet` `GGally`
-
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
-

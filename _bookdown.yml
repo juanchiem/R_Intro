@@ -3,4 +3,5 @@ output_dir: "docs"
 language:
   ui:
     chapter_name: ""
+    references_name: "Referencias "
 delete_merged_file: true

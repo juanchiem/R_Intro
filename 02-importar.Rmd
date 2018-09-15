@@ -19,7 +19,7 @@ Un primer paso en nuestras investigaciones (fundamental, determinante del resto 
 En particular prefiero que las planillas excel sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
 R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!
 
-**5 Principios básicos** Adaptado de [@broman2018data])
+**5 Principios básicos** Adaptado de [@broman2018data]
 
 Como regla global, columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
 
