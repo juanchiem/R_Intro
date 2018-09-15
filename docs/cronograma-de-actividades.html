@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="explore.html">
-
+<link rel="prev" href="index.html">
+<link rel="next" href="intro.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,62 +162,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aleatorizar-tratamientos" class="section level1">
-<h1><span class="header-section-number">6</span> Aleatorizar tratamientos</h1>
-<div id="diseno-completamente-aleatorizado" class="section level2">
-<h2><span class="header-section-number">6.1</span> Diseño completamente aleatorizado</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(agricolae)
+<div id="cronograma-de-actividades" class="section level1">
+<h1><span class="header-section-number">1</span> Cronograma de actividades</h1>
+<iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&amp;ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
+</iframe>
 
-trt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)
-repeticion &lt;-<span class="st"> </span><span class="dv">4</span>
-DCA &lt;-<span class="st"> </span><span class="kw">design.crd</span>(trt, <span class="dt">r=</span>repeticion, <span class="dt">seed=</span><span class="dv">0</span>, <span class="dt">serie=</span><span class="dv">0</span>)
-(planilha_dic &lt;-<span class="st"> </span>DCA<span class="op">$</span>book)</code></pre></div>
-</div>
-<div id="diseno-en-bloques-completos-aleatorizados" class="section level2">
-<h2><span class="header-section-number">6.2</span> Diseño en bloques completos aleatorizados</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trt &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
-rep &lt;-<span class="st"> </span><span class="dv">5</span>
-DCBA &lt;-<span class="st"> </span><span class="kw">design.rcbd</span>(trt, <span class="dt">r=</span>rep, <span class="dt">first=</span><span class="ot">FALSE</span>, <span class="dt">seed=</span><span class="dv">111</span>, 
-                    <span class="dt">kinds =</span> <span class="st">&quot;Super-Duper&quot;</span>, <span class="dt">serie=</span><span class="dv">2</span>) <span class="co"># write_csv(planilha_DBCA2, &quot;campo.csv&quot;)</span>
-
-
-<span class="kw">head</span>(DCBA<span class="op">$</span>book, <span class="dv">10</span>)
-<span class="kw">print</span>(DCBA<span class="op">$</span>sketch)</code></pre></div>
-<ul>
-<li>libro zig-zag</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">zigzag</span>(DCBA),<span class="dv">10</span>) <span class="co"># zigzag numeration</span></code></pre></div>
-</div>
-<div id="parcelas-divididas" class="section level2">
-<h2><span class="header-section-number">6.3</span> Parcelas divididas</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t1&lt;-<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>)
-t2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
-split &lt;-<span class="kw">design.split</span>(t1, t2, <span class="dt">r=</span><span class="dv">3</span>, <span class="dt">serie=</span><span class="dv">2</span>, <span class="dt">seed=</span><span class="dv">45</span>, <span class="dt">kinds=</span><span class="st">&quot;Super-Duper&quot;</span>)<span class="co">#seed=45</span>
-<span class="kw">head</span>(split<span class="op">$</span>book,<span class="dv">10</span>) <span class="co"># field book</span></code></pre></div>
-
-<div id="refs" class="references">
-<div>
-<p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1). Taylor &amp; Francis: 2–10.</p>
-</div>
-<div>
-<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martínez-González, Francisco Javier García-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotípicas de Características de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Científica</em> 17 (3). Universidad del Zulia: 262–67.</p>
-</div>
-<div>
-<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. “ O’Reilly Media, Inc.”</p>
-</div>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="explore.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +204,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-aleatorizar.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
 "text": "Edit"
 },
 "download": ["R-UCC.pdf", "R-UCC.epub"],
