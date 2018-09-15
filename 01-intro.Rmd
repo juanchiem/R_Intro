@@ -31,7 +31,7 @@ Existen varias vias de instalación de paquetes:
 
 - Paquetes no oficiales via Github: `devtools::install_github("rstudio/shiny")` 
 
-```{r}
+```{r, eval=FALSE}
 install.packages(c("tidyverse", "agricolae"))
 ```
 
@@ -62,7 +62,7 @@ Como dijimos, una sesión de análisis debe poder ser retomada en cualquier mome
 
 > Crear un script 
 
-```{r}
+```{r, eval=FALSE}
 getwd() 
 setwd("C:\Usuario\Documentos\Curso") # Calma! Ctrl + Shift + h
 getwd() 
@@ -457,9 +457,10 @@ text_tab1 <- data.frame(
 ```
 
 ```{r op-arit, tidy=FALSE, eval=TRUE, echo = FALSE}
-knitr::kable(text_tab1, 
-             caption = 'Operadores aritméticos',
-             booktabs = TRUE) %>% kable_styling(full_width = F)
+library(kableExtra)
+kable(text_tab1, 
+      caption = 'Operadores aritméticos',
+      booktabs = TRUE) %>% kable_styling(full_width = F)
 ```
 
 <br><br>

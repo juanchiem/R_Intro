@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.height = 8)
 options(width = 90)
 library(tidyverse)
+library(agricolae)
 #https://www.listendata.com/2016/08/dplyr-tutorial.html
 ```
 
@@ -51,9 +52,7 @@ head(zigzag(DCBA),10) # zigzag numeration
 t1<-c("A","B","C","D")
 t2<-c(1,2,3)
 split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
-```
-
-```{r, eval=TRUE}
 head(split$book,10) # field book
 ```
+
 
