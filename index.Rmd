@@ -1,5 +1,5 @@
 --- 
-title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
+title: "Introducción a R para el análisis de datos provenientes de las Ciencias Agrarias"
 author: " "
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -64,3 +64,16 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 </br>
 
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
+<<<<<<< HEAD
+=======
+
+
+
+
+# Cronograma de actividades
+
+
+<iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+>>>>>>> ffbc2c492d0c9bf14116da6eb66d4b46df279616

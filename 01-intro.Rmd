@@ -129,7 +129,7 @@ log10(10^4)
 round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 ```
 
-(Note que R está en inglês (decimales “.”, nombre de las funciones)
+(Note que R está en inglés (decimales “.”, nombre de las funciones)
 y es “case sensitive”!!)
 
 ## Tipos de Objetos 
@@ -210,20 +210,17 @@ rep(1:3, times=3) #  , each=3
 
 * Números aleatorios - distribuciones
 
-```{r, eval=FALSE}
-a = rnorm(100, mean=3, sd=2) 
-range(a)
-hist(a)
-hist(a, prob=TRUE)
-lines(density(a), col="blue", lwd=2) # add a density estimate with defaults
-plot(a)
-plot(cumsum(a))
-boxplot(a)
+Ejemplo de [@parra2007tendencias]
+![](fig/PesoVacas.gif)
 
-b = runif(100) # 
-hist(b)
+```{r EjemploVacas, eval=FALSE}
+set.seed(123)
+PesoNac <- rnorm(23570, mean=32.2, sd=1.8) range(PesoNac)
+hist(PesoNac)
+hist(PesoNac, prob=TRUE)
+# add a density estimate with defaults
+lines(density(PesoNac), col="blue", lwd=2) 
 ```
-
 
 * Propiedades de vectores 
 
@@ -237,7 +234,7 @@ y <- c(TRUE, "a") ## character
 
 Forzando las clases explicitamente
 
-`as.character(), as.numeric(), as.integer() e as.logical()`
+`as.character()`, `as.numeric()`, `as.integer()` y `as.logical()`
 
 * Factores
 
@@ -293,7 +290,7 @@ Existen valores reservados para representar datos faltantes, infinitos, e indefi
 
 - NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.
 
-- Inf (Infinito) es un número muy grande, por ejemplo, 1/0 e 10^310. Acepta signo negativo -Inf.
+- Inf (Infinito) es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
 
 - NULL representa  ausencia de información. 
 
@@ -406,19 +403,23 @@ x["c"]     #
 
 ## Funciones 
 
-Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número.
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. Los paquetes contienen conjuntos de funciones las cuales son específicas para ciertos procedimientos. 
 
 ```{r}
 numb <- 1:6
 round(mean(numb)) # floor() # ceiling() trunc() 
 ```
 
-```{r}
-square.it <- function(x) {
-  x^2
-  }
+Si es necesario, se pueden crear funciones propias. Las funciones devuelven el último valor que se mostró y no modifican el ambiente de trabajo global, salvo que se lo explicite utilizando `<<-`.
 
-square.it(3)
+```{r}
+Estandarizar <- function(x) {
+  Media<- mean(x)
+  SD<- sd(x)
+  (x-Media)/SD
+  }
+set.seed(pi)
+Estandarizar(rnorm(10,40,5))
 ```
 
 
