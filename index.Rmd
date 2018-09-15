@@ -1,5 +1,5 @@
 --- 
-title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
+title: "INTRODUCCIÓN A R PARA EL ANÁLISIS DE DATOS PROVENIENTES DE LAS CIENCIAS AGRARIAS"
 author: " "
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -66,4 +66,13 @@ Los datasets que serán usados durante el curso pueden bajarse desde
 Usaremos los paquetes oficiales: `tidyverse` `agricolae` `car` `emmeans` `gsheet` `GGally`
 
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
+
+
+
+
+## Cronograma de actividades
+
+
+<iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
 
