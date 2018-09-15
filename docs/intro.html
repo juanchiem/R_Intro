@@ -465,14 +465,17 @@ x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></
 </div>
 <div id="funciones" class="section level2">
 <h2><span class="header-section-number">2.6</span> Funciones</h2>
-<p>Generalmente, el nombre de las funciones es intuitivo, por ejemplo, <code>mean</code> es la función que calcula la media, <code>round</code> es la funión que redondea un número.</p>
+<p>Generalmente, el nombre de las funciones es intuitivo, por ejemplo, <code>mean</code> es la función que calcula la media, <code>round</code> es la funión que redondea un número. Los paquetes contienen conjuntos de funciones las cuales son específicas para ciertos procedimientos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
 <span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">square.it &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-  x<span class="op">^</span><span class="dv">2</span>
+<p>Si es necesario, se pueden crear funciones propias. Las funciones devuelven el último valor que se mostró y no modifican el ambiente de trabajo global, salvo que se lo explicite utilizando <code>&lt;&lt;-</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Estandarizar &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  Media&lt;-<span class="st"> </span><span class="kw">mean</span>(x)
+  SD&lt;-<span class="st"> </span><span class="kw">sd</span>(x)
+  (x<span class="op">-</span>Media)<span class="op">/</span>SD
   }
-
-<span class="kw">square.it</span>(<span class="dv">3</span>)</code></pre></div>
+<span class="kw">set.seed</span>(pi)
+<span class="kw">Estandarizar</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">5</span>))</code></pre></div>
 </div>
 <div id="s.o.s." class="section level2">
 <h2><span class="header-section-number">2.7</span> S.O.S.!!</h2>

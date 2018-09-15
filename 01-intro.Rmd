@@ -403,19 +403,23 @@ x["c"]     #
 
 ## Funciones 
 
-Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número.
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. Los paquetes contienen conjuntos de funciones las cuales son específicas para ciertos procedimientos. 
 
 ```{r}
 numb <- 1:6
 round(mean(numb)) # floor() # ceiling() trunc() 
 ```
 
-```{r}
-square.it <- function(x) {
-  x^2
-  }
+Si es necesario, se pueden crear funciones propias. Las funciones devuelven el último valor que se mostró y no modifican el ambiente de trabajo global, salvo que se lo explicite utilizando `<<-`.
 
-square.it(3)
+```{r}
+Estandarizar <- function(x) {
+  Media<- mean(x)
+  SD<- sd(x)
+  (x-Media)/SD
+  }
+set.seed(pi)
+Estandarizar(rnorm(10,40,5))
 ```
 
 
