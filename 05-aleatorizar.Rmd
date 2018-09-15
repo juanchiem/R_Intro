@@ -14,7 +14,7 @@ library(agricolae)
 
 # Aleatorizar tratamientos 
 
-## Diseño completo aleatorizado  
+## Diseño completamente aleatorizado  
 
 ```{r}
 library(agricolae)
