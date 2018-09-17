@@ -19,67 +19,78 @@ library(kableExtra)
 
 2° [R Studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
 
-```{r, echo=FALSE, eval=TRUE, fig.cap="Paneles de RStudio", fig.align='center'}
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
 knitr::include_graphics("fig/rstudio.png")
+```
+
+## Configuraciones básicas del RStudio
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config1.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config2.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config3.png")
 ```
 
 ## Instalación de paquetes 
 
 Existen varias vias de instalación de paquetes:
 
-- Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
-
-- Paquetes no oficiales via Github: `devtools::install_github("rstudio/shiny")` 
-
-```{r, eval=FALSE}
-install.packages(c("tidyverse", "agricolae"))
+</br>
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/install.packages.png")
 ```
 
-Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión:
+</br>
+
+- Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
+- Paquetes no oficiales via Github: `devtools::install_github("rstudio/epiphy")` 
+</br>
+
+```{block, type='rmdcomment'}
+Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
+```
 
 `library(nombre-del-paquete)`
 
 ## Configuración de la sesión
 
-Un punto fundamental de cada sesión es saber cual es el **directorio de trabajo**, que por default se configurará en el disco "C:/...documentos", por lo tanto siempre tenemos que relocalizar nuestras carpetas de trabajo. 
+Varios tipos de archivos serán creados y usados durante una sesión de R: 
 
-Una forma de averiguar el actual directorio de trabajo es tipear en la consola `getwd()`, o bien en el panel de outputs, en la primer pestaña de la izquierda tendremos abierta esa carpeta donde está indicada el directorio de trabajo. 
-
-Para indicar cual será nuestro directorio de trabajo usamos el atajo **Ctrl + Shift + h** y seleccionamos manualmente la carpeta.  
-
-Varios tipos de archivos serán usados/creados durante una sesión: 
-
-* datos (hojas de cálculo)
+* datos crudos (hojas de cálculo) - datos manipulados
 * scripts
 * gráficos
 * reportes de resultados
 
-Estos objetos deben estar bien organizados en subcarpetas para su rápido acceso y retome de trabajo en cualquier instante, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá resguardado de posibles pérdidas (backup) sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
-
+Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender que quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...   
+Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión. 
 
 ![](fig/workflow_completo.png) 
 
+Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes maquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
 
-Como dijimos, una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por  concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. 
-
-> Crear una sesión en sus computadoras
-
-> Crear un script 
-
-```{r, eval=FALSE}
-getwd() 
-setwd("C:\Usuario\Documentos\Curso") # Calma! Ctrl + Shift + h
-getwd() 
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+include_graphics("fig/folders.png")
 ```
+
+> Crear una carpeta Intro_R en sus máquinas
+
+> Crear una nuevo proyecto "Intro_R.Rproj"
+
+> Crear un script "1_intro"
 
 Donde se guardaria el siguiente gráfico?
 
 ```{r}
-plot(pressure, type = 'b', pch = 19)
+plot(pressure)
 ```
 
-
-## R como calculadora 
+# R como calculadora 
 
 Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al final del capítulo) 
 
@@ -99,20 +110,24 @@ Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al 
 > Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
 Agregue parentesis para que la expresión de un resultado contrario.
 
-<div style= "float:right;position: relative; top: 0px;">
-```{r echo=FALSE, eval=TRUE, out.width = '70%', fig.align='right'}
-knitr::include_graphics("fig/fhb.jpg")
+</br>
+
+```{block, type='rmdnote'}
+**Rendimiento de trigo en función de la severidad de fusariosis de la espiga**
+[@madden2009assessing]
+
+El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
 ```
-</div>
-
-Ej: **Rendimiento de trigo en función de la severidad de fusariosis de la espiga** _"The estimated linear regression intercept (expected wheat yield when disease symptoms were not present) was 4.10 MT/ha, and the slope was 0.038 MT/ha per unit increase of disease index. Wheat class had a significant effect on the intercept but not on the slope, with soft-red winter wheat having, on average, 0.85 MT/ha higher yield than spring wheat"_     
-
-i) Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
 
 ```{r}
 4.1 - 0.038 * 10
 (1-(3.72/4.1))*100
 ```
+
+
+> Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+
+</br>
 
 Algunos cálculos
 
@@ -210,8 +225,15 @@ rep(1:3, times=3) #  , each=3
 
 * Números aleatorios - distribuciones
 
-Ejemplo de [@parra2007tendencias]
-![](fig/PesoVacas.gif)
+```{block, type='rmdnote'}
+**Tendencias genéticas y fenotípicas de características de crecimiento en el ganado brahman de registro de México**
+[@parra2007tendencias]
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+include_graphics("fig/PesoVacas.gif")
+```
+
 
 ```{r EjemploVacas, eval=FALSE}
 set.seed(123)
@@ -280,9 +302,15 @@ y[1:3]
 ifelse(a<2, "Low", "High")
 ```
 
-> Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11. Crear un vector "resist" con las categorías S o R, "S" aquellos clones con lesiones por encima de la mediana, y "R" clones con lesiones por debajo de la mediana.
+```{block, type='rmdnote'}
+Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.
+```
 
-* Valores especiales 
+> Crear un vector "resist" con las categorías S o R, "S" aquellos clones con lesiones por encima de la mediana, y "R" clones con lesiones por debajo de la mediana.
+
+</br>
+
+### Valores especiales
 
 Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
 
@@ -294,7 +322,6 @@ Existen valores reservados para representar datos faltantes, infinitos, e indefi
 
 - NULL representa  ausencia de información. 
 
-Use las funiones `is.na()`, `is.nan()`, `is.infinite()` e `is.null()` para testear si un objeto es uno de esos valores.
 
 ```{r}
 # NaN es el resultado de una operación matemática inválida. Significa Not A Number
@@ -306,18 +333,17 @@ is.na(0/0)
 a = NULL
 a
 
-# NA es una constante lógica de R. Significa Not Available. NA puede ser 
-# convertido para casi todos los tipos de vectores de R. Se usa principalmente para
-# indicar valores faltantes.
-y <- c(2, 4, NA, 6)
-is.na(y)
-is.nan(y)
-mean(y)
-mean(y, na.rm = T)
-
 # Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.
 1/0
 1/Inf
+```
+
+```{r}
+# NA es una constante lógica de R. Significa Not Available. NA puede ser 
+# convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.
+y <- c(2, 4, NA, 6)
+is.na(y)
+mean(y)
 ```
 
 > Calcule el promedio de y (use la ayuda de R en caso necesario)
@@ -331,10 +357,6 @@ En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicac
 ```{r}
 ?iris
 iris # ya activo desde inicio de sesión por default
-
-library(agricolae)
-disease # que ocurrió
-data(disease)
 ```
 
 > Explore el dataset iris con las siguientes funciones con iris y anote sus resultados

@@ -45,29 +45,26 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 <b>Estas son algunas razones por la que elegimos R</b> [@R-base]
 </div>
 
-<div class="boxed">
 
-  1. Software libre
+```{block, type='boxed'}
+ 1. Software libre
 
   2. Aprender un lenguaje de programación: ejercicio mental/lógica. Aprender estadística resulta mucho mas ameno.
-
-<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></div>
 
   3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
 
   4. Gran flexibilidad y elegancia de los gráficos
 
   5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
-  
-</div>
+
+<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></div>
+
+```
+
 
 </br>
 
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
-<<<<<<< HEAD
-=======
-
-
 
 
 # Cronograma de actividades

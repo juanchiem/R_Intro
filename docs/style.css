@@ -49,8 +49,6 @@ h1.title {
   font-weight: 500;
 }
 
-/* Personally added! */
-
 .boxed {
   border: 1px solid gray ;
   border-radius: 5px;
@@ -65,8 +63,39 @@ h1.title {
 .verysmall .table{
   font-size: 8px;
 }
-
-
 caption {
   font-size: 0.3em; /* Personally added! */
 }
+
+
+.rmdcomment {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  background: #f5f5f5;
+  position:relative;
+}
+
+.rmdcomment:before {
+    content: "\f071";
+    font-family: FontAwesome;
+    left:10px;
+    position:absolute;
+    top:0px;
+    font-size: 45px;
+ }
+
+.rmdnote {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  background: #f5f5f5;
+  position:relative;
+}
+
+.rmdnote :before {
+    content: "\f02d";
+    font-family: FontAwesome;
+    left:10px;
+    position:absolute;
+    top:0px;
+    font-size: 45px;
+ }
