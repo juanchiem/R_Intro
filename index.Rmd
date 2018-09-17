@@ -1,5 +1,5 @@
 --- 
-title: "Introducción a R para el análisis de datos provenientes de las Ciencias Agrarias"
+title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
 author: " "
 site: bookdown::bookdown_site
 output: bookdown::gitbook
