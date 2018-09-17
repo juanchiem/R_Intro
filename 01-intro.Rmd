@@ -237,7 +237,8 @@ include_graphics("fig/PesoVacas.gif")
 
 ```{r EjemploVacas, eval=FALSE}
 set.seed(123)
-PesoNac <- rnorm(23570, mean=32.2, sd=1.8) range(PesoNac)
+PesoNac <- rnorm(23570, mean=32.2, sd=1.8) 
+range(PesoNac)
 hist(PesoNac)
 hist(PesoNac, prob=TRUE)
 # add a density estimate with defaults
@@ -387,7 +388,7 @@ summary(iris$Sepal.Length)
 Filtremos a la variedad Species reteniendo solo a "setosa" 
 
 ```{r}
-iris_setosa <- subset(iris, Species="setosa")
+iris_setosa <- subset(iris, Species=="setosa")
 ```
 
 Filtremos a la variedad Species reteniendo solo a "setosa" + "virginica"
@@ -595,6 +596,8 @@ knitr::kable(text_tab4,
 
 
 Ejercicios
+
+[Quiz dia 1](https://docs.google.com/forms/d/1ehp0dV9olkh_KqRwK4GKD2-38nlH0-M8ibBPou4LMAA/edit?ts=5b9d8c27) 
 
 
 [R como calculadora, asignación de objetos, algunas funciones, espacio de trabajo](https://github.com/juanchiem/R_Intro/blob/master/scripts/Ejercicios_1.R) 

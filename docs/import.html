@@ -263,41 +263,30 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…<
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">dat &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;nombre_del_archivo.xls&quot;</span>, ...)</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"><span class="co"># Noten que usamos una función del paquete &quot;readxl&quot;, por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con &quot;::&quot;</span></a></code></pre></div>
 <blockquote>
-<p>importar remolacha.xlsx (su hoja de datos)</p>
+<p>Importar soja_mancha.xlsx, nombrando “soja”
+Importar can_phoma.xlsx, nombrando “canola”</p>
 </blockquote>
+<p>“can_phoma” es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable “par” la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).</p>
 <ul>
 <li>Archivos de texto .csv</li>
 </ul>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;nombre_del_archivo.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)<span class="co"># puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb28-3" data-line-number="3">dat &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;ruta/nombre_del_archivo.csv&quot;</span>)</a></code></pre></div>
-<blockquote>
-<p>Importar soja_mancha.csv</p>
-</blockquote>
 <ul>
 <li>Desde clipboard</li>
 </ul>
 <p>Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">dat =<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <ul>
-<li>Desde internet (googlesheets)</li>
-</ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(gsheet)</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">url1=<span class="st">&quot;https://docs.google.com/spreadsheets/d/135CDYxoU9KF-Gl32461EWpX0LlXbsSGZ4t_i-0VPpko/edit?usp=sharing&quot;</span></a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">can_phoma =<span class="st"> </span><span class="kw">gsheet2tbl</span>(url1)</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">can_phoma</a></code></pre></div>
-<p>“can_phoma” es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable “par” la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).</p>
-<ul>
 <li>Colección de objetos</li>
 </ul>
 <p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde este.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">save</span>(dat1, dat2,..., <span class="dt">file=</span><span class="st">&quot;ruta</span><span class="ch">\n</span><span class="st">ombre_del_archivo.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">load</span>(<span class="st">&quot;ruta</span><span class="ch">\n</span><span class="st">ombre_del_archivo.RData&quot;</span>)</a></code></pre></div>
-<blockquote>
-<p>guardar todos los dataframes importados en un archivo</p>
-</blockquote>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</a></code></pre></div>
+<p>limpiar memoria y recargar los datos</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</a></code></pre></div>
 <ul>
-<li>Crear dataframes tipo SAS</li>
+<li>Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)</li>
 </ul>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span></a>
 <a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">Crop      x1 x2 x3 x4</span></a>
@@ -318,9 +307,7 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…<
 <ul>
 <li>Exportar datasets</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/edwardsmolina.juan/Dropbox/Events/Curses/2017_R Epidemio_ESALQ/data/campo2.csv&quot;</span>, <span class="dt">sep =</span><span class="st">&quot;,&quot;</span>) <span class="co"># puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">readr<span class="op">::</span><span class="kw">write_csv</span>(dat, <span class="st">&quot;dat.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>

@@ -312,11 +312,12 @@ y es “case sensitive”!!)</p>
 </div>
 <p><img src="fig/PesoVacas.gif" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">23570</span>, <span class="dt">mean=</span><span class="fl">32.2</span>, <span class="dt">sd=</span><span class="fl">1.8</span>) <span class="kw">range</span>(PesoNac)</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">hist</span>(PesoNac)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">hist</span>(PesoNac, <span class="dt">prob=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co"># add a density estimate with defaults</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">lines</span>(<span class="kw">density</span>(PesoNac), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>) </a></code></pre></div>
+<a class="sourceLine" id="cb10-2" data-line-number="2">PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">23570</span>, <span class="dt">mean=</span><span class="fl">32.2</span>, <span class="dt">sd=</span><span class="fl">1.8</span>) </a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">range</span>(PesoNac)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">hist</span>(PesoNac)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">hist</span>(PesoNac, <span class="dt">prob=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co"># add a density estimate with defaults</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="kw">lines</span>(<span class="kw">density</span>(PesoNac), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>) </a></code></pre></div>
 <ul>
 <li>Propiedades de vectores</li>
 </ul>
@@ -432,7 +433,7 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 <li>Función <code>subset</code></li>
 </ul>
 <p>Filtremos a la variedad Species reteniendo solo a “setosa”</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">iris_setosa &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, <span class="dt">Species=</span><span class="st">&quot;setosa&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">iris_setosa &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>)</a></code></pre></div>
 <p>Filtremos a la variedad Species reteniendo solo a “setosa” + “virginica”</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">iris_set.virginica &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>))</a></code></pre></div>
 <p>Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length &gt; 5</p>
@@ -772,6 +773,10 @@ organiza el bloque de código
 </tr>
 </tbody>
 </table>
+<p>Ejercicios</p>
+<p><a href="https://docs.google.com/forms/d/1ehp0dV9olkh_KqRwK4GKD2-38nlH0-M8ibBPou4LMAA/edit?ts=5b9d8c27">Quiz dia 1</a></p>
+<p><a href="https://github.com/juanchiem/R_Intro/blob/master/scripts/Ejercicios_1.R">R como calculadora, asignación de objetos, algunas funciones, espacio de trabajo</a></p>
+<p><a href="https://github.com/juanchiem/R_Intro/blob/master/scripts/Ejercicios_2.R">Objetos y extracción o reemplazo de partes dentro de un objeto</a></p>
 
 </div>
 </div>

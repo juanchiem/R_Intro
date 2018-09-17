@@ -15,7 +15,7 @@ library(tidyverse)
 
 Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset "analítico". 
 
-Recordando que un dataset debe ser completo con dimensiones n_fila x n_columna, donde:
+Recordando que un dataset debe ser completo con dimensiones n_fila x p_columna, donde:
 
 1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
 
@@ -49,8 +49,7 @@ Importemos los datos "soja" para ver alguno ejemplos.
 **Red de ensayos de fungicidas para el control de mancha anillada en soja**
 
 ```{r}
-soy <- readr::read_csv("data/soja_mancha.csv")
-soy
+load("./data/soja_canola.RData")
 # browseURL("https://osf.io/jpfet/")
 ```
 
@@ -81,21 +80,18 @@ Los cinco verbos (funciones) principales de `dplyr` son:
 Primero vamos a explorar el dataset que acabamos de importar:
 
 ```{r}
-summary(soy)
-str(soy)
+summary(soja)
+str(soja)
 ```
 
 Haremos que las variables tipo caracter sean convertidas a factores:
 
 ```{r}
-soy$cultivar <- as.factor(soy$cultivar) 
-soy$fungic <- as.factor(soy$fungic) 
-soy$Yld_level <- as.factor(soy$Yld_level) 
-soy$YR_class <- as.factor(soy$YR_class) 
-soy$gr_hab <- as.factor(soy$gr_hab) 
+soja <- soja %>% 
+  mutate_at(c("cultivar", "fungic","Yld_level", "YR_class", "gr_hab"), funs(as.factor))
 
-summary(soy)
-str(soy)
+summary(soja)
+str(soja)
 ```
 
 ## select
@@ -103,7 +99,7 @@ str(soy)
 Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield. 
 
 ```{r}
-soy %>% 
+soja %>% 
   select(study, year, cultivar, fungic, rep, sev, yield)
 ```
 
@@ -112,7 +108,7 @@ Es posible usar intervalos de varibles con `:`.
 Una selección “negativa” de las variables no deseadas daría un mismo resultado:
 
 ```{r}
-soy %>% 
+soja %>% 
   select(-Yld_level, -YR_class, -gr_hab, -sev_check)
 ```
 
@@ -122,7 +118,7 @@ Semejante a `subset`. Condiciones separadas por comas equivalen a `&` de `subset
 Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)
 
 ```{r}
-soy %>% 
+soja %>% 
   select(study:yield) %>% 
   filter(fungic == 'ZZ_CHECK')
 ```
@@ -130,7 +126,7 @@ soy %>%
 Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset
 
 ```{r}
-soy %>% 
+soja %>% 
   select(study:yield) %>% 
   filter(fungic %in% c("ZZ_CHECK","CZM"))
 ```
@@ -154,7 +150,7 @@ Dos transformaciones son mayormente sugeridas para la severidad:
 * Transformación logit: 
 
 ```{r}
-soy1 <- soy %>% 
+soja1 <- soja %>% 
   select(study:yield) %>% 
   filter(fungic %in% c("ZZ_CHECK","CZM")) %>% 
   mutate(sev_arc = asin(sqrt(sev/100)),
@@ -166,8 +162,8 @@ soy1 <- soy %>%
 
 
 ```{r}
-soy <- readr::read_csv("data/soja_mancha.csv")
-soy <- soy %>% mutate_if(is.character, as.factor)
+soja <- readr::read_csv("data/soja_mancha.csv")
+soja <- soja %>% mutate_if(is.character, as.factor)
 ```
 
 
@@ -176,8 +172,8 @@ soy <- soy %>% mutate_if(is.character, as.factor)
 Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar "desc"" para orden decreciente.
 
 ```{r}
-soy1 %>% arrange(year, cultivar)
-soy1 %>% arrange(year, desc(cultivar))
+soja1 %>% arrange(year, cultivar)
+soja1 %>% arrange(year, desc(cultivar))
 ```
 
 ## summarise
@@ -187,7 +183,7 @@ Generalmente acompañada de la función `group_by` la cual permite aplicar un c�
 Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos: 
 
 ```{r}
-soy %>% 
+soja %>% 
   group_by(fungic) %>% 
   summarise(yield_mean =  mean(yield),
             yield_sd = sd(yield)) 
@@ -200,14 +196,14 @@ Algunas funciones interesantes para la descripción del dataset: `n()`, `n_disti
 - Cuantos ensayos fueron realizados por año:
  
 ```{r}
-soy %>% group_by(year) %>% 
+soja %>% group_by(year) %>% 
   summarize(n = n_distinct(study)) 
 ```
 
 - Cuantas parcelas tenia cada ensayo:
 
 ```{r}
-soy %>% 
+soja %>% 
   group_by(study, year, cultivar) %>% 
   summarize(plots = n()) 
 ```
@@ -219,7 +215,7 @@ soy %>%
 
 
 ```{r}
-by_check =  soy %>%  
+by_check =  soja %>%  
   filter(fungic=="CHECK") %>%
   group_by(study) %>% 
   summarize(sev_check = round(mean(sev, na.rm = TRUE),1)) %>% 
@@ -230,10 +226,10 @@ by_check =  soy %>%
 
 `join` junta dos data.frames a través de puntos em común.
 
-Por ejemplo, si queremos anexar las variables "sev_check" y "Dis_level" al dataset soy:
+Por ejemplo, si queremos anexar las variables "sev_check" y "Dis_level" al dataset soja:
 
 ```{r}
-soy %>% full_join(by_check, by="study")
+soja %>% full_join(by_check, by="study")
 ```
 
 ## Dataset "can_phoma"
@@ -256,12 +252,11 @@ can_long <- can_phoma %>%
   gather(`015`, `058`, `095`, `146`, `165`, `180`, `248`, 
          key = "tt", value = "incp") 
 # gather(tt, incp, -c(par:bk)) ;)
-#save(can_phoma, can_long, file = "canolass.RData")
+# save(can_phoma, can_long, file = "canolass.RData")
 ```
 
 ```{r}
 can_long
-
 # Precisamos que tt sea clase "numérica" para ciertos cálculos
 can_long$tt <- as.numeric(can_long$tt)
 ```

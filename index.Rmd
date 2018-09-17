@@ -85,8 +85,4 @@ Algunas hojas de referencia para refrescar la memoria sobre funciones básicas e
 
 # Cronograma de actividades
 
-
 <iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-
->>>>>>> ffbc2c492d0c9bf14116da6eb66d4b46df279616

@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="manip" class="section level1">
 <h1><span class="header-section-number">5</span> Manipular</h1>
 <p>Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset “analítico”.</p>
-<p>Recordando que un dataset debe ser completo con dimensiones n_fila x n_columna, donde:</p>
+<p>Recordando que un dataset debe ser completo con dimensiones n_fila x p_columna, donde:</p>
 <p>1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando</p>
 <p>2- Cada columna representa una variable (descriptiva o respuesta)</p>
 <p>3- Cada celda debe tener su observación (en caso de faltar el dato será un NA)</p>
@@ -213,9 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x))</a></code></pre></div>
 <p>Importemos los datos “soja” para ver alguno ejemplos.</p>
 <p><strong>Red de ensayos de fungicidas para el control de mancha anillada en soja</strong></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">soy &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">soy</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="co"># browseURL(&quot;https://osf.io/jpfet/&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="co"># browseURL(&quot;https://osf.io/jpfet/&quot;)</span></a></code></pre></div>
 <p><strong>study</strong>: identificador arbitrario para cada experimento</p>
 <p><strong>year</strong>: año del experimento</p>
 <p><strong>location</strong>: localidad del experimento</p>
@@ -229,36 +228,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>select</code> <code>filter</code> <code>mutate</code> <code>arrange</code> <code>summarise</code></p>
 <p><br></p>
 <p>Primero vamos a explorar el dataset que acabamos de importar:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">summary</span>(soy)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">str</span>(soy)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">summary</span>(soja)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">str</span>(soja)</a></code></pre></div>
 <p>Haremos que las variables tipo caracter sean convertidas a factores:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">soy<span class="op">$</span>cultivar &lt;-<span class="st"> </span><span class="kw">as.factor</span>(soy<span class="op">$</span>cultivar) </a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">soy<span class="op">$</span>fungic &lt;-<span class="st"> </span><span class="kw">as.factor</span>(soy<span class="op">$</span>fungic) </a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">soy<span class="op">$</span>Yld_level &lt;-<span class="st"> </span><span class="kw">as.factor</span>(soy<span class="op">$</span>Yld_level) </a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">soy<span class="op">$</span>YR_class &lt;-<span class="st"> </span><span class="kw">as.factor</span>(soy<span class="op">$</span>YR_class) </a>
-<a class="sourceLine" id="cb39-5" data-line-number="5">soy<span class="op">$</span>gr_hab &lt;-<span class="st"> </span><span class="kw">as.factor</span>(soy<span class="op">$</span>gr_hab) </a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="kw">summary</span>(soy)</a>
-<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="kw">str</span>(soy)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;cultivar&quot;</span>, <span class="st">&quot;fungic&quot;</span>,<span class="st">&quot;Yld_level&quot;</span>, <span class="st">&quot;YR_class&quot;</span>, <span class="st">&quot;gr_hab&quot;</span>), <span class="kw">funs</span>(as.factor))</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="kw">summary</span>(soja)</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="kw">str</span>(soja)</a></code></pre></div>
 <div id="select" class="section level2">
 <h2><span class="header-section-number">5.1</span> select</h2>
 <p>Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study, year, cultivar, fungic, rep, sev, yield)</a></code></pre></div>
 <p>Es posible usar intervalos de varibles con <code>:</code>.</p>
 <p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Yld_level, <span class="op">-</span>YR_class, <span class="op">-</span>gr_hab, <span class="op">-</span>sev_check)</a></code></pre></div>
 </div>
 <div id="filter" class="section level2">
 <h2><span class="header-section-number">5.2</span> filter</h2>
 <p>Semejante a <code>subset</code>. Condiciones separadas por comas equivalen a <code>&amp;</code> de <code>subset</code>.
 Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">==</span><span class="st"> &#39;ZZ_CHECK&#39;</span>)</a></code></pre></div>
 <p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>))</a></code></pre></div>
 </div>
@@ -274,7 +270,7 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <li><p>Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero.</p></li>
 <li><p>Transformación logit:</p></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">soy1 &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sev_arc =</span> <span class="kw">asin</span>(<span class="kw">sqrt</span>(sev<span class="op">/</span><span class="dv">100</span>)),</a>
@@ -282,20 +278,20 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <a class="sourceLine" id="cb44-6" data-line-number="6">         <span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) </a>
 <a class="sourceLine" id="cb44-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb44-8" data-line-number="8"><span class="co"># browseURL(&quot;http://strata.uga.edu/8370/rtips/proportions.html&quot;)</span></a></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">soy &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">soy &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.character, as.factor)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">soja &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.character, as.factor)</a></code></pre></div>
 </div>
 <div id="arrange" class="section level2">
 <h2><span class="header-section-number">5.4</span> arrange</h2>
 <p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar “desc”&quot; para orden decreciente.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">soy1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">soy1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</a></code></pre></div>
 </div>
 <div id="summarise" class="section level2">
 <h2><span class="header-section-number">5.5</span> summarise</h2>
 <p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)</p>
 <p>Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),</a>
 <a class="sourceLine" id="cb47-4" data-line-number="4">            <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </a></code></pre></div>
@@ -306,12 +302,12 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <ul>
 <li>Cuantos ensayos fueron realizados por año:</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n_distinct</span>(study)) </a></code></pre></div>
 <ul>
 <li>Cuantas parcelas tenia cada ensayo:</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(study, year, cultivar) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">plots =</span> <span class="kw">n</span>()) </a></code></pre></div>
 <blockquote>
@@ -320,7 +316,7 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <blockquote>
 <p>Usando la función <code>ifelse</code> cree una nueva variable categórica “presión de enfermedad” considerando a “sev_check”: Low o High</p>
 </blockquote>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">by_check =<span class="st">  </span>soy <span class="op">%&gt;%</span><span class="st">  </span></a>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">by_check =<span class="st">  </span>soja <span class="op">%&gt;%</span><span class="st">  </span></a>
 <a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;CHECK&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(study) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">sev_check =</span> <span class="kw">round</span>(<span class="kw">mean</span>(sev, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),<span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -329,8 +325,8 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <li>Funciones auxiliares</li>
 </ul>
 <p><code>join</code> junta dos data.frames a través de puntos em común.</p>
-<p>Por ejemplo, si queremos anexar las variables “sev_check” y “Dis_level” al dataset soy:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">soy <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</a></code></pre></div>
+<p>Por ejemplo, si queremos anexar las variables “sev_check” y “Dis_level” al dataset soja:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</a></code></pre></div>
 </div>
 <div id="dataset-can_phoma" class="section level2">
 <h2><span class="header-section-number">5.6</span> Dataset “can_phoma”</h2>
@@ -345,11 +341,10 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">015</span><span class="st">`</span>, <span class="st">`</span><span class="dt">058</span><span class="st">`</span>, <span class="st">`</span><span class="dt">095</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, </a>
 <a class="sourceLine" id="cb53-6" data-line-number="6">         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;incp&quot;</span>) </a>
 <a class="sourceLine" id="cb53-7" data-line-number="7"><span class="co"># gather(tt, incp, -c(par:bk)) ;)</span></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co">#save(can_phoma, can_long, file = &quot;canolass.RData&quot;)</span></a></code></pre></div>
+<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co"># save(can_phoma, can_long, file = &quot;canolass.RData&quot;)</span></a></code></pre></div>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">can_long</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span></a>
-<a class="sourceLine" id="cb54-4" data-line-number="4">can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</a></code></pre></div>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</a></code></pre></div>
 <p>Calcularemos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> y <code>summarize</code></p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">auc &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(trt, bk) <span class="op">%&gt;%</span></a>
