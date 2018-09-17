@@ -1,6 +1,6 @@
 --- 
 title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
-author: " "
+author: ""
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -65,6 +65,22 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 </br>
 
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
+
+
+## Los autores {-}
+
+* Juan Pablo Edwards Molina: Investigador Epidemiologia de enfermedades de cultivos - IPAVE / INTA.
+    + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
+    + ORCID: <https://orcid.org/0000-0002-3685-760X>
+    + Twitter: [juanchiedwards](https://twitter.com/juanchiedwards)
+    + GitHub: <https://github.com/juanchiem>
+
+* Mauro Paccioretti: Becario en Fitopatologia, doctorando - IPAVE / INTA.
+    + Email: [mauropaccioretti@gmail.com](mailto:mauropaccioretti@gmail.com)
+    + Twitter: [mauropaccioretti](https://www.instagram.com/mauropaccioretti)
+
+* Pablo Paccioretti: Becario Conicet, doctorando - Depto. de Estadistica y Biometria / UNC. 
+    + Email: [pablopaccioretti@gmail.com](mailto:pablopaccioretti@gmail.com)
 
 
 # Cronograma de actividades

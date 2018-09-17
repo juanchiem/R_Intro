@@ -1,0 +1,1500 @@
+--- 
+title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
+author: ""
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: juanchiem/R_Intro
+---
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.width = 12,
+                      fig.height = 8)
+
+options(width = 90)
+```
+
+# Motivación {-}
+
+*"Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”*
+
+![](fig/top.jpg) 
+
+
+(Traducción de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer)
+
+Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
+
+![](fig/workflow.jpg) 
+
+<div style="text-align: right"> (adaptado de "R for Data Science", Grolemund G. & Wickham H.) </div>
+
+</br>
+
+El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. No es un curso de estadística.... 
+
+<div style="text-align: center">
+<b>Estas son algunas razones por la que elegimos R</b> [@R-base]
+</div>
+
+
+```{block, type='boxed'}
+ 1. Software libre
+
+  2. Aprender un lenguaje de programación: ejercicio mental/lógica. Aprender estadística resulta mucho mas ameno.
+
+  3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
+
+  4. Gran flexibilidad y elegancia de los gráficos
+
+  5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+
+<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></div>
+
+```
+
+
+</br>
+
+Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
+
+
+## Los autores {-}
+
+* Juan Pablo Edwards Molina: Investigador Epidemiologia de enfermedades de cultivos - IPAVE / INTA.
+    + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
+    + ORCID: <https://orcid.org/0000-0002-3685-760X>
+    + Twitter: [juanchiedwards](https://twitter.com/juanchiedwards)
+    + GitHub: <https://github.com/juanchiem>
+
+* Mauro Paccioretti: Becario en Fitopatologia, doctorando - IPAVE / INTA.
+    + Email: [mauropaccioretti@gmail.com](mailto:mauropaccioretti@gmail.com)
+    + Twitter: [mauropaccioretti](https://www.instagram.com/mauropaccioretti)
+
+* Pablo Paccioretti: Becario Conicet, doctorando - Depto. de Estadistica y Biometria / UNC. 
+    + Email: [pablopaccioretti@gmail.com](mailto:pablopaccioretti@gmail.com)
+
+
+# Cronograma de actividades
+
+
+<iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+>>>>>>> ffbc2c492d0c9bf14116da6eb66d4b46df279616
+
+<!--chapter:end:index.Rmd-->
+
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE)
+
+options(width = 90)
+
+#http://happygitwithr.com/bookdown-cheat-sheet.html
+library(kableExtra)
+```
+
+# Introducción {#intro}
+
+## Instalación de programas
+
+1° [R](https://cran.r-project.org/) 
+
+2° [R Studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio.png")
+```
+
+## Configuraciones básicas del RStudio
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config1.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config2.png")
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/rstudio_config3.png")
+```
+
+## Instalación de paquetes 
+
+Existen varias vias de instalación de paquetes:
+
+</br>
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+knitr::include_graphics("fig/install.packages.png")
+```
+
+</br>
+
+- Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
+- Paquetes no oficiales via Github: `devtools::install_github("rstudio/epiphy")` 
+</br>
+
+```{block, type='rmdcomment'}
+Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
+```
+
+`library(nombre-del-paquete)`
+
+## Configuración de la sesión
+
+Varios tipos de archivos serán creados y usados durante una sesión de R: 
+
+* datos crudos (hojas de cálculo) - datos manipulados
+* scripts
+* gráficos
+* reportes de resultados
+
+Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender que quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...   
+Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión. 
+
+![](fig/workflow_completo.png) 
+
+Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes maquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+include_graphics("fig/folders.png")
+```
+
+> Crear una carpeta Intro_R en sus máquinas
+
+> Crear una nuevo proyecto "Intro_R.Rproj"
+
+> Crear un script "1_intro"
+
+Donde se guardaria el siguiente gráfico?
+
+```{r}
+plot(pressure)
+```
+
+# R como calculadora 
+
+Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al final del capítulo) 
+
+```{r, eval=FALSE}
+4 + 9
+4 - 
+  3 *
+  1
+# 4%1
+4>3
+4 == 3
+4 == 4
+
+(4 + 5 ) * 7 - (36/18)^3
+```
+
+> Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
+Agregue parentesis para que la expresión de un resultado contrario.
+
+</br>
+
+```{block, type='rmdnote'}
+**Rendimiento de trigo en función de la severidad de fusariosis de la espiga**
+[@madden2009assessing]
+
+El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
+```
+
+```{r}
+4.1 - 0.038 * 10
+(1-(3.72/4.1))*100
+```
+
+
+> Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+
+</br>
+
+Algunos cálculos
+
+```{r}
+sqrt(3) # 3^0.5
+2^(1/3) # ^(1/n)
+log(10)
+log(10, base=10)
+exp(1)
+log(10, base=exp(1))
+exp(4)
+log10(10^4)
+
+round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
+```
+
+(Note que R está en inglés (decimales “.”, nombre de las funciones)
+y es “case sensitive”!!)
+
+## Tipos de Objetos 
+
+![](fig/obj.png) 
+
+```{r}
+atom <- 3
+atom
+```
+
+El anterior ejemplo, guardamos el valor 3 en "atom", y siempre que R encuentre ese nombre atom lo entenderá como un 3.
+
+Existen varias **clases** básicas o “atómicas” de elementos en R
+
+```{r}
+class(atom)
+```
+
+### Vectores
+
+```{r}
+# concatenación de elementos atómicos
+v <- c(8, 7, 9, 10, 10, 111)
+class(v)
+
+(b <- c("A", "b"))
+class(b)
+is.character(b)
+is.numeric(b)
+
+(m <- c(TRUE, FALSE, T, F)) ; class(m)
+
+# Propiedades de v
+# ?length
+length(v)  
+summary(v) 
+#v <- edit(v)
+sort(v)
+```
+
+* Operaciones con vectores
+
+```{r, eval=FALSE}
+v - 1
+
+# Medidas de posición
+mean(v) 
+median(v)
+
+# Medidas de dispersión
+var(v)
+sd(v)
+sqrt(var(v))
+
+IQR(v)
+range(v)
+
+quantile(v, 0.1)
+ecdf(v)(7)
+
+max(v)
+min(v)
+sum(v)
+```
+
+> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+
+* Secuencia
+
+```{r, eval=FALSE}
+1:7  
+seq(from = 0, to = 20, #by=2) # 
+ length=4) 
+
+rep(1:3, times=3) #  , each=3   
+```
+
+* Números aleatorios - distribuciones
+
+```{block, type='rmdnote'}
+**Tendencias genéticas y fenotípicas de características de crecimiento en el ganado brahman de registro de México**
+[@parra2007tendencias]
+```
+
+```{r, echo=FALSE, eval=TRUE, fig.align='center'}
+include_graphics("fig/PesoVacas.gif")
+```
+
+
+```{r EjemploVacas, eval=FALSE}
+set.seed(123)
+PesoNac <- rnorm(23570, mean=32.2, sd=1.8) range(PesoNac)
+hist(PesoNac)
+hist(PesoNac, prob=TRUE)
+# add a density estimate with defaults
+lines(density(PesoNac), col="blue", lwd=2) 
+```
+
+* Propiedades de vectores 
+
+Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
+
+```{r, eval=FALSE}
+y <- c(1.7, "a")  ## character
+y <- c(TRUE, 2)   ## numeric
+y <- c(TRUE, "a") ## character
+```
+
+Forzando las clases explicitamente
+
+`as.character()`, `as.numeric()`, `as.integer()` y `as.logical()`
+
+* Factores
+
+Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).
+
+```{r, eval=FALSE}
+resist <- c("R", "S", "S", "S", "R")
+class(resist)
+res_f <- as.factor(resist)
+res_f
+as.numeric(res_f)
+
+table(resist)
+pie(table(resist))
+barplot(table(resist))
+```
+
+De factor para numérico
+
+```{r, eval=FALSE}
+niv_res <- factor(c("1", "5", "7", "9"))
+sum(niv_res)
+niv_res1 = as.numeric(niv_res)
+mean(niv_res1)
+niv_res2 = as.numeric(as.character(niv_res))
+mean(niv_res2)
+```
+
+* Indexación
+
+```{r}
+y[ ]
+y[2]
+y[1:3]
+```
+
+> Seleccione los elementos 1° y 3°
+
+* Condición
+
+```{r}
+# ifelse(condición, valor_si_TRUE, valor_si_FALSE)
+ifelse(a<2, "Low", "High")
+```
+
+```{block, type='rmdnote'}
+Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.
+```
+
+> Crear un vector "resist" con las categorías S o R, "S" aquellos clones con lesiones por encima de la mediana, y "R" clones con lesiones por debajo de la mediana.
+
+</br>
+
+### Valores especiales
+
+Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
+
+- NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.
+
+- NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.
+
+- Inf (Infinito) es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
+
+- NULL representa  ausencia de información. 
+
+
+```{r}
+# NaN es el resultado de una operación matemática inválida. Significa Not A Number
+0/0
+is.nan(0/0)
+is.na(0/0)
+
+# NULL es el vacio de R. Es como si el objeto no existiese
+a = NULL
+a
+
+# Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.
+1/0
+1/Inf
+```
+
+```{r}
+# NA es una constante lógica de R. Significa Not Available. NA puede ser 
+# convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.
+y <- c(2, 4, NA, 6)
+is.na(y)
+mean(y)
+```
+
+> Calcule el promedio de y (use la ayuda de R en caso necesario)
+
+### Data frames
+
+Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.
+
+En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete `base` es el dataset "iris".
+
+```{r}
+?iris
+iris # ya activo desde inicio de sesión por default
+```
+
+> Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
+    - head() 
+    - tail() 
+    - dim() 
+    - names() 
+    - str() 
+
+### Filtrado de datasets
+
+**data[fila, columna]**
+
+```{r}
+iris[1,]
+iris[,1]
+iris[1,1]
+
+iris$Sepal.Length
+levels(iris$Species)
+summary(iris$Sepal.Length)
+```
+
+> Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
+
+* Función `subset`
+
+Filtremos a la variedad Species reteniendo solo a "setosa" 
+
+```{r}
+iris_setosa <- subset(iris, Species="setosa")
+```
+
+Filtremos a la variedad Species reteniendo solo a "setosa" + "virginica"
+
+```{r}
+iris_set.virginica <- subset(iris, Species %in% c("setosa", "virginica"))
+```
+
+Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length > 5
+
+```{r}
+iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
+```
+
+> Que pasa si cambiamos el operador `&` por `|`?
+
+### Listas
+
+Objetos que aceptan elementos de clases diferentes.
+
+```{r}
+x <- list(a = 1:5, b = c("a", "b"), c = TRUE)
+x
+```
+
+```{r}
+x$a       # 
+x[1]       # 
+#sum(x[1])
+x[[1]]     # 
+sum(x[[1]])
+x["c"]     # 
+
+```
+
+## Funciones 
+
+Generalmente, el nombre de las funciones es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. Los paquetes contienen conjuntos de funciones las cuales son específicas para ciertos procedimientos. 
+
+```{r}
+numb <- 1:6
+round(mean(numb)) # floor() # ceiling() trunc() 
+```
+
+Si es necesario, se pueden crear funciones propias. Las funciones devuelven el último valor que se mostró y no modifican el ambiente de trabajo global, salvo que se lo explicite utilizando `<<-`.
+
+```{r}
+Estandarizar <- function(x) {
+  Media<- mean(x)
+  SD<- sd(x)
+  (x-Media)/SD
+  }
+set.seed(pi)
+Estandarizar(rnorm(10,40,5))
+```
+
+
+## S.O.S.!!
+
+- En el mismo R: `?auc`;  `??auc`; F1 sobre la función 
+
+- Googlear: “r generate a sequence of uppercase letters”  
+
+- **Stack Overflow**: foros de pregunta y respuesta ampliamente utilizados por todos los lenguajes de programación. En algunos paises, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!
+
+**¿Cómo hacer una buena pregunta en el stack overflow?**
+
+- Ser consciso pero gentil...
+
+- Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y version de R en caso necesario) `library(reprex)`. 
+
+
+## Tablas resumen {#tablas_resumen}
+
+```{r echo=FALSE, eval=TRUE}
+text_tab1 <- data.frame(
+  Operador = c(
+    "x + y", 
+    "x - y", 
+    "x * y", 
+    "x / y",
+    "x %/% y",
+    "x %% y",
+    "x ^ y"),
+  Detalle = c("Suma de x e y",
+              "Resta de x menos y",
+              "Multiplicación", 
+              "División de x por y", 
+              "Parte entera de la división de x por y",
+              "Resto de la división de x por y",
+              "x elevado a y-ésima potencia")
+)
+
+```
+
+```{r op-arit, tidy=FALSE, eval=TRUE, echo = FALSE}
+library(kableExtra)
+kable(text_tab1, 
+      caption = 'Operadores aritméticos',
+      booktabs = TRUE) %>% kable_styling(full_width = F)
+```
+
+<br><br>
+
+```{r, echo=FALSE, eval=TRUE}
+text_tab2 <- data.frame(
+  Operador = c(
+    "x < y", 
+    "x <= y", 
+    "x > y", 
+    "x >= y",
+    "x == y",
+    "x != y"),
+  Detalle = c(
+    "x menor que y?",
+    "x menor o igual que y?",
+    "x mayor que y?",
+    "x mayor o igual que y?",
+    "x igual que y?",
+    "x diferente que y?"
+  )
+)
+
+```
+
+
+```{r op-logi, tidy=FALSE, eval=TRUE, echo = FALSE}
+knitr::kable(text_tab2, 
+             caption = 'Operadores lógicos',
+             booktabs = TRUE) %>% kable_styling(full_width = F)
+
+```
+
+<br>
+<br>
+
+```{r, echo=FALSE, eval=TRUE, tidy=FALSE}
+text_tab3 <- data.frame(
+  
+  Operador = c(
+    "sqrt(x)", 
+    "sqrt(y)", 
+    "log(x)", 
+    "log10(x)",
+    "sum(x)",
+    "prod(x)",
+    "round(x, n)"
+    ),
+  
+  Detalle = c(
+    "raiz de x",
+    "exponencial de x?",
+    "logaritmo natural de x = ln",
+    "Logaritmo base 10 de x?",
+    "suma todos los elementos de x",
+    "producto de todos los elementos de x",
+    "redondea x a n-digitos"
+    )
+)
+
+```
+
+
+```{r matem, tidy=FALSE, eval=TRUE, echo = FALSE}
+knitr::kable(text_tab3, 
+             caption = 'Funciones matemáticas',
+             booktabs = TRUE) %>% kable_styling(full_width = F)
+```
+
+<br>
+<br>
+
+```{r, tidy=FALSE, eval=TRUE, echo = FALSE}
+text_tab4 <- data.frame(
+  Teclas = c(
+    "Alt Shift K", 
+    "Ctrl Z / Ctrl Shift Z", 
+    "Alt  -", 
+    "Ctrl r",
+    "Ctrl l",
+    "Ctrl Shift c",
+    "Ctrl i"
+    ),
+  
+  Detalle = c(
+    "panel de todos los atajos",
+    "undo/redo",
+    "<-",
+    "corre la linea/bloque completa de codigo",
+    "limpia la consola",
+    "silencia la linea",
+    "organiza el bloque de código"
+    )
+)
+
+```
+
+
+```{r shortcuts, tidy=FALSE, eval=TRUE, echo = FALSE}
+knitr::kable(text_tab4, 
+             caption = 'Algunos atajos comúnentes usados',
+             booktabs = TRUE) %>% kable_styling(full_width = F)
+
+```
+
+
+
+<!--chapter:end:01-intro.Rmd-->
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+library(knitr)
+library(kableExtra)
+```
+
+# Importar {#import}
+
+## Organización de planillas a ser importadas a R
+
+Un primer paso en nuestras investigaciones (fundamental, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
+
+En particular prefiero que las planillas excel sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
+R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!
+
+**5 Principios básicos** Adaptado de [@broman2018data]
+
+Como regla global, columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
+
+**1 - Consistencia**
+
+Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:
+
+  * severidad = sev
+  * incidencia = inc
+  * rendimiento = rto 
+  * hoja = hj (bien podría ser “hoja” también)
+  * planta = pl
+  * bloque = bq
+  * placa = placa 
+  * temperatura = temp
+  * máxima = max
+
+En particular prefiero usar el inglés, ya que no tiene acentos ni caracteres especiales. 
+Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades experimentales (placas, macetas, plantas dentro de las macetas, etc.), al final se recuperará en creces el tiempo extra inicialmente invertido en ello (stand-alone).
+
+* Adopten siempre los mismos términos
+
+* No escatimen en columnas: rep_pl -> rep | pl
+
+* Crear diccionario de términos: Agreguen una planilla con el detalle por extenso de las variables y sus unidades. Piensen que esa planilla la debería entender cualquier persona sin auxilio de sus propios comentarios. 
+
+**2 - Fechas**
+
+Fechas
+si se trata de una fecha específica de un evento en un experimento destinen una columna para ello. Tipo fecha de siembra, fecha de observación de primer sintoma. 
+
+```{r, echo=FALSE, eval=F}
+kable(data.frame(exp = 1, siembra = "12-05-2018")) %>%
+  kable_styling(full_width = F)
+```
+
+Si se trata de evaluaciones de una misma unidad experimental en el tiempo será preferible combinar el nombre de variable y la fecha de referencia (comúnmente expresado en dias desde algun punto de referencia). 
+
+```{r, echo=FALSE, eval=F}
+kable(data.frame(planta = 1, peso_20 = 30, peso_30="", peso_60="")) %>%
+  kable_styling(full_width = F)
+```
+
+Esto nos permite tener un punto de referencia para la evaluación del momento, corroborando con el último registro: el peso en 45 dias desde emergencia será igual o mayor al dia 30. 
+ 
+
+**3 - Rectangular**
+
+Todo set de datos tiene sus dimensiones específicas: n fila - n columnas. 
+Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida” 
+
+**4 - Cero es un dato!** 
+
+Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.”  o dejar en blanco (si se usa .xls)
+En preferencia, llenen todas las celdas, pero siempre un solo dato por celda... 
+
+**5 - Planilla plana -> DATOS CRUDOS**
+
+* SIN FORMULAS, 
+* JAMAS combinar celdas
+* no resaltar
+* no hacer bordes 
+* sin negritas
+* caracteres puros
+
+## Vías de importación 
+
+Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.
+
+Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xls (planillas tradicionales) o .csv (texto separado con comas, mucho mas livianos). 
+
+* Desde nuestra computadora
+
+La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: Import Dataset -> elijen el tipo de archivo que queremos importar, indicamos la ruta de ubicacion del archivo con el botón **Browse**. En la ventana de importación de datos se generará el codigo (es aconsejable que copien el código generado y lo peguen en el script de la sesión)   
+
+O bien desde código del script:
+    
+* Archivos excel 
+
+```{r}
+dat <- readxl::read_excel("nombre_del_archivo.xls", ...)
+# Noten que usamos una función del paquete "readxl", por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con "::"
+```
+  
+> importar remolacha.xlsx (su hoja de datos)  
+  
+* Archivos de texto .csv
+    
+```{r}
+dat <- read.csv("nombre_del_archivo.csv", header = TRUE, sep = ",", dec = ".")# puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.
+
+dat <- readr::read_csv("ruta/nombre_del_archivo.csv")
+```
+
+> Importar soja_mancha.csv
+
+* Desde clipboard 
+
+Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante: 
+
+```{r}
+dat = read.delim("clipboard", dec=",")
+```
+
+* Desde internet (googlesheets)
+
+```{r}
+library(gsheet)
+url1="https://docs.google.com/spreadsheets/d/135CDYxoU9KF-Gl32461EWpX0LlXbsSGZ4t_i-0VPpko/edit?usp=sharing"
+can_phoma = gsheet2tbl(url1)
+can_phoma
+```
+
+"can_phoma" es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable "par" la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).
+
+
+* Colección de objetos 
+
+Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde este.
+
+```{r}
+save(dat1, dat2,..., file="ruta\nombre_del_archivo.RData")
+load("ruta\nombre_del_archivo.RData")
+```
+
+> guardar todos los dataframes importados en un archivo
+
+* Crear dataframes tipo SAS
+
+```{r}
+dat <- read.table(header=T, text='
+Crop      x1 x2 x3 x4
+Corn      16 27 31 33
+Corn      15 23 30 30
+Corn      16 27 27 26
+Corn      18 20 25 23
+Corn      15 15 31 32
+Corn      15 32 32 15
+Corn      12 15 16 73
+Soybean   20 23 23 25
+Soybean   24 24 25 32
+Soybean   21 25 23 24
+Soybean   27 45 24 12
+Soybean   12 13 15 42
+Soybean   22 32 31 43
+')
+```
+
+* Exportar datasets
+
+```{r}
+dat <- read.csv("C:/Users/edwardsmolina.juan/Dropbox/Events/Curses/2017_R Epidemio_ESALQ/data/campo2.csv", sep =",") # puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.
+
+readr::write_csv(dat, "dat.csv")
+```
+
+
+<!--chapter:end:02-importar.Rmd-->
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.path = "figures/", 
+                      fig.width = 12, 
+                      fig.height = 8)
+options(width = 90)
+library(tidyverse)
+#https://www.listendata.com/2016/08/dplyr-tutorial.html
+```
+
+# Manipular {#manip}
+
+Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset "analítico". 
+
+Recordando que un dataset debe ser completo con dimensiones n_fila x n_columna, donde:
+
+1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
+
+2- Cada columna representa una variable (descriptiva o respuesta)
+
+3- Cada celda debe tener su observación (en caso de faltar el dato será un NA) 
+
+![](fig/tibbles.png) 
+
+`tidyr` y `dplyr` integran parte de la colección de paquetes de `tidyverse` y facilitan la manipulación de los data frames [@wickham2016r] 
+
+```{r}
+library(tidyverse)
+```
+
+Ambos paquetes utilizan el operador `%>%` (pipe, tubo en español) lo que proporcionan una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta...)
+
+```{r}
+x <- c(1, 2, 3, 4)
+x %>% sum %>% sqrt
+```
+
+Su equivalente de código básico es:
+
+```{r}
+sqrt(sum(x))
+```
+
+Importemos los datos "soja" para ver alguno ejemplos.
+
+**Red de ensayos de fungicidas para el control de mancha anillada en soja**
+
+```{r}
+soy <- readr::read_csv("data/soja_mancha.csv")
+soy
+# browseURL("https://osf.io/jpfet/")
+```
+
+**study**: identificador arbitrario para cada experimento
+
+**year**: año del experimento
+
+**location**: localidad del experimento
+
+**cultivar**: cultivar de soja utilizado
+
+**fungic**: tratamiento fungicida 
+
+**block**: repeticiones
+
+**sev**: severidad (%) evaluada en R6 
+
+**yield**: rendimiento en madurez fisiológica (kg/ha)
+
+<br>
+
+Los cinco verbos (funciones) principales de `dplyr` son:
+
+`select` `filter` `mutate` `arrange` `summarise` 
+
+<br>
+
+Primero vamos a explorar el dataset que acabamos de importar:
+
+```{r}
+summary(soy)
+str(soy)
+```
+
+Haremos que las variables tipo caracter sean convertidas a factores:
+
+```{r}
+soy$cultivar <- as.factor(soy$cultivar) 
+soy$fungic <- as.factor(soy$fungic) 
+soy$Yld_level <- as.factor(soy$Yld_level) 
+soy$YR_class <- as.factor(soy$YR_class) 
+soy$gr_hab <- as.factor(soy$gr_hab) 
+
+summary(soy)
+str(soy)
+```
+
+## select
+
+Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield. 
+
+```{r}
+soy %>% 
+  select(study, year, cultivar, fungic, rep, sev, yield)
+```
+
+Es posible usar intervalos de varibles con `:`.
+
+Una selección “negativa” de las variables no deseadas daría un mismo resultado:
+
+```{r}
+soy %>% 
+  select(-Yld_level, -YR_class, -gr_hab, -sev_check)
+```
+
+## filter
+
+Semejante a `subset`. Condiciones separadas por comas equivalen a `&` de `subset`.
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)
+
+```{r}
+soy %>% 
+  select(study:yield) %>% 
+  filter(fungic == 'ZZ_CHECK')
+```
+
+Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset
+
+```{r}
+soy %>% 
+  select(study:yield) %>% 
+  filter(fungic %in% c("ZZ_CHECK","CZM"))
+```
+
+## mutate
+
+Creación de nuevas variables (a partir de las existentes)
+
+Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen [normalmente](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg), las desviaciones estándar no son homogéneas, o ambas. 
+
+Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico). 
+
+Como fitopatólogos, la no normalidad es lo predominante. 
+
+El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)
+
+Dos transformaciones son mayormente sugeridas para la severidad: 
+
+* Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero. 
+
+* Transformación logit: 
+
+```{r}
+soy1 <- soy %>% 
+  select(study:yield) %>% 
+  filter(fungic %in% c("ZZ_CHECK","CZM")) %>% 
+  mutate(sev_arc = asin(sqrt(sev/100)),
+         sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
+         yield_tn = yield/1000) 
+
+# browseURL("http://strata.uga.edu/8370/rtips/proportions.html")
+```
+
+
+```{r}
+soy <- readr::read_csv("data/soja_mancha.csv")
+soy <- soy %>% mutate_if(is.character, as.factor)
+```
+
+
+## arrange
+
+Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar "desc"" para orden decreciente.
+
+```{r}
+soy1 %>% arrange(year, cultivar)
+soy1 %>% arrange(year, desc(cultivar))
+```
+
+## summarise
+
+Generalmente acompañada de la función `group_by` la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)  
+
+Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos: 
+
+```{r}
+soy %>% 
+  group_by(fungic) %>% 
+  summarise(yield_mean =  mean(yield),
+            yield_sd = sd(yield)) 
+```
+
+> Calculen el rendimiento mínimo y máximo por fungicida
+
+Algunas funciones interesantes para la descripción del dataset: `n()`, `n_distinct()`.
+
+- Cuantos ensayos fueron realizados por año:
+ 
+```{r}
+soy %>% group_by(year) %>% 
+  summarize(n = n_distinct(study)) 
+```
+
+- Cuantas parcelas tenia cada ensayo:
+
+```{r}
+soy %>% 
+  group_by(study, year, cultivar) %>% 
+  summarize(plots = n()) 
+```
+
+
+> Adicione una columna de potencial de rendimento del ensayo (rend_pot), considerando el máximo rendimiento observado en ese ensayo.
+
+> Usando la función `ifelse` cree una nueva variable categórica "presión de enfermedad" considerando a "sev_check": Low o High
+
+
+```{r}
+by_check =  soy %>%  
+  filter(fungic=="CHECK") %>%
+  group_by(study) %>% 
+  summarize(sev_check = round(mean(sev, na.rm = TRUE),1)) %>% 
+  mutate(Dis_level = ifelse(sev_check < 30, "Low", "High")) 
+```
+
+- Funciones auxiliares 
+
+`join` junta dos data.frames a través de puntos em común.
+
+Por ejemplo, si queremos anexar las variables "sev_check" y "Dis_level" al dataset soy:
+
+```{r}
+soy %>% full_join(by_check, by="study")
+```
+
+## Dataset "can_phoma"
+
+```{r}
+can_phoma
+```
+
+Esto seria uma forma "wide" de representación del dataset (crudo).
+
+Para analizar el efecto del tratemiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
+
+![](fig/tidyr.png)
+
+```{r}
+# crearemos una variable "tt" con los nombres de las columnas con números, 
+# y otra "incp" (incidencia en proporción) con los valores correspondientes.
+
+can_long <- can_phoma %>%  
+  gather(`015`, `058`, `095`, `146`, `165`, `180`, `248`, 
+         key = "tt", value = "incp") 
+# gather(tt, incp, -c(par:bk)) ;)
+#save(can_phoma, can_long, file = "canolass.RData")
+```
+
+```{r}
+can_long
+
+# Precisamos que tt sea clase "numérica" para ciertos cálculos
+can_long$tt <- as.numeric(can_long$tt)
+```
+
+Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
+
+```{r}
+auc <- can_long %>%
+  group_by(trt, bk) %>%
+  summarize(AUC = agricolae::audpc(incp, tt))
+```
+
+Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
+
+<!--chapter:end:03-manipular.Rmd-->
+
+# Visualizar {#explore}
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=TRUE,
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+```
+
+```{r}
+library(tidyverse)
+```
+
+Una vez que nuestros datos han sido importados y manipulados podríamos comenzar la exploración numérica y visual de los mismos. 
+
+La visualización de datos es parte fundamental del flujo de trabajo de un análisis de datos, tanto para explorar los datos, como para explicar / comunicar los resultados. Es decir, dominar las herramientas de visualización resulta imprescindible para un científico cuya materia prima son los datos.
+
+Los gráficos exploratorios requieren una mínima elaboración, la suficiente para entenderlos y detectar datos anormales (probablemente por error de digitación o outliers).
+
+El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) se puede utilizar tanto para la creación rápida de gráficos como para gráficos complejos y detallados (con fines de publicaciones científicas). Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).
+
+Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la simple visualización de las observaciones con alguna medida de posición como ser la media o mediana. Cuando las observaciones son 5 o más es común acompanãr la media de posición (media o mediana)  por alguna medida de dispersión: desvio estándar, error estándar o intervalo de confianza de la media (95% IC).
+
+A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.
+
+## Mancha anillada en soja
+
+```{r}
+url1 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv"
+soy <- read.csv(textConnection(RCurl::getURL(url1))) 
+```
+
+Nos quedaremos solo con dos cultivares: "BMX_Potencia_RR" y "M9144_RR" (nos aseguraremos que no queden ningun otro nivel del factor cultivar)
+
+```{r}
+soy1 <- soy %>%
+  filter(cultivar %in% c("BMX_Potencia_RR", "M9144_RR")) %>%
+  droplevels()# necesario para remover los cultivares no seleccionados
+```
+
+Exploración del dataset
+
+```{r}
+ftable(xtabs(~ study + cultivar, soy1))
+```
+
+Estableceremos quien es el dataset a ser graficado y quienes son las variables en los ejes x e y: 
+
+```{r}
+p0 = ggplot(soy1, aes(x=sev, y=yield))
+p0
+```
+
+Agregaremos las observaciones 
+
+```{r}
+p0  + geom_point()
+```
+
+Identificaremos a que cultivar corresponden las observaciones y agregaremos una línea de tendencia general para cada cultivar:
+
+```{r}
+p0 + geom_point(aes(color = cultivar)) +
+  geom_smooth(method="lm", aes(color = cultivar))
+```
+
+Qué pueden concluir al respecto?
+
+Ahora dividiremos a cada cultivar en paneles individuales e identificaremos las tendencias intra-estudio.   
+
+```{r}
+p0 + geom_point(alpha=0.2)+
+  geom_smooth(method="lm", aes(group = study))+
+  facet_wrap(~cultivar)+
+  labs(x="Disease severity (%)", y = "Yield (kg/ha)") +
+  theme_bw()
+```
+
+Cambiaron los resultados? que puede concluir ahora?
+
+Exploremos el experimento 1
+
+```{r}
+soy_exp1 <- soy %>%
+  filter(study == 1) %>%
+  droplevels()# necesario para remover los cultivares no seleccionados
+```
+
+```{r}
+# library(Rmisc)
+# summarySE(soy_exp1, measurevar="yield", groupvars="fungic")
+         
+ggplot(soy_exp1, aes(x=fungic, y=yield)) +
+  
+  # geom_boxplot()+
+  
+# Observaciones reales -----
+  geom_point(alpha=0.2)+  # aes(color=factor(rep)
+  # geom_jitter(width = 0.1) 
+  
+# Medida de posición -----
+  stat_summary(fun.y="mean", geom="point", size=2)+
+  # stat_summary(fun.y="mean", geom="bar") 
+  
+# Medida de dispersión -----
+  stat_summary(fun.data = mean_se, geom = "errorbar")+
+  stat_summary(fun.data= mean_sdl, geom = "errorbar", color="red")+
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", color="blue")
+
+```
+
+Afinando la apariencia para paper
+
+```{r}
+levels(soy_exp1$fungic)
+library(forcats)
+
+soy_exp1 %>% 
+  mutate(fungic = fct_recode(fungic, 
+                             `Czm` = "CZM[1]",
+                             `Czm+CM+Tebu` ="CZM_CM_TEBU[1]",
+                             `Czm+LS` = "CZM+LS[1+0.5]",
+                             `Epo+Flux+Pyra (0.8L)` = "EPO_FLUX_PYRA[0.8]",
+                             `Epo+Flux+Pyra (1L)` ="EPO_FLUX_PYRA[1]",
+                             `Fluo` = "FLUO[0.4]",
+                             `Prot+Trif` = "PROT_TRIF[0.4]",
+                             `Tiof` = "TIOF[1]",
+                             `Check` = "ZZ_CHECK"),
+         fungic1 = fct_relevel(fungic, 
+                              "Check", "Czm", "Czm+CM+Tebu", "Czm+LS", "Epo+Flux+Pyra (0.8L)", "Epo+Flux+Pyra (1L)", "Fluo", "Prot+Trif", "Tiof")) %>% 
+ggplot(aes(x = fungic1, y = yield)) +
+  geom_boxplot(fill="grey80")+
+
+# Agregamos detalles esteticos
+  theme_bw()+
+  labs(x="Fungicide treatment", y="Soybean yield (kg/ha)")+
+  theme(axis.text.x  = element_text(angle=60, vjust=1, hjust = 1, size=8))
+
+# ggsave(w=80, h=80, units="mm", dpi=150, scale = 1,
+# "WORKING_DIRECTORY/plots/plot_1.tiff")
+```
+
+
+
+## Phoma en colza
+
+"can_phoma" es el dataset de un experimento de colza (*Brassica napus*) donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de Phoma lingam a través del tiempo (tiempo térmico desde la detección de la primera mancha). La unidad experimental está identificada en la variable "par" la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).
+
+</br>
+
+![](script/fig/coloni.png)
+
+
+1 - Importación de datos (desde internet - googlesheets)
+
+```{r}
+library(gsheet)
+
+url1="https://docs.google.com/spreadsheets/d/135CDYxoU9KF-Gl32461EWpX0LlXbsSGZ4t_i-0VPpko/edit?usp=sharing"
+
+# browseURL(url1)
+can_phoma = gsheet2tbl(url1)
+
+can_phoma
+# str(can_phoma)
+```
+
+Esto seria uma forma "wide" de representación del dataset (crudo).
+
+Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función gather (del inglés "reunir", paquete tidyr) apila las columnas que indiquemos.
+
+2 - Manipulación + transformación
+
+Crearemos una variable "tt" con los nombres de las columnas con números, y otra "inc" (incidencia) con los valores correspondientes:
+
+```{r}
+can_long <- can_phoma %>% 
+  gather(`015`, `058`, `095`, `146`, `165`, `180`, `248`, 
+         key = "tt", value = "inc") 
+can_long
+# str(can_long)
+```
+
+Precisamos que tt sea clase "numérica" para ciertos cálculos
+
+```{r}
+can_long$tt <- as.numeric(can_long$tt)
+# can_long$tt
+can_long <- can_long %>% arrange(plot)
+str(can_long)
+```
+
+Exploramos las evaluaciones originales con gráfico de puntos + líneas individualizando cada parcela en un panel.
+
+```{r}
+ggplot(can_long, aes(x=tt, y=inc)) +
+  geom_point() +
+  geom_line(aes(group=plot)) +
+  facet_grid(bk~trt)
+```
+
+Verificamos la presencia de errores de tipeo en dos parcelas: 202 y 310. (editamos el dataset original)
+
+```{r, eval=FALSE}
+# editar los datos:
+can_long<- edit(can_long)
+```
+
+Calculamos un valor de AUC por parcela con auxilio de las funciones `group_by` + `summarize` y `agricolae::audpc`
+
+```{r}
+# Funcion na.omit
+can_auc <- na.omit(can_long) %>% 
+  group_by(trt, bk, sev_cank) %>% 
+  summarise(auc_i = agricolae::audpc (inc, tt))
+can_auc
+```
+
+- Exploramos la variable transformada `auc_p` con boxplot
+
+```{r}
+ggplot(can_auc, aes(x=factor(trt), y=auc_i)) +
+  geom_boxplot()
+```
+
+- Exploramos la variable original `sev_cank` con boxplot
+
+```{r}
+ggplot(can_auc, aes(x=factor(trt), y=sev_cank)) +
+  geom_boxplot()
+```
+
+Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
+
+
+## Fertilización con N y S en sorgo 
+
+```{r}
+sorg <- readr::read_csv("~/GitHub/R_Intro/data/sorgo.csv")
+```
+
+```{r dat to long, echo=FALSE}
+long <- sorg %>%  
+  gather(-(trt:planta),  
+         key = "variable", value = "valor")
+```
+
+- Exploracion de todas las variables
+
+```{r}
+# xtabs(~ ferti + cond + dias, long)
+
+pd = position_dodge(width = 0.5)
+
+long %>% drop_na(valor) %>% 
+
+  ggplot(aes(x=factor(hibr), y=valor, group=trt, color=factor(trt))) +
+  geom_jitter(alpha=0.5, size=0.8, width=0.2)+
+  stat_summary(aes(group=trt), fun.data = mean_cl_boot,
+               size = 0.05, position=pd) +
+  stat_summary(aes(group=trt), size = 2,
+               fun.y="mean", geom="point", position=pd, show.legend = FALSE)+
+  facet_wrap(variable ~ ph, scales = "free")
+  
+# ggsave(filename = "exp3.png", 
+#        path = "C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/plots")
+
+```
+
+```{r}
+library(GGally)
+# sorg[,5:11]
+
+ggpairs(sorg, columns = 5:11, ggplot2::aes(colour=ph),
+    columnLabels = c("Altura", "Peso seco", "Fosforo total", "Zinc", "Nitrogeno", "Hierro", "Spad"))
+```
+
+## Relevamiento de xylella en Olivares
+
+<!--chapter:end:04-visualizar.Rmd-->
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=TRUE, 
+                      fig.path = "figures/", 
+                      fig.width = 12, 
+                      fig.height = 8)
+options(width = 90)
+library(tidyverse)
+library(agricolae)
+#https://www.listendata.com/2016/08/dplyr-tutorial.html
+```
+
+# Aleatorizar tratamientos 
+
+## Diseño completamente aleatorizado  
+
+```{r}
+library(agricolae)
+
+trt <- c("A", "B", "C")
+repeticion <- 4
+DCA <- design.crd(trt, r=repeticion, seed=0, serie=0)
+(planilha_dic <- DCA$book)
+```
+
+## Diseño en bloques completos aleatorizados
+
+
+```{r}
+trt <- LETTERS[1:10]
+rep <- 5
+DCBA <- design.rcbd(trt, r=rep, first=FALSE, seed=111, 
+                    kinds = "Super-Duper", serie=2) # write_csv(planilha_DBCA2, "campo.csv")
+
+
+head(DCBA$book, 10)
+print(DCBA$sketch)
+```
+
+* libro zig-zag
+
+```{r}
+head(zigzag(DCBA),10) # zigzag numeration
+```
+
+
+## Parcelas divididas
+
+```{r}
+t1<-c("A","B","C","D")
+t2<-c(1,2,3)
+split <-design.split(t1, t2, r=3, serie=2, seed=45, kinds="Super-Duper")#seed=45
+head(split$book,10) # field book
+```
+
+
+
+<!--chapter:end:05-aleatorizar.Rmd-->
+
