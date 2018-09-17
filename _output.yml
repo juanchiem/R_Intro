@@ -7,5 +7,3 @@ bookdown::gitbook:
       after: |
         <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
     edit: https://github.com/juanchiem/R_Intro/edit/master/%s
-    download:
-
