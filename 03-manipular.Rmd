@@ -251,6 +251,7 @@ Para analizar el efecto del tratemiento fungicida necesitamos calcular el área 
 can_long <- can_phoma %>%  
   gather(`015`, `058`, `095`, `146.0`, `165.0`, `180.0`, `248.0`, 
          key = "tt", value = "incp") 
+
 # gather(tt, incp, -c(par:bk)) ;)
 # save(can_phoma, can_long, file = "canolass.RData")
 ```
@@ -258,7 +259,11 @@ can_long <- can_phoma %>%
 ```{r}
 can_long
 # Precisamos que tt sea clase "numérica" para ciertos cálculos
-can_long$tt <- as.numeric(can_long$tt)
+can_long <- can_long %>% 
+  mutate_at(c("trt","bk"), funs(as.factor)) %>% 
+  mutate_at(c("tt", "inc"), funs(as.numeric))
+
+# can_long$tt <- as.numeric(can_long$tt)
 ```
 
 Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
@@ -270,4 +275,11 @@ auc <- can_long %>%
   summarize(AUC = MESS::auc(inc, tt))
 ```
 
+
+
+```{r}
+ggplot(auc, aes(x=trt, y=AUC))+
+  geom_boxplot()
+
+```
 Ahora si, can_phoma está listo para entrar al próximo paso: modelado.

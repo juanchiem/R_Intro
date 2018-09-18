@@ -316,16 +316,23 @@ soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ar
 can_long &lt;-<span class="st"> </span>can_phoma <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">015</span><span class="st">`</span>, <span class="st">`</span><span class="dt">058</span><span class="st">`</span>, <span class="st">`</span><span class="dt">095</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146.0</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165.0</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180.0</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248.0</span><span class="st">`</span>, 
          <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;incp&quot;</span>) 
+
 <span class="co"># gather(tt, incp, -c(par:bk)) ;)</span>
 <span class="co"># save(can_phoma, can_long, file = &quot;canolass.RData&quot;)</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">can_long
 <span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span>
-can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</code></pre></div>
+can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;trt&quot;</span>,<span class="st">&quot;bk&quot;</span>), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;tt&quot;</span>, <span class="st">&quot;inc&quot;</span>), <span class="kw">funs</span>(as.numeric))
+
+<span class="co"># can_long$tt &lt;- as.numeric(can_long$tt)</span></code></pre></div>
 <p>Calcularemos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> y <code>summarize</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># if(require(MESS)) {install.packages(&quot;MESS&quot;)}</span>
 auc &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(trt, bk) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> MESS<span class="op">::</span><span class="kw">auc</span>(inc, tt))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(auc, <span class="kw">aes</span>(<span class="dt">x=</span>trt, <span class="dt">y=</span>AUC))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p>Ahora si, can_phoma está listo para entrar al próximo paso: modelado.</p>
 
 </div>
