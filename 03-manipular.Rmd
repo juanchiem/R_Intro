@@ -264,9 +264,10 @@ can_long$tt <- as.numeric(can_long$tt)
 Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
 
 ```{r}
+# if(require(MESS)) {install.packages("MESS")}
 auc <- can_long %>%
   group_by(trt, bk) %>%
-  summarize(AUC = agricolae::audpc(incp, tt))
+  summarize(AUC = MESS::auc(inc, tt))
 ```
 
 Ahora si, can_phoma está listo para entrar al próximo paso: modelado.

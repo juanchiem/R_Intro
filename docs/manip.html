@@ -322,9 +322,10 @@ can_long &lt;-<span class="st"> </span>can_phoma <span class="op">%&gt;%</span><
 <span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span>
 can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</code></pre></div>
 <p>Calcularemos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> y <code>summarize</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">auc &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># if(require(MESS)) {install.packages(&quot;MESS&quot;)}</span>
+auc &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(trt, bk) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> agricolae<span class="op">::</span><span class="kw">audpc</span>(incp, tt))</code></pre></div>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> MESS<span class="op">::</span><span class="kw">auc</span>(inc, tt))</code></pre></div>
 <p>Ahora si, can_phoma está listo para entrar al próximo paso: modelado.</p>
 
 </div>
