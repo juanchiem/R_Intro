@@ -128,7 +128,7 @@ Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al datase
 ```{r}
 soja %>% 
   select(study:yield) %>% 
-  filter(fungic %in% c("ZZ_CHECK","CZM"))
+  filter(fungic %in% c("ZZ_CHECK","CZM[1]"))
 ```
 
 ## mutate
@@ -152,7 +152,7 @@ Dos transformaciones son mayormente sugeridas para la severidad:
 ```{r}
 soja1 <- soja %>% 
   select(study:yield) %>% 
-  filter(fungic %in% c("ZZ_CHECK","CZM")) %>% 
+  filter(fungic %in% c("ZZ_CHECK","CZM[1]")) %>% 
   mutate(sev_arc = asin(sqrt(sev/100)),
          sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
          yield_tn = yield/1000) 
@@ -169,7 +169,7 @@ soja <- soja %>% mutate_if(is.character, as.factor)
 
 ## arrange
 
-Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar "desc"" para orden decreciente.
+Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar `desc` para orden decrescente.
 
 ```{r}
 soja1 %>% arrange(year, cultivar)
@@ -216,7 +216,7 @@ soja %>%
 
 ```{r}
 by_check =  soja %>%  
-  filter(fungic=="CHECK") %>%
+  filter(fungic=="ZZ_CHECK") %>%
   group_by(study) %>% 
   summarize(sev_check = round(mean(sev, na.rm = TRUE),1)) %>% 
   mutate(Dis_level = ifelse(sev_check < 30, "Low", "High")) 
@@ -224,9 +224,9 @@ by_check =  soja %>%
 
 - Funciones auxiliares 
 
-`join` junta dos data.frames a través de puntos em común.
+`join` junta dos data.frames a través de puntos en común.
 
-Por ejemplo, si queremos anexar las variables "sev_check" y "Dis_level" al dataset soja:
+Por ejemplo, si queremos unir las variables "sev_check" y "Dis_level" al dataset soja:
 
 ```{r}
 soja %>% full_join(by_check, by="study")
@@ -249,7 +249,7 @@ Para analizar el efecto del tratemiento fungicida necesitamos calcular el área 
 # y otra "incp" (incidencia en proporción) con los valores correspondientes.
 
 can_long <- can_phoma %>%  
-  gather(`015`, `058`, `095`, `146`, `165`, `180`, `248`, 
+  gather('015', '058', '095', '146', '165', '180', '248', 
          key = "tt", value = "incp") 
 # gather(tt, incp, -c(par:bk)) ;)
 # save(can_phoma, can_long, file = "canolass.RData")

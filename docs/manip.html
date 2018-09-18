@@ -229,7 +229,7 @@ x <span class="op">%&gt;%</span><span class="st"> </span>sum <span class="op">%&
 <p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>))</code></pre></div>
 </div>
 <div id="mutate" class="section level2">
 <h2><span class="header-section-number">5.3</span> mutate</h2>
@@ -245,7 +245,7 @@ x <span class="op">%&gt;%</span><span class="st"> </span>sum <span class="op">%&
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sev_arc =</span> <span class="kw">asin</span>(<span class="kw">sqrt</span>(sev<span class="op">/</span><span class="dv">100</span>)),
          <span class="dt">sev_logit =</span>  car<span class="op">::</span><span class="kw">logit</span>(sev, <span class="dt">percents=</span><span class="ot">TRUE</span>),<span class="co"># log(sev/100/(1-sev/100)), #  </span>
          <span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) 
@@ -256,7 +256,7 @@ soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span clas
 </div>
 <div id="arrange" class="section level2">
 <h2><span class="header-section-number">5.4</span> arrange</h2>
-<p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar “desc”&quot; para orden decreciente.</p>
+<p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar <code>desc</code> para orden decrescente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)
 soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</code></pre></div>
 </div>
@@ -290,15 +290,15 @@ soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ar
 <p>Usando la función <code>ifelse</code> cree una nueva variable categórica “presión de enfermedad” considerando a “sev_check”: Low o High</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_check =<span class="st">  </span>soja <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;CHECK&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;ZZ_CHECK&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(study) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">sev_check =</span> <span class="kw">round</span>(<span class="kw">mean</span>(sev, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),<span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Dis_level =</span> <span class="kw">ifelse</span>(sev_check <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)) </code></pre></div>
 <ul>
 <li>Funciones auxiliares</li>
 </ul>
-<p><code>join</code> junta dos data.frames a través de puntos em común.</p>
-<p>Por ejemplo, si queremos anexar las variables “sev_check” y “Dis_level” al dataset soja:</p>
+<p><code>join</code> junta dos data.frames a través de puntos en común.</p>
+<p>Por ejemplo, si queremos unir las variables “sev_check” y “Dis_level” al dataset soja:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">full_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</code></pre></div>
 </div>
 <div id="dataset-can_phoma" class="section level2">
@@ -314,7 +314,7 @@ soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ar
 <span class="co"># y otra &quot;incp&quot; (incidencia en proporción) con los valores correspondientes.</span>
 
 can_long &lt;-<span class="st"> </span>can_phoma <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">015</span><span class="st">`</span>, <span class="st">`</span><span class="dt">058</span><span class="st">`</span>, <span class="st">`</span><span class="dt">095</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, 
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&#39;015&#39;</span>, <span class="st">&#39;058&#39;</span>, <span class="st">&#39;095&#39;</span>, <span class="st">&#39;146&#39;</span>, <span class="st">&#39;165&#39;</span>, <span class="st">&#39;180&#39;</span>, <span class="st">&#39;248&#39;</span>, 
          <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;incp&quot;</span>) 
 <span class="co"># gather(tt, incp, -c(par:bk)) ;)</span>
 <span class="co"># save(can_phoma, can_long, file = &quot;canolass.RData&quot;)</span></code></pre></div>
