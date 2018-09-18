@@ -249,7 +249,7 @@ Para analizar el efecto del tratemiento fungicida necesitamos calcular el área 
 # y otra "incp" (incidencia en proporción) con los valores correspondientes.
 
 can_long <- can_phoma %>%  
-  gather('015', '058', '095', '146', '165', '180', '248', 
+  gather(`015`, `058`, `095`, `146.0`, `165.0`, `180.0`, `248.0`, 
          key = "tt", value = "incp") 
 # gather(tt, incp, -c(par:bk)) ;)
 # save(can_phoma, can_long, file = "canolass.RData")

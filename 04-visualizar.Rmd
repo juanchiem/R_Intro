@@ -30,13 +30,13 @@ A continuación se presentan algunas opciones de gráficos que surgen de diferen
 
 ```{r}
 url1 <- "https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv"
-soy <- read.csv(textConnection(RCurl::getURL(url1))) 
+soja <- read.csv(textConnection(RCurl::getURL(url1))) 
 ```
 
 Nos quedaremos solo con dos cultivares: "BMX_Potencia_RR" y "M9144_RR" (nos aseguraremos que no queden ningun otro nivel del factor cultivar)
 
 ```{r}
-soy1 <- soy %>%
+soja1 <- soja %>%
   filter(cultivar %in% c("BMX_Potencia_RR", "M9144_RR")) %>%
   droplevels()# necesario para remover los cultivares no seleccionados
 ```
@@ -44,13 +44,13 @@ soy1 <- soy %>%
 Exploración del dataset
 
 ```{r}
-ftable(xtabs(~ study + cultivar, soy1))
+ftable(xtabs(~ study + cultivar, soja))
 ```
 
 Estableceremos quien es el dataset a ser graficado y quienes son las variables en los ejes x e y: 
 
 ```{r}
-p0 = ggplot(soy1, aes(x=sev, y=yield))
+p0 = ggplot(soja, aes(x=sev, y=yield))
 p0
 ```
 
@@ -84,16 +84,16 @@ Cambiaron los resultados? que puede concluir ahora?
 Exploremos el experimento 1
 
 ```{r}
-soy_exp1 <- soy %>%
+soja_exp1 <- soja %>%
   filter(study == 1) %>%
   droplevels()# necesario para remover los cultivares no seleccionados
 ```
 
 ```{r}
 # library(Rmisc)
-# summarySE(soy_exp1, measurevar="yield", groupvars="fungic")
+# summarySE(soja_exp1, measurevar="yield", groupvars="fungic")
          
-ggplot(soy_exp1, aes(x=fungic, y=yield)) +
+ggplot(soja_exp1, aes(x=fungic, y=yield)) +
   
   # geom_boxplot()+
   
@@ -115,10 +115,10 @@ ggplot(soy_exp1, aes(x=fungic, y=yield)) +
 Afinando la apariencia para paper
 
 ```{r}
-levels(soy_exp1$fungic)
+levels(soja_exp1$fungic)
 library(forcats)
 
-soy_exp1 %>% 
+soja_exp1 %>% 
   mutate(fungic = fct_recode(fungic, 
                              `Czm` = "CZM[1]",
                              `Czm+CM+Tebu` ="CZM_CM_TEBU[1]",

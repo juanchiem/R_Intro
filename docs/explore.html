@@ -179,15 +179,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="mancha-anillada-en-soja" class="section level2">
 <h2><span class="header-section-number">6.1</span> Mancha anillada en soja</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url1 &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv&quot;</span>
-soy &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">textConnection</span>(RCurl<span class="op">::</span><span class="kw">getURL</span>(url1))) </code></pre></div>
+soja &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">textConnection</span>(RCurl<span class="op">::</span><span class="kw">getURL</span>(url1))) </code></pre></div>
 <p>Nos quedaremos solo con dos cultivares: “BMX_Potencia_RR” y “M9144_RR” (nos aseguraremos que no queden ningun otro nivel del factor cultivar)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soy1 &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(cultivar <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BMX_Potencia_RR&quot;</span>, <span class="st">&quot;M9144_RR&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">droplevels</span>()<span class="co"># necesario para remover los cultivares no seleccionados</span></code></pre></div>
 <p>Exploración del dataset</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>cultivar, soy1))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>cultivar, soja))</code></pre></div>
 <p>Estableceremos quien es el dataset a ser graficado y quienes son las variables en los ejes x e y:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p0 =<span class="st"> </span><span class="kw">ggplot</span>(soy1, <span class="kw">aes</span>(<span class="dt">x=</span>sev, <span class="dt">y=</span>yield))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p0 =<span class="st"> </span><span class="kw">ggplot</span>(soja, <span class="kw">aes</span>(<span class="dt">x=</span>sev, <span class="dt">y=</span>yield))
 p0</code></pre></div>
 <p>Agregaremos las observaciones</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p0  <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
@@ -203,13 +203,13 @@ p0</code></pre></div>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p>Cambiaron los resultados? que puede concluir ahora?</p>
 <p>Exploremos el experimento 1</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soy_exp1 &lt;-<span class="st"> </span>soy <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soja_exp1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(study <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">droplevels</span>()<span class="co"># necesario para remover los cultivares no seleccionados</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library(Rmisc)</span>
-<span class="co"># summarySE(soy_exp1, measurevar=&quot;yield&quot;, groupvars=&quot;fungic&quot;)</span>
+<span class="co"># summarySE(soja_exp1, measurevar=&quot;yield&quot;, groupvars=&quot;fungic&quot;)</span>
          
-<span class="kw">ggplot</span>(soy_exp1, <span class="kw">aes</span>(<span class="dt">x=</span>fungic, <span class="dt">y=</span>yield)) <span class="op">+</span>
+<span class="kw">ggplot</span>(soja_exp1, <span class="kw">aes</span>(<span class="dt">x=</span>fungic, <span class="dt">y=</span>yield)) <span class="op">+</span>
 <span class="st">  </span>
 <span class="st">  </span><span class="co"># geom_boxplot()+</span>
 <span class="st">  </span>
@@ -226,10 +226,10 @@ p0</code></pre></div>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span> mean_sdl, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_boot, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>)</code></pre></div>
 <p>Afinando la apariencia para paper</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(soy_exp1<span class="op">$</span>fungic)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(soja_exp1<span class="op">$</span>fungic)
 <span class="kw">library</span>(forcats)
 
-soy_exp1 <span class="op">%&gt;%</span><span class="st"> </span>
+soja_exp1 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fungic =</span> <span class="kw">fct_recode</span>(fungic, 
                              <span class="st">`</span><span class="dt">Czm</span><span class="st">`</span> =<span class="st"> &quot;CZM[1]&quot;</span>,
                              <span class="st">`</span><span class="dt">Czm+CM+Tebu</span><span class="st">`</span> =<span class="st">&quot;CZM_CM_TEBU[1]&quot;</span>,
