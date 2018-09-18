@@ -1,9 +1,9 @@
 ```{r include=FALSE}
 library(knitr)
 opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE, 
-                      eval=FALSE)
+               warning = FALSE, 
+               message = FALSE, 
+               eval=FALSE)
 
 options(width = 90)
 
@@ -218,7 +218,7 @@ sum(v)
 ```{r, eval=FALSE}
 1:7  
 seq(from = 0, to = 20, #by=2) # 
- length=4) 
+    length=4) 
 
 rep(1:3, times=3) #  , each=3   
 ```
@@ -361,11 +361,11 @@ iris # ya activo desde inicio de sesión por default
 ```
 
 > Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
-    - head() 
-    - tail() 
-    - dim() 
-    - names() 
-    - str() 
+- head() 
+- tail() 
+- dim() 
+- names() 
+- str() 
 
 ### Filtrado de datasets
 
@@ -440,7 +440,7 @@ Estandarizar <- function(x) {
   Media<- mean(x)
   SD<- sd(x)
   (x-Media)/SD
-  }
+}
 set.seed(pi)
 Estandarizar(rnorm(10,40,5))
 ```
@@ -536,7 +536,7 @@ text_tab3 <- data.frame(
     "`sum(x)`",
     "`prod(x)`",
     "`round(x, n)`"
-    ),
+  ),
   
   Detalle = c(
     "raiz de x",
@@ -546,7 +546,7 @@ text_tab3 <- data.frame(
     "suma todos los elementos de x",
     "producto de todos los elementos de x",
     "redondea x a n-digitos"
-    )
+  )
 )
 
 ```
@@ -571,17 +571,17 @@ text_tab4 <- data.frame(
     "Ctrl+l",
     "Ctrl+Shift+c",
     "Ctrl+i"
-    ),
+  ),
   
   Detalle = c(
     "panel de todos los atajos",
     "undo/redo",
-    "`<-`",
+    "<-",
     "corre la linea/bloque completa de codigo",
     "limpia la consola",
     "silencia la linea",
     "indexa el bloque de código"
-    )
+  )
 )
 
 ```
