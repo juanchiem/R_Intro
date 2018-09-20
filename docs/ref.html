@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="r-como-calculadora.html">
-<link rel="next" href="manip.html">
+<link rel="prev" href="model.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -190,125 +190,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import" class="section level1">
-<h1><span class="header-section-number">3</span> Importar</h1>
-<div id="organizacion-de-planillas-a-ser-importadas-a-r" class="section level2">
-<h2><span class="header-section-number">3.1</span> Organización de planillas a ser importadas a R</h2>
-<p>Un primer paso en nuestras investigaciones (fundamental, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir.</p>
-<p>En particular prefiero que las planillas excel sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
-R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!</p>
-<p><strong>5 Principios básicos</strong> Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span></p>
-<p>Como regla global, columnas (Verticales) son <strong>Variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales)</p>
-<p><strong>1 - Consistencia</strong></p>
-<p>Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:</p>
-<ul>
-<li>severidad = sev
-<ul>
-<li>incidencia = inc</li>
-<li>rendimiento = rto</li>
-<li>hoja = hj (bien podría ser “hoja” también)</li>
-<li>planta = pl</li>
-<li>bloque = bq</li>
-<li>placa = placa</li>
-<li>temperatura = temp</li>
-<li>máxima = max</li>
-</ul></li>
-</ul>
-<p>En particular prefiero usar el inglés, ya que no tiene acentos ni caracteres especiales.
-Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades experimentales (placas, macetas, plantas dentro de las macetas, etc.), al final se recuperará en creces el tiempo extra inicialmente invertido en ello (stand-alone).</p>
-<ul>
-<li><p>Adopten siempre los mismos términos</p></li>
-<li><p>No escatimen en columnas: rep_pl -&gt; rep | pl</p></li>
-<li><p>Crear diccionario de términos: Agreguen una planilla con el detalle por extenso de las variables y sus unidades. Piensen que esa planilla la debería entender cualquier persona sin auxilio de sus propios comentarios.</p></li>
-</ul>
-<p><strong>2 - Fechas</strong></p>
-<p>Fechas
-si se trata de una fecha específica de un evento en un experimento destinen una columna para ello. Tipo fecha de siembra, fecha de observación de primer sintoma.</p>
-<p>Si se trata de evaluaciones de una misma unidad experimental en el tiempo será preferible combinar el nombre de variable y la fecha de referencia (comúnmente expresado en dias desde algun punto de referencia).</p>
-<p>Esto nos permite tener un punto de referencia para la evaluación del momento, corroborando con el último registro: el peso en 45 dias desde emergencia será igual o mayor al dia 30.</p>
-<p><strong>3 - Rectangular</strong></p>
-<p>Todo set de datos tiene sus dimensiones específicas: n fila - n columnas.
-Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida”</p>
-<p><strong>4 - Cero es un dato!</strong></p>
-<p>Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.” o dejar en blanco (si se usa .xlsx)
-En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…</p>
-<p><strong>5 - Planilla plana -&gt; DATOS CRUDOS</strong></p>
-<ul>
-<li>SIN FORMULAS</li>
-<li>No combinar celdas</li>
-<li>no resaltar</li>
-<li>no hacer bordes</li>
-<li>sin negritas</li>
-<li>caracteres puros</li>
-</ul>
-</div>
-<div id="vias-de-importacion" class="section level2">
-<h2><span class="header-section-number">3.2</span> Vías de importación</h2>
-<p>Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.</p>
-<p>Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos).</p>
-<ul>
-<li>Desde nuestra computadora</li>
-</ul>
-<p>La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: Import Dataset -&gt; elijen el tipo de archivo que queremos importar, indicamos la ruta de ubicacion del archivo con el botón <strong>Browse</strong>. En la ventana de importación de datos se generará el codigo (es aconsejable que copien el código generado y lo peguen en el script de la sesión)</p>
-<p>O bien desde código del script:</p>
-<ul>
-<li>Archivos excel</li>
-</ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">dat &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;nombre_del_archivo.xls&quot;</span>, ...)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="co"># Noten que usamos una función del paquete &quot;readxl&quot;, por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con &quot;::&quot;</span></a></code></pre></div>
-<blockquote>
-<p>Importar soja_mancha.xlsx, nombrando “soja”
-Importar can_phoma.xlsx, nombrando “canola”</p>
-</blockquote>
-<p>“can_phoma” es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable “par” la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).</p>
-<ul>
-<li>Archivos de texto .csv</li>
-</ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;nombre_del_archivo.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)<span class="co"># puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">dat &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;ruta/nombre_del_archivo.csv&quot;</span>)</a></code></pre></div>
-<ul>
-<li>Desde clipboard</li>
-</ul>
-<p>Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">dat =<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</a></code></pre></div>
-<ul>
-<li>Colección de objetos</li>
-</ul>
-<p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde este.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</a></code></pre></div>
-<p>limpiar memoria y recargar los datos</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</a></code></pre></div>
-<ul>
-<li>Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)</li>
-</ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">Crop      x1 x2 x3 x4</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">Corn      16 27 31 33</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">Corn      15 23 30 30</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">Corn      16 27 27 26</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">Corn      18 20 25 23</span></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="st">Corn      15 15 31 32</span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">Corn      15 32 32 15</span></a>
-<a class="sourceLine" id="cb32-9" data-line-number="9"><span class="st">Corn      12 15 16 73</span></a>
-<a class="sourceLine" id="cb32-10" data-line-number="10"><span class="st">Soybean   20 23 23 25</span></a>
-<a class="sourceLine" id="cb32-11" data-line-number="11"><span class="st">Soybean   24 24 25 32</span></a>
-<a class="sourceLine" id="cb32-12" data-line-number="12"><span class="st">Soybean   21 25 23 24</span></a>
-<a class="sourceLine" id="cb32-13" data-line-number="13"><span class="st">Soybean   27 45 24 12</span></a>
-<a class="sourceLine" id="cb32-14" data-line-number="14"><span class="st">Soybean   12 13 15 42</span></a>
-<a class="sourceLine" id="cb32-15" data-line-number="15"><span class="st">Soybean   22 32 31 43</span></a>
-<a class="sourceLine" id="cb32-16" data-line-number="16"><span class="st">&#39;</span>)</a></code></pre></div>
-<ul>
-<li>Exportar datasets</li>
-</ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div id="ref" class="section level1">
+<h1><span class="header-section-number">7</span> Referencias</h1>
 
-</div>
-</div>
-<h3> Referencias</h3>
 <div id="refs" class="references">
-<div id="ref-broman2018data">
+<div>
 <p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1). Taylor &amp; Francis: 2–10.</p>
+</div>
+<div>
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7). Am Phytopath Society: 850–60.</p>
+</div>
+<div>
+<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martínez-González, Francisco Javier García-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotípicas de Características de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Científica</em> 17 (3). Universidad del Zulia: 262–67.</p>
+</div>
+<div>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. &quot; O’Reilly Media, Inc.&quot;.</p>
+</div>
 </div>
 </div>
             </section>
@@ -316,8 +216,8 @@ Importar can_phoma.xlsx, nombrando “canola”</p>
           </div>
         </div>
       </div>
-<a href="r-como-calculadora.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manip.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -347,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-importar.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/06-referencias.Rmd",
 "text": "Edit"
 },
 "download": null,

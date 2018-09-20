@@ -277,5 +277,3 @@ library(GGally)
 ggpairs(sorg, columns = 5:11, ggplot2::aes(colour=ph),
     columnLabels = c("Altura", "Peso seco", "Fosforo total", "Zinc", "Nitrogeno", "Hierro", "Spad"))
 ```
-
-## Relevamiento de xylella en Olivares
