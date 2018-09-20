@@ -67,13 +67,15 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
 
 
-## Los autores {-}
+## Autor {-}
 
-* Juan Pablo Edwards Molina: Investigador Epidemiologia de enfermedades de cultivos - IPAVE / INTA.
+* Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
     + ORCID: <https://orcid.org/0000-0002-3685-760X>
     + Twitter: [juanchiedwards](https://twitter.com/juanchiedwards)
     + GitHub: <https://github.com/juanchiem>
+
+## Colaboradores {-}
 
 * Mauro Paccioretti: Becario en Fitopatologia, doctorando - IPAVE / INTA.
     + Email: [mauropaccioretti@gmail.com](mailto:mauropaccioretti@gmail.com)
