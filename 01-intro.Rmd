@@ -1,9 +1,9 @@
 ```{r include=FALSE}
 library(knitr)
 opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE, 
-                      eval=FALSE)
+               warning = FALSE, 
+               message = FALSE, 
+               eval=FALSE)
 
 options(width = 90)
 
@@ -218,7 +218,7 @@ sum(v)
 ```{r, eval=FALSE}
 1:7  
 seq(from = 0, to = 20, #by=2) # 
- length=4) 
+    length=4) 
 
 rep(1:3, times=3) #  , each=3   
 ```
@@ -361,11 +361,11 @@ iris # ya activo desde inicio de sesión por default
 ```
 
 > Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
-    - head() 
-    - tail() 
-    - dim() 
-    - names() 
-    - str() 
+- head() 
+- tail() 
+- dim() 
+- names() 
+- str() 
 
 ### Filtrado de datasets
 
@@ -440,7 +440,7 @@ Estandarizar <- function(x) {
   Media<- mean(x)
   SD<- sd(x)
   (x-Media)/SD
-  }
+}
 set.seed(pi)
 Estandarizar(rnorm(10,40,5))
 ```
@@ -463,16 +463,16 @@ Estandarizar(rnorm(10,40,5))
 
 ## Tablas resumen {#tablas_resumen}
 
-```{r echo=FALSE, eval=TRUE}
+```{r echo=FALSE, eval=TRUE, results='asis'}
 text_tab1 <- data.frame(
   Operador = c(
-    "x + y", 
-    "x - y", 
-    "x * y", 
-    "x / y",
-    "x %/% y",
-    "x %% y",
-    "x ^ y"),
+    "`x + y`", 
+    "`x - y`", 
+    "`x * y`", 
+    "`x / y`",
+    "`x %/% y`",
+    "`x %% y`",
+    "`x ^ y`"),
   Detalle = c("Suma de x e y",
               "Resta de x menos y",
               "Multiplicación", 
@@ -502,7 +502,7 @@ text_tab2 <- data.frame(
     "x >= y",
     "x == y",
     "x != y"),
-  Detalle = c(
+  "Prueba lógica" = c(
     "x menor que y?",
     "x menor o igual que y?",
     "x mayor que y?",
@@ -515,7 +515,7 @@ text_tab2 <- data.frame(
 ```
 
 
-```{r op-logi, tidy=FALSE, eval=TRUE, echo = FALSE}
+```{r op-logi, tidy=FALSE, eval=TRUE, echo = FALSE, results='asis'}
 knitr::kable(text_tab2, 
              caption = 'Operadores lógicos',
              booktabs = TRUE) %>% kable_styling(full_width = F)
@@ -525,28 +525,28 @@ knitr::kable(text_tab2,
 <br>
 <br>
 
-```{r, echo=FALSE, eval=TRUE, tidy=FALSE}
+```{r, echo=FALSE, eval=TRUE, tidy=FALSE, results='asis'}
 text_tab3 <- data.frame(
   
   Operador = c(
-    "sqrt(x)", 
-    "sqrt(y)", 
-    "log(x)", 
-    "log10(x)",
-    "sum(x)",
-    "prod(x)",
-    "round(x, n)"
-    ),
+    "`sqrt(x)`", 
+    "`exp(y)`", 
+    "`log(x)`", 
+    "`log10(x)`",
+    "`sum(x)`",
+    "`prod(x)`",
+    "`round(x, n)`"
+  ),
   
   Detalle = c(
     "raiz de x",
-    "exponencial de x?",
+    "exponencial de y",
     "logaritmo natural de x = ln",
-    "Logaritmo base 10 de x?",
+    "Logaritmo base 10 de x",
     "suma todos los elementos de x",
     "producto de todos los elementos de x",
     "redondea x a n-digitos"
-    )
+  )
 )
 
 ```
@@ -564,14 +564,14 @@ knitr::kable(text_tab3,
 ```{r, tidy=FALSE, eval=TRUE, echo = FALSE}
 text_tab4 <- data.frame(
   Teclas = c(
-    "Alt Shift K", 
-    "Ctrl Z / Ctrl Shift Z", 
-    "Alt  -", 
-    "Ctrl r",
-    "Ctrl l",
-    "Ctrl Shift c",
-    "Ctrl i"
-    ),
+    "Alt+Shift+K", 
+    "Ctrl+Z / Ctrl+Shift+Z", 
+    "Alt+ -", 
+    "Ctrl+r",
+    "Ctrl+l",
+    "Ctrl+Shift+c",
+    "Ctrl+i"
+  ),
   
   Detalle = c(
     "panel de todos los atajos",
@@ -580,8 +580,8 @@ text_tab4 <- data.frame(
     "corre la linea/bloque completa de codigo",
     "limpia la consola",
     "silencia la linea",
-    "organiza el bloque de código"
-    )
+    "indexa el bloque de código"
+  )
 )
 
 ```

@@ -73,13 +73,13 @@ Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simpleme
 
 **4 - Cero es un dato!** 
 
-Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.”  o dejar en blanco (si se usa .xls)
+Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.”  o dejar en blanco (si se usa .xlsx)
 En preferencia, llenen todas las celdas, pero siempre un solo dato por celda... 
 
 **5 - Planilla plana -> DATOS CRUDOS**
 
-* SIN FORMULAS, 
-* JAMAS combinar celdas
+* SIN FORMULAS 
+* No combinar celdas
 * no resaltar
 * no hacer bordes 
 * sin negritas
@@ -89,7 +89,7 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda...
 
 Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.
 
-Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xls (planillas tradicionales) o .csv (texto separado con comas, mucho mas livianos). 
+Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
 
 * Desde nuestra computadora
 
