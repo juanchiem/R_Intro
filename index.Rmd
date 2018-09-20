@@ -84,10 +84,10 @@ Algunas hojas de referencia para refrescar la memoria sobre funciones básicas e
     + Email: [pablopaccioretti@gmail.com](mailto:pablopaccioretti@gmail.com)
 
 
-# Cronograma de actividades
+# Cronograma de actividades {-}
 
 |Horario             |Lunes           |Martes             |Miércoles        |Jueves               |Viernes      |
 |:-------------------|:---------------|:------------------|:----------------|:--------------------|:------------|
-|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |:-:          |
-|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |: - :                |Presentación de reportes|
+|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |        |
+|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |                 |Presentación de reportes|
 
