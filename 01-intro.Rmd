@@ -594,13 +594,3 @@ knitr::kable(text_tab4,
 
 ```
 
-
-Ejercicios
-
-[Quiz dia 1](https://docs.google.com/forms/d/1ehp0dV9olkh_KqRwK4GKD2-38nlH0-M8ibBPou4LMAA/edit?ts=5b9d8c27) 
-
-
-[R como calculadora, asignación de objetos, algunas funciones, espacio de trabajo](https://github.com/juanchiem/R_Intro/blob/master/scripts/Ejercicios_1.R) 
-
-
-[Objetos y extracción o reemplazo de partes dentro de un objeto](https://github.com/juanchiem/R_Intro/blob/master/scripts/Ejercicios_2.R) 
