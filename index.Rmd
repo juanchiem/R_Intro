@@ -66,8 +66,7 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 
 Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
 
-
-## Autor {-}
+<b>Autor</b> 
 
 * Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
@@ -75,7 +74,7 @@ Algunas hojas de referencia para refrescar la memoria sobre funciones básicas e
     + Twitter: [juanchiedwards](https://twitter.com/juanchiedwards)
     + GitHub: <https://github.com/juanchiem>
 
-## Colaboradores {-}
+<b>Colaboradores</b> 
 
 * Mauro Paccioretti: Becario en Fitopatologia, doctorando - IPAVE / INTA.
     + Email: [mauropaccioretti@gmail.com](mailto:mauropaccioretti@gmail.com)
@@ -87,4 +86,8 @@ Algunas hojas de referencia para refrescar la memoria sobre funciones básicas e
 
 # Cronograma de actividades
 
-<iframe src="https://calendar.google.com/calendar/embed?src=d9l7pck9cf6ujufh9k6sen8ne8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+|Horario             |Lunes           |Martes             |Miércoles        |Jueves               |Viernes      |
+|:-------------------|:---------------|:------------------|:----------------|:--------------------|:------------|
+|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |:-:          |
+|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |: - :                |Presentación de reportes|
+
