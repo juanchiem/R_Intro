@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="cronograma-de-actividades.html">
+<link rel="next" href="intro.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -131,8 +131,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Introducción a R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a></li>
-<li class="chapter" data-level="" data-path="cronograma-de-actividades.html"><a href="cronograma-de-actividades.html"><i class="fa fa-check"></i>Cronograma de actividades</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma"><i class="fa fa-check"></i>Cronograma</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#autor"><i class="fa fa-check"></i>Autor</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#configuraciones-basicas-del-rstudio"><i class="fa fa-check"></i><b>1.2</b> Configuraciones básicas del RStudio</a></li>
@@ -173,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
+<li><a href="https://bookdown.org/home/" target="blank">Creado con Bookdown</a></li>
 
 </ul>
 
@@ -201,13 +205,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div style="text-align: right">
 ~ Adaptación de <span class="citation">(Ellison and Gotelli <a href="#ref-ellison2004primer">2004</a>)</span> ~
 </div>
+<hr>
 <p>Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:</p>
 <p><img src="fig/workflow.jpg" /></p>
 <div style="text-align: right">
 ~ Adaptación de “R for Data Science” <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r">2016</a>)</span> ~
 </div>
 <p></br></p>
-<p>El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) No es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana, no como un fin mismo; iii) maximizaremos la adopción de la filosofia <a href="https://www.tidyverse.org/">tidyverse</a></p>
+<hr>
+<div id="objetivos" class="section level3 unnumbered">
+<h3>Objetivos</h3>
+<p>El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos, bioquímicos, etc.; y iii) maximizaremos la adopción de la filosofia <a href="https://www.tidyverse.org/">tidyverse</a></p>
+<hr>
 <div style="text-align: center">
 <p><b>Estas son algunas razones por la que elegimos R</b> <span class="citation">(R Core Team <a href="#ref-R-base">2017</a>)</span></p>
 </div>
@@ -239,12 +248,57 @@ Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos téc
 </p>
 </li>
 </ol>
-<div style="text-align: center">
-<p><img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></p>
-</div>
 </div>
 <p></br></p>
-<p><b>Autor</b></p>
+<div style="text-align: center">
+<img src="fig/pregunta_respuesta.jpg" height="400" width="400" />
+</div>
+<p></br></p>
+</div>
+<div id="cronograma" class="section level3 unnumbered">
+<h3>Cronograma</h3>
+<table style="width:100%;">
+<colgroup>
+<col width="18%" />
+<col width="15%" />
+<col width="17%" />
+<col width="16%" />
+<col width="19%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Horario</th>
+<th align="left">Lunes</th>
+<th align="left">Martes</th>
+<th align="left">Miércoles</th>
+<th align="left">Jueves</th>
+<th align="left">Viernes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">9:00 (10.30) 12.30</td>
+<td align="left">Intro R RStudio</td>
+<td align="left">Importar Manipular</td>
+<td align="left">Modelos lineales</td>
+<td align="left">Gráficos II Reportes</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">13.30 (15:00) 16:00</td>
+<td align="left">Rcalc Objetos</td>
+<td align="left">Explorar</td>
+<td align="left">Modelos lineales</td>
+<td align="left"></td>
+<td align="left">Presentación de reportes</td>
+</tr>
+</tbody>
+</table>
+<p></br></p>
+</div>
+<div id="autor" class="section level3 unnumbered">
+<h3>Autor</h3>
 <ul>
 <li>Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
 <ul>
@@ -266,6 +320,11 @@ Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos téc
 <li>Email: <a href="mailto:pablopaccioretti@gmail.com">pablopaccioretti@gmail.com</a></li>
 </ul></li>
 </ul>
+<p></br></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />Este obra está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional</a>.</p>
+<p></br></p>
+
+</div>
 </div>
 <h3> Referencias</h3>
 <div id="refs" class="references">
@@ -285,7 +344,7 @@ Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos téc
         </div>
       </div>
 
-<a href="cronograma-de-actividades.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

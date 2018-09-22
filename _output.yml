@@ -7,4 +7,6 @@ bookdown::gitbook:
       after: |
         <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
         <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
+        <li><a href="https://bookdown.org/home/" target="blank">Creado con Bookdown</a></li>
+
     edit: https://github.com/juanchiem/R_Intro/edit/master/%s

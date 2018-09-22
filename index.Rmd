@@ -30,6 +30,7 @@ options(width = 90)
 
 <div style="text-align: right">  ~ Adaptación de [@ellison2004primer] ~ </div>
 
+<hr>
 
 Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
 
@@ -39,7 +40,14 @@ Podríamos resumir nuestro trabajo como científicos, desde la recolección de d
 
 </br>
 
-El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) No es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana, no como un fin mismo; iii) maximizaremos la adopción de la filosofia [tidyverse](https://www.tidyverse.org/) 
+
+<hr>
+
+### Objetivos {-}
+
+El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos,  bioquímicos, etc.; y iii) maximizaremos la adopción de la filosofia [tidyverse](https://www.tidyverse.org/) 
+
+<hr>
 
 <div style="text-align: center">
 <b>Estas son algunas razones por la que elegimos R</b> [@R-base]
@@ -57,15 +65,25 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 
   5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
 
-<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="300" width="300" /></div>
 
 ```
+</br>
 
+<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="400" width="400" /></div>
 
 </br>
 
+### Cronograma {-}
 
-<b>Autor</b> 
+
+|Horario             |Lunes           |Martes             |Miércoles        |Jueves               |Viernes      |
+|:-------------------|:---------------|:------------------|:----------------|:--------------------|:------------|
+|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |        |
+|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |                 |Presentación de reportes|
+
+</br>
+
+### Autor {-}
 
 * Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
@@ -82,11 +100,8 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 * Pablo Paccioretti: Becario Conicet, doctorando - Depto. de Estadistica y Biometria / UNC. 
     + Email: [pablopaccioretti@gmail.com](mailto:pablopaccioretti@gmail.com)
 
+</br>
 
-# Cronograma de actividades {-}
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />Este obra está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional</a>.
 
-|Horario             |Lunes           |Martes             |Miércoles        |Jueves               |Viernes      |
-|:-------------------|:---------------|:------------------|:----------------|:--------------------|:------------|
-|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |        |
-|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |                 |Presentación de reportes|
-
+</br>
