@@ -28,18 +28,18 @@ options(width = 90)
 
 ![](fig/top.jpg) 
 
+<div style="text-align: right">  ~ Adaptación de [@ellison2004primer] ~ </div>
 
-(Traducción de Gotelli & Ellison, 2004. A Primer of Ecological Statistics. Sunderland, Sinauer)
 
 Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
 
 ![](fig/workflow.jpg) 
 
-<div style="text-align: right"> (adaptado de "R for Data Science", Grolemund G. & Wickham H.) </div>
+<div style="text-align: right">  ~ Adaptación de "R for Data Science" [@wickham2016r] ~ </div>
 
 </br>
 
-El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. No es un curso de estadística.... 
+El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) No es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana, no como un fin mismo; iii) maximizaremos la adopción de la filosofia [tidyverse](https://www.tidyverse.org/) 
 
 <div style="text-align: center">
 <b>Estas son algunas razones por la que elegimos R</b> [@R-base]
@@ -64,7 +64,6 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 
 </br>
 
-Algunas hojas de referencia para refrescar la memoria sobre funciones básicas encontrarán [aqui](https://drive.google.com/open?id=1zJZlwGfvr5_lbl2hSUiX0-ShN9s0Hv9V)
 
 <b>Autor</b> 
 
