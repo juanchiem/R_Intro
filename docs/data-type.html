@@ -218,10 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tipos-de-datos" class="section level2">
 <h2><span class="header-section-number">2.1</span> Tipos de datos</h2>
 <p>La unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes cuatro clases.</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-(#tab:data_types)Data types
-</caption>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -271,21 +268,29 @@ c(‘a’, ‘good’, ‘TRUE’, ‘23.4’)
 <h3><span class="header-section-number">2.1.1</span> Vectores</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># concatenación de elementos atómicos</span>
 v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">111</span>)
-<span class="kw">class</span>(v)
-
-(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;b&quot;</span>))
-<span class="kw">class</span>(b)
-<span class="kw">is.character</span>(b)
-<span class="kw">is.numeric</span>(b)
-
-(m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T, F)) ; <span class="kw">class</span>(m)
-
-<span class="co"># Propiedades de v</span>
+<span class="kw">class</span>(v)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;b&quot;</span>))</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;b&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(b)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.character</span>(b)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.numeric</span>(b)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">(m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T, F)) ; <span class="kw">class</span>(m)</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Propiedades de v</span>
 <span class="co"># ?length</span>
-<span class="kw">length</span>(v)  
-<span class="kw">summary</span>(v) 
-<span class="co">#v &lt;- edit(v)</span>
+<span class="kw">length</span>(v)  </code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(v) </code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    7.00    8.25    9.50   25.83   10.00  111.00</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#v &lt;- edit(v)</span>
 <span class="kw">sort</span>(v)</code></pre>
+<pre><code>## [1]   7   8   9  10  10 111</code></pre>
 <ul>
 <li>Operaciones con vectores</li>
 </ul>
@@ -367,9 +372,12 @@ niv_res2 =<span class="st"> </span><span class="kw">as.numeric</span>(<span clas
 <li>Indexación</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-y[ ]
-y[<span class="dv">2</span>]
-y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre>
+y[ ]</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y[<span class="dv">2</span>]</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
 <blockquote>
 <p>Seleccione los elementos 1° y 3°</p>
 </blockquote>
@@ -378,6 +386,7 @@ y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ifelse(condición, valor_si_TRUE, valor_si_FALSE)</span>
 <span class="kw">ifelse</span>(y<span class="op">&lt;</span><span class="dv">2</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)</code></pre>
+<pre><code>##  [1] &quot;Low&quot;  &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot; &quot;High&quot;</code></pre>
 <div class="rmdnote">
 <p>
 Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.
@@ -398,22 +407,28 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 <li><p>NULL representa ausencia de información.</p></li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NaN es el resultado de una operación matemática inválida. Significa Not A Number</span>
-<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
-<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
-<span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
-
-<span class="co"># NULL es el vacio de R. Es como si el objeto no existiese</span>
+<span class="dv">0</span><span class="op">/</span><span class="dv">0</span></code></pre>
+<pre><code>## [1] NaN</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NULL es el vacio de R. Es como si el objeto no existiese</span>
 a =<span class="st"> </span><span class="ot">NULL</span>
-a
-
-<span class="co"># Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.</span>
-<span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
-<span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
+a</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.</span>
+<span class="dv">1</span><span class="op">/</span><span class="dv">0</span></code></pre>
+<pre><code>## [1] Inf</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
+<pre><code>## [1] 0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NA es una constante lógica de R. Significa Not Available. NA puede ser </span>
 <span class="co"># convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.</span>
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
-<span class="kw">is.na</span>(y)
-<span class="kw">mean</span>(y)</code></pre>
+<span class="kw">is.na</span>(y)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(y)</code></pre>
+<pre><code>## [1] NA</code></pre>
 <blockquote>
 <p>Calcule el promedio de y (use la ayuda de R en caso necesario)</p>
 </blockquote>
@@ -440,13 +455,36 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</sp
 <div id="filtrado-de-datasets" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Filtrado de datasets</h3>
 <p><strong>data[fila, columna]</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>,]
-iris[,<span class="dv">1</span>]
-iris[<span class="dv">1</span>,<span class="dv">1</span>]
-
-iris<span class="op">$</span>Sepal.Length
-<span class="kw">levels</span>(iris<span class="op">$</span>Species)
-<span class="kw">summary</span>(iris<span class="op">$</span>Sepal.Length)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>,]</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris[,<span class="dv">1</span>]</code></pre>
+<pre><code>##   [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4
+##  [18] 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5
+##  [35] 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0
+##  [52] 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8
+##  [69] 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7 5.5 5.5 5.8 6.0 5.4
+##  [86] 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8
+## [103] 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7
+## [120] 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
+## [137] 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8 6.7 6.7 6.3 6.5 6.2 5.9</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>,<span class="dv">1</span>]</code></pre>
+<pre><code>## [1] 5.1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris<span class="op">$</span>Sepal.Length</code></pre>
+<pre><code>##   [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4
+##  [18] 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5
+##  [35] 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0
+##  [52] 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8
+##  [69] 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7 5.5 5.5 5.8 6.0 5.4
+##  [86] 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8
+## [103] 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7
+## [120] 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7
+## [137] 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8 6.7 6.7 6.3 6.5 6.2 5.9</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(iris<span class="op">$</span>Species)</code></pre>
+<pre><code>## [1] &quot;setosa&quot;     &quot;versicolor&quot; &quot;virginica&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(iris<span class="op">$</span>Sepal.Length)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   4.300   5.100   5.800   5.843   6.400   7.900</code></pre>
 <blockquote>
 <p>Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4.</p>
 </blockquote>
@@ -468,12 +506,27 @@ iris<span class="op">$</span>Sepal.Length
 <p>Objetos que aceptan elementos de clases diferentes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)
 x</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>a       <span class="co"># </span>
-x[<span class="dv">1</span>]       <span class="co"># </span>
-<span class="co">#sum(x[1])</span>
-x[[<span class="dv">1</span>]]     <span class="co"># </span>
-<span class="kw">sum</span>(x[[<span class="dv">1</span>]])
-x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></pre>
+<pre><code>## $a
+## [1] 1 2 3 4 5
+## 
+## $b
+## [1] &quot;a&quot; &quot;b&quot;
+## 
+## $c
+## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>a       <span class="co"># </span></code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x[<span class="dv">1</span>]       <span class="co"># </span></code></pre>
+<pre><code>## $a
+## [1] 1 2 3 4 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#sum(x[1])</span>
+x[[<span class="dv">1</span>]]     <span class="co"># </span></code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(x[[<span class="dv">1</span>]])</code></pre>
+<pre><code>## [1] 15</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></pre>
+<pre><code>## $c
+## [1] TRUE</code></pre>
 
 </div>
 </div>
@@ -531,19 +584,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
