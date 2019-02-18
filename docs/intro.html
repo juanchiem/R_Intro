@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introducción a R para el análisis de datos de Ciencias Agrarias</title>
-  <meta name="description" content="Introducción a R para el análisis de datos de Ciencias Agrarias">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <title>Introducción a R</title>
+  <meta name="description" content="Introducción a R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta property="og:title" content="Introducción a R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,12 +17,11 @@
   <meta name="github-repo" content="juanchiem/R_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta name="twitter:title" content="Introducción a R" />
   
   
   
 
-<meta name="author" content="">
 
 
 
@@ -32,7 +31,7 @@
   
   
 <link rel="prev" href="index.html">
-<link rel="next" href="r-como-calculadora.html">
+<link rel="next" href="data-type.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,69 +49,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -133,46 +104,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma"><i class="fa fa-check"></i>Cronograma</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#autor"><i class="fa fa-check"></i>Autor</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#configuraciones-basicas-del-rstudio"><i class="fa fa-check"></i><b>1.2</b> Configuraciones básicas del RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.3</b> Instalación de paquetes</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.4</b> Configuración de la sesión</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.5</b> R como calculadora</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.6</b> Funciones</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.7</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.8</b> Tablas resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html"><i class="fa fa-check"></i><b>2</b> R como calculadora</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tipos-de-objetos"><i class="fa fa-check"></i><b>2.1</b> Tipos de Objetos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="2.1.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
-<li class="chapter" data-level="2.1.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> Data frames</a></li>
-<li class="chapter" data-level="2.1.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.1.4</b> Filtrado de datasets</a></li>
-<li class="chapter" data-level="2.1.5" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#listas"><i class="fa fa-check"></i><b>2.1.5</b> Listas</a></li>
+<li class="chapter" data-level="2" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>2</b> Datos: tipos y estructuras</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-type.html"><a href="data-type.html#tipos-de-datos"><i class="fa fa-check"></i><b>2.1</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-type.html"><a href="data-type.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
-<li class="chapter" data-level="2.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#s.o.s."><i class="fa fa-check"></i><b>2.3</b> S.O.S.!!</a></li>
-<li class="chapter" data-level="2.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tablas_resumen"><i class="fa fa-check"></i><b>2.4</b> Tablas resumen</a></li>
+<li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.2.2</b> Filtrado de datasets</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.3</b> Listas</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
 <li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>3.1</b> Organización de planillas a ser importadas a R</a></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>3.2</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>4</b> Manipular</a><ul>
-<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1</b> select</a></li>
-<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.2</b> filter</a></li>
-<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.3</b> mutate</a></li>
-<li class="chapter" data-level="4.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.4</b> arrange</a></li>
-<li class="chapter" data-level="4.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.5</b> summarise</a></li>
-<li class="chapter" data-level="4.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>4.6</b> Dataset “can_phoma”</a></li>
+<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#dplyr"><i class="fa fa-check"></i><b>4.1</b> dplyr::</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1.1</b> select</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.1.2</b> filter</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.1.3</b> mutate</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.1.4</b> arrange</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.1.5</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>5</b> Visualizar</a><ul>
-<li class="chapter" data-level="5.1" data-path="explore.html"><a href="explore.html#mancha-anillada-en-soja"><i class="fa fa-check"></i><b>5.1</b> Mancha anillada en soja</a></li>
-<li class="chapter" data-level="5.2" data-path="explore.html"><a href="explore.html#phoma-en-colza"><i class="fa fa-check"></i><b>5.2</b> Phoma en colza</a></li>
-<li class="chapter" data-level="5.3" data-path="explore.html"><a href="explore.html#fertilizacion-con-n-y-s-en-sorgo"><i class="fa fa-check"></i><b>5.3</b> Fertilización con N y S en sorgo</a></li>
+<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#tidyr"><i class="fa fa-check"></i><b>4.2</b> tidyr::</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manip.html"><a href="manip.html#join"><i class="fa fa-check"></i><b>4.2.1</b> join</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> Modelar</a></li>
-<li class="chapter" data-level="7" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>7</b> Referencias</a></li>
+<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#forcats"><i class="fa fa-check"></i><b>4.3</b> forcats::</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>5</b> Cálculos fitopatométricos</a><ul>
+<li class="chapter" data-level="5.1" data-path="fitopato.html"><a href="fitopato.html#caso-1-carbon-del-mani"><i class="fa fa-check"></i><b>5.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="5.2" data-path="fitopato.html"><a href="fitopato.html#caso-2-xylella-en-olivos"><i class="fa fa-check"></i><b>5.2</b> Caso 2: xylella en olivos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="fitopato.html"><a href="fitopato.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fitopato.html"><a href="fitopato.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
+<li class="chapter" data-level="6.1" data-path="explore.html"><a href="explore.html#comparacion-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.1</b> Comparación de niveles de factores</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="explore.html"><a href="explore.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.1.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.1.2" data-path="explore.html"><a href="explore.html#barplot-se"><i class="fa fa-check"></i><b>6.1.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="explore.html"><a href="explore.html#box-plot"><i class="fa fa-check"></i><b>6.1.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
+<li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -187,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R para el análisis de datos de Ciencias Agrarias</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R</a>
           </h1>
         </div>
 
@@ -201,25 +192,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.1</span> Instalación de programas</h2>
 <p>1° <a href="https://cran.r-project.org/">R</a></p>
 <p>2° <a href="https://www.rstudio.com/products/rstudio/download/">R Studio</a> (bajar la versión Free)</p>
-<p><img src="fig/rstudio.png" style="display: block; margin: auto;" /></p>
+<p><img src="fig/rstudio.png" width="678" style="display: block; margin: auto;" /></p>
 </div>
 <div id="configuraciones-basicas-del-rstudio" class="section level2">
 <h2><span class="header-section-number">1.2</span> Configuraciones básicas del RStudio</h2>
-<p><img src="fig/rstudio_config1.png" style="display: block; margin: auto;" /></p>
-<p><img src="fig/rstudio_config2.png" style="display: block; margin: auto;" /></p>
-<p><img src="fig/rstudio_config3.png" style="display: block; margin: auto;" /></p>
+<p><img src="fig/rstudio_config1.png" width="297" style="display: block; margin: auto;" /></p>
+<p><img src="fig/rstudio_config2.png" width="298" style="display: block; margin: auto;" /></p>
+<p><img src="fig/rstudio_config3.png" width="296" style="display: block; margin: auto;" /></p>
 </div>
 <div id="instalacion-de-paquetes" class="section level2">
 <h2><span class="header-section-number">1.3</span> Instalación de paquetes</h2>
 <p>Existen varias vias de instalación de paquetes:</p>
-<p></br>
-<img src="fig/install.packages.png" style="display: block; margin: auto;" /></p>
+<p></br> <img src="fig/install.packages.png" width="324" style="display: block; margin: auto;" /></p>
 <p></br></p>
 <ul>
 <li>Via CRAN (Comprehensive R Archive Network): <code>install.packages(&quot;nombre_del_paquete&quot;)</code> O simplemente en el panel de paquetes.<br />
 </li>
-<li>Paquetes no oficiales via Github: <code>devtools::install_github(&quot;rstudio/epiphy&quot;)</code>
-</br></li>
+<li>Paquetes no oficiales via Github: <code>devtools::install_github(&quot;rstudio/epiphy&quot;)</code> </br></li>
 </ul>
 <div class="rmdcomment">
 <p>
@@ -239,9 +228,12 @@ Una vez instalado, hay que cargar los paquetes que contienen las funciones que v
 </ul>
 <p>Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo <em>buenas prácticas</em> de trabajo. Esto nos permitirá entender que quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos <em>reproducibles</em>…<br />
 Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión.</p>
-<p><img src="fig/workflow_completo.png" /></p>
+<div class="figure">
+<img src="fig/workflow_completo.png" />
+
+</div>
 <p>Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes maquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.</p>
-<p><img src="fig/folders.PNG" style="display: block; margin: auto;" /></p>
+<p><img src="fig/folders.PNG" width="128" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Crear una carpeta Intro_R en sus máquinas</p>
 </blockquote>
@@ -252,7 +244,405 @@ Una forma práctica de administrar todos los objetos que una sesión es crear un
 <p>Crear un script “1_intro”</p>
 </blockquote>
 <p>Donde se guardaria el siguiente gráfico?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">plot</span>(pressure)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pressure)</code></pre></div>
+</div>
+<div id="r-como-calculadora" class="section level2">
+<h2><span class="header-section-number">1.5</span> R como calculadora</h2>
+<p>Ver <a href="intro.html#tablas_resumen">tablas resumen</a> de operadores aritméticos y lógicos (al final del capítulo)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span>
+<span class="dv">4</span> <span class="op">-</span><span class="st"> </span>
+<span class="st">  </span><span class="dv">3</span> <span class="op">*</span>
+<span class="st">  </span><span class="dv">1</span>
+<span class="co"># 4%1</span>
+<span class="dv">4</span><span class="op">&gt;</span><span class="dv">3</span>
+<span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span>
+<span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
+
+(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ) <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">36</span><span class="op">/</span><span class="dv">18</span>)<span class="op">^</span><span class="dv">3</span></code></pre></div>
+<blockquote>
+<p>Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code> Agregue parentesis para que la expresión de un resultado contrario.</p>
+</blockquote>
+<p></br></p>
+<div class="rmdnote">
+<p>
+<strong>Rendimiento de trigo en función de la severidad de fusariosis de la espiga</strong> <span class="citation"><span class="citation">(Madden and Paul <a href="#ref-madden2009assessing">2009</a>)</span></span>
+</p>
+<p>
+El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">4.1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.038</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
+(<span class="dv">1</span><span class="op">-</span>(<span class="fl">3.72</span><span class="op">/</span><span class="fl">4.1</span>))<span class="op">*</span><span class="dv">100</span></code></pre></div>
+<blockquote>
+<p>Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
+</blockquote>
+<p></br></p>
+<p>Algunos cálculos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">3</span>) <span class="co"># 3^0.5</span>
+<span class="dv">2</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="co"># ^(1/n)</span>
+
+<span class="kw">log</span>(<span class="dv">10</span>)
+<span class="kw">log</span>(<span class="dv">10</span>, <span class="dt">base=</span><span class="dv">10</span>)
+
+<span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></code></pre></div>
+<p>(Note que R está en inglés (decimales “.”, nombre de las funciones) y es “case sensitive”!!)</p>
+</div>
+<div id="funciones" class="section level2">
+<h2><span class="header-section-number">1.6</span> Funciones</h2>
+<p>Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son basicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nombre_funcion &lt;-<span class="st"> </span><span class="cf">function</span>(arg_<span class="dv">1</span>, arg_<span class="dv">2</span>, ...) {
+   cuerpo_de_la_función
+  
+   output <span class="co"># return()</span>
+}</code></pre></div>
+<p>Las diferentes partes de una función son:</p>
+<ul>
+<li><p>Nombre de la función: este es el nombre real de la función. Se almacena en el entorno R como un objeto con este nombre. Generalmente, elnombre es intuitivo, por ejemplo, <code>mean</code> es la función que calcula la media, <code>round</code> es la funión que redondea un número.</p></li>
+<li><p>Argumentos - Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función no puede contener argumentos. También los argumentos pueden tener valores por defecto.</p></li>
+<li><p>Cuerpo de la función: el cuerpo de la función contiene una colección de sentencias que definen lo que hace la función.</p></li>
+<li><p>Valor de retorno: el valor de retorno de una función es la última expresión en el cuerpo de la función que se va a evaluar.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
+<span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></code></pre></div>
+<p>Si es necesario, el usuario puede generar sus propias funciones. Un clásico ejemplo de la utilidad de estas funciones “user-defined” es la preparación de soluciones partiendo de un stock o fuente a diluir, usando la equivalencia:</p>
+<p><span class="math display">\[c1 * v1 = c2 * v2\]</span></p>
+<p>Obviamente tanto <span class="math inline">\(c1;c2\)</span>, como <span class="math inline">\(v1;v2\)</span>, están en las mismas unidades. Para nuestra comodidad <span class="math inline">\(c=\%\)</span> y <span class="math inline">\(v=ml\)</span>.</p>
+<blockquote>
+<p>Nos indican que preparemos 500 ml de una solución desinfectante de NaOCl al 5%, partiendo de una lavandina concentrada (55 g Cl/L). La pregunta que del millón es: qué volumen de lavandina preciso? Por lo tanto debemos despejar <em>V1</em> de la equivalencia, o sea, sería nuestro output de nuestra función.</p>
+</blockquote>
+<p>Empecemos los cálculos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Si el NaOCl tiene un peso molecular de 74.5 g y el Cl pesa 35.5 g, este representa el <em>47.6%</em> de la molécula de NaOCl. Por lo tanto podemos decir que la lavandina comercial posee x NaOCl = Cl/0.476 en 1 L, o bien x NaOCl % = x NaoCl/10</p></li>
+<li><p>Si deseamos preparar 500 ml de NaOCl al 5% para la desinfección (2.5% de Cl activo, aprox.) debemos obtener: <span class="math display">\[v1 = (c2*v2)/c1\]</span></p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vol_lavandina  &lt;-<span class="st"> </span><span class="cf">function</span>(c1, c2, v2){
+  c1 &lt;-<span class="st"> </span>(c1<span class="op">/</span><span class="fl">0.476</span>)<span class="op">/</span><span class="dv">10</span> <span class="co"># pasar g/L a %</span>
+  c2 &lt;-<span class="st"> </span>c2            <span class="co"># concentración que me pide el protocolo (%)</span>
+  v2 &lt;-<span class="st"> </span>v2            <span class="co"># volumen de la solución que deseo (ml)</span>
+  v1 &lt;-<span class="st"> </span>(c2<span class="op">*</span>v2)<span class="op">/</span>c1    <span class="co"># aliquota que debo usar</span>
+  
+  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Coloque&quot;</span>, 
+               <span class="kw">round</span>(v1,<span class="dv">1</span>), 
+               <span class="st">&quot;ml de lavandina y enrase con agua hasta completar&quot;</span>, 
+               v2, <span class="st">&quot;ml&quot;</span>))
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vol_lavandina</span>(<span class="dv">55</span>, <span class="co"># g cloro / L (Lavandina)</span>
+          <span class="dv">5</span>, <span class="co"># % ClONa deseada</span>
+          <span class="dv">500</span>) <span class="co"># ml de la solución deseada</span></code></pre></div>
+<pre><code>## [1] &quot;Coloque 216.4 ml de lavandina y enrase con agua hasta completar 500 ml&quot;</code></pre>
+<blockquote>
+<p>Al reportar los resultados de los test de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto incremento o se redujo un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este <a href="https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php">link</a> para cotejar sus resultados.</p>
+</blockquote>
+</div>
+<div id="s.o.s." class="section level2">
+<h2><span class="header-section-number">1.7</span> S.O.S.!!</h2>
+<ul>
+<li><p>En el mismo R: <code>?auc</code>; <code>??auc</code>; F1 sobre la función</p></li>
+<li><p>Googlear: “r generate a sequence of uppercase letters”</p></li>
+<li><p><strong>Stack Overflow</strong>: foros de pregunta y respuesta ampliamente utilizados por todos los lenguajes de programación. En algunos paises, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!</p></li>
+</ul>
+<p><strong>¿Cómo hacer una buena pregunta en el stack overflow?</strong></p>
+<ul>
+<li><p>Ser consciso pero gentil…</p></li>
+<li><p>Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y version de R en caso necesario) <code>library(reprex)</code>.</p></li>
+</ul>
+</div>
+<div id="tablas_resumen" class="section level2">
+<h2><span class="header-section-number">1.8</span> Tablas resumen</h2>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:op-arit">Table 1.1: </span>Operadores aritméticos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>x + y</code>
+</td>
+<td style="text-align:left;">
+Suma de x e y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x - y</code>
+</td>
+<td style="text-align:left;">
+Resta de x menos y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x * y</code>
+</td>
+<td style="text-align:left;">
+Multiplicación
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x / y</code>
+</td>
+<td style="text-align:left;">
+División de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x %/% y</code>
+</td>
+<td style="text-align:left;">
+Parte entera de la división de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x %% y</code>
+</td>
+<td style="text-align:left;">
+Resto de la división de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x ^ y</code>
+</td>
+<td style="text-align:left;">
+x elevado a y-ésima potencia
+</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:op-logi">Table 1.2: </span>Operadores lógicos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Prueba.lógica
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x &lt; y
+</td>
+<td style="text-align:left;">
+x menor que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &lt;= y
+</td>
+<td style="text-align:left;">
+x menor o igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &gt; y
+</td>
+<td style="text-align:left;">
+x mayor que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &gt;= y
+</td>
+<td style="text-align:left;">
+x mayor o igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x == y
+</td>
+<td style="text-align:left;">
+x igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x != y
+</td>
+<td style="text-align:left;">
+x diferente que y?
+</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:matem">Table 1.3: </span>Funciones matemáticas
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>sqrt(x)</code>
+</td>
+<td style="text-align:left;">
+raiz de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>exp(y)</code>
+</td>
+<td style="text-align:left;">
+exponencial de y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>log(x)</code>
+</td>
+<td style="text-align:left;">
+logaritmo natural de x = ln
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>log10(x)</code>
+</td>
+<td style="text-align:left;">
+Logaritmo base 10 de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sum(x)</code>
+</td>
+<td style="text-align:left;">
+suma todos los elementos de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>prod(x)</code>
+</td>
+<td style="text-align:left;">
+producto de todos los elementos de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>round(x, n)</code>
+</td>
+<td style="text-align:left;">
+redondea x a n-digitos
+</td>
+</tr>
+</tbody>
+</table>
+<p><br> <br></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:shortcuts">Table 1.4: </span>Algunos atajos comúnentes usados
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Teclas
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Alt+Shift+K
+</td>
+<td style="text-align:left;">
+panel de todos los atajos
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+Z / Ctrl+Shift+Z
+</td>
+<td style="text-align:left;">
+undo/redo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alt+ -
+</td>
+<td style="text-align:left;">
+&lt;-
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+r
+</td>
+<td style="text-align:left;">
+corre la linea/bloque completa de codigo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+l
+</td>
+<td style="text-align:left;">
+limpia la consola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+Shift+c
+</td>
+<td style="text-align:left;">
+silencia la linea
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+i
+</td>
+<td style="text-align:left;">
+indexa el bloque de código
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<h3> Referencias</h3>
+<div id="refs" class="references">
+<div id="ref-madden2009assessing">
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7). Am Phytopath Society: 850–60.</p>
 </div>
 </div>
             </section>
@@ -261,7 +651,7 @@ Una forma práctica de administrar todos los objetos que una sesión es crear un
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-como-calculadora.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-type.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,6 +692,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

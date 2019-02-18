@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a R</title>
+  <meta name="description" content="Introducción a R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="juanchiem/R_Intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="import.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#configuraciones-basicas-del-rstudio"><i class="fa fa-check"></i><b>1.2</b> Configuraciones básicas del RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.3</b> Instalación de paquetes</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.4</b> Configuración de la sesión</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.5</b> R como calculadora</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.6</b> Funciones</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.7</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.8</b> Tablas resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>2</b> Datos: tipos y estructuras</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-type.html"><a href="data-type.html#tipos-de-datos"><i class="fa fa-check"></i><b>2.1</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-type.html"><a href="data-type.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.2.2</b> Filtrado de datasets</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.3</b> Listas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
+<li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>3.1</b> Organización de planillas a ser importadas a R</a></li>
+<li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>3.2</b> Vías de importación</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>4</b> Manipular</a><ul>
+<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#dplyr"><i class="fa fa-check"></i><b>4.1</b> dplyr::</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1.1</b> select</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.1.2</b> filter</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.1.3</b> mutate</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.1.4</b> arrange</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.1.5</b> summarise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#tidyr"><i class="fa fa-check"></i><b>4.2</b> tidyr::</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manip.html"><a href="manip.html#join"><i class="fa fa-check"></i><b>4.2.1</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#forcats"><i class="fa fa-check"></i><b>4.3</b> forcats::</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>5</b> Cálculos fitopatométricos</a><ul>
+<li class="chapter" data-level="5.1" data-path="fitopato.html"><a href="fitopato.html#caso-1-carbon-del-mani"><i class="fa fa-check"></i><b>5.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="5.2" data-path="fitopato.html"><a href="fitopato.html#caso-2-xylella-en-olivos"><i class="fa fa-check"></i><b>5.2</b> Caso 2: xylella en olivos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="fitopato.html"><a href="fitopato.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fitopato.html"><a href="fitopato.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
+<li class="chapter" data-level="6.1" data-path="explore.html"><a href="explore.html#comparacion-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.1</b> Comparación de niveles de factores</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="explore.html"><a href="explore.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.1.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.1.2" data-path="explore.html"><a href="explore.html#barplot-se"><i class="fa fa-check"></i><b>6.1.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="explore.html"><a href="explore.html#box-plot"><i class="fa fa-check"></i><b>6.1.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
+<li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
+<li><a href="https://bookdown.org/home/" target="blank">Creado con Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data_type" class="section level1">
+<h1><span class="header-section-number">2</span> Datos: tipos y estructuras</h1>
+<div id="tipos-de-datos" class="section level2">
+<h2><span class="header-section-number">2.1</span> Tipos de datos</h2>
+<p>La unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes cuatro clases.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:data_types)Data types
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Clase
+</th>
+<th style="text-align:left;">
+Ejemplo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+c(12.3, 5, 999)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+logical
+</td>
+<td style="text-align:left;">
+c(TRUE, FALSE)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+integer
+</td>
+<td style="text-align:left;">
+c(2L, 34L, 0L)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+c(‘a’, ‘good’, ‘TRUE’, ‘23.4’)
+</td>
+</tr>
+</tbody>
+</table>
+<div id="vectores" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Vectores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># concatenación de elementos atómicos</span>
+v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">111</span>)
+<span class="kw">class</span>(v)
+
+(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="kw">class</span>(b)
+<span class="kw">is.character</span>(b)
+<span class="kw">is.numeric</span>(b)
+
+(m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T, F)) ; <span class="kw">class</span>(m)
+
+<span class="co"># Propiedades de v</span>
+<span class="co"># ?length</span>
+<span class="kw">length</span>(v)  
+<span class="kw">summary</span>(v) 
+<span class="co">#v &lt;- edit(v)</span>
+<span class="kw">sort</span>(v)</code></pre></div>
+<ul>
+<li>Operaciones con vectores</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+
+<span class="co"># Medidas de posición</span>
+<span class="kw">mean</span>(v) 
+<span class="kw">median</span>(v)
+
+<span class="co"># Medidas de dispersión</span>
+<span class="kw">var</span>(v)
+<span class="kw">sd</span>(v)
+<span class="kw">sqrt</span>(<span class="kw">var</span>(v))
+
+<span class="kw">IQR</span>(v)
+<span class="kw">range</span>(v)
+
+<span class="kw">quantile</span>(v, <span class="fl">0.1</span>)
+<span class="kw">ecdf</span>(v)(<span class="dv">7</span>)
+
+<span class="kw">max</span>(v)
+<span class="kw">min</span>(v)
+<span class="kw">sum</span>(v)</code></pre></div>
+<blockquote>
+<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
+</blockquote>
+<ul>
+<li>Secuencia</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">7</span>  
+<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="co">#by=2) # </span>
+    <span class="dt">length=</span><span class="dv">4</span>) 
+
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">3</span>) <span class="co">#  , each=3   </span></code></pre></div>
+<ul>
+<li>Números aleatorios - distribuciones</li>
+</ul>
+<div class="rmdnote">
+<p>
+<strong>Tendencias genéticas y fenotípicas de características de crecimiento en el ganado brahman de registro de México</strong> <span class="citation"><span class="citation">(Parra-Bracamonte et al. <a href="#ref-parra2007tendencias">2007</a>)</span></span>
+</p>
+</div>
+<div class="figure">
+<img src="fig/PesoVacas.gif" width="300" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">23570</span>, <span class="dt">mean=</span><span class="fl">32.2</span>, <span class="dt">sd=</span><span class="fl">1.8</span>) 
+<span class="kw">range</span>(PesoNac)
+<span class="kw">hist</span>(PesoNac)
+<span class="kw">hist</span>(PesoNac, <span class="dt">prob=</span><span class="ot">TRUE</span>)</code></pre></div>
+<ul>
+<li>Propiedades de vectores</li>
+</ul>
+<p>Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a “1.7” se fuera creado junto con “a”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)  ## character
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>)   ## numeric
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="st">&quot;a&quot;</span>) ## character</code></pre></div>
+<p>Forzando las clases explicitamente</p>
+<p><code>as.character()</code>, <code>as.numeric()</code>, <code>as.integer()</code> y <code>as.logical()</code></p>
+<ul>
+<li>Factores</li>
+</ul>
+<p>Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resist &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;R&quot;</span>)
+<span class="kw">class</span>(resist)
+res_f &lt;-<span class="st"> </span><span class="kw">as.factor</span>(resist)
+res_f
+<span class="kw">as.numeric</span>(res_f)
+
+<span class="kw">table</span>(resist)
+<span class="kw">pie</span>(<span class="kw">table</span>(resist))
+<span class="kw">barplot</span>(<span class="kw">table</span>(resist))</code></pre></div>
+<p>De factor para numérico</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">niv_res &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;9&quot;</span>))
+<span class="kw">sum</span>(niv_res)
+niv_res1 =<span class="st"> </span><span class="kw">as.numeric</span>(niv_res)
+<span class="kw">mean</span>(niv_res1)
+niv_res2 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(niv_res))
+<span class="kw">mean</span>(niv_res2)</code></pre></div>
+<ul>
+<li>Indexación</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+y[ ]
+y[<span class="dv">2</span>]
+y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<blockquote>
+<p>Seleccione los elementos 1° y 3°</p>
+</blockquote>
+<ul>
+<li>Condición</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ifelse(condición, valor_si_TRUE, valor_si_FALSE)</span>
+<span class="kw">ifelse</span>(y<span class="op">&lt;</span><span class="dv">2</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)</code></pre></div>
+<div class="rmdnote">
+<p>
+Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.
+</p>
+</div>
+<blockquote>
+<p>Crear un vector “resist” con las categorías S o R, “S” aquellos clones con lesiones por encima de la mediana, y “R” clones con lesiones por debajo de la mediana.</p>
+</blockquote>
+<p></br></p>
+</div>
+<div id="valores-especiales" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Valores especiales</h3>
+<p>Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.</p>
+<ul>
+<li><p>NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.</p></li>
+<li><p>NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.</p></li>
+<li><p>Inf (Infinito) es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</p></li>
+<li><p>NULL representa ausencia de información.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NaN es el resultado de una operación matemática inválida. Significa Not A Number</span>
+<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
+<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
+<span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
+
+<span class="co"># NULL es el vacio de R. Es como si el objeto no existiese</span>
+a =<span class="st"> </span><span class="ot">NULL</span>
+a
+
+<span class="co"># Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.</span>
+<span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
+<span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NA es una constante lógica de R. Significa Not Available. NA puede ser </span>
+<span class="co"># convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.</span>
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
+<span class="kw">is.na</span>(y)
+<span class="kw">mean</span>(y)</code></pre></div>
+<blockquote>
+<p>Calcule el promedio de y (use la ayuda de R en caso necesario)</p>
+</blockquote>
+</div>
+</div>
+<div id="estructura-de-datos" class="section level2">
+<h2><span class="header-section-number">2.2</span> Estructura de datos</h2>
+<div class="figure">
+<img src="fig/data_str.png" width="400" />
+
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Data frames</h3>
+<p>Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.</p>
+<p>En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete <code>base</code> es el dataset “iris”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?iris
+<span class="kw">View</span>(iris) <span class="co"># ya activo desde inicio de sesión por default</span></code></pre></div>
+<blockquote>
+<p>Explore el dataset iris con las siguientes funciones con iris y anote sus resultados - head() - tail() - dim() - names() - str()</p>
+</blockquote>
+</div>
+<div id="filtrado-de-datasets" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Filtrado de datasets</h3>
+<p><strong>data[fila, columna]</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>,]
+iris[,<span class="dv">1</span>]
+iris[<span class="dv">1</span>,<span class="dv">1</span>]
+
+iris<span class="op">$</span>Sepal.Length
+<span class="kw">levels</span>(iris<span class="op">$</span>Species)
+<span class="kw">summary</span>(iris<span class="op">$</span>Sepal.Length)</code></pre></div>
+<blockquote>
+<p>Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4.</p>
+</blockquote>
+<ul>
+<li>Función <code>subset</code></li>
+</ul>
+<p>Filtremos a la variedad Species reteniendo solo a “setosa”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris_setosa &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>)</code></pre></div>
+<p>Filtremos a la variedad Species reteniendo solo a “setosa” + “virginica”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris_set.virginica &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>))</code></pre></div>
+<p>Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length &gt; 5</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris2 &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</code></pre></div>
+<blockquote>
+<p>Que pasa si cambiamos el operador <code>&amp;</code> por <code>|</code>?</p>
+</blockquote>
+</div>
+<div id="listas" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Listas</h3>
+<p>Objetos que aceptan elementos de clases diferentes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)
+x</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>a       <span class="co"># </span>
+x[<span class="dv">1</span>]       <span class="co"># </span>
+<span class="co">#sum(x[1])</span>
+x[[<span class="dv">1</span>]]     <span class="co"># </span>
+<span class="kw">sum</span>(x[[<span class="dv">1</span>]])
+x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></pre></div>
+
+</div>
+</div>
+</div>
+<h3> Referencias</h3>
+<div id="refs" class="references">
+<div id="ref-parra2007tendencias">
+<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martínez-González, Francisco Javier García-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotípicas de Características de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Científica</em> 17 (3). Universidad del Zulia: 262–67.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

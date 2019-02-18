@@ -1,0 +1,177 @@
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=FALSE, 
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+library(knitr)
+library(kableExtra)
+```
+
+# Importar {#import}
+
+## Organización de planillas a ser importadas a R
+
+Un primer paso en nuestras investigaciones (fundamental, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
+
+En particular prefiero que las [planillas excel](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true) sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
+R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!
+
+
+**5 Principios básicos** Adaptado de [@broman2018data]
+<hr>
+
+
+Como regla global, columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
+
+**1 - Consistencia**
+
+Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:
+
+  * severidad = sev
+  * incidencia = inc
+  * rendimiento = rto 
+  * hoja = hj (bien podría ser “hoja” también)
+  * planta = pl
+  * bloque = bq
+  * placa = placa 
+  * temperatura = temp
+  * máxima = max
+
+En particular prefiero usar el inglés, ya que no tiene acentos ni caracteres especiales. 
+Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades experimentales (placas, macetas, plantas dentro de las macetas, etc.), al final se recuperará en creces el tiempo extra inicialmente invertido en ello (stand-alone).
+
+* Adopten siempre los mismos términos
+
+* No escatimen en columnas: rep_pl -> rep | pl
+
+* Crear diccionario de términos: Agreguen una planilla con el detalle por extenso de las variables y sus unidades. Piensen que esa planilla la debería entender cualquier persona sin auxilio de sus propios comentarios. 
+
+
+**2 - Rectangular**
+
+Todo set de datos tiene sus dimensiones específicas: n fila - n columnas. 
+Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida” 
+
+**3 - Cero es un dato!** 
+
+Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.”  o dejar en blanco (si se usa .xlsx)
+En preferencia, llenen todas las celdas, pero siempre un solo dato por celda... 
+
+**4 - Planilla plana -> DATOS CRUDOS**
+
+* SIN FORMULAS 
+* No combinar celdas
+* no resaltar
+* no hacer bordes 
+* sin negritas
+* caracteres puros
+
+## Vías de importación 
+
+Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.
+
+Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
+
+La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: 
+
+- Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio 
+- Hacen click sobre el archivo  
+- Seleccionan "import dataset"  
+- Configuran las opciones de importación y copian el codigo generado y dan import
+(es aconsejable que peguen el codigo en el script de la sesión)   
+
+O bien desde código del script:
+    
+* Archivos excel 
+
+```{r}
+dat <- readxl::read_excel("nombre_del_archivo.xls")
+# Noten que usamos una función del paquete "readxl", por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con "::"
+```
+
+> Importar soja_mancha.xlsx, nombrandolo "soja"
+> Importar can_phoma.xlsx, nombrandolo "canola"
+
+```{r, include=FALSE}
+library(readxl)
+soja <- read_excel("data/soja_mancha.xlsx")
+canola <- read_excel("data/canola_phoma.xlsx")
+mani <- read_excel("data/mani_carbon.xlsx")
+olivo  <- readr::read_csv("data/olivo_xylella.csv")
+
+save(soja, canola, mani, olivo, file="data/datos_crudos.RData")
+```
+
+
+"canola" es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable "par" la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).
+
+* Archivos de texto .csv
+    
+```{r}
+dat <- read.csv("nombre_del_archivo.csv", header = TRUE, sep = ",", dec = ".")# puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.
+
+dat <- readr::read_csv("ruta/nombre_del_archivo.csv")
+```
+
+* Desde clipboard 
+
+Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante: 
+
+```{r}
+dat = read.delim("clipboard", dec=",")
+```
+
+* Desde google sheets:
+
+```{r, eval=FALSE}
+# install.packages("gsheet")
+url <- "https://docs.google.com/spreadsheets/d/1NQ7nd2pOPQYaLzJs1D2-aOB6LDKzv9kjOcKaNeNFjpA/edit?usp=sharing"
+# browseURL(url)
+dat  <- gsheet::gsheet2tbl(url)
+dat
+```
+
+* Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)
+
+```{r}
+dat <- read.table(header=T, text='
+Crop      x1 x2 x3 x4
+Corn      16 27 31 33
+Corn      15 23 30 30
+Corn      16 27 27 26
+Corn      18 20 25 23
+Corn      15 15 31 32
+Corn      15 32 32 15
+Corn      12 15 16 73
+Soybean   20 23 23 25
+Soybean   24 24 25 32
+Soybean   21 25 23 24
+Soybean   27 45 24 12
+Soybean   12 13 15 42
+Soybean   22 32 31 43
+')
+```
+
+
+* Colección de datos en archivo .RData 
+
+Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde este.
+
+```{r}
+save(soja, canola, file="./data/soja_canola.RData")
+```
+
+Para traerlos nuevamente al entorno de la sesión:
+
+```{r}
+load("./data/soja_canola.RData")
+```
+
+* Exportar datasets
+
+```{r}
+write.table(dat, "./data/dat.txt", sep = "\t")
+```

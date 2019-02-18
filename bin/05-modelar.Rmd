@@ -1,3 +1,21 @@
 # Modelar {#model}
 
-En construcción
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      eval=TRUE,
+                      fig.width = 12,
+                      fig.height = 8)
+options(width = 90)
+```
+
+(En construcción, mientras seguir codigos en clases)
+
+Se incluirá:
+
+Modelos lineares - diagnosticos 
+
+library(broom)
+
+
