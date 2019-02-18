@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introducción a R para el análisis de datos de Ciencias Agrarias</title>
-  <meta name="description" content="Introducción a R para el análisis de datos de Ciencias Agrarias">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <title>Introducción a R</title>
+  <meta name="description" content="Introducción a R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta property="og:title" content="Introducción a R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="juanchiem/R_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta name="twitter:title" content="Introducción a R" />
   
   
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="model.html">
+<link rel="prev" href="datasets.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -65,13 +65,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -133,46 +131,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma"><i class="fa fa-check"></i>Cronograma</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#autor"><i class="fa fa-check"></i>Autor</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#configuraciones-basicas-del-rstudio"><i class="fa fa-check"></i><b>1.2</b> Configuraciones básicas del RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.3</b> Instalación de paquetes</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.4</b> Configuración de la sesión</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.5</b> R como calculadora</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.6</b> Funciones</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.7</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.8</b> Tablas resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html"><i class="fa fa-check"></i><b>2</b> R como calculadora</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tipos-de-objetos"><i class="fa fa-check"></i><b>2.1</b> Tipos de Objetos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="2.1.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
-<li class="chapter" data-level="2.1.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> Data frames</a></li>
-<li class="chapter" data-level="2.1.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.1.4</b> Filtrado de datasets</a></li>
-<li class="chapter" data-level="2.1.5" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#listas"><i class="fa fa-check"></i><b>2.1.5</b> Listas</a></li>
+<li class="chapter" data-level="2" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>2</b> Datos: tipos y estructuras</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-type.html"><a href="data-type.html#tipos-de-datos"><i class="fa fa-check"></i><b>2.1</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-type.html"><a href="data-type.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
-<li class="chapter" data-level="2.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#s.o.s."><i class="fa fa-check"></i><b>2.3</b> S.O.S.!!</a></li>
-<li class="chapter" data-level="2.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tablas_resumen"><i class="fa fa-check"></i><b>2.4</b> Tablas resumen</a></li>
+<li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.2.2</b> Filtrado de datasets</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.3</b> Listas</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
 <li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>3.1</b> Organización de planillas a ser importadas a R</a></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>3.2</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>4</b> Manipular</a><ul>
-<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1</b> select</a></li>
-<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.2</b> filter</a></li>
-<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.3</b> mutate</a></li>
-<li class="chapter" data-level="4.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.4</b> arrange</a></li>
-<li class="chapter" data-level="4.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.5</b> summarise</a></li>
-<li class="chapter" data-level="4.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>4.6</b> Dataset “can_phoma”</a></li>
+<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#dplyr"><i class="fa fa-check"></i><b>4.1</b> dplyr::</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1.1</b> select</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.1.2</b> filter</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.1.3</b> mutate</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.1.4</b> arrange</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.1.5</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>5</b> Visualizar</a><ul>
-<li class="chapter" data-level="5.1" data-path="explore.html"><a href="explore.html#mancha-anillada-en-soja"><i class="fa fa-check"></i><b>5.1</b> Mancha anillada en soja</a></li>
-<li class="chapter" data-level="5.2" data-path="explore.html"><a href="explore.html#phoma-en-colza"><i class="fa fa-check"></i><b>5.2</b> Phoma en colza</a></li>
-<li class="chapter" data-level="5.3" data-path="explore.html"><a href="explore.html#fertilizacion-con-n-y-s-en-sorgo"><i class="fa fa-check"></i><b>5.3</b> Fertilización con N y S en sorgo</a></li>
+<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#tidyr"><i class="fa fa-check"></i><b>4.2</b> tidyr::</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manip.html"><a href="manip.html#join"><i class="fa fa-check"></i><b>4.2.1</b> join</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> Modelar</a></li>
-<li class="chapter" data-level="7" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>7</b> Referencias</a></li>
+<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#forcats"><i class="fa fa-check"></i><b>4.3</b> forcats::</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>5</b> Cálculos fitopatométricos</a><ul>
+<li class="chapter" data-level="5.1" data-path="fitopato.html"><a href="fitopato.html#caso-1-carbon-del-mani"><i class="fa fa-check"></i><b>5.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="5.2" data-path="fitopato.html"><a href="fitopato.html#caso-2-xylella-en-olivos"><i class="fa fa-check"></i><b>5.2</b> Caso 2: xylella en olivos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="fitopato.html"><a href="fitopato.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fitopato.html"><a href="fitopato.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
+<li class="chapter" data-level="6.1" data-path="explore.html"><a href="explore.html#comparacion-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.1</b> Comparación de niveles de factores</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="explore.html"><a href="explore.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.1.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.1.2" data-path="explore.html"><a href="explore.html#barplot-se"><i class="fa fa-check"></i><b>6.1.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="explore.html"><a href="explore.html#box-plot"><i class="fa fa-check"></i><b>6.1.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
+<li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -187,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R para el análisis de datos de Ciencias Agrarias</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R</a>
           </h1>
         </div>
 
@@ -196,26 +214,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="ref" class="section level1">
-<h1><span class="header-section-number">7</span> Referencias</h1>
+<h1><span class="header-section-number">8</span> Referencias</h1>
 
 <div id="refs" class="references">
 <div>
-<p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1). Taylor &amp; Francis: 2–10.</p>
+<p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1): 2–10.</p>
+</div>
+<div>
+<p>Drummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal Them.” <em>British Journal of Pharmacology</em> 163 (2): 208–10. <a href="https://doi.org/10.1111/j.1476-5381.2011.01251.x">https://doi.org/10.1111/j.1476-5381.2011.01251.x</a>.</p>
 </div>
 <div>
 <p>Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” <em>Sinauer, Sunderland, Massachusetts, USA</em>.</p>
 </div>
 <div>
-<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7). Am Phytopath Society: 850–60.</p>
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7): 850–60.</p>
 </div>
 <div>
-<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martínez-González, Francisco Javier García-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotípicas de Características de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Científica</em> 17 (3). Universidad del Zulia: 262–67.</p>
+<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martı́nez-González, Francisco Javier Garcı́a-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotı́picas de Caracterı́sticas de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Cientı́fica</em> 17 (3): 262–67.</p>
 </div>
 <div>
-<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. &quot; O’Reilly Media, Inc.&quot;. <a href="http://r4ds.had.co.nz/" class="uri">http://r4ds.had.co.nz/</a>.</p>
+<p>Weissgerber, Natasa M. AND Winham, Tracey L. AND Milic. 2015. “Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm.” <em>PLOS Biology</em> 13 (4): 1–10. <a href="https://doi.org/10.1371/journal.pbio.1002128">https://doi.org/10.1371/journal.pbio.1002128</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
 </div>
@@ -224,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datasets.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -255,7 +279,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/06-referencias.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/08-referencias.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -266,6 +290,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

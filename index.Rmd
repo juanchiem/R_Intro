@@ -1,5 +1,5 @@
 --- 
-title: "Introducción a R para el análisis de datos de Ciencias Agrarias"
+title: "Introducción a R"
 author: ""
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -26,11 +26,13 @@ options(width = 90)
 
 *"Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”*
 
-![](fig/top.jpg) 
+<center>
+![](fig/top.jpg){width=500px} 
+</center>
 
 <div style="text-align: right">  ~ Adaptación de [@ellison2004primer] ~ </div>
 
-<hr>
+---
 
 Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:
 
@@ -40,8 +42,7 @@ Podríamos resumir nuestro trabajo como científicos, desde la recolección de d
 
 </br>
 
-
-<hr>
+---
 
 ### Objetivos {-}
 
@@ -50,45 +51,59 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 <hr>
 
 <div style="text-align: center">
-<b>Estas son algunas razones por la que elegimos R</b> [@R-base]
+<b>Por qué R?</b> [@R-base]
 </div>
+```{block, type='boxed', include=FALSE}
+ 1. Software libre - multiplataforma
 
+ 2. Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho mas ameno)
 
-```{block, type='boxed'}
- 1. Software libre
+ 3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
 
-  2. Aprender un lenguaje de programación: ejercicio mental/lógica. Aprender estadística resulta mucho mas ameno.
+ 4. Gran flexibilidad y elegancia de los gráficos
 
-  3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
-
-  4. Gran flexibilidad y elegancia de los gráficos
-
-  5. Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
-
+ 5. Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+ 
+ 6. Programar ya no es solo computación (CV/relevant skills) 
 
 ```
+
+```{r, tidy=FALSE, eval=TRUE, echo = FALSE, results='asis'}
+library(kableExtra)
+
+x = data.frame(
+  x1 = cell_spec(1:6, "html", color = "white", align = "c", angle = 0, 
+                  background = c("#666666","#666666","#666666")),
+  
+  x2 = c(
+    "Software libre - multiplataforma",
+    "Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho mas ameno)",
+    "Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)",
+    "Gran flexibilidad y elegancia de los gráficos",
+    "Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de ciencia de datos en inglés)",
+    "Programar ya no es solo computación (CV/relevant skills)")) %>%
+  kable(format = "html", escape = F) %>%
+  # kable_styling("striped", ) %>% 
+  kable_styling(font_size = 18, full_width = T)
+#bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+
+gsub("<thead>.*</thead>", "", x) 
+
+```
+
 </br>
 
 <div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="400" width="400" /></div>
 
 </br>
 
-### Cronograma {-}
+<b>Autor</b>
 
-
-|Horario             |Lunes           |Martes             |Miércoles        |Jueves               |Viernes      |
-|:-------------------|:---------------|:------------------|:----------------|:--------------------|:------------|
-|9:00     (10.30)    12.30  |Intro R RStudio |Importar Manipular |Modelos lineales |Gráficos II Reportes |        |
-|13.30    (15:00)    16:00 |Rcalc  Objetos  |Explorar           |Modelos lineales |                 |Presentación de reportes|
-
-</br>
-
-### Autor {-}
 
 * Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
     + ORCID: <https://orcid.org/0000-0002-3685-760X>
-    + Twitter: [juanchiedwards](https://twitter.com/juanchiedwards)
+    + Twitter: [juanchiem](https://twitter.com/juanchiem)
     + GitHub: <https://github.com/juanchiem>
 
 </br>

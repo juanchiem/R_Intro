@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introducción a R para el análisis de datos de Ciencias Agrarias</title>
-  <meta name="description" content="Introducción a R para el análisis de datos de Ciencias Agrarias">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <title>Introducción a R</title>
+  <meta name="description" content="Introducción a R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta property="og:title" content="Introducción a R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="juanchiem/R_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a R para el análisis de datos de Ciencias Agrarias" />
+  <meta name="twitter:title" content="Introducción a R" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manip.html">
-<link rel="next" href="model.html">
+<link rel="prev" href="fitopato.html">
+<link rel="next" href="datasets.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -65,13 +65,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -133,46 +131,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#cronograma"><i class="fa fa-check"></i>Cronograma</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#autor"><i class="fa fa-check"></i>Autor</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#instalacion-de-programas"><i class="fa fa-check"></i><b>1.1</b> Instalación de programas</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#configuraciones-basicas-del-rstudio"><i class="fa fa-check"></i><b>1.2</b> Configuraciones básicas del RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#instalacion-de-paquetes"><i class="fa fa-check"></i><b>1.3</b> Instalación de paquetes</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#configuracion-de-la-sesion"><i class="fa fa-check"></i><b>1.4</b> Configuración de la sesión</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#r-como-calculadora"><i class="fa fa-check"></i><b>1.5</b> R como calculadora</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#funciones"><i class="fa fa-check"></i><b>1.6</b> Funciones</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#s.o.s."><i class="fa fa-check"></i><b>1.7</b> S.O.S.!!</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#tablas_resumen"><i class="fa fa-check"></i><b>1.8</b> Tablas resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html"><i class="fa fa-check"></i><b>2</b> R como calculadora</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tipos-de-objetos"><i class="fa fa-check"></i><b>2.1</b> Tipos de Objetos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="2.1.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
-<li class="chapter" data-level="2.1.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#data-frames"><i class="fa fa-check"></i><b>2.1.3</b> Data frames</a></li>
-<li class="chapter" data-level="2.1.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.1.4</b> Filtrado de datasets</a></li>
-<li class="chapter" data-level="2.1.5" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#listas"><i class="fa fa-check"></i><b>2.1.5</b> Listas</a></li>
+<li class="chapter" data-level="2" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>2</b> Datos: tipos y estructuras</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-type.html"><a href="data-type.html#tipos-de-datos"><i class="fa fa-check"></i><b>2.1</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data-type.html"><a href="data-type.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
-<li class="chapter" data-level="2.3" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#s.o.s."><i class="fa fa-check"></i><b>2.3</b> S.O.S.!!</a></li>
-<li class="chapter" data-level="2.4" data-path="r-como-calculadora.html"><a href="r-como-calculadora.html#tablas_resumen"><i class="fa fa-check"></i><b>2.4</b> Tablas resumen</a></li>
+<li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.2.2</b> Filtrado de datasets</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.3</b> Listas</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
 <li class="chapter" data-level="3.1" data-path="import.html"><a href="import.html#organizacion-de-planillas-a-ser-importadas-a-r"><i class="fa fa-check"></i><b>3.1</b> Organización de planillas a ser importadas a R</a></li>
 <li class="chapter" data-level="3.2" data-path="import.html"><a href="import.html#vias-de-importacion"><i class="fa fa-check"></i><b>3.2</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>4</b> Manipular</a><ul>
-<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1</b> select</a></li>
-<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.2</b> filter</a></li>
-<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.3</b> mutate</a></li>
-<li class="chapter" data-level="4.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.4</b> arrange</a></li>
-<li class="chapter" data-level="4.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.5</b> summarise</a></li>
-<li class="chapter" data-level="4.6" data-path="manip.html"><a href="manip.html#dataset-can_phoma"><i class="fa fa-check"></i><b>4.6</b> Dataset “can_phoma”</a></li>
+<li class="chapter" data-level="4.1" data-path="manip.html"><a href="manip.html#dplyr"><i class="fa fa-check"></i><b>4.1</b> dplyr::</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="manip.html"><a href="manip.html#select"><i class="fa fa-check"></i><b>4.1.1</b> select</a></li>
+<li class="chapter" data-level="4.1.2" data-path="manip.html"><a href="manip.html#filter"><i class="fa fa-check"></i><b>4.1.2</b> filter</a></li>
+<li class="chapter" data-level="4.1.3" data-path="manip.html"><a href="manip.html#mutate"><i class="fa fa-check"></i><b>4.1.3</b> mutate</a></li>
+<li class="chapter" data-level="4.1.4" data-path="manip.html"><a href="manip.html#arrange"><i class="fa fa-check"></i><b>4.1.4</b> arrange</a></li>
+<li class="chapter" data-level="4.1.5" data-path="manip.html"><a href="manip.html#summarise"><i class="fa fa-check"></i><b>4.1.5</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>5</b> Visualizar</a><ul>
-<li class="chapter" data-level="5.1" data-path="explore.html"><a href="explore.html#mancha-anillada-en-soja"><i class="fa fa-check"></i><b>5.1</b> Mancha anillada en soja</a></li>
-<li class="chapter" data-level="5.2" data-path="explore.html"><a href="explore.html#phoma-en-colza"><i class="fa fa-check"></i><b>5.2</b> Phoma en colza</a></li>
-<li class="chapter" data-level="5.3" data-path="explore.html"><a href="explore.html#fertilizacion-con-n-y-s-en-sorgo"><i class="fa fa-check"></i><b>5.3</b> Fertilización con N y S en sorgo</a></li>
+<li class="chapter" data-level="4.2" data-path="manip.html"><a href="manip.html#tidyr"><i class="fa fa-check"></i><b>4.2</b> tidyr::</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="manip.html"><a href="manip.html#join"><i class="fa fa-check"></i><b>4.2.1</b> join</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> Modelar</a></li>
-<li class="chapter" data-level="7" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>7</b> Referencias</a></li>
+<li class="chapter" data-level="4.3" data-path="manip.html"><a href="manip.html#forcats"><i class="fa fa-check"></i><b>4.3</b> forcats::</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>5</b> Cálculos fitopatométricos</a><ul>
+<li class="chapter" data-level="5.1" data-path="fitopato.html"><a href="fitopato.html#caso-1-carbon-del-mani"><i class="fa fa-check"></i><b>5.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="5.2" data-path="fitopato.html"><a href="fitopato.html#caso-2-xylella-en-olivos"><i class="fa fa-check"></i><b>5.2</b> Caso 2: xylella en olivos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="fitopato.html"><a href="fitopato.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="fitopato.html"><a href="fitopato.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>5.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
+<li class="chapter" data-level="6.1" data-path="explore.html"><a href="explore.html#comparacion-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.1</b> Comparación de niveles de factores</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="explore.html"><a href="explore.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.1.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.1.2" data-path="explore.html"><a href="explore.html#barplot-se"><i class="fa fa-check"></i><b>6.1.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.1.3" data-path="explore.html"><a href="explore.html#box-plot"><i class="fa fa-check"></i><b>6.1.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
+<li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -187,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R para el análisis de datos de Ciencias Agrarias</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R</a>
           </h1>
         </div>
 
@@ -196,174 +214,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="explore" class="section level1">
-<h1><span class="header-section-number">5</span> Visualizar</h1>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<p>Una vez que nuestros datos han sido importados y manipulados podríamos comenzar la exploración numérica y visual de los mismos.</p>
-<p>La visualización de datos es parte fundamental del flujo de trabajo de un análisis de datos, tanto para explorar los datos, como para explicar / comunicar los resultados. Es decir, dominar las herramientas de visualización resulta imprescindible para un científico cuya materia prima son los datos.</p>
-<p>Los gráficos exploratorios requieren una mínima elaboración, la suficiente para entenderlos y detectar datos anormales (probablemente por error de digitación o outliers).</p>
-<p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> se puede utilizar tanto para la creación rápida de gráficos como para gráficos complejos y detallados (con fines de publicaciones científicas). Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
-<p>Un mismo dataset puede ser visualizado de múltiples formas, partiendo de la simple visualización de las observaciones con alguna medida de posición como ser la media o mediana. Cuando las observaciones son 5 o más es común acompanãr la media de posición (media o mediana) por alguna medida de dispersión: desvio estándar, error estándar o intervalo de confianza de la media (95% IC).</p>
-<p>A continuación se presentan algunas opciones de gráficos que surgen de diferentes combinaciones de medidas de posición y de dispersión.</p>
-<div id="mancha-anillada-en-soja" class="section level2">
-<h2><span class="header-section-number">5.1</span> Mancha anillada en soja</h2>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">url1 &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/juanchiem/R_Intro/master/data/soja_mancha.csv&quot;</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">soja &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">textConnection</span>(RCurl<span class="op">::</span><span class="kw">getURL</span>(url1))) </a></code></pre></div>
-<p>Nos quedaremos solo con dos cultivares: “BMX_Potencia_RR” y “M9144_RR” (nos aseguraremos que no queden ningun otro nivel del factor cultivar)</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(cultivar <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BMX_Potencia_RR&quot;</span>, <span class="st">&quot;M9144_RR&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">droplevels</span>()<span class="co"># necesario para remover los cultivares no seleccionados</span></a></code></pre></div>
-<p>Exploración del dataset</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>study <span class="op">+</span><span class="st"> </span>cultivar, soja))</a></code></pre></div>
-<p>Estableceremos quien es el dataset a ser graficado y quienes son las variables en los ejes x e y:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">p0 =<span class="st"> </span><span class="kw">ggplot</span>(soja, <span class="kw">aes</span>(<span class="dt">x=</span>sev, <span class="dt">y=</span>yield))</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">p0</a></code></pre></div>
-<p>Agregaremos las observaciones</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">p0  <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p>Identificaremos a que cultivar corresponden las observaciones y agregaremos una línea de tendencia general para cada cultivar:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> cultivar)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">color =</span> cultivar))</a></code></pre></div>
-<p>Qué pueden concluir al respecto?</p>
-<p>Ahora dividiremos a cada cultivar en paneles individuales e identificaremos las tendencias intra-estudio.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> study))<span class="op">+</span></a>
-<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>cultivar)<span class="op">+</span></a>
-<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Disease severity (%)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Yield (kg/ha)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
-<p>Cambiaron los resultados? que puede concluir ahora?</p>
-<p>Exploremos el experimento 1</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">soja_exp1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(study <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">droplevels</span>()<span class="co"># necesario para remover los cultivares no seleccionados</span></a></code></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># library(Rmisc)</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="co"># summarySE(soja_exp1, measurevar=&quot;yield&quot;, groupvars=&quot;fungic&quot;)</span></a>
-<a class="sourceLine" id="cb66-3" data-line-number="3">         </a>
-<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="kw">ggplot</span>(soja_exp1, <span class="kw">aes</span>(<span class="dt">x=</span>fungic, <span class="dt">y=</span>yield)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">  </span></a>
-<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="st">  </span><span class="co"># geom_boxplot()+</span></a>
-<a class="sourceLine" id="cb66-7" data-line-number="7"><span class="st">  </span></a>
-<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="co"># Observaciones reales -----</span></a>
-<a class="sourceLine" id="cb66-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span><span class="st">  </span><span class="co"># aes(color=factor(rep)</span></a>
-<a class="sourceLine" id="cb66-10" data-line-number="10"><span class="st">  </span><span class="co"># geom_jitter(width = 0.1) </span></a>
-<a class="sourceLine" id="cb66-11" data-line-number="11"><span class="st">  </span></a>
-<a class="sourceLine" id="cb66-12" data-line-number="12"><span class="co"># Medida de posición -----</span></a>
-<a class="sourceLine" id="cb66-13" data-line-number="13"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span><span class="st">&quot;mean&quot;</span>, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb66-14" data-line-number="14"><span class="st">  </span><span class="co"># stat_summary(fun.y=&quot;mean&quot;, geom=&quot;bar&quot;) </span></a>
-<a class="sourceLine" id="cb66-15" data-line-number="15"><span class="st">  </span></a>
-<a class="sourceLine" id="cb66-16" data-line-number="16"><span class="co"># Medida de dispersión -----</span></a>
-<a class="sourceLine" id="cb66-17" data-line-number="17"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb66-18" data-line-number="18"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span> mean_sdl, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb66-19" data-line-number="19"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_boot, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p>Afinando la apariencia para paper</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">levels</span>(soja_exp1<span class="op">$</span>fungic)</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="kw">library</span>(forcats)</a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb67-4" data-line-number="4">soja_exp1 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fungic =</span> <span class="kw">fct_recode</span>(fungic, </a>
-<a class="sourceLine" id="cb67-6" data-line-number="6">                             <span class="st">`</span><span class="dt">Czm</span><span class="st">`</span> =<span class="st"> &quot;CZM[1]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-7" data-line-number="7">                             <span class="st">`</span><span class="dt">Czm+CM+Tebu</span><span class="st">`</span> =<span class="st">&quot;CZM_CM_TEBU[1]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-8" data-line-number="8">                             <span class="st">`</span><span class="dt">Czm+LS</span><span class="st">`</span> =<span class="st"> &quot;CZM+LS[1+0.5]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-9" data-line-number="9">                             <span class="st">`</span><span class="dt">Epo+Flux+Pyra (0.8L)</span><span class="st">`</span> =<span class="st"> &quot;EPO_FLUX_PYRA[0.8]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-10" data-line-number="10">                             <span class="st">`</span><span class="dt">Epo+Flux+Pyra (1L)</span><span class="st">`</span> =<span class="st">&quot;EPO_FLUX_PYRA[1]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-11" data-line-number="11">                             <span class="st">`</span><span class="dt">Fluo</span><span class="st">`</span> =<span class="st"> &quot;FLUO[0.4]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-12" data-line-number="12">                             <span class="st">`</span><span class="dt">Prot+Trif</span><span class="st">`</span> =<span class="st"> &quot;PROT_TRIF[0.4]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-13" data-line-number="13">                             <span class="st">`</span><span class="dt">Tiof</span><span class="st">`</span> =<span class="st"> &quot;TIOF[1]&quot;</span>,</a>
-<a class="sourceLine" id="cb67-14" data-line-number="14">                             <span class="st">`</span><span class="dt">Check</span><span class="st">`</span> =<span class="st"> &quot;ZZ_CHECK&quot;</span>),</a>
-<a class="sourceLine" id="cb67-15" data-line-number="15">         <span class="dt">fungic1 =</span> <span class="kw">fct_relevel</span>(fungic, </a>
-<a class="sourceLine" id="cb67-16" data-line-number="16">                              <span class="st">&quot;Check&quot;</span>, <span class="st">&quot;Czm&quot;</span>, <span class="st">&quot;Czm+CM+Tebu&quot;</span>, <span class="st">&quot;Czm+LS&quot;</span>, <span class="st">&quot;Epo+Flux+Pyra (0.8L)&quot;</span>, <span class="st">&quot;Epo+Flux+Pyra (1L)&quot;</span>, <span class="st">&quot;Fluo&quot;</span>, <span class="st">&quot;Prot+Trif&quot;</span>, <span class="st">&quot;Tiof&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-17" data-line-number="17"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> fungic1, <span class="dt">y =</span> yield)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;grey80&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb67-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb67-20" data-line-number="20"><span class="co"># Agregamos detalles esteticos</span></a>
-<a class="sourceLine" id="cb67-21" data-line-number="21"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
-<a class="sourceLine" id="cb67-22" data-line-number="22"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Fungicide treatment&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Soybean yield (kg/ha)&quot;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb67-23" data-line-number="23"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x  =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">60</span>, <span class="dt">vjust=</span><span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">size=</span><span class="dv">8</span>))</a>
-<a class="sourceLine" id="cb67-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb67-25" data-line-number="25"><span class="co"># ggsave(w=80, h=80, units=&quot;mm&quot;, dpi=150, scale = 1,</span></a>
-<a class="sourceLine" id="cb67-26" data-line-number="26"><span class="co"># &quot;WORKING_DIRECTORY/plots/plot_1.tiff&quot;)</span></a></code></pre></div>
+<h1><span class="header-section-number">6</span> Visualizar</h1>
+<p>La visualización de datos es una pieza fundamental del flujo de trabajo del científico, tanto para explorar sus observaciones, como para explicar/comunicar sus resultados e ideas. Es decir, dominar las herramientas de visualización resulta imprescindible para un investigador cuya materia prima son los datos.</p>
+<p>La gran comunidad de usuarios de R disponibiliza sus creaciones e incluso trabajan en extensiones que amplien la potencialidad de sus paquetes.</p>
+<p>Se podria afirmar que no hay límites para la creación. Digamos, que no importa el “<strong>Cómo?</strong>” si no el “<strong>Qué?</strong>”</p>
+<p>Algunas pruebas de ello son los siguientes links:</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a></li>
+<li><a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 plots</a></li>
+<li><a href="http://www.ggplot2-exts.org/gallery/">Extensiones de ggplot</a></li>
+</ul>
+<p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios asi como crear figuras complejas, detalladas de alta calidad (con fines de publicaciones científicas).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<p>Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
+<center>
+<img src="fig/gglayers.png" width="500" />
+</center>
+<p>Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que</p>
+<p>o sea pueden haber varias</p>
+<ul>
+<li>aesthetics</li>
+</ul>
+<p>Se definen con aes()
+Significado de aesthetic en ggplot: “Algo que se puede ver”
+Cada geom acepta un conjunto de aesthetics
+Ejemplos:
++ position (i.e., en el eje “x” y “y”)
+color (color “exterior”)
+fill (color “interior”)
+shape (de los puntos)
+linetype
+size</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length))</code></pre>
+<ul>
+<li>geoms</li>
+</ul>
+<p>Objetos geometricos son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La <a href="https://ggplot2.tidyverse.org/reference/#section-layer-geoms">lista de “geoms”</a> aumenta día a día.</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length, 
+             <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre>
+<ul>
+<li>facets</li>
+</ul>
+<p>Las facetas o “facets” en permiten dividir el mismo gráfico en diferentes niveles de un <strong>factor</strong>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)
+p</code></pre>
+<ul>
+<li>theme</li>
+</ul>
+<p>Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw()</p>
+<pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre>
+<p>Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad</p>
+<pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(
+iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Petal.Length, <span class="dt">fill=</span>Species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill=</span><span class="ot">FALSE</span>)
+,
+iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Petal.Length, <span class="dt">fill=</span>Species)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)
+, 
+<span class="dt">align=</span><span class="st">&quot;h&quot;</span>
+)</code></pre>
+<div id="comparacion-de-niveles-de-factores" class="section level2">
+<h2><span class="header-section-number">6.1</span> Comparación de niveles de factores</h2>
+<p>Los graficos de barra, ampliamente usados en publicaciones cientificas, son cada vez mas criticados por “ocultar” la naturaleza de las observaciones <span class="citation">(Drummond and Vowler <a href="#ref-doi:10.1111/j.1476-5381.2011.01251.x">2011</a>; Weissgerber <a href="#ref-10.1371/journal.pbio.1002128">2015</a>)</span> (Sugerencia: leer el box 1 del ultimo paper)</p>
+<p><img src="fig/plos_bars.png" /></p>
+<div class="rmdnote">
+<p>
+De <span class="citation"><span class="citation">(Drummond and Vowler <a href="#ref-doi:10.1111/j.1476-5381.2011.01251.x">2011</a>)</span></span>: Fig 1. Many different datasets can lead to the same bar graph.
+</p>
+<p>
+The full data may suggest different conclusions from the summary statistics. The means and SEs for the four example datasets shown in Panels B–E are all within 0.5 units of the means and SEs shown in the bar graph (Panel A). p-values were calculated in R (version 3.0.3) using an unpaired t-test, an unpaired t-test with Welch’s correction for unequal variances, or a Wilcoxon rank sum test. - In Panel B, the distribution in both groups appears symmetric. Although the data suggest a small difference between groups, there is substantial overlap between groups. - In Panel C, the apparent difference between groups is driven by an outlier. - Panel D suggests a possible bimodal distribution. Additional data are needed to confirm that the distribution is bimodal and to determine whether this effect is explained by a covariate. - In Panel E, the smaller range of values in group two may simply be due to the fact that there are only three observations. Additional data for group two would be needed to determine whether the groups are actually different.
+</p>
 </div>
-<div id="phoma-en-colza" class="section level2">
-<h2><span class="header-section-number">5.2</span> Phoma en colza</h2>
-<p>“can_phoma” es el dataset de un experimento de colza (<em>Brassica napus</em>) donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de Phoma lingam a través del tiempo (tiempo térmico desde la detección de la primera mancha). La unidad experimental está identificada en la variable “par” la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).</p>
-<p></br></p>
-<p><img src="script/fig/coloni.png" /></p>
-<p>1 - Importación de datos (desde internet - googlesheets)</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">library</span>(gsheet)</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb68-3" data-line-number="3">url1=<span class="st">&quot;https://docs.google.com/spreadsheets/d/135CDYxoU9KF-Gl32461EWpX0LlXbsSGZ4t_i-0VPpko/edit?usp=sharing&quot;</span></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="co"># browseURL(url1)</span></a>
-<a class="sourceLine" id="cb68-6" data-line-number="6">can_phoma =<span class="st"> </span><span class="kw">gsheet2tbl</span>(url1)</a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8">can_phoma</a>
-<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="co"># str(can_phoma)</span></a></code></pre></div>
-<p>Esto seria uma forma “wide” de representación del dataset (crudo).</p>
-<p>Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato “long”. La función gather (del inglés “reunir”, paquete tidyr) apila las columnas que indiquemos.</p>
-<p>2 - Manipulación + transformación</p>
-<p>Crearemos una variable “tt” con los nombres de las columnas con números, y otra “inc” (incidencia) con los valores correspondientes:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">can_long &lt;-<span class="st"> </span>can_phoma <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">015</span><span class="st">`</span>, <span class="st">`</span><span class="dt">058</span><span class="st">`</span>, <span class="st">`</span><span class="dt">095</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, </a>
-<a class="sourceLine" id="cb69-3" data-line-number="3">         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) </a>
-<a class="sourceLine" id="cb69-4" data-line-number="4">can_long</a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="co"># str(can_long)</span></a></code></pre></div>
-<p>Precisamos que tt sea clase “numérica” para ciertos cálculos</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">can_long<span class="op">$</span>tt &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(can_long<span class="op">$</span>tt)</a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="co"># can_long$tt</span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3">can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(plot)</a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="kw">str</span>(can_long)</a></code></pre></div>
-<p>Exploramos las evaluaciones originales con gráfico de puntos + líneas individualizando cada parcela en un panel.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">ggplot</span>(can_long, <span class="kw">aes</span>(<span class="dt">x=</span>tt, <span class="dt">y=</span>inc)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group=</span>plot)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_grid</span>(bk<span class="op">~</span>trt)</a></code></pre></div>
-<p>Verificamos la presencia de errores de tipeo en dos parcelas: 202 y 310. (editamos el dataset original)</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># editar los datos:</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2">can_long&lt;-<span class="st"> </span><span class="kw">edit</span>(can_long)</a></code></pre></div>
-<p>Calculamos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> + <code>summarize</code> y <code>agricolae::audpc</code></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># Funcion na.omit</span></a>
-<a class="sourceLine" id="cb73-2" data-line-number="2">can_auc &lt;-<span class="st"> </span><span class="kw">na.omit</span>(can_long) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(trt, bk, sev_cank) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">auc_i =</span> agricolae<span class="op">::</span><span class="kw">audpc</span> (inc, tt))</a>
-<a class="sourceLine" id="cb73-5" data-line-number="5">can_auc</a></code></pre></div>
-<ul>
-<li>Exploramos la variable transformada <code>auc_p</code> con boxplot</li>
-</ul>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">ggplot</span>(can_auc, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(trt), <span class="dt">y=</span>auc_i)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
-<ul>
-<li>Exploramos la variable original <code>sev_cank</code> con boxplot</li>
-</ul>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">ggplot</span>(can_auc, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(trt), <span class="dt">y=</span>sev_cank)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
-<p>Ahora si, can_phoma está listo para entrar al próximo paso: modelado.</p>
-</div>
-<div id="fertilizacion-con-n-y-s-en-sorgo" class="section level2">
-<h2><span class="header-section-number">5.3</span> Fertilización con N y S en sorgo</h2>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">sorg &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;~/GitHub/R_Intro/data/sorgo.csv&quot;</span>)</a></code></pre></div>
-<ul>
-<li>Exploracion de todas las variables</li>
-</ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># xtabs(~ ferti + cond + dias, long)</span></a>
-<a class="sourceLine" id="cb77-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb77-3" data-line-number="3">pd =<span class="st"> </span><span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb77-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb77-5" data-line-number="5">long <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>(valor) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb77-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb77-7" data-line-number="7"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(hibr), <span class="dt">y=</span>valor, <span class="dt">group=</span>trt, <span class="dt">color=</span><span class="kw">factor</span>(trt))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb77-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>, <span class="dt">size=</span><span class="fl">0.8</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb77-9" data-line-number="9"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="kw">aes</span>(<span class="dt">group=</span>trt), <span class="dt">fun.data =</span> mean_cl_boot,</a>
-<a class="sourceLine" id="cb77-10" data-line-number="10">               <span class="dt">size =</span> <span class="fl">0.05</span>, <span class="dt">position=</span>pd) <span class="op">+</span></a>
-<a class="sourceLine" id="cb77-11" data-line-number="11"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="kw">aes</span>(<span class="dt">group=</span>trt), <span class="dt">size =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb77-12" data-line-number="12">               <span class="dt">fun.y=</span><span class="st">&quot;mean&quot;</span>, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">position=</span>pd, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb77-13" data-line-number="13"><span class="st">  </span><span class="kw">facet_wrap</span>(variable <span class="op">~</span><span class="st"> </span>ph, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a>
-<a class="sourceLine" id="cb77-14" data-line-number="14">  </a>
-<a class="sourceLine" id="cb77-15" data-line-number="15"><span class="co"># ggsave(filename = &quot;exp3.png&quot;, </span></a>
-<a class="sourceLine" id="cb77-16" data-line-number="16"><span class="co">#        path = &quot;C:/Users/edwardsmolina.juan/Dropbox/Papers/1 In progress/sorgo_belen/plots&quot;)</span></a></code></pre></div>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">library</span>(GGally)</a>
-<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="co"># sorg[,5:11]</span></a>
-<a class="sourceLine" id="cb78-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb78-4" data-line-number="4"><span class="kw">ggpairs</span>(sorg, <span class="dt">columns =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour=</span>ph),</a>
-<a class="sourceLine" id="cb78-5" data-line-number="5">    <span class="dt">columnLabels =</span> <span class="kw">c</span>(<span class="st">&quot;Altura&quot;</span>, <span class="st">&quot;Peso seco&quot;</span>, <span class="st">&quot;Fosforo total&quot;</span>, <span class="st">&quot;Zinc&quot;</span>, <span class="st">&quot;Nitrogeno&quot;</span>, <span class="st">&quot;Hierro&quot;</span>, <span class="st">&quot;Spad&quot;</span>))</a></code></pre></div>
+<p>A continuación presentamos algunas opciones gráficas que surgen de la combinación de medidas de posición y de dispersión.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Aprovechamos para customizar el `theme` a nuestro gusto y agregar algunos detalles:</span>
+p0 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Iris species&quot;</span>, <span class="dt">y =</span><span class="st">&quot;Sepal length (cm)&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)</code></pre>
+<div id="observaciones-media-mediana" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Observaciones + media / mediana</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,  <span class="co">#median</span>
+               <span class="dt">fun.ymin=</span> mean,
+               <span class="dt">fun.ymax =</span> mean,
+               <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, 
+               <span class="dt">size =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (points) &amp; media&quot;</span>)
 
+p1
+<span class="co"># geom_dotplot(aes(fill = Species),   # Use fill = Species here not in ggplot()</span>
+<span class="co">#                  binaxis = &quot;y&quot;,         # which axis to bin along</span>
+<span class="co">#                  binwidth = 0.1,        # Minimal difference considered diffeerent</span>
+<span class="co">#                  stackdir = &quot;center&quot;    # Centered</span>
+<span class="co">#                  )</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,  <span class="co">#median</span>
+               <span class="dt">fun.ymin=</span> mean,
+               <span class="dt">fun.ymax =</span> mean,
+               <span class="dt">geom =</span> <span class="st">&quot;crossbar&quot;</span>, 
+               <span class="dt">size =</span> <span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (jitter) &amp; media&quot;</span>)
+p2</code></pre>
+</div>
+<div id="barplot-se" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Barplot + SE</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p3 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># geom_bar(stat=&quot;identity&quot;) +</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span>mean, <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dt">width=</span><span class="fl">0.95</span>),<span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>,
+               <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;grey90&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span>mean_cl_normal, <span class="dt">geom=</span><span class="st">&quot;errorbar&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="kw">ggtitle</span>(<span class="st">&quot;Barplot &amp; SEM&quot;</span>)
+  <span class="co"># geom_text(data= let, aes(label = M, x= trt, y=1, hjust=0.5),size = 4)</span>
+p3</code></pre>
+</div>
+<div id="box-plot" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Box-plot</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p4 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;grey90&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Boxplot &amp; mean&quot;</span>) 
+p4</code></pre>
+</div>
+<div id="violin-plot" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Violin plot</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p5 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim=</span><span class="ot">FALSE</span>,<span class="dt">fill =</span> <span class="st">&quot;grey90&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Violin plot&quot;</span>)
+p5 </code></pre>
+</div>
+<div id="media-dispersion" class="section level3">
+<h3><span class="header-section-number">6.1.5</span> Media &amp; dispersión</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p6 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span><span class="st">&quot;mean&quot;</span>, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span> mean_sdl, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_boot, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Media + SE (negro) / SD (rojo) / 95% CI (negro)&quot;</span>)
+p6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1, p2, p3, p4, p5, p6, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre>
+<blockquote>
+<p>Siguiendo el <a href="https://rawgit.com/benmarwick/new-data-presentation-paradigm-using-r/master/Weissgerber_et_al_supplementary_plots.html">tutorial</a>, reproducir el graficos de los 5 grupos, de observaciones independientes.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<h3> Referencias</h3>
+<div id="refs" class="references">
+<div id="ref-doi:10.1111/j.1476-5381.2011.01251.x">
+<p>Drummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal Them.” <em>British Journal of Pharmacology</em> 163 (2): 208–10. <a href="https://doi.org/10.1111/j.1476-5381.2011.01251.x">https://doi.org/10.1111/j.1476-5381.2011.01251.x</a>.</p>
+</div>
+<div id="ref-10.1371/journal.pbio.1002128">
+<p>Weissgerber, Natasa M. AND Winham, Tracey L. AND Milic. 2015. “Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm.” <em>PLOS Biology</em> 13 (4): 1–10. <a href="https://doi.org/10.1371/journal.pbio.1002128">https://doi.org/10.1371/journal.pbio.1002128</a>.</p>
 </div>
 </div>
             </section>
@@ -371,8 +407,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="manip.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitopato.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="datasets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -402,7 +438,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/04-visualizar.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/06-visualizar.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -413,6 +449,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
