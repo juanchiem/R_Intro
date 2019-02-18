@@ -83,9 +83,10 @@ x = data.frame(
     "Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de ciencia de datos en inglés)",
     "Programar ya no es solo computación (CV/relevant skills)")) %>%
   kable(format = "html", escape = F) %>%
-  # kable_styling("striped", ) %>% 
-  kable_styling(font_size = 18, full_width = T)
-#bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+  kable_styling(bootstrap_options = 
+                  c("striped", "hover", "condensed", "responsive"),
+                font_size = 15,
+                full_width = F)
 
 gsub("<thead>.*</thead>", "", x) 
 

@@ -201,7 +201,6 @@ vol_lavandina(55, # g cloro / L (Lavandina)
           500) # ml de la solución deseada
 ```
 
-
 > Al reportar los resultados de los test de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto incremento o se redujo  un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este [link](https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php) para cotejar sus resultados.  
 
 ```{r, echo=FALSE}
