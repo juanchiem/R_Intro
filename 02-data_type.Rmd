@@ -118,30 +118,55 @@ Forzando las clases explicitamente
 
 * Factores
 
-Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).
+Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (`levels`). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que estos son considerados de manera diferente a las variables continuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.  
+
+Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (`labels`). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.
+
+Podemos comprobar que la ordenación de los niveles es simplemente alfabética. 
 
 ```{r, eval=FALSE}
-resist <- c("R", "S", "S", "S", "R")
-class(resist)
-res_f <- as.factor(resist)
-res_f
-as.numeric(res_f)
+clones = c("control", "B35", "A12", "T99", "control", "A12", "B35", "T99", 
+"control", "A12", "B35", "T99", "control")
+class(clones)
+levels(clones)
 
-table(resist)
-pie(table(resist))
-barplot(table(resist))
+clones_f = factor(clones)
+levels(clones_f)
+table(clones_f)
 ```
 
-De factor para numérico
+En general deseamos algun orden especifico de nuestros niveles del factor, por ej:
 
 ```{r, eval=FALSE}
-niv_res <- factor(c("1", "5", "7", "9"))
-sum(niv_res)
-niv_res1 = as.numeric(niv_res)
-mean(niv_res1)
-niv_res2 = as.numeric(as.character(niv_res))
-mean(niv_res2)
+clones_f_ord <- factor(clones_f, levels=c("control", "B35", "A12",  "T99"))
+table(clones_f_ord)
 ```
+
+Las variables **numéricas y de caracteres** se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de **caracteres**. Podremos verlo en el siguiente ejemplo:
+
+```{r, eval=FALSE}
+vec <- c(3, 5, 7, 1)
+sum(vec);mean(vec)
+vec_f <- factor(vec)
+vec_f
+levels(vec_f)
+```
+
+
+```{r, eval=FALSE}
+vec_n  <- as.numeric(vec_f)
+vec_f
+vec_n
+sum(vec_n); mean(vec_n)
+```
+
+Hemos recuperado los valores numericos originales (`vec`)? que representan los numeros codificados por R en `vec_f`? 
+
+```{r, eval=FALSE}
+vec_f1 = as.numeric(as.character(vec_f))
+sum(vec_f1);mean(vec_f1)
+```
+
 
 * Indexación
 

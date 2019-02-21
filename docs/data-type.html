@@ -343,23 +343,33 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE<
 <ul>
 <li>Factores</li>
 </ul>
-<p>Factores pueden ser considerados como vectores de enteros que poseen rótulos (labels).</p>
-<pre class="sourceCode r"><code class="sourceCode r">resist &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;R&quot;</span>)
-<span class="kw">class</span>(resist)
-res_f &lt;-<span class="st"> </span><span class="kw">as.factor</span>(resist)
-res_f
-<span class="kw">as.numeric</span>(res_f)
+<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que estos son considerados de manera diferente a las variables continuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
+<p>Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
+<p>Podemos comprobar que la ordenación de los niveles es simplemente alfabética.</p>
+<pre class="sourceCode r"><code class="sourceCode r">clones =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, 
+<span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>)
+<span class="kw">class</span>(clones)
+<span class="kw">levels</span>(clones)
 
-<span class="kw">table</span>(resist)
-<span class="kw">pie</span>(<span class="kw">table</span>(resist))
-<span class="kw">barplot</span>(<span class="kw">table</span>(resist))</code></pre>
-<p>De factor para numérico</p>
-<pre class="sourceCode r"><code class="sourceCode r">niv_res &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;9&quot;</span>))
-<span class="kw">sum</span>(niv_res)
-niv_res1 =<span class="st"> </span><span class="kw">as.numeric</span>(niv_res)
-<span class="kw">mean</span>(niv_res1)
-niv_res2 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(niv_res))
-<span class="kw">mean</span>(niv_res2)</code></pre>
+clones_f =<span class="st"> </span><span class="kw">factor</span>(clones)
+<span class="kw">levels</span>(clones_f)
+<span class="kw">table</span>(clones_f)</code></pre>
+<p>En general deseamos algun orden especifico de nuestros niveles del factor, por ej:</p>
+<pre class="sourceCode r"><code class="sourceCode r">clones_f_ord &lt;-<span class="st"> </span><span class="kw">factor</span>(clones_f, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>,  <span class="st">&quot;T99&quot;</span>))
+<span class="kw">table</span>(clones_f_ord)</code></pre>
+<p>Las variables <strong>numéricas y de caracteres</strong> se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de <strong>caracteres</strong>. Podremos verlo en el siguiente ejemplo:</p>
+<pre class="sourceCode r"><code class="sourceCode r">vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>)
+<span class="kw">sum</span>(vec);<span class="kw">mean</span>(vec)
+vec_f &lt;-<span class="st"> </span><span class="kw">factor</span>(vec)
+vec_f
+<span class="kw">levels</span>(vec_f)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">vec_n  &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(vec_f)
+vec_f
+vec_n
+<span class="kw">sum</span>(vec_n); <span class="kw">mean</span>(vec_n)</code></pre>
+<p>Hemos recuperado los valores numericos originales (<code>vec</code>)? que representan los numeros codificados por R en <code>vec_f</code>?</p>
+<pre class="sourceCode r"><code class="sourceCode r">vec_f1 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(vec_f))
+<span class="kw">sum</span>(vec_f1);<span class="kw">mean</span>(vec_f1)</code></pre>
 <ul>
 <li>Indexación</li>
 </ul>
