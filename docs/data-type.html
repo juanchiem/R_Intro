@@ -150,8 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
-<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#filtrado-de-datasets"><i class="fa fa-check"></i><b>2.2.2</b> Filtrado de datasets</a></li>
-<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.3</b> Listas</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.2</b> Listas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
@@ -195,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
-<li><a href="https://bookdown.org/home/" target="blank">Creado con Bookdown</a></li>
+<li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 
 </ul>
 
@@ -452,6 +451,11 @@ a</code></pre>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Data frames</h3>
 <p>Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.</p>
+<p>Un dataframe es completo con dimensiones n_fila x p_columna, donde:</p>
+<p>1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando</p>
+<p>2- Cada columna representa una variable (descriptiva o respuesta)</p>
+<p>3- Cada celda debe tener su observación (en caso de faltar el dato será un NA)</p>
+<p><img src="fig/tibbles.png" /></p>
 <p>En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete <code>base</code> es el dataset “iris”.</p>
 <pre class="sourceCode r"><code class="sourceCode r">?iris
 <span class="kw">View</span>(iris) <span class="co"># ya activo desde inicio de sesión por default</span></code></pre>
@@ -462,9 +466,9 @@ a</code></pre>
 <p>Explore el dataset iris con las siguientes funciones con iris y anote sus resultados:<br />
 head(); tail(); dim(); names(); str(); row.names()</p>
 </blockquote>
-</div>
-<div id="filtrado-de-datasets" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Filtrado de datasets</h3>
+<ul>
+<li>Filtrado de datasets</li>
+</ul>
 <p><strong>data[fila, columna]</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r">iris[<span class="dv">1</span>,]
 iris[,<span class="dv">1</span>]
@@ -490,7 +494,7 @@ iris<span class="op">$</span>Sepal.Length
 </blockquote>
 </div>
 <div id="listas" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Listas</h3>
+<h3><span class="header-section-number">2.2.2</span> Listas</h3>
 <p>Objetos que aceptan elementos de clases diferentes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)
 x</code></pre>

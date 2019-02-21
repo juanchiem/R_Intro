@@ -15,16 +15,6 @@ library(tidyverse)
 
 Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset "analítico". 
 
-Recordando que un dataset debe ser completo con dimensiones n_fila x p_columna, donde:
-
-1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
-
-2- Cada columna representa una variable (descriptiva o respuesta)
-
-3- Cada celda debe tener su observación (en caso de faltar el dato será un NA) 
-
-![](fig/tibbles.png) 
-
 `tidyr` y `dplyr` integran parte de la colección de paquetes de `tidyverse` y facilitan la manipulación de los data frames [@wickham2016r] 
 
 ```{r}

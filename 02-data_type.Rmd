@@ -266,6 +266,16 @@ a
 
 Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.
 
+Un dataframe es completo con dimensiones n_fila x p_columna, donde:
+
+1- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
+
+2- Cada columna representa una variable (descriptiva o respuesta)
+
+3- Cada celda debe tener su observación (en caso de faltar el dato será un NA) 
+
+![](fig/tibbles.png) 
+
 En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete `base` es el dataset "iris".
 
 ```{r}
@@ -281,7 +291,7 @@ View(iris) # ya activo desde inicio de sesión por default
 head(); tail(); dim(); names(); str(); row.names()
 
 
-### Filtrado de datasets
+* Filtrado de datasets
 
 **data[fila, columna]**
 
