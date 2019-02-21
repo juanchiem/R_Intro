@@ -1,6 +1,6 @@
 ```{r, include=FALSE}
 library(knitr)
-opts_chunk$set(echo = TRUE, fig.align="center")
+opts_chunk$set(echo = TRUE, fig.align="center", eval=FALSE)
 library(kableExtra)
 ```
 
@@ -50,7 +50,7 @@ sort(v)
 
 * Operaciones con vectores
 
-```{r, eval=FALSE}
+```{r}
 v - 1
 
 # Medidas de posición
@@ -77,7 +77,7 @@ sum(v)
 
 * Secuencia
 
-```{r, eval=FALSE}
+```{r}
 1:7  
 seq(from = 0, to = 20, #by=2) # 
     length=4) 
@@ -85,16 +85,43 @@ seq(from = 0, to = 20, #by=2) #
 rep(1:3, times=3) #  , each=3   
 ```
 
-* Números aleatorios - distribuciones
+### Números aleatorios 
 
-```{block, type='rmdnote'}
-**Tendencias genéticas y fenotípicas de características de crecimiento en el ganado brahman de registro de México**
-[@parra2007tendencias]
+La generación de números aleatorios es en muchas ocasiones un requerimiento esencial en investigación científica. Proceder de este modo puede reducir cualquier sesgo generado por nuestra persona a la hora de seleccionar una muestra, o aplicar un tratamiento a una unidad experimental. 
+
+* Generar números enteros de modo aleatorio de una muestra determinada
+
+`sample()` 
+
+```{r}
+sample(1:30, size=10, replace=F) #sin reposición
 ```
 
-![](fig/PesoVacas.gif){width=300px}
+* Generar numeros aleatorios de una distribución especifica de parámetros conocidos: 
 
-```{r EjemploVacas, eval=FALSE}
+`runif()` - números racionales aleatoriamente, uniformemente distribuidos en un intervalo
+
+```{r}
+num_unif <- runif(100, min=3, max=4)
+hist(num_unif)
+```
+
+`rnorm()` - números aleatorios, pertenecientes a una población con [distribución normal](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule), con parámetros μ y σ.
+
+```{r}
+num_norm <- rnorm(100, mean=70, sd=5) 
+hist(num_norm)
+```
+
+> Vamos a recrear estas muestras partiendo de la información contenida en la tabla 
+
+<center>
+![](fig/PesoVacas.gif){width=300px}
+</center>
+
+<div style="text-align: right">  [@parra2007tendencias] </div>
+
+```{r EjemploVacas}
 set.seed(123)
 PesoNac <- rnorm(23570, mean=32.2, sd=1.8) 
 range(PesoNac)
@@ -106,7 +133,7 @@ hist(PesoNac, prob=TRUE)
 
 Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
 
-```{r, eval=FALSE}
+```{r}
 y <- c(1.7, "a")  ## character
 y <- c(TRUE, 2)   ## numeric
 y <- c(TRUE, "a") ## character
@@ -124,7 +151,7 @@ Los niveles de un factor puede estar codificados como valores numéricos o como 
 
 Podemos comprobar que la ordenación de los niveles es simplemente alfabética. 
 
-```{r, eval=FALSE}
+```{r}
 clones = c("control", "B35", "A12", "T99", "control", "A12", "B35", "T99", 
 "control", "A12", "B35", "T99", "control")
 class(clones)
@@ -137,14 +164,14 @@ table(clones_f)
 
 En general deseamos algun orden especifico de nuestros niveles del factor, por ej:
 
-```{r, eval=FALSE}
+```{r}
 clones_f_ord <- factor(clones_f, levels=c("control", "B35", "A12",  "T99"))
 table(clones_f_ord)
 ```
 
 Las variables **numéricas y de caracteres** se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de **caracteres**. Podremos verlo en el siguiente ejemplo:
 
-```{r, eval=FALSE}
+```{r}
 vec <- c(3, 5, 7, 1)
 sum(vec);mean(vec)
 vec_f <- factor(vec)
@@ -153,7 +180,7 @@ levels(vec_f)
 ```
 
 
-```{r, eval=FALSE}
+```{r}
 vec_n  <- as.numeric(vec_f)
 vec_f
 vec_n
@@ -162,11 +189,10 @@ sum(vec_n); mean(vec_n)
 
 Hemos recuperado los valores numericos originales (`vec`)? que representan los numeros codificados por R en `vec_f`? 
 
-```{r, eval=FALSE}
+```{r}
 vec_f1 = as.numeric(as.character(vec_f))
 sum(vec_f1);mean(vec_f1)
 ```
-
 
 * Indexación
 
@@ -198,43 +224,43 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 
 Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
 
-- NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.
-
-- NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.
-
-- Inf (Infinito) es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
-
-- NULL representa  ausencia de información. 
-
+* NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.
 
 ```{r}
-# NaN es el resultado de una operación matemática inválida. Significa Not A Number
+y <- c(2, 4, NA, 6)
+is.na(y)
+```
+
+> Calcule el promedio de y (use la ayuda de R en caso necesario)`mean(y)`
+
+* NaN (Not a Number) es el resultado de una operación matemática inválida, ej:  0/0 y log(-1). 
+Un NaN es un NA, pero no reciprocamente.
+
+```{r}
 0/0
 is.nan(0/0)
 is.na(0/0)
+```
 
-# NULL es el vacio de R. Es como si el objeto no existiese
+* `NULL` es el vacio de R. Es como si el objeto no existiese
+
+```{r}
 a = NULL
 a
+```
 
-# Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.
+* `Inf` (infinito). Es el resultado de operaciones matemáticas cuyo limite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
+
+```{r}
 1/0
 1/Inf
 ```
 
-```{r}
-# NA es una constante lógica de R. Significa Not Available. NA puede ser 
-# convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.
-y <- c(2, 4, NA, 6)
-is.na(y)
-mean(y)
-```
-
-> Calcule el promedio de y (use la ayuda de R en caso necesario)
-
 ## Estructura de datos
 
-![](fig/data_str.png){width=400px}
+<center>
+![](fig/data_str.png){width=600px}
+</center>
 
 ### Data frames
 
@@ -242,17 +268,18 @@ Conjunto de observaciones (filas) y variables (columnas). A diferencia que en la
 
 En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete `base` es el dataset "iris".
 
-```{r, eval=FALSE}
+```{r}
 ?iris
 View(iris) # ya activo desde inicio de sesión por default
 ```
 
-> Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
-- head() 
-- tail() 
-- dim() 
-- names() 
-- str() 
+<center>
+![](fig/iris_petal_sepal.png){width=400px}
+</center>
+
+> Explore el dataset iris con las siguientes funciones con iris y anote sus resultados:  
+head(); tail(); dim(); names(); str(); row.names()
+
 
 ### Filtrado de datasets
 
@@ -294,12 +321,14 @@ iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
 
 ### Listas
 
-Objetos que aceptan elementos de clases diferentes.
+Objetos que aceptan elementos de clases diferentes. 
 
 ```{r}
 x <- list(a = 1:5, b = c("a", "b"), c = TRUE)
 x
 ```
+
+(Mas info de subsetting elementos de una lista [aqui](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists))
 
 ```{r}
 x$a       # 

@@ -145,7 +145,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>2</b> Datos: tipos y estructuras</a><ul>
 <li class="chapter" data-level="2.1" data-path="data-type.html"><a href="data-type.html#tipos-de-datos"><i class="fa fa-check"></i><b>2.1</b> Tipos de datos</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="data-type.html"><a href="data-type.html#vectores"><i class="fa fa-check"></i><b>2.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.2</b> Valores especiales</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-type.html"><a href="data-type.html#numeros-aleatorios"><i class="fa fa-check"></i><b>2.1.2</b> Números aleatorios</a></li>
+<li class="chapter" data-level="2.1.3" data-path="data-type.html"><a href="data-type.html#valores-especiales"><i class="fa fa-check"></i><b>2.1.3</b> Valores especiales</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
@@ -317,15 +318,33 @@ v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</sp
     <span class="dt">length=</span><span class="dv">4</span>) 
 
 <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">3</span>) <span class="co">#  , each=3   </span></code></pre>
-<ul>
-<li>Números aleatorios - distribuciones</li>
-</ul>
-<div class="rmdnote">
-<p>
-<strong>Tendencias genéticas y fenotípicas de características de crecimiento en el ganado brahman de registro de México</strong> <span class="citation"><span class="citation">(Parra-Bracamonte et al. <a href="#ref-parra2007tendencias">2007</a>)</span></span>
-</p>
 </div>
-<p><img src="fig/PesoVacas.gif" width="300" /></p>
+<div id="numeros-aleatorios" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Números aleatorios</h3>
+<p>La generación de números aleatorios es en muchas ocasiones un requerimiento esencial en investigación científica. Proceder de este modo puede reducir cualquier sesgo generado por nuestra persona a la hora de seleccionar una muestra, o aplicar un tratamiento a una unidad experimental.</p>
+<ul>
+<li>Generar números enteros de modo aleatorio de una muestra determinada</li>
+</ul>
+<p><code>sample()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace=</span>F) <span class="co">#sin reposición</span></code></pre>
+<ul>
+<li>Generar numeros aleatorios de una distribución especifica de parámetros conocidos:</li>
+</ul>
+<p><code>runif()</code> - números racionales aleatoriamente, uniformemente distribuidos en un intervalo</p>
+<pre class="sourceCode r"><code class="sourceCode r">num_unif &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min=</span><span class="dv">3</span>, <span class="dt">max=</span><span class="dv">4</span>)
+<span class="kw">hist</span>(num_unif)</code></pre>
+<p><code>rnorm()</code> - números aleatorios, pertenecientes a una población con <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule">distribución normal</a>, con parámetros μ y σ.</p>
+<pre class="sourceCode r"><code class="sourceCode r">num_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">5</span>) 
+<span class="kw">hist</span>(num_norm)</code></pre>
+<blockquote>
+<p>Vamos a recrear estas muestras partiendo de la información contenida en la tabla</p>
+</blockquote>
+<center>
+<img src="fig/PesoVacas.gif" width="300" />
+</center>
+<div style="text-align: right">
+<span class="citation">(Parra-Bracamonte et al. <a href="#ref-parra2007tendencias">2007</a>)</span>
+</div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
 PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">23570</span>, <span class="dt">mean=</span><span class="fl">32.2</span>, <span class="dt">sd=</span><span class="fl">1.8</span>) 
 <span class="kw">range</span>(PesoNac)
@@ -396,52 +415,52 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 <p></br></p>
 </div>
 <div id="valores-especiales" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Valores especiales</h3>
+<h3><span class="header-section-number">2.1.3</span> Valores especiales</h3>
 <p>Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.</p>
 <ul>
-<li><p>NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.</p></li>
-<li><p>NaN (Not a Number) representa indefiniciones matemáticas, como 0/0 y log(-1). Un NaN es un NA, pero no reciprocamente.</p></li>
-<li><p>Inf (Infinito) es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</p></li>
-<li><p>NULL representa ausencia de información.</p></li>
+<li>NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NaN es el resultado de una operación matemática inválida. Significa Not A Number</span>
-<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
-<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
-<span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
-
-<span class="co"># NULL es el vacio de R. Es como si el objeto no existiese</span>
-a =<span class="st"> </span><span class="ot">NULL</span>
-a
-
-<span class="co"># Inf significa infinito. Es el resultado de operaciones matemáticas cuyo limite es infinito.</span>
-<span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
-<span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># NA es una constante lógica de R. Significa Not Available. NA puede ser </span>
-<span class="co"># convertido para casi todos los tipos de vectores de R. Se usa principalmente para indicar valores faltantes.</span>
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
-<span class="kw">is.na</span>(y)
-<span class="kw">mean</span>(y)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
+<span class="kw">is.na</span>(y)</code></pre>
 <blockquote>
-<p>Calcule el promedio de y (use la ayuda de R en caso necesario)</p>
+<p>Calcule el promedio de y (use la ayuda de R en caso necesario)<code>mean(y)</code></p>
 </blockquote>
+<ul>
+<li>NaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1).
+Un NaN es un NA, pero no reciprocamente.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
+<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
+<span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</code></pre>
+<ul>
+<li><code>NULL</code> es el vacio de R. Es como si el objeto no existiese</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> </span><span class="ot">NULL</span>
+a</code></pre>
+<ul>
+<li><code>Inf</code> (infinito). Es el resultado de operaciones matemáticas cuyo limite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
+<span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
 </div>
 </div>
 <div id="estructura-de-datos" class="section level2">
 <h2><span class="header-section-number">2.2</span> Estructura de datos</h2>
-<p><img src="fig/data_str.png" width="400" /></p>
+<center>
+<img src="fig/data_str.png" width="600" />
+</center>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Data frames</h3>
 <p>Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.</p>
 <p>En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicación de funciones. Un ejemplo muy usado, que está en el paquete <code>base</code> es el dataset “iris”.</p>
 <pre class="sourceCode r"><code class="sourceCode r">?iris
 <span class="kw">View</span>(iris) <span class="co"># ya activo desde inicio de sesión por default</span></code></pre>
+<center>
+<img src="fig/iris_petal_sepal.png" width="400" />
+</center>
 <blockquote>
-<p>Explore el dataset iris con las siguientes funciones con iris y anote sus resultados
-- head()
-- tail()
-- dim()
-- names()
-- str()</p>
+<p>Explore el dataset iris con las siguientes funciones con iris y anote sus resultados:<br />
+head(); tail(); dim(); names(); str(); row.names()</p>
 </blockquote>
 </div>
 <div id="filtrado-de-datasets" class="section level3">
@@ -475,6 +494,7 @@ iris<span class="op">$</span>Sepal.Length
 <p>Objetos que aceptan elementos de clases diferentes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)
 x</code></pre>
+<p>(Mas info de subsetting elementos de una lista <a href="https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists">aqui</a>)</p>
 <pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>a       <span class="co"># </span>
 x[<span class="dv">1</span>]       <span class="co"># </span>
 <span class="co">#sum(x[1])</span>
