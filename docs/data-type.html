@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
 <li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.2</b> Listas</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
@@ -185,12 +186,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
 <li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="explore.html"><a href="explore.html#multivariado"><i class="fa fa-check"></i><b>6.2</b> Multivariado</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
 <li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
 <li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
+<li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -505,11 +507,18 @@ x[<span class="dv">1</span>]       <span class="co"># </span>
 x[[<span class="dv">1</span>]]     <span class="co"># </span>
 <span class="kw">sum</span>(x[[<span class="dv">1</span>]])
 x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></pre>
+</div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Matrices</h3>
+<p>Indicamos el número de filas con el argumento <code>nrow</code> y con <code>ncol</code> el número de columnas; luego indicamos que valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con <code>byrow=TRUE</code>. La matriz A así construida es:</p>
+<pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>), <span class="dt">byrow=</span><span class="ot">TRUE</span>)</code></pre>
+<p>Al igual que para los dataframes, se pueden seleccionar partes de una matriz utilizando los índices de posición [fila, columna] entre corchetes.</p>
+<pre class="sourceCode r"><code class="sourceCode r">A[<span class="dv">2</span>,<span class="dv">3</span>]   <span class="co"># Se selecciona el valor de la fila 2, columna 3</span></code></pre>
 
 </div>
 </div>
 </div>
-<h3> Referencias</h3>
+<h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-parra2007tendencias">
 <p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martı́nez-González, Francisco Javier Garcı́a-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotı́picas de Caracterı́sticas de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Cientı́fica</em> 17 (3): 262–67.</p>

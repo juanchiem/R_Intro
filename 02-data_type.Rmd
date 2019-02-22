@@ -348,3 +348,19 @@ x[[1]]     #
 sum(x[[1]])
 x["c"]     # 
 ```
+
+
+### Matrices
+
+Indicamos el número de filas con el argumento `nrow` y con `ncol` el número de columnas; luego indicamos que valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con `byrow=TRUE`. La matriz A así construida es:
+
+```{r}
+A <- matrix(nrow=3, ncol=3, c(1,2,3,4,5,6,7,8,9), byrow=TRUE)
+```
+
+Al igual que para los dataframes, se pueden seleccionar partes de una matriz utilizando los índices de posición [fila, columna] entre corchetes. 
+
+```{r}
+A[2,3]   # Se selecciona el valor de la fila 2, columna 3
+```
+

@@ -1,1 +1,24 @@
-# Referencias {#ref}
+# Links de interés
+
+* Otros cursos introductorios a R 
+
+[R for data scientists](https://r4ds.had.co.nz/)
+
+[R4ULPGC: Introducción a R](http://www.dma.ulpgc.es/profesores/personal/stat/cursoR4ULPGC/index.html)
+
+[Modern dive](https://moderndive.com)
+
+[R for Reproducible Scientific Analysis](http://swcarpentry.github.io/r-novice-gapminder/)
+
+[tutorialspoint](https://www.tutorialspoint.com/r/index.htm)
+
+[Curso Emerson Del Ponte](https://emdelponte.github.io/FIP606/delineamentos-experimentais.html)
+
+
+* Recursos interesantes para el área de datos biológicos
+
+[Data Analysis Examples](https://stats.idre.ucla.edu/other/dae/)
+
+[Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)
+
+[R for Plant Pathologists](https://everhartlab.github.io/IntroR/)

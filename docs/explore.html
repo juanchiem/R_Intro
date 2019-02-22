@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="data-type.html"><a href="data-type.html#estructura-de-datos"><i class="fa fa-check"></i><b>2.2</b> Estructura de datos</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-type.html"><a href="data-type.html#data-frames"><i class="fa fa-check"></i><b>2.2.1</b> Data frames</a></li>
 <li class="chapter" data-level="2.2.2" data-path="data-type.html"><a href="data-type.html#listas"><i class="fa fa-check"></i><b>2.2.2</b> Listas</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-type.html"><a href="data-type.html#matrices"><i class="fa fa-check"></i><b>2.2.3</b> Matrices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>3</b> Importar</a><ul>
@@ -185,12 +186,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.4" data-path="explore.html"><a href="explore.html#violin-plot"><i class="fa fa-check"></i><b>6.1.4</b> Violin plot</a></li>
 <li class="chapter" data-level="6.1.5" data-path="explore.html"><a href="explore.html#media-dispersion"><i class="fa fa-check"></i><b>6.1.5</b> Media &amp; dispersión</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="explore.html"><a href="explore.html#multivariado"><i class="fa fa-check"></i><b>6.2</b> Multivariado</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>7</b> Datasets</a><ul>
 <li class="chapter" data-level="7.1" data-path="datasets.html"><a href="datasets.html#canola"><i class="fa fa-check"></i><b>7.1</b> canola</a></li>
 <li class="chapter" data-level="7.2" data-path="datasets.html"><a href="datasets.html#soja"><i class="fa fa-check"></i><b>7.2</b> soja</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>8</b> Referencias</a></li>
+<li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -389,11 +391,56 @@ p6</code></pre>
 <blockquote>
 <p>Siguiendo el <a href="https://rawgit.com/benmarwick/new-data-presentation-paradigm-using-r/master/Weissgerber_et_al_supplementary_plots.html">tutorial</a>, reproducir el graficos de los 5 grupos, de observaciones independientes.</p>
 </blockquote>
+</div>
+</div>
+<div id="multivariado" class="section level2">
+<h2><span class="header-section-number">6.2</span> Multivariado</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+corr &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(iris[,<span class="op">-</span><span class="dv">5</span>]), <span class="dv">1</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+<span class="kw">ggpairs</span>(iris, <span class="dt">columns =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
+<span class="kw">ggpairs</span>(iris, <span class="dt">columns =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour=</span>Species))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggcorrplot)
+<span class="kw">ggcorrplot</span>(corr, <span class="dt">p.mat =</span> <span class="kw">cor_pmat</span>(iris[,<span class="op">-</span><span class="dv">5</span>]),
+           <span class="dt">hc.order =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,
+           <span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#00AFBB&quot;</span>),
+           <span class="dt">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">lab =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FactoMineR)
+<span class="kw">library</span>(factoextra)
+
+iris.pca &lt;-<span class="st"> </span><span class="kw">PCA</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">graph =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_var</span>(iris.pca)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_ind</span>(iris.pca,
+             <span class="dt">col.ind.sup =</span> <span class="st">&quot;blue&quot;</span>,
+             <span class="dt">repel =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span> <span class="co"># Individuals</span>
+                )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="dt">col.ind =</span> iris<span class="op">$</span>Species, <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,
+                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>, <span class="co">#ellipse.type = &quot;confidence&quot;,</span>
+                <span class="dt">label =</span> <span class="st">&quot;var&quot;</span>,
+                <span class="dt">col.var =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">repel =</span> <span class="ot">TRUE</span>,
+                <span class="dt">legend.title =</span> <span class="st">&quot;Species&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="co"># Individuals</span>
+                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span>,
+                <span class="dt">fill.ind =</span> iris<span class="op">$</span>Species, <span class="dt">col.ind =</span> <span class="st">&quot;black&quot;</span>,
+                <span class="dt">pointshape =</span> <span class="dv">21</span>, <span class="dt">pointsize =</span> <span class="dv">2</span>,
+                <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,
+                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>,
+
+                <span class="co"># Variables</span>
+                <span class="co"># alpha.var =&quot;contrib&quot;,</span>
+                <span class="dt">col.var =</span> <span class="st">&quot;contrib&quot;</span>,
+                <span class="dt">gradient.cols =</span> <span class="st">&quot;RdYlBu&quot;</span>,
+                <span class="dt">legend.title =</span> <span class="kw">list</span>(<span class="dt">fill =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Contribution&quot;</span>)
+)</code></pre>
 
 </div>
 </div>
-</div>
-<h3> Referencias</h3>
+<h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-doi:10.1111/j.1476-5381.2011.01251.x">
 <p>Drummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal Them.” <em>British Journal of Pharmacology</em> 163 (2): 208–10. <a href="https://doi.org/10.1111/j.1476-5381.2011.01251.x">https://doi.org/10.1111/j.1476-5381.2011.01251.x</a>.</p>
