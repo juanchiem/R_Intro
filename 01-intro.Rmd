@@ -246,7 +246,7 @@ text_tab1 <- data.frame(
               "División de x por y", 
               "Parte entera de la división de x por y",
               "Resto de la división de x por y",
-              "x elevado a y-ésima potencia")
+              "x elevado a y-ésima potencia (equivalente a **)")
 )
 
 ```
