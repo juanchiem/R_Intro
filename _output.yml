@@ -5,7 +5,6 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Introducción a R</a></li>
       after: |
-        <li><a href="https://drive.google.com/open?id=11qG6WH7sziqpjlcEUWWzboTwQoMefj4t" target="blank">Datasets</a></li>
         <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
         <li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 

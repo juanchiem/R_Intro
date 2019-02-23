@@ -94,7 +94,9 @@ gsub("<thead>.*</thead>", "", x)
 
 </br>
 
-<div style="text-align: center"> <img src="fig/pregunta_respuesta.jpg" height="400" width="400" /></div>
+<center>
+![](fig/pregunta_respuesta.jpg){width=400px}
+</center>
 
 </br>
 
