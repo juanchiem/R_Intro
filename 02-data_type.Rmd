@@ -6,6 +6,10 @@ library(kableExtra)
 
 # Datos: tipos y estructuras {#data_type}
 
+En términos genéricos, todos los elementos que maneja R son objetos: un valor numérico es un objeto, un vector es un objeto, una función es un objeto, una base de datos es un objeto, un gráfico es un objeto...
+
+Para realizar un uso eficiente de R es preciso entender y aprender a manipular bien las distintas clases de objetos que maneja el programa. En esta sección nos vamos a ocupar particulamente de aquellos objetos que R utiliza para representar datos: valores, vectores, matrices, dataframes y listas.
+
 ## Tipos de datos 
 
 La unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes cuatro clases. 
