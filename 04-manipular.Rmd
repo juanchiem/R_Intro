@@ -17,6 +17,10 @@ Muchas veces los datos que importamos ya están listos para ser explorados y ana
 
 `tidyr` y `dplyr` integran parte de la colección de paquetes de `tidyverse` y facilitan la manipulación de los data frames [@wickham2016r] 
 
+<center>
+![](fig/tidyverse-hex.png){width=600px}
+</center>
+
 ```{r}
 library(tidyverse)
 ```
@@ -34,24 +38,103 @@ Su equivalente de código básico es:
 sqrt(sum(x))
 ```
 
-Importemos "soja" para ver alguno ejemplos.
+Importemos los datos "crudos" que tenemos almacenados en el archivo .RData
 
 ```{r}
 load("./data/datos_crudos.RData")
 # browseURL("https://osf.io/jpfet/")
 ```
 
-## dplyr::
+## tidyr::
 
-<center>
-![](fig/dplyr_hex.png){width=200px}
-</center>
+Las principales funciones son:
+
+`gather` `spread` `separate` `unite` `join` 
+
+![](fig/tidyr_func.png)
+
+`join`
+
+![](fig/tydir_join.png)
+
+
+Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.  
+
+En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos esten en formato *long*. 
+
+Veamos de que se tratan ambos formatos.
+
+Datos **canola**:
+
+```{r}
+canola <- readxl::read_excel("data/can_phoma.xlsx")
+```
+
+Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
+
+![](fig/wide_to_long.png)
+
+```{r}
+canola %>%  
+  gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
+         key = "tt", value = "inc") -> can_long
+```
+
+Datos **soja**
+
+```{r}
+soja %>%
+  gather(bk_sev, "sev", ends_with("sev")) %>% 
+  gather(bk_yield, "yield", ends_with("yield")) %>% 
+  separate(bk_sev, "bk",  sep="_") -> soja_long
+```
+
+Datos **olivo**
+
+```{r}
+olivo %>%  
+  gather(`1`: `30`, 
+         key = "tree", value = "sev") -> oli_long
+```
+
+## dplyr::
 
 Los cinco verbos (funciones) principales de `dplyr` son:
 
 `select` `filter` `mutate` `arrange` `summarise` 
 
 <br>
+
+```{r}
+can_long
+# Precisamos que tt sea clase "numérica" para ciertos cálculos
+can_long <- can_long %>% 
+  mutate_at(c("trt","bk"), funs(as.factor)) %>% 
+  mutate_at(c("tt", "inc"), funs(as.numeric))
+```
+
+Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
+
+```{r}
+# if(require(MESS)) {install.packages("MESS")}
+can_long %>%
+  group_by(trt, bk) %>%
+  summarize(AUC = MESS::auc(inc, tt))
+```
+
+Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
+
+
+
+junta dos data.frames a través de puntos en común.
+
+Por ejemplo, si queremos unir las variables "sev_check" y "Dis_level" al dataset soja:
+
+```{r}
+soja %>% inner_join(by_check, by="study")
+```
+
+
 
 ### select
 
@@ -149,7 +232,6 @@ soja <- readr::read_csv("data/soja_mancha.csv")
 soja <- soja %>% mutate_if(is.character, as.factor)
 ```
 
-
 ### arrange
 
 Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar `desc` para orden decrescente.
@@ -207,67 +289,12 @@ by_check =  soja %>%
   mutate(Dis_level = ifelse(sev_check < 30, "Low", "High")) 
 ```
 
-## tidyr::
-
-![](fig/tidyr_func.png)
-
-Caso canola:
-
-```{r}
-canola <- readxl::read_excel("data/can_phoma.xlsx")
-```
-
-Esto seria uma forma "wide" de representación del dataset (crudo).
-
-Para analizar el efecto del tratemiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
-
-![](fig/wide_to_long.png)
-
-```{r}
-canola %>%  
-  gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
-         key = "tt", value = "inc") -> can_long
-
-# save(soja, canola, can_long, file = "data/soja_canola.RData")
-```
-
-```{r}
-can_long
-# Precisamos que tt sea clase "numérica" para ciertos cálculos
-can_long <- can_long %>% 
-  mutate_at(c("trt","bk"), funs(as.factor)) %>% 
-  mutate_at(c("tt", "inc"), funs(as.numeric))
-```
-
-Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
-
-```{r}
-# if(require(MESS)) {install.packages("MESS")}
-can_long %>%
-  group_by(trt, bk) %>%
-  summarize(AUC = MESS::auc(inc, tt))
-```
-
-Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
-
-### join
-
-![](fig/tydir_join.png)
-
-junta dos data.frames a través de puntos en común.
-
-
-Por ejemplo, si queremos unir las variables "sev_check" y "Dis_level" al dataset soja:
-
-```{r}
-soja %>% inner_join(by_check, by="study")
-```
-
 ## forcats::
 
 Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [link](https://forcats.tidyverse.org/) 
 
 ```{r, eval=FALSE}
+install.packages("questionr")
 library(forcats)
 
 dat %>%

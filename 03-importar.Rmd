@@ -10,21 +10,17 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Importar {#import}
+# Importación de datos {#import}
 
-## Organización de planillas a ser importadas a R
+Luego del planteo de hipótesis y planificación experimental, la toma de datos en una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
 
-Un primer paso en nuestras investigaciones (fundamental, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
+Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado ("wide") puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración. 
 
-En particular prefiero que las [planillas excel](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true) sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
-R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!
+Podemos tomar esta [planilla modelo](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true), para entender como es una planilla para ser analizada en R.
 
+Veamos **5 Principios básicos** de buenas prácticas en la elaboración de planillas de datos - Adaptado de [@broman2018data]
 
-**5 Principios básicos** Adaptado de [@broman2018data]
-<hr>
-
-
-Como regla global, columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
+Como regla global, y siguiendo lo ya comentado en la sección de [data frames](#data_frames), columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
 
 **1 - Consistencia**
 
@@ -87,26 +83,39 @@ O bien desde código del script:
     
 * Archivos excel 
 
-```{r}
-dat <- readxl::read_excel("nombre_del_archivo.xls")
-# Noten que usamos una función del paquete "readxl", por lo cual deber ser llamado antes o bien antecediendo el nombre de la función con "::"
-```
-
 > Importar soja_mancha.xlsx, nombrandolo "soja"
 > Importar can_phoma.xlsx, nombrandolo "canola"
 
 ```{r, include=FALSE}
 library(readxl)
-soja <- read_excel("data/soja_mancha.xlsx")
+soja <- read_excel("data/soja_mancha.xls")
 canola <- read_excel("data/canola_phoma.xlsx")
 mani <- read_excel("data/mani_carbon.xlsx")
-olivo  <- readr::read_csv("data/olivo_xylella.csv")
+olivo  <- read_excel("data/olivo_xylella.xls")
 
 save(soja, canola, mani, olivo, file="data/datos_crudos.RData")
 ```
 
+Dataset **canola_phoma** 
 
-"canola" es el dataset de un experimento de canola donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detcción de la primera mancha). La unidad experimental está identificada en la variable "par" la que contiene la información del bloque (1° dígito), y tratamiento (2°-3° digitos).
+Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detcción de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo. 
+
+Dataset **soja_mancha** 
+
+Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja
+
+study: identificador arbitrario para cada experimento
+year: año del experimento
+location: localidad del experimento
+cultivar: cultivar de soja utilizado
+fungic: tratamiento fungicida
+block: repeticiones
+sev: severidad (%) evaluada en R6
+yield: rendimiento en madurez fisiológica (kg/ha)
+
+Dataset **olivo_xylella**
+
+Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja
 
 * Archivos de texto .csv
     
@@ -123,6 +132,13 @@ Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde exc
 ```{r}
 dat = read.delim("clipboard", dec=",")
 ```
+
+`{datapasta}` - Package + addin
+
+```{r}
+install.packages("datapasta")
+```
+
 
 * Desde google sheets:
 

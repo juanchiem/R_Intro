@@ -262,7 +262,7 @@ a
 ![](fig/data_str.png){width=600px}
 </center>
 
-### Data frames
+### Data frames {#data_frames} 
 
 Conjunto de observaciones (filas) y variables (columnas). A diferencia que en las matrices, las columnas pueden tener diferentes tipos (clases) de variables como por ejemplo numéricas, categóricas, lógicas, fechas.
 

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="tidyr.html">
+<link rel="next" href="forcats.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="dplyr" class="section level2">
+<h2><span class="header-section-number">5.2</span> dplyr::</h2>
+<p>Los cinco verbos (funciones) principales de <code>dplyr</code> son:</p>
+<p><code>select</code> <code>filter</code> <code>mutate</code> <code>arrange</code> <code>summarise</code></p>
+<p><br></p>
+<pre class="sourceCode r"><code class="sourceCode r">can_long
+<span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span>
+can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;trt&quot;</span>,<span class="st">&quot;bk&quot;</span>), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;tt&quot;</span>, <span class="st">&quot;inc&quot;</span>), <span class="kw">funs</span>(as.numeric))</code></pre>
+<p>Calcularemos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> y <code>summarize</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># if(require(MESS)) {install.packages(&quot;MESS&quot;)}</span>
+can_long <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trt, bk) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> MESS<span class="op">::</span><span class="kw">auc</span>(inc, tt))</code></pre>
+<p>Ahora si, can_phoma está listo para entrar al próximo paso: modelado.</p>
+<p>junta dos data.frames a través de puntos en común.</p>
+<p>Por ejemplo, si queremos unir las variables “sev_check” y “Dis_level” al dataset soja:</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</code></pre>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> select</h3>
+<p><img src="fig/dplyr_select.png" /></p>
+<p>Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield.</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study, year, cultivar, fungic, rep, sev, yield)</code></pre>
+<p>Es posible usar intervalos de varibles con <code>:</code>.</p>
+<p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Yld_level, <span class="op">-</span>YR_class, <span class="op">-</span>gr_hab, <span class="op">-</span>sev_check)</code></pre>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> filter</h3>
+<p><img src="fig/dplyr_filter.png" /></p>
+<p>Semejante a <code>subset</code>. Condiciones separadas por comas equivalen a <code>&amp;</code> de <code>subset</code>.
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">==</span><span class="st"> &#39;ZZ_CHECK&#39;</span>)</code></pre>
+<p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>))</code></pre>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> mutate</h3>
+<ul>
+<li>Alistar los datos crudos recien importados</li>
+</ul>
+<p>Haremos que las variables tipo caracter sean convertidas a factores:</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">c</span>(<span class="st">&quot;cultivar&quot;</span>, <span class="st">&quot;fungic&quot;</span>,<span class="st">&quot;Yld_level&quot;</span>, <span class="st">&quot;YR_class&quot;</span>, <span class="st">&quot;gr_hab&quot;</span>)), <span class="kw">funs</span>(as.factor))
+
+<span class="kw">summary</span>(soja)
+<span class="kw">str</span>(soja)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">canola &lt;-<span class="st"> </span>canola <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">c</span>(<span class="st">&quot;trt&quot;</span>,<span class="st">&quot;bk&quot;</span>)), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">:</span><span class="st"> &quot;sev_cank&quot;</span>), <span class="kw">funs</span>(<span class="kw">round</span>(., <span class="dv">2</span>)))</code></pre>
+<ul>
+<li>Creación de nuevas variables (a partir de las existentes)</li>
+</ul>
+<p><img src="fig/dplyr_mutate_new.png" /></p>
+<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg">normalmente</a>, las desviaciones estándar no son homogéneas, o ambas.</p>
+<p>Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico).</p>
+<p>Como fitopatólogos, la no normalidad es lo predominante.</p>
+<p>El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)</p>
+<p>Dos transformaciones son mayormente sugeridas para la severidad:</p>
+<ul>
+<li><p>Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero.</p></li>
+<li><p>Transformación logit:</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sev_arc =</span> <span class="kw">asin</span>(<span class="kw">sqrt</span>(sev<span class="op">/</span><span class="dv">100</span>)),
+         <span class="dt">sev_logit =</span>  car<span class="op">::</span><span class="kw">logit</span>(sev, <span class="dt">percents=</span><span class="ot">TRUE</span>),<span class="co"># log(sev/100/(1-sev/100)), #  </span>
+         <span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) 
+
+<span class="co"># browseURL(&quot;http://strata.uga.edu/8370/rtips/proportions.html&quot;)</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)
+soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.character, as.factor)</code></pre>
+</div>
+<div id="arrange" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> arrange</h3>
+<p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar <code>desc</code> para orden decrescente.</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)
+soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</code></pre>
+</div>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">5.2.5</span> summarise</h3>
+<p><img src="fig/dplyr_summarise.png" /></p>
+<p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)</p>
+<p><img src="fig/dplyr_group_by.png" /></p>
+<p>Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos:</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),
+            <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </code></pre>
+<blockquote>
+<p>Calculen el rendimiento mínimo y máximo por fungicida</p>
+</blockquote>
+<p>Algunas funciones interesantes para la descripción del dataset: <code>n()</code>, <code>n_distinct()</code>.</p>
+<ul>
+<li>Cuantos ensayos fueron realizados por año:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n_distinct</span>(study)) </code></pre>
+<ul>
+<li>Cuantas parcelas tenia cada ensayo:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(study, year, cultivar) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">plots =</span> <span class="kw">n</span>()) </code></pre>
+<blockquote>
+<p>Adicione una columna de potencial de rendimento del ensayo (rend_pot), considerando el máximo rendimiento observado en ese ensayo.</p>
+</blockquote>
+<blockquote>
+<p>Usando la función <code>ifelse</code> cree una nueva variable categórica “presión de enfermedad” considerando a “sev_check”: Low o High</p>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r">by_check =<span class="st">  </span>soja <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;ZZ_CHECK&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(study) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">sev_check =</span> <span class="kw">round</span>(<span class="kw">mean</span>(sev, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),<span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Dis_level =</span> <span class="kw">ifelse</span>(sev_check <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)) </code></pre>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="forcats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +369,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/04-manipular.Rmd",
 "text": "Edit"
 },
 "download": null,

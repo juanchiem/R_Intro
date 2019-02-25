@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="caso-1-carbon-del-mani.html">
+<link rel="next" href="explore.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="caso-2-xylella-en-olivos" class="section level2">
+<h2><span class="header-section-number">6.2</span> Caso 2: xylella en olivos</h2>
+<p><img src="fig/xylella.jpg" /></p>
+<p>Chequeamos cuantos árboles fueron evaluados en cada año/región/lote:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, olivo))</code></pre>
+<p>Imprimimos los 30 árboles de un mismo lote</p>
+<pre class="sourceCode r"><code class="sourceCode r">olivo <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(loc, year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">print</span>(<span class="dt">n=</span><span class="dv">30</span>)</code></pre>
+<div id="incidencia-nivel-lote---evolucion-interanual" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Incidencia (nivel lote - evolución interanual)</h3>
+<pre class="sourceCode r"><code class="sourceCode r">dat_inc &lt;-<span class="st"> </span>olivo <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year, loc, farm) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">inc =</span> <span class="kw">mean</span>(sev<span class="op">&gt;</span><span class="dv">0</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(loc, year)
+dat_inc</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_inc, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(year), <span class="dt">y=</span>inc, <span class="dt">color=</span><span class="kw">factor</span>(farm))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group=</span>farm)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>loc)</code></pre>
 </div>
+<div id="prevalencia-nivel-region---evolucion-interanual" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Prevalencia (nivel región - evolución interanual)</h3>
+<pre class="sourceCode r"><code class="sourceCode r">dat_prev  &lt;-<span class="st"> </span>dat_inc <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year, loc) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">prev =</span> <span class="kw">trunc</span>(<span class="kw">mean</span>(inc<span class="op">&gt;</span><span class="dv">0</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">*</span><span class="dv">100</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(loc,year)
+dat_prev</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat_prev, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">factor</span>(year), <span class="dt">y=</span>prev, <span class="dt">color=</span><span class="kw">factor</span>(loc))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group=</span>loc))</code></pre>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="caso-1-carbon-del-mani.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="explore.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +281,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/05-fitopatometria.Rmd",
 "text": "Edit"
 },
 "download": null,

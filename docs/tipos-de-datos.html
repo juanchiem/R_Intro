@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="config.html">
+<link rel="prev" href="data-type.html">
+<link rel="next" href="estructura-de-datos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,116 +208,238 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introducción a R</h1>
-</div>
-<div id="motivacion" class="section level1 unnumbered">
-<h1>Motivación</h1>
-<p><em>“Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”</em></p>
-<center>
-<img src="fig/top.jpg" width="600" />
-</center>
-<div style="text-align: right">
-~ Adaptación de <span class="citation">(Ellison and Gotelli <a href="#ref-ellison2004primer">2004</a>)</span> ~
-</div>
-<hr />
-<p>Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:</p>
-<p><img src="fig/workflow.jpg" /></p>
-<div style="text-align: right">
-~ Adaptación de “R for Data Science” <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r">2016</a>)</span> ~
-</div>
-<p></br></p>
-<hr />
-<div id="objetivos" class="section level3 unnumbered">
-<h3>Objetivos</h3>
-<p>El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos, bioquímicos, etc.; y iii) maximizaremos la adopción de la filosofia <a href="https://www.tidyverse.org/">tidyverse</a></p>
-<hr>
-<div style="text-align: center">
-<p><b>Por qué R?</b> <span class="citation">(R Core Team <a href="#ref-R-base">2017</a>)</span></p>
-</div>
-<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<div id="tipos-de-datos" class="section level2">
+<h2><span class="header-section-number">3.1</span> Tipos de datos</h2>
+<p>La unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes cuatro clases.</p>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Clase
+</th>
+<th style="text-align:left;">
+Ejemplo
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">1</span></span>
+numeric
 </td>
 <td style="text-align:left;">
-Software libre - multiplataforma
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">2</span></span>
-</td>
-<td style="text-align:left;">
-Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho mas ameno)
+c(12.3, 5, 999)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">3</span></span>
+logical
 </td>
 <td style="text-align:left;">
-Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">4</span></span>
-</td>
-<td style="text-align:left;">
-Gran flexibilidad y elegancia de los gráficos
+c(TRUE, FALSE)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">5</span></span>
+integer
 </td>
 <td style="text-align:left;">
-Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de ciencia de datos en inglés)
+c(2L, 34L, 0L)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">6</span></span>
+character
 </td>
 <td style="text-align:left;">
-Programar ya no es solo computación (CV/relevant skills)
+c(‘a’, ‘good’, ‘TRUE’, ‘23.4’)
 </td>
 </tr>
 </tbody>
 </table>
-<p></br></p>
-<center>
-<img src="fig/pregunta_respuesta.jpg" width="400" />
-</center>
-<p></br></p>
-<p><b>Autor</b></p>
-<ul>
-<li>Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
-<ul>
-<li>Email: <a href="mailto:edwardsmolina@gmail.com">edwardsmolina@gmail.com</a></li>
-<li>ORCID: <a href="https://orcid.org/0000-0002-3685-760X" class="uri">https://orcid.org/0000-0002-3685-760X</a></li>
-<li>Twitter: <a href="https://twitter.com/juanchiem">juanchiem</a></li>
-<li>GitHub: <a href="https://github.com/juanchiem" class="uri">https://github.com/juanchiem</a></li>
-</ul></li>
-</ul>
-<p></br></p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />Este obra está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional</a>.</p>
-<p></br></p>
+<div id="vectores" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Vectores</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># concatenación de elementos atómicos</span>
+v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">111</span>)
+<span class="kw">class</span>(v)
 
+(b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;b&quot;</span>))
+<span class="kw">class</span>(b)
+<span class="kw">is.character</span>(b)
+<span class="kw">is.numeric</span>(b)
+
+(m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T, F)) ; <span class="kw">class</span>(m)
+
+<span class="co"># Propiedades de v</span>
+<span class="co"># ?length</span>
+<span class="kw">length</span>(v)  
+<span class="kw">summary</span>(v) 
+<span class="co">#v &lt;- edit(v)</span>
+<span class="kw">sort</span>(v)</code></pre>
+<ul>
+<li>Operaciones con vectores</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">v <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+
+<span class="co"># Medidas de posición</span>
+<span class="kw">mean</span>(v) 
+<span class="kw">median</span>(v)
+
+<span class="co"># Medidas de dispersión</span>
+<span class="kw">var</span>(v)
+<span class="kw">sd</span>(v)
+<span class="kw">sqrt</span>(<span class="kw">var</span>(v))
+
+<span class="kw">IQR</span>(v)
+<span class="kw">range</span>(v)
+
+<span class="kw">quantile</span>(v, <span class="fl">0.1</span>)
+<span class="kw">ecdf</span>(v)(<span class="dv">7</span>)
+
+<span class="kw">max</span>(v)
+<span class="kw">min</span>(v)
+<span class="kw">sum</span>(v)</code></pre>
+<blockquote>
+<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
+</blockquote>
+<ul>
+<li>Secuencia</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">:</span><span class="dv">7</span>  
+<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="co">#by=2) # </span>
+    <span class="dt">length=</span><span class="dv">4</span>) 
+
+<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">times=</span><span class="dv">3</span>) <span class="co">#  , each=3   </span></code></pre>
+</div>
+<div id="numeros-aleatorios" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Números aleatorios</h3>
+<p>La generación de números aleatorios es en muchas ocasiones un requerimiento esencial en investigación científica. Proceder de este modo puede reducir cualquier sesgo generado por nuestra persona a la hora de seleccionar una muestra, o aplicar un tratamiento a una unidad experimental.</p>
+<ul>
+<li>Generar números enteros de modo aleatorio de una muestra determinada</li>
+</ul>
+<p><code>sample()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace=</span>F) <span class="co">#sin reposición</span></code></pre>
+<ul>
+<li>Generar numeros aleatorios de una distribución especifica de parámetros conocidos:</li>
+</ul>
+<p><code>runif()</code> - números racionales aleatoriamente, uniformemente distribuidos en un intervalo</p>
+<pre class="sourceCode r"><code class="sourceCode r">num_unif &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min=</span><span class="dv">3</span>, <span class="dt">max=</span><span class="dv">4</span>)
+<span class="kw">hist</span>(num_unif)</code></pre>
+<p><code>rnorm()</code> - números aleatorios, pertenecientes a una población con <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule">distribución normal</a>, con parámetros μ y σ.</p>
+<pre class="sourceCode r"><code class="sourceCode r">num_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">70</span>, <span class="dt">sd=</span><span class="dv">5</span>) 
+<span class="kw">hist</span>(num_norm)</code></pre>
+<blockquote>
+<p>Vamos a recrear estas muestras partiendo de la información contenida en la tabla</p>
+</blockquote>
+<center>
+<img src="fig/PesoVacas.gif" width="300" />
+</center>
+<div style="text-align: right">
+<span class="citation">(Parra-Bracamonte et al. <a href="#ref-parra2007tendencias">2007</a>)</span>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">23570</span>, <span class="dt">mean=</span><span class="fl">32.2</span>, <span class="dt">sd=</span><span class="fl">1.8</span>) 
+<span class="kw">range</span>(PesoNac)
+<span class="kw">hist</span>(PesoNac)
+<span class="kw">hist</span>(PesoNac, <span class="dt">prob=</span><span class="ot">TRUE</span>)</code></pre>
+<ul>
+<li>Propiedades de vectores</li>
+</ul>
+<p>Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a “1.7” se fuera creado junto con “a”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)  <span class="co">## character</span>
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>)   <span class="co">## numeric</span>
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="st">&quot;a&quot;</span>) <span class="co">## character</span></code></pre>
+<p>Forzando las clases explicitamente</p>
+<p><code>as.character()</code>, <code>as.numeric()</code>, <code>as.integer()</code> y <code>as.logical()</code></p>
+<ul>
+<li>Factores</li>
+</ul>
+<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que estos son considerados de manera diferente a las variables continuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
+<p>Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
+<p>Podemos comprobar que la ordenación de los niveles es simplemente alfabética.</p>
+<pre class="sourceCode r"><code class="sourceCode r">clones =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, 
+<span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>)
+<span class="kw">class</span>(clones)
+<span class="kw">levels</span>(clones)
+
+clones_f =<span class="st"> </span><span class="kw">factor</span>(clones)
+<span class="kw">levels</span>(clones_f)
+<span class="kw">table</span>(clones_f)</code></pre>
+<p>En general deseamos algun orden especifico de nuestros niveles del factor, por ej:</p>
+<pre class="sourceCode r"><code class="sourceCode r">clones_f_ord &lt;-<span class="st"> </span><span class="kw">factor</span>(clones_f, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>,  <span class="st">&quot;T99&quot;</span>))
+<span class="kw">table</span>(clones_f_ord)</code></pre>
+<p>Las variables <strong>numéricas y de caracteres</strong> se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de <strong>caracteres</strong>. Podremos verlo en el siguiente ejemplo:</p>
+<pre class="sourceCode r"><code class="sourceCode r">vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>)
+<span class="kw">sum</span>(vec);<span class="kw">mean</span>(vec)
+vec_f &lt;-<span class="st"> </span><span class="kw">factor</span>(vec)
+vec_f
+<span class="kw">levels</span>(vec_f)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">vec_n  &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(vec_f)
+vec_f
+vec_n
+<span class="kw">sum</span>(vec_n); <span class="kw">mean</span>(vec_n)</code></pre>
+<p>Hemos recuperado los valores numericos originales (<code>vec</code>)? que representan los numeros codificados por R en <code>vec_f</code>?</p>
+<pre class="sourceCode r"><code class="sourceCode r">vec_f1 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(vec_f))
+<span class="kw">sum</span>(vec_f1);<span class="kw">mean</span>(vec_f1)</code></pre>
+<ul>
+<li>Indexación</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+y[ ]
+y[<span class="dv">2</span>]
+y[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre>
+<blockquote>
+<p>Seleccione los elementos 1° y 3°</p>
+</blockquote>
+<ul>
+<li>Condición</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ifelse(condición, valor_si_TRUE, valor_si_FALSE)</span>
+<span class="kw">ifelse</span>(y<span class="op">&lt;</span><span class="dv">2</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)</code></pre>
+<div class="rmdnote">
+<p>
+Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Gomosis del Tronco (Phytophthora parasitica). Los diámetros de la lesión (cm) en el punto de inoculación fueron: 3, 6, 1, 10, 3, 15, 5, 8, 19, 11.
+</p>
+</div>
+<blockquote>
+<p>Crear un vector “resist” con las categorías S o R, “S” aquellos clones con lesiones por encima de la mediana, y “R” clones con lesiones por debajo de la mediana.</p>
+</blockquote>
+<p></br></p>
+</div>
+<div id="valores-especiales" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Valores especiales</h3>
+<p>Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.</p>
+<ul>
+<li>NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
+<span class="kw">is.na</span>(y)</code></pre>
+<blockquote>
+<p>Calcule el promedio de y (use la ayuda de R en caso necesario)<code>mean(y)</code></p>
+</blockquote>
+<ul>
+<li>NaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1).
+Un NaN es un NA, pero no reciprocamente.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
+<span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
+<span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</code></pre>
+<ul>
+<li><code>NULL</code> es el vacio de R. Es como si el objeto no existiese</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> </span><span class="ot">NULL</span>
+a</code></pre>
+<ul>
+<li><code>Inf</code> (infinito). Es el resultado de operaciones matemáticas cuyo limite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
+<span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-ellison2004primer">
-<p>Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” <em>Sinauer, Sunderland, Massachusetts, USA</em>.</p>
-</div>
-<div id="ref-wickham2016r">
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
-</div>
-<div id="ref-R-base">
-<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+<div id="ref-parra2007tendencias">
+<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martı́nez-González, Francisco Javier Garcı́a-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotı́picas de Caracterı́sticas de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Cientı́fica</em> 17 (3): 262–67.</p>
 </div>
 </div>
             </section>
@@ -325,8 +447,8 @@ Programar ya no es solo computación (CV/relevant skills)
           </div>
         </div>
       </div>
-
-<a href="config.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-type.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estructura-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -356,7 +478,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/index.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
 "text": "Edit"
 },
 "download": null,

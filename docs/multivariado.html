@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="comparacion-de-niveles-de-factores.html">
+<link rel="next" href="links-de-interes.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="multivariado" class="section level2">
+<h2><span class="header-section-number">7.2</span> Multivariado</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+corr &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(iris[,<span class="op">-</span><span class="dv">5</span>]), <span class="dv">1</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+<span class="kw">ggpairs</span>(iris, <span class="dt">columns =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
+<span class="kw">ggpairs</span>(iris, <span class="dt">columns =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour=</span>Species))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggcorrplot)
+<span class="kw">ggcorrplot</span>(corr, <span class="dt">p.mat =</span> <span class="kw">cor_pmat</span>(iris[,<span class="op">-</span><span class="dv">5</span>]),
+           <span class="dt">hc.order =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>,
+           <span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#FC4E07&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#00AFBB&quot;</span>),
+           <span class="dt">outline.col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">lab =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(FactoMineR)
+<span class="kw">library</span>(factoextra)
+
+iris.pca &lt;-<span class="st"> </span><span class="kw">PCA</span>(iris[,<span class="op">-</span><span class="dv">5</span>], <span class="dt">graph =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_var</span>(iris.pca)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_ind</span>(iris.pca,
+             <span class="dt">col.ind.sup =</span> <span class="st">&quot;blue&quot;</span>,
+             <span class="dt">repel =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span> <span class="co"># Individuals</span>
+                )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="dt">col.ind =</span> iris<span class="op">$</span>Species, <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,
+                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>, <span class="co">#ellipse.type = &quot;confidence&quot;,</span>
+                <span class="dt">label =</span> <span class="st">&quot;var&quot;</span>,
+                <span class="dt">col.var =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">repel =</span> <span class="ot">TRUE</span>,
+                <span class="dt">legend.title =</span> <span class="st">&quot;Species&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(iris.pca,
+                <span class="co"># Individuals</span>
+                <span class="dt">geom.ind =</span> <span class="st">&quot;point&quot;</span>,
+                <span class="dt">fill.ind =</span> iris<span class="op">$</span>Species, <span class="dt">col.ind =</span> <span class="st">&quot;black&quot;</span>,
+                <span class="dt">pointshape =</span> <span class="dv">21</span>, <span class="dt">pointsize =</span> <span class="dv">2</span>,
+                <span class="dt">palette =</span> <span class="st">&quot;jco&quot;</span>,
+                <span class="dt">addEllipses =</span> <span class="ot">TRUE</span>,
+
+                <span class="co"># Variables</span>
+                <span class="co"># alpha.var =&quot;contrib&quot;,</span>
+                <span class="dt">col.var =</span> <span class="st">&quot;contrib&quot;</span>,
+                <span class="dt">gradient.cols =</span> <span class="st">&quot;RdYlBu&quot;</span>,
+                <span class="dt">legend.title =</span> <span class="kw">list</span>(<span class="dt">fill =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Contribution&quot;</span>)
+)</code></pre>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comparacion-de-niveles-de-factores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="links-de-interes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +291,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/06-visualizar.Rmd",
 "text": "Edit"
 },
 "download": null,

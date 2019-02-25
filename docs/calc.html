@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="sintaxis-basica.html">
+<link rel="next" href="funciones.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="calc" class="section level2">
+<h2><span class="header-section-number">2.1</span> R calculadora</h2>
+<p>Ver <a href="tablas-resumen.html#tablas_resumen">tablas resumen</a> de operadores aritméticos y lógicos (al final del capítulo)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span>
+<span class="dv">4</span> <span class="op">-</span><span class="st"> </span>
+<span class="st">  </span><span class="dv">3</span> <span class="op">*</span>
+<span class="st">  </span><span class="dv">1</span>
+<span class="co"># 4%1</span>
+<span class="dv">4</span><span class="op">&gt;</span><span class="dv">3</span>
+<span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span>
+<span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
+
+(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ) <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">36</span><span class="op">/</span><span class="dv">18</span>)<span class="op">^</span><span class="dv">3</span></code></pre>
+<blockquote>
+<p>Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
+Agregue parentesis para que la expresión de un resultado contrario.</p>
+</blockquote>
+<p></br></p>
+<div class="rmdnote">
+<p>
+<strong>Rendimiento de trigo en función de la severidad de fusariosis de la espiga</strong> <span class="citation"><span class="citation">(Madden and Paul <a href="#ref-madden2009assessing">2009</a>)</span></span>
+</p>
+<p>
+El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
+</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">4.1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.038</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
+(<span class="dv">1</span><span class="op">-</span>(<span class="fl">3.72</span><span class="op">/</span><span class="fl">4.1</span>))<span class="op">*</span><span class="dv">100</span></code></pre>
+<blockquote>
+<p>Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
+</blockquote>
+<p></br></p>
+<p>Algunos cálculos</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">3</span>) <span class="co"># 3^0.5</span>
+<span class="dv">2</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="co"># ^(1/n)</span>
+
+<span class="kw">log</span>(<span class="dv">10</span>)
+<span class="kw">log</span>(<span class="dv">10</span>, <span class="dt">base=</span><span class="dv">10</span>)
+
+<span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></code></pre>
+<p>(Note que R está en inglés (decimales “.”, nombre de las funciones)
+y es “case sensitive”!!)</p>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-madden2009assessing">
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7): 850–60.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sintaxis-basica.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="funciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +293,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/01-R_sintaxis.Rmd",
 "text": "Edit"
 },
 "download": null,

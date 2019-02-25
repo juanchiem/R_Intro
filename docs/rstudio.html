@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="instalacion-de-programas.html">
+<link rel="next" href="paquetes-de-r.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -46,7 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -133,9 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a><ul>
-<li class="chapter" data-level="" data-path="paquetes-de-r.html"><a href="paquetes-de-r.html"><i class="fa fa-check"></i>Paquetes de R</a></li>
-<li class="chapter" data-level="" data-path="workflow-componentes.html"><a href="workflow-componentes.html"><i class="fa fa-check"></i>Workflow componentes</a></li>
-<li class="chapter" data-level="" data-path="s-o-s-.html"><a href="s-o-s-.html"><i class="fa fa-check"></i>S.O.S.</a></li>
+<li class="chapter" data-level="" data-path="instalacion-de-programas.html"><a href="instalacion-de-programas.html"><i class="fa fa-check"></i>Instalación de programas</a></li>
+<li class="chapter" data-level="" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i>RStudio</a></li>
+<li class="chapter" data-level="1.1" data-path="paquetes-de-r.html"><a href="paquetes-de-r.html"><i class="fa fa-check"></i><b>1.1</b> Paquetes de R</a></li>
+<li class="chapter" data-level="1.2" data-path="workflow-componentes.html"><a href="workflow-componentes.html"><i class="fa fa-check"></i><b>1.2</b> Workflow componentes</a></li>
+<li class="chapter" data-level="1.3" data-path="s-o-s-.html"><a href="s-o-s-.html"><i class="fa fa-check"></i><b>1.3</b> S.O.S.!!</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="sintaxis-basica.html"><a href="sintaxis-basica.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a><ul>
 <li class="chapter" data-level="2.1" data-path="calc.html"><a href="calc.html"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
@@ -154,8 +155,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.3" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importar</a><ul>
+<li class="chapter" data-level="4.1" data-path="estructura-de-planillas-de-datos.html"><a href="estructura-de-planillas-de-datos.html"><i class="fa fa-check"></i><b>4.1</b> Estructura de planillas de datos</a></li>
+<li class="chapter" data-level="4.2" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.2</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
@@ -187,7 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
 <li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 
@@ -208,16 +209,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="rstudio" class="section level2 unnumbered">
+<h2>RStudio</h2>
+<p>RStudio es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, dedicado a la computación estadística y gráficos.</p>
+<p>Configuraciones iniciales (sugeridas). Dirigirse a la sección “Tools/Global options”</p>
+<center>
+<p><img src="fig/rstudio_config1.png" /></p>
+<p><img src="fig/rstudio_config2.png" /></p>
+<img src="fig/rstudio_config3.png" />
+</center>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="instalacion-de-programas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paquetes-de-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +255,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -258,19 +266,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="paquetes-de-r.html">
+<link rel="next" href="s-o-s-.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="workflow-componentes" class="section level2 unnumbered">
+<h2>Workflow componentes</h2>
+<p>Varios tipos de archivos serán creados y usados durante una sesión de R:</p>
+<ul>
+<li>datos crudos (hojas de cálculo) - datos manipulados</li>
+<li>scripts</li>
+<li>gráficos</li>
+<li>reportes de resultados</li>
+</ul>
+<p>Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo <em>buenas prácticas</em> de trabajo. Esto nos permitirá entender que quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos <em>reproducibles</em>…<br />
+Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión.</p>
+<p><img src="fig/workflow_completo.png" /></p>
+<p>Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes maquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.</p>
+<center>
+<img src="fig/folders.png" />
+</center>
+<blockquote>
+<p>Crear una carpeta Intro_R en sus máquinas</p>
+</blockquote>
+<blockquote>
+<p>Crear una nuevo proyecto “Intro_R.Rproj”</p>
+</blockquote>
+<blockquote>
+<p>Crear un script “1_intro”</p>
+</blockquote>
+<p>Donde se guardaria el siguiente gráfico?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(pressure)</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="paquetes-de-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s-o-s-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +272,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
 "text": "Edit"
 },
 "download": null,

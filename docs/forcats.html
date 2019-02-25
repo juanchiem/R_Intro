@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="dplyr.html">
+<link rel="next" href="fitopato.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,16 +208,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="forcats" class="section level2">
+<h2><span class="header-section-number">5.3</span> forcats::</h2>
+<p>Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. <a href="https://forcats.tidyverse.org/">link</a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)
+<span class="kw">library</span>(forcats)
+
+dat <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trt1=</span> <span class="kw">fct_recode</span>(trt,
+                          <span class="st">`</span><span class="dt">Czm</span><span class="st">`</span> =<span class="st"> &quot;CZM[1]&quot;</span>, <span class="co"># `nombre_nuevo` = &quot;nombre_original&quot; </span>
+                          <span class="st">`</span><span class="dt">Czm+CM+Tebu</span><span class="st">`</span> =<span class="st"> &quot;CZM_CM_TEBU[1]&quot;</span>,
+                          <span class="st">`</span><span class="dt">Epo+Flux+Pyra (0.8L)</span><span class="st">`</span> =<span class="st"> &quot;EPO_FLUX_PYRA[0.8]&quot;</span>,
+                          <span class="st">`</span><span class="dt">Check</span><span class="st">`</span> =<span class="st"> &quot;ZZ_CHECK&quot;</span>),
+         <span class="dt">trt1=</span> <span class="kw">fct_relevel</span>(trt, <span class="co"># Asignar a trt1 nuevo orden de los factores </span>
+                           <span class="st">&quot;Check&quot;</span>, <span class="st">&quot;Czm&quot;</span>, <span class="st">&quot;Czm+CM+Tebu&quot;</span>, <span class="st">&quot;Epo+Flux+Pyra (0.8L)&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></code></pre>
+
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fitopato.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +263,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/04-manipular.Rmd",
 "text": "Edit"
 },
 "download": null,

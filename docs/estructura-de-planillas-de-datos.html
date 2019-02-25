@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="tablas-resumen.html">
-<link rel="next" href="tipos-de-datos.html">
+<link rel="prev" href="import.html">
+<link rel="next" href="vias-de-importacion.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -155,6 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a><ul>
+<li class="chapter" data-level="" data-path="estructura-de-planillas-de-datos.html"><a href="estructura-de-planillas-de-datos.html"><i class="fa fa-check"></i>Estructura de planillas de datos</a></li>
 <li class="chapter" data-level="4.1" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
@@ -208,16 +209,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_type" class="section level1">
-<h1><span class="header-section-number">3</span> Datos: tipos y estructuras</h1> 
+<div id="estructura-de-planillas-de-datos" class="section level2 unnumbered">
+<h2>Estructura de planillas de datos</h2>
+<p>Un primer paso en nuestras investigaciones (fundamental, determinante del resto de flujo de trabajo) es la toma de datos. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir.</p>
+<p>En particular prefiero que las <a href="https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&amp;usp=sheets_home&amp;ths=true">planillas excel</a> sean similares a las de campo (puede haber discrepancia) ya que muchas veces pedimos a otras personas que pasen los datos por nosotros…
+R se ocupará de hacer el trabajo sucio de organizar la información una vez importados los datos!</p>
+<strong>5 Principios básicos</strong> Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span>
+<hr>
+<p>Como regla global, y siguiendo lo ya comentado en la sección de <a href="estructura-de-datos.html#data_frames">data frames</a>, columnas (Verticales) son <strong>Variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales)</p>
+<p><strong>1 - Consistencia</strong></p>
+<p>Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:</p>
+<ul>
+<li>severidad = sev</li>
+<li>incidencia = inc</li>
+<li>rendimiento = rto</li>
+<li>hoja = hj (bien podría ser “hoja” también)</li>
+<li>planta = pl</li>
+<li>bloque = bq</li>
+<li>placa = placa</li>
+<li>temperatura = temp</li>
+<li>máxima = max</li>
+</ul>
+<p>En particular prefiero usar el inglés, ya que no tiene acentos ni caracteres especiales.
+Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades experimentales (placas, macetas, plantas dentro de las macetas, etc.), al final se recuperará en creces el tiempo extra inicialmente invertido en ello (stand-alone).</p>
+<ul>
+<li><p>Adopten siempre los mismos términos</p></li>
+<li><p>No escatimen en columnas: rep_pl -&gt; rep | pl</p></li>
+<li><p>Crear diccionario de términos: Agreguen una planilla con el detalle por extenso de las variables y sus unidades. Piensen que esa planilla la debería entender cualquier persona sin auxilio de sus propios comentarios.</p></li>
+</ul>
+<p><strong>2 - Rectangular</strong></p>
+<p>Todo set de datos tiene sus dimensiones específicas: n fila - n columnas.
+Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida”</p>
+<p><strong>3 - Cero es un dato!</strong></p>
+<p>Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.” o dejar en blanco (si se usa .xlsx)
+En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…</p>
+<p><strong>4 - Planilla plana -&gt; DATOS CRUDOS</strong></p>
+<ul>
+<li>SIN FORMULAS</li>
+<li>No combinar celdas</li>
+<li>no resaltar</li>
+<li>no hacer bordes</li>
+<li>sin negritas</li>
+<li>caracteres puros</li>
+</ul>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-broman2018data">
+<p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1): 2–10.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tablas-resumen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tipos-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vias-de-importacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +295,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/02-data_type.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/03-importar.Rmd",
 "text": "Edit"
 },
 "download": null,
