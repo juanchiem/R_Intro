@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE, 
-                      # eval=FALSE, 
+                      eval=FALSE, 
                       fig.path = "figures/", 
                       fig.width = 12, 
                       fig.height = 8)
@@ -10,11 +10,27 @@ options(width = 90)
 library(tidyverse)
 ```
 
-```{r}
+```{r, eval=FALSE}
 load("data/datos_crudos.RData")
 ```
 
 # Cálculos fitopatométricos {#fitopato}
+
+**Fitopatometría**: La rama de la fitopatología  que se ocupa de la teoría y la práctica de la evaluación cuantitativa de enfermedades (y/o patógenos). 
+
+- Nivel de planta individual
+
+**Severidad** medida de la cantidad de enfermedad por unidad de muestreo. En fitopatología es comúnmente definida como el área (volumen) de tejido enfermo (l2), dividido por el total del área (volumen) de la unidad de muestreo  por  100 para obtener un valor en porcentaje.
+
+- Nivel de parcela / lote
+
+**Incidencia**: número de unidades muestreales (plantas) que están enfermas o infectadas por un agente patogénico. Expresado como un porcentaje o proporción del número total de unidades evaluadas.
+
+**Indice de enfermedad**
+
+- Nivel de región
+
+**Prevalencia**: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.
 
 ## Caso 1: carbón del mani 
 
