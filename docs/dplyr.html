@@ -46,7 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -185,7 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.2</b> Multivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
+<li class="chapter" data-level="8" data-path="modelo-lineal.html"><a href="modelo-lineal.html"><i class="fa fa-check"></i><b>8</b> Modelo lineal</a></li>
+<li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -213,18 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Los cinco verbos (funciones) principales de <code>dplyr</code> son:</p>
 <p><code>select</code> <code>filter</code> <code>mutate</code> <code>arrange</code> <code>summarise</code></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r">can_long
-<span class="co"># Precisamos que tt sea clase &quot;numérica&quot; para ciertos cálculos</span>
-can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;trt&quot;</span>,<span class="st">&quot;bk&quot;</span>), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;tt&quot;</span>, <span class="st">&quot;inc&quot;</span>), <span class="kw">funs</span>(as.numeric))</code></pre>
-<p>Calcularemos un valor de AUC por parcela con auxilio de las funciones <code>group_by</code> y <code>summarize</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># if(require(MESS)) {install.packages(&quot;MESS&quot;)}</span>
-can_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(trt, bk) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">AUC =</span> MESS<span class="op">::</span><span class="kw">auc</span>(inc, tt))</code></pre>
-<p>Ahora si, can_phoma está listo para entrar al próximo paso: modelado.</p>
-<p>junta dos data.frames a través de puntos en común.</p>
+<p><code>join</code> junta dos data frames a través de puntos en común.</p>
 <p>Por ejemplo, si queremos unir las variables “sev_check” y “Dis_level” al dataset soja:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</code></pre>
 <div id="select" class="section level3">
@@ -254,17 +243,26 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <div id="mutate" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> mutate</h3>
 <ul>
-<li>Alistar los datos crudos recien importados</li>
+<li>Alistar los tipos de variables recien importados</li>
 </ul>
 <p>Haremos que las variables tipo caracter sean convertidas a factores:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">c</span>(<span class="st">&quot;cultivar&quot;</span>, <span class="st">&quot;fungic&quot;</span>,<span class="st">&quot;Yld_level&quot;</span>, <span class="st">&quot;YR_class&quot;</span>, <span class="st">&quot;gr_hab&quot;</span>)), <span class="kw">funs</span>(as.factor))
+<pre class="sourceCode r"><code class="sourceCode r">soja_long &lt;-<span class="st"> </span>soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(fungic<span class="op">:</span>bk), <span class="kw">funs</span>(as.factor))
 
-<span class="kw">summary</span>(soja)
-<span class="kw">str</span>(soja)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">canola &lt;-<span class="st"> </span>canola <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">c</span>(<span class="st">&quot;trt&quot;</span>,<span class="st">&quot;bk&quot;</span>)), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="st">`</span><span class="dt">15</span><span class="st">`</span><span class="op">:</span><span class="st"> &quot;sev_cank&quot;</span>), <span class="kw">funs</span>(<span class="kw">round</span>(., <span class="dv">2</span>)))</code></pre>
+<span class="kw">str</span>(soja_long)
+<span class="kw">summary</span>(soja_long)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(trt, bk), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(tt, inc), <span class="kw">funs</span>(as.numeric))
+
+<span class="kw">str</span>(can_long)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(loc, farm, tree), <span class="kw">funs</span>(as.factor))
+
+<span class="kw">str</span>(oli_long)</code></pre>
+<p>Luego de haber chequeado los tipos de datos con <code>str()</code> agregamos al archivo “datos_curso.RData” los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
+     <span class="dt">file=</span><span class="st">&quot;data/datos_curso.RData&quot;</span>)</code></pre>
 <ul>
 <li>Creación de nuevas variables (a partir de las existentes)</li>
 </ul>
@@ -380,19 +378,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

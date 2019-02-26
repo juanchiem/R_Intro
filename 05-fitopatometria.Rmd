@@ -3,7 +3,6 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE, 
                       message = FALSE, 
                       eval=FALSE, 
-                      fig.path = "figures/", 
                       fig.width = 12, 
                       fig.height = 8)
 options(width = 90)
@@ -18,19 +17,36 @@ load("data/datos_crudos.RData")
 
 **Fitopatometría**: La rama de la fitopatología  que se ocupa de la teoría y la práctica de la evaluación cuantitativa de enfermedades (y/o patógenos). 
 
-- Nivel de planta individual
+**Nivel de planta individual**
 
-**Severidad** medida de la cantidad de enfermedad por unidad de muestreo. En fitopatología es comúnmente definida como el área (volumen) de tejido enfermo (l2), dividido por el total del área (volumen) de la unidad de muestreo  por  100 para obtener un valor en porcentaje.
+- Severidad: medida de la cantidad de enfermedad por unidad de muestreo (planta, m² de cultivo, fruto, etc.) . En fitopatología es comúnmente definida como el área (volumen) de tejido enfermo dividido por el total del área (volumen) (x100 para obtener un valor en porcentaje)
 
-- Nivel de parcela / lote
+**Nivel de parcela / lote**
 
-**Incidencia**: número de unidades muestreales (plantas) que están enfermas o infectadas por un agente patogénico. Expresado como un porcentaje o proporción del número total de unidades evaluadas.
+- Incidencia: número de unidades muestreales (plantas) que están enfermas o infectadas por un agente patogénico. Expresado como un porcentaje (%) o proporción (0->1) del número total de unidades evaluadas.
 
-**Indice de enfermedad**
+- Indice de severidad: Estimación de severidad usando una escala de severidad que comprende una serie de intervalos de rangos numéricos. 
 
-- Nivel de región
+Por ej: 
 
-**Prevalencia**: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.
+```{r}
+grado  rango de severidad
+-----  ------------------
+    0                   0
+    1              0<=25%
+    2             25<=50%
+    3             50<=75%
+    4            75<=100%
+```
+
+La propuesta de @madden2007study (Cap. 2, pág. 20) es corregir por el punto medio del rango de severidad:
+
+$IS(\%)=\frac {\sum frecuencia \: de \: grado\: \times\: punto \: medio \: del \: grado \:de\: escala} {total \: plantas \: evaluadas \times 100}$
+
+
+**Nivel de región**
+
+- Prevalencia: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.
 
 ## Caso 1: carbón del mani 
 
@@ -70,6 +86,17 @@ mani1 <- mani %>%
 
 mani1
 ```
+
+
+Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
+
+```{r}
+# if(require(MESS)) {install.packages("MESS")}
+can_long %>%
+  group_by(trt, bk) %>%
+  summarize(AUC = MESS::auc(inc, tt))
+```
+
 
 ## Caso 2: xylella en olivos
 

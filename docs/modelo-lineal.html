@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="import.html">
-<link rel="next" href="manip.html">
+<link rel="prev" href="multivariado.html">
+<link rel="next" href="links-de-interes.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -209,103 +209,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vias-de-importacion" class="section level2">
-<h2><span class="header-section-number">4.1</span> Vías de importación</h2>
-<p>Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.</p>
-<p>Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos).</p>
-<p>La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión:</p>
+<div id="modelo-lineal" class="section level1">
+<h1><span class="header-section-number">8</span> Modelo lineal</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;data/datos_curso.RData&quot;</span>)</code></pre>
 <ul>
-<li>Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio</li>
-<li>Hacen click sobre el archivo<br />
-</li>
-<li>Seleccionan “import dataset”<br />
-</li>
-<li>Configuran las opciones de importación y copian el codigo generado y dan import
-(es aconsejable que peguen el codigo en el script de la sesión)</li>
+<li>Exploración</li>
 </ul>
-<p>O bien desde código del script:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(soja_long) <span class="co"># tipo de variables</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(soja_long) <span class="co"># exploración numérica</span></code></pre>
+<p>Para chequear parcelas con datos extraños</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>fungic, <span class="dt">y=</span>sev)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> bk), <span class="dt">size=</span><span class="dv">3</span>)<span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>fungic, <span class="dt">y=</span>yield)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> bk), <span class="dt">size=</span><span class="dv">3</span>)<span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
 <ul>
-<li>Archivos excel</li>
+<li>Modelo de efectos fijos</li>
 </ul>
-<blockquote>
-<p>Importar soja_mancha.xlsx, nombrandolo “soja”
-Importar can_phoma.xlsx, nombrandolo “canola”</p>
-</blockquote>
-<p>Dataset <strong>canola_phoma</strong></p>
-<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detcción de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
-<p>Dataset <strong>soja_mancha</strong></p>
-<p>Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja</p>
-<p>study: identificador arbitrario para cada experimento
-year: año del experimento
-location: localidad del experimento
-cultivar: cultivar de soja utilizado
-fungic: tratamiento fungicida
-block: repeticiones
-sev: severidad (%) evaluada en R6
-yield: rendimiento en madurez fisiológica (kg/ha)</p>
-<p>Dataset <strong>olivo_xylella</strong></p>
-<p>Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja</p>
+<pre class="sourceCode r"><code class="sourceCode r">m_fix &lt;-<span class="st"> </span><span class="kw">lm</span>(sev <span class="op">~</span><span class="st"> </span>fungic <span class="op">+</span><span class="st"> </span>bk, <span class="dt">data =</span> soja_long)</code></pre>
 <ul>
-<li>Archivos de texto .csv</li>
+<li>Diagnósticos</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;nombre_del_archivo.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)<span class="co"># puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.</span>
+<p>Heterocedasticidad</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(m_fix, <span class="dt">which=</span><span class="dv">1</span>)
+olsrr<span class="op">::</span><span class="kw">ols_test_score</span>(m_fix)</code></pre>
+<p>Los residuos se distribuyen normales?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(m_fix<span class="op">$</span>residuals)
+<span class="kw">plot</span>(m_fix, <span class="dt">which=</span><span class="dv">2</span>)
+<span class="kw">shapiro.test</span>(m_fix<span class="op">$</span>residuals)</code></pre>
+<p><strong>Transformación potencia óptima de boxcox</strong></p>
+<p>Esta transformación solo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transforma con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial.</p>
+<p><img src="fig/boxcox.png" width="300" /></p>
+<p><img src="fig/boxcox_1.png" width="350" /><img src="fig/boxcox_02.png" width="350" /></p>
+<p>Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (lineas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo</p>
+<p>La utilización de la transformación Box-Cox requiere que todos los valores de la serie de entrada sean positivos y distintos a cero.
+Por ello es adicionada una constante a la variable original (0.5, por ej.)</p>
+<p>En el caso de la derecha, el modelo resultaria:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>((y<span class="fl">+0.5</span>)<span class="op">^</span><span class="fl">0.2</span> <span class="op">~</span><span class="st"> </span>trt <span class="op">+</span><span class="st"> </span>bk, ...)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">MASS<span class="op">::</span><span class="kw">boxcox</span>(m_fix)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(m_fix)</code></pre>
+<p>Modelo mixto con efecto aleatorio del bloque</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
+m_mix &lt;-<span class="st"> </span><span class="kw">lmer</span>(sev <span class="op">~</span><span class="st"> </span>fungic <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>bk), <span class="dt">data=</span>soja_long)
+car<span class="op">::</span><span class="kw">Anova</span>(m_mix)
+<span class="kw">plot</span>(m_mix)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(emmeans)
+em &lt;-<span class="st"> </span><span class="kw">emmeans</span>(m_mix, <span class="op">~</span><span class="st"> </span>fungic, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
+em
 
-dat &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;ruta/nombre_del_archivo.csv&quot;</span>)</code></pre>
-<ul>
-<li>Desde clipboard</li>
-</ul>
-<p>Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</code></pre>
-<p><code>{datapasta}</code> - Package + addin</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;datapasta&quot;</span>)</code></pre>
-<ul>
-<li>Desde google sheets:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;gsheet&quot;)</span>
-url &lt;-<span class="st"> &quot;https://docs.google.com/spreadsheets/d/1NQ7nd2pOPQYaLzJs1D2-aOB6LDKzv9kjOcKaNeNFjpA/edit?usp=sharing&quot;</span>
-<span class="co"># browseURL(url)</span>
-dat  &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(url)
-dat</code></pre>
-<ul>
-<li>Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st">Crop      x1 x2 x3 x4</span>
-<span class="st">Corn      16 27 31 33</span>
-<span class="st">Corn      15 23 30 30</span>
-<span class="st">Corn      16 27 27 26</span>
-<span class="st">Corn      18 20 25 23</span>
-<span class="st">Corn      15 15 31 32</span>
-<span class="st">Corn      15 32 32 15</span>
-<span class="st">Corn      12 15 16 73</span>
-<span class="st">Soybean   20 23 23 25</span>
-<span class="st">Soybean   24 24 25 32</span>
-<span class="st">Soybean   21 25 23 24</span>
-<span class="st">Soybean   27 45 24 12</span>
-<span class="st">Soybean   12 13 15 42</span>
-<span class="st">Soybean   22 32 31 43</span>
-<span class="st">&#39;</span>)</code></pre>
-<ul>
-<li>Colección de datos en archivo .RData</li>
-</ul>
-<p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde este.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
-<p>Para traerlos nuevamente al entorno de la sesión:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
-<ul>
-<li>Exportar datasets</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre>
+res.m_mix =<span class="st"> </span><span class="kw">CLD</span>(em, 
+                <span class="dt">Letters =</span> letters, 
+                <span class="dt">reverse =</span> <span class="ot">FALSE</span>)
+knitr<span class="op">::</span><span class="kw">kable</span>(res.m_mix)</code></pre>
 
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manip.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multivariado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="links-de-interes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -335,7 +303,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/03-importar.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/07_model.Rmd",
 "text": "Edit"
 },
 "download": null,

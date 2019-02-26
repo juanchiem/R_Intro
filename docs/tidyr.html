@@ -46,7 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -185,7 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.2</b> Multivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
+<li class="chapter" data-level="8" data-path="modelo-lineal.html"><a href="modelo-lineal.html"><i class="fa fa-check"></i><b>8</b> Modelo lineal</a></li>
+<li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -219,21 +219,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos esten en formato <em>long</em>.</p>
 <p>Veamos de que se tratan ambos formatos.</p>
 <p>Datos <strong>canola</strong>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">canola &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/can_phoma.xlsx&quot;</span>)</code></pre>
 <p>Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato “long”. La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos.</p>
 <p><img src="fig/wide_to_long.png" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">canola <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">15</span><span class="st">`</span>, <span class="st">`</span><span class="dt">58</span><span class="st">`</span>, <span class="st">`</span><span class="dt">95</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, 
-         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) -&gt;<span class="st"> </span>can_long</code></pre>
-<p>Datos <strong>soja</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(bk_sev, <span class="st">&quot;sev&quot;</span>, <span class="kw">ends_with</span>(<span class="st">&quot;sev&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">gather</span>(bk_yield, <span class="st">&quot;yield&quot;</span>, <span class="kw">ends_with</span>(<span class="st">&quot;yield&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(bk_sev, <span class="st">&quot;bk&quot;</span>,  <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>) -&gt;<span class="st"> </span>soja_long</code></pre>
+         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># ordenar las columnas </span>
+<span class="st">  </span><span class="kw">select</span>(trt, bk, tt, inc, sev_cank) -&gt;<span class="st"> </span>can_long</code></pre>
 <p>Datos <strong>olivo</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r">olivo <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st"> `</span><span class="dt">30</span><span class="st">`</span>, 
          <span class="dt">key =</span> <span class="st">&quot;tree&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long</code></pre>
+<p>Datos <strong>soja</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> val, <span class="op">-</span>fungic) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="st">&#39;bk&#39;</span>, <span class="st">&#39;x&#39;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(x, val, <span class="dt">convert =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>soja_long</code></pre>
 </div>
             </section>
 
@@ -282,19 +283,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

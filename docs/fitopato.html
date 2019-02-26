@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -184,7 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.2</b> Multivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>8</b> Links de interés</a></li>
+<li class="chapter" data-level="8" data-path="modelo-lineal.html"><a href="modelo-lineal.html"><i class="fa fa-check"></i><b>8</b> Modelo lineal</a></li>
+<li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -210,19 +212,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fitopato" class="section level1">
 <h1><span class="header-section-number">6</span> Cálculos fitopatométricos</h1>
 <p><strong>Fitopatometría</strong>: La rama de la fitopatología que se ocupa de la teoría y la práctica de la evaluación cuantitativa de enfermedades (y/o patógenos).</p>
+<p><strong>Nivel de planta individual</strong></p>
 <ul>
-<li>Nivel de planta individual</li>
+<li>Severidad: medida de la cantidad de enfermedad por unidad de muestreo (planta, m² de cultivo, fruto, etc.) . En fitopatología es comúnmente definida como el área (volumen) de tejido enfermo dividido por el total del área (volumen) (x100 para obtener un valor en porcentaje)</li>
 </ul>
-<p><strong>Severidad</strong> medida de la cantidad de enfermedad por unidad de muestreo. En fitopatología es comúnmente definida como el área (volumen) de tejido enfermo (l2), dividido por el total del área (volumen) de la unidad de muestreo por 100 para obtener un valor en porcentaje.</p>
+<p><strong>Nivel de parcela / lote</strong></p>
 <ul>
-<li>Nivel de parcela / lote</li>
+<li><p>Incidencia: número de unidades muestreales (plantas) que están enfermas o infectadas por un agente patogénico. Expresado como un porcentaje (%) o proporción (0-&gt;1) del número total de unidades evaluadas.</p></li>
+<li><p>Indice de severidad: Estimación de severidad usando una escala de severidad que comprende una serie de intervalos de rangos numéricos.</p></li>
 </ul>
-<p><strong>Incidencia</strong>: número de unidades muestreales (plantas) que están enfermas o infectadas por un agente patogénico. Expresado como un porcentaje o proporción del número total de unidades evaluadas.</p>
-<p><strong>Indice de enfermedad</strong></p>
+<p>Por ej:</p>
+<pre class="sourceCode r"><code class="sourceCode r">grado  rango de severidad
+<span class="op">-----</span><span class="st">  </span><span class="op">------------------</span>
+<span class="st">    </span><span class="dv">0</span>                   <span class="dv">0</span>
+    <span class="dv">1</span>              <span class="dv">0</span><span class="op">&lt;=</span><span class="dv">25</span>%
+    <span class="dv">2</span>             <span class="dv">25</span><span class="op">&lt;=</span><span class="dv">50</span>%
+    <span class="dv">3</span>             <span class="dv">50</span><span class="op">&lt;=</span><span class="dv">75</span>%
+    <span class="dv">4</span>            <span class="dv">75</span><span class="op">&lt;=</span><span class="dv">100</span>%</code></pre>
+<p>La propuesta de <span class="citation">Madden, Hughes, and Van Den Bosch (<a href="#ref-madden2007study">2007</a>)</span> (Cap. 2, pág. 20) es corregir por el punto medio del rango de severidad:</p>
+<p><span class="math inline">\(IS(\%)=\frac {\sum frecuencia \: de \: grado\: \times\: punto \: medio \: del \: grado \:de\: escala} {total \: plantas \: evaluadas \times 100}\)</span></p>
+<p><strong>Nivel de región</strong></p>
 <ul>
-<li>Nivel de región</li>
-</ul>
-<p><strong>Prevalencia</strong>: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.</p> 
+<li>Prevalencia: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.</li>
+</ul> 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-madden2007study">
+<p>Madden, Laurence V, Gareth Hughes, and Frank Van Den Bosch. 2007. “The Study of Plant Disease Epidemics.”</p>
+</div>
 </div>
             </section>
 
@@ -271,6 +289,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

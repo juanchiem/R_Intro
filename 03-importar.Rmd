@@ -93,7 +93,7 @@ canola <- read_excel("data/canola_phoma.xlsx")
 mani <- read_excel("data/mani_carbon.xlsx")
 olivo  <- read_excel("data/olivo_xylella.xls")
 
-save(soja, canola, mani, olivo, file="data/datos_crudos.RData")
+save(soja, canola, mani, olivo, file="data/datos_curso.RData")
 ```
 
 Dataset **canola_phoma** 

@@ -2,10 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE, 
-                      eval=FALSE, 
-                      fig.path = "figures/", 
-                      fig.width = 12, 
-                      fig.height = 8)
+                      eval=FALSE)
 options(width = 90)
 library(tidyverse)
 #https://www.listendata.com/2016/08/dplyr-tutorial.html
@@ -41,7 +38,7 @@ sqrt(sum(x))
 Importemos los datos "crudos" que tenemos almacenados en el archivo .RData
 
 ```{r}
-load("./data/datos_crudos.RData")
+load("./data/datos_curso.RData")
 # browseURL("https://osf.io/jpfet/")
 ```
 
@@ -57,7 +54,6 @@ Las principales funciones son:
 
 ![](fig/tydir_join.png)
 
-
 Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.  
 
 En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos esten en formato *long*. 
@@ -66,10 +62,6 @@ Veamos de que se tratan ambos formatos.
 
 Datos **canola**:
 
-```{r}
-canola <- readxl::read_excel("data/can_phoma.xlsx")
-```
-
 Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
 
 ![](fig/wide_to_long.png)
@@ -77,16 +69,9 @@ Para analizar el efecto del tratamiento fungicida necesitamos calcular el área 
 ```{r}
 canola %>%  
   gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
-         key = "tt", value = "inc") -> can_long
-```
-
-Datos **soja**
-
-```{r}
-soja %>%
-  gather(bk_sev, "sev", ends_with("sev")) %>% 
-  gather(bk_yield, "yield", ends_with("yield")) %>% 
-  separate(bk_sev, "bk",  sep="_") -> soja_long
+         key = "tt", value = "inc") %>% 
+  # ordenar las columnas 
+  select(trt, bk, tt, inc, sev_cank) -> can_long
 ```
 
 Datos **olivo**
@@ -97,6 +82,15 @@ olivo %>%
          key = "tree", value = "sev") -> oli_long
 ```
 
+Datos **soja**
+
+```{r}
+soja %>% 
+  gather(key = var, value = val, -fungic) %>% 
+  separate(var, c('bk', 'x'), sep = '_', convert = TRUE) %>% 
+  spread(x, val, convert = TRUE) -> soja_long
+```
+
 ## dplyr::
 
 Los cinco verbos (funciones) principales de `dplyr` son:
@@ -105,36 +99,14 @@ Los cinco verbos (funciones) principales de `dplyr` son:
 
 <br>
 
-```{r}
-can_long
-# Precisamos que tt sea clase "numérica" para ciertos cálculos
-can_long <- can_long %>% 
-  mutate_at(c("trt","bk"), funs(as.factor)) %>% 
-  mutate_at(c("tt", "inc"), funs(as.numeric))
-```
 
-Calcularemos un valor de AUC por parcela con auxilio de las funciones `group_by` y `summarize` 
-
-```{r}
-# if(require(MESS)) {install.packages("MESS")}
-can_long %>%
-  group_by(trt, bk) %>%
-  summarize(AUC = MESS::auc(inc, tt))
-```
-
-Ahora si, can_phoma está listo para entrar al próximo paso: modelado.
-
-
-
-junta dos data.frames a través de puntos en común.
+`join` junta dos data frames a través de puntos en común.
 
 Por ejemplo, si queremos unir las variables "sev_check" y "Dis_level" al dataset soja:
 
 ```{r}
 soja %>% inner_join(by_check, by="study")
 ```
-
-
 
 ### select
 
@@ -179,22 +151,38 @@ soja %>%
 
 ### mutate
 
-* Alistar los datos crudos recien importados 
+* Alistar los tipos de variables recien importados 
 
 Haremos que las variables tipo caracter sean convertidas a factores:
 
 ```{r}
-soja <- soja %>% 
-  mutate_at(vars(c("cultivar", "fungic","Yld_level", "YR_class", "gr_hab")), funs(as.factor))
+soja_long <- soja_long %>% 
+  mutate_at(vars(fungic:bk), funs(as.factor))
 
-summary(soja)
-str(soja)
+str(soja_long)
+summary(soja_long)
 ```
 
 ```{r}
-canola <- canola %>% 
-  mutate_at(vars(c("trt","bk")), funs(as.factor)) %>% 
-  mutate_at(vars(`15`: "sev_cank"), funs(round(., 2)))
+can_long <- can_long %>% 
+  mutate_at(vars(trt, bk), funs(as.factor)) %>% 
+  mutate_at(vars(tt, inc), funs(as.numeric))
+
+str(can_long)
+```
+
+```{r}
+oli_long <- oli_long %>% 
+  mutate_at(vars(loc, farm, tree), funs(as.factor))
+
+str(oli_long)
+```
+
+Luego de haber chequeado los tipos de datos con `str()` agregamos al archivo "datos_curso.RData" los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas
+
+```{r}
+save(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
+     file="data/datos_curso.RData")
 ```
 
 * Creación de nuevas variables (a partir de las existentes)
