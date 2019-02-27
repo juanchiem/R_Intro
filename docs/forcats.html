@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -184,7 +185,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.2</b> Multivariado</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="modelo-lineal.html"><a href="modelo-lineal.html"><i class="fa fa-check"></i><b>8</b> Modelo lineal</a></li>
+<li class="chapter" data-level="8" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>8</b> Modelos</a><ul>
+<li class="chapter" data-level="8.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>8.1</b> Modelos lineales</a></li>
+<li class="chapter" data-level="8.2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8.2</b> GLM</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="glm.html"><a href="glm.html#variable-conteo"><i class="fa fa-check"></i><b>8.2.1</b> Variable <strong>conteo</strong></a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
@@ -224,6 +230,7 @@ dat <span class="op">%&gt;%</span>
                            <span class="st">&quot;Check&quot;</span>, <span class="st">&quot;Czm&quot;</span>, <span class="st">&quot;Czm+CM+Tebu&quot;</span>, <span class="st">&quot;Epo+Flux+Pyra (0.8L)&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></code></pre>
 
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
 </div>
 <!-- </div> -->
             </section>
@@ -273,6 +280,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

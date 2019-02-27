@@ -46,7 +46,7 @@ Podríamos resumir nuestro trabajo como científicos, desde la recolección de d
 
 ### Objetivos {-}
 
-El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos,  bioquímicos, etc.; y iii) maximizaremos la adopción de la filosofia [tidyverse](https://www.tidyverse.org/) 
+El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos,  bioquímicos, etc.; iii) maximizaremos la adopción de la filosofia [tidyverse](https://www.tidyverse.org/); y iv) obtendrán mayor provecho aquellas personas que se inician en R, ya que los contenidos pretenden ser de baja complejidad, posibilitando profundizar el conocimiento por los propios medios del alumno. 
 
 <hr>
 

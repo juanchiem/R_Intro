@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="config.html">
-<link rel="next" href="workflow-componentes.html">
+<link rel="prev" href="modelos-lineales.html">
+<link rel="next" href="links-de-interes.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -214,41 +214,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paquetes-de-r" class="section level2 unnumbered">
-<h2>Paquetes de R</h2>
-<p>Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.</p>
-<p>La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
-<a href="https://rweekly.org/">r weekly</a>;
-<a href="https://www.r-bloggers.com/">r-bloggers</a>;
-<a href="https://blog.revolutionanalytics.com/">revolution analytics</a>;
-<a href="https://blog.rstudio.com/categories/packages">RStudio blog</a>)</p>
-<p>En la web de R se puede consultar la <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">lista de paquetes disponibles</a>, y en la sección <a href="https://cran.r-project.org/web/views/">Task Views</a> se puede consultar los mismos ordenados por áreas de aplicación.</p>
-<p>Existen varias vias de instalación de paquetes:</p>
-<p></br></p>
-<center>
-<img src="fig/install.packages.png" />
-</center>
-<p></br></p>
-<ul>
-<li>Via CRAN (Comprehensive R Archive Network): <code>install.packages("nombre_del_paquete")</code> O simplemente en el panel de paquetes.<br />
-</li>
-<li>Paquetes no oficiales via Github: <code>devtools::install_github("rstudio/epiphy")</code>
-</br></li>
-</ul>
-<div class="rmdcomment">
-<p>
-Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
-</p>
+<div id="glm" class="section level2">
+<h2><span class="header-section-number">8.2</span> GLM</h2>
+<div id="variable-conteo" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Variable <strong>conteo</strong></h3>
+<pre class="sourceCode r"><code class="sourceCode r">?InsectSprays
+ins_sp &lt;-<span class="st"> </span>InsectSprays
+
+ins_sp <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>spray, <span class="dt">y=</span>count)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>()
+
+ins_sp <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>count)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_dotplot</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>()</code></pre>
+<p>Modelar como modelo lineal?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">lm</span>(count <span class="op">~</span><span class="st"> </span>spray, <span class="dt">data =</span> InsectSprays), <span class="dt">which=</span><span class="dv">2</span>)
+<span class="co"># MASS::boxcox(lm(count+.1 ~ spray, data = InsectSprays))</span>
+<span class="co"># MASS::boxcox(lm(sqrt(count+.1) ~ spray, data = InsectSprays))</span></code></pre>
+<p>Ajuste de modelo lineal generalizado</p>
+<pre class="sourceCode r"><code class="sourceCode r">mod_spray =<span class="st"> </span><span class="kw">glm</span>(count <span class="op">~</span><span class="st"> </span>spray, <span class="dt">family=</span>poisson, <span class="dt">data=</span>ins_sp) <span class="co"># full model</span>
+car<span class="op">::</span><span class="kw">Anova</span>(mod_spray)</code></pre>
+<p>Diagnóstico del modelo</p>
+<pre class="sourceCode r"><code class="sourceCode r">ggfortify<span class="op">::</span><span class="kw">autoplot</span>(mod_spray, <span class="dt">which =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre>
+<p>Estimación de media de los tratamientos y comparaciones entre ellas</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(emmeans)
+em_poi &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod_spray, <span class="op">~</span><span class="st"> </span>spray, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
+em_poi
+
+res_poi =<span class="st"> </span><span class="kw">CLD</span>(em_poi, <span class="dt">Letters =</span> letters, <span class="dt">reverse =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.05</span>)
+res_poi</code></pre>
+
 </div>
-<p><code>library(nombre-del-paquete)</code></p>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="config.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="workflow-componentes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-lineales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="links-de-interes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -278,7 +287,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/07_modelar.Rmd",
 "text": "Edit"
 },
 "download": null,

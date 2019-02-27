@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="config.html">
-<link rel="next" href="workflow-componentes.html">
+<link rel="prev" href="glm.html">
+<link rel="next" href="dataset-iris.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -191,7 +191,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.1" data-path="glm.html"><a href="glm.html#variable-conteo"><i class="fa fa-check"></i><b>8.2.1</b> Variable <strong>conteo</strong></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
+<li class="chapter" data-level="9" data-path="reportes-de-resultados.html"><a href="reportes-de-resultados.html"><i class="fa fa-check"></i><b>9</b> Reportes de resultados</a><ul>
+<li class="chapter" data-level="9.1" data-path="dataset-iris.html"><a href="dataset-iris.html"><i class="fa fa-check"></i><b>9.1</b> Dataset iris</a></li>
+<li class="chapter" data-level="9.2" data-path="ajuste-de-modelo-lineal.html"><a href="ajuste-de-modelo-lineal.html"><i class="fa fa-check"></i><b>9.2</b> Ajuste de modelo lineal</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>10</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -214,41 +218,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paquetes-de-r" class="section level2 unnumbered">
-<h2>Paquetes de R</h2>
-<p>Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.</p>
-<p>La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
-<a href="https://rweekly.org/">r weekly</a>;
-<a href="https://www.r-bloggers.com/">r-bloggers</a>;
-<a href="https://blog.revolutionanalytics.com/">revolution analytics</a>;
-<a href="https://blog.rstudio.com/categories/packages">RStudio blog</a>)</p>
-<p>En la web de R se puede consultar la <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">lista de paquetes disponibles</a>, y en la sección <a href="https://cran.r-project.org/web/views/">Task Views</a> se puede consultar los mismos ordenados por áreas de aplicación.</p>
-<p>Existen varias vias de instalación de paquetes:</p>
-<p></br></p>
-<center>
-<img src="fig/install.packages.png" />
-</center>
-<p></br></p>
-<ul>
-<li>Via CRAN (Comprehensive R Archive Network): <code>install.packages("nombre_del_paquete")</code> O simplemente en el panel de paquetes.<br />
-</li>
-<li>Paquetes no oficiales via Github: <code>devtools::install_github("rstudio/epiphy")</code>
-</br></li>
-</ul>
-<div class="rmdcomment">
-<p>
-Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
-</p>
-</div>
-<p><code>library(nombre-del-paquete)</code></p>
+<div id="reportes-de-resultados" class="section level1">
+<h1><span class="header-section-number">9</span> Reportes de resultados</h1>
+<p>Nuevo documento: seleccionar la 3er opción “R Markdown”</p> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="config.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="workflow-componentes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="glm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dataset-iris.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -278,7 +258,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/08-reportes.Rmd",
 "text": "Edit"
 },
 "download": null,

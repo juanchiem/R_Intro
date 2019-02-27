@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="config.html">
-<link rel="next" href="workflow-componentes.html">
+<link rel="prev" href="modelos.html">
+<link rel="next" href="glm.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -214,41 +214,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paquetes-de-r" class="section level2 unnumbered">
-<h2>Paquetes de R</h2>
-<p>Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.</p>
-<p>La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
-<a href="https://rweekly.org/">r weekly</a>;
-<a href="https://www.r-bloggers.com/">r-bloggers</a>;
-<a href="https://blog.revolutionanalytics.com/">revolution analytics</a>;
-<a href="https://blog.rstudio.com/categories/packages">RStudio blog</a>)</p>
-<p>En la web de R se puede consultar la <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">lista de paquetes disponibles</a>, y en la sección <a href="https://cran.r-project.org/web/views/">Task Views</a> se puede consultar los mismos ordenados por áreas de aplicación.</p>
-<p>Existen varias vias de instalación de paquetes:</p>
-<p></br></p>
-<center>
-<img src="fig/install.packages.png" />
-</center>
-<p></br></p>
+<div id="modelos-lineales" class="section level2">
+<h2><span class="header-section-number">8.1</span> Modelos lineales</h2>
+<p>Un solo factor - experimento DCA: dataset <code>PlantGrowth</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">?PlantGrowth
+plant_g &lt;-<span class="st"> </span>PlantGrowth <span class="co"># simplificamos el nombre del dataset</span></code></pre>
 <ul>
-<li>Via CRAN (Comprehensive R Archive Network): <code>install.packages("nombre_del_paquete")</code> O simplemente en el panel de paquetes.<br />
-</li>
-<li>Paquetes no oficiales via Github: <code>devtools::install_github("rstudio/epiphy")</code>
-</br></li>
+<li>Exploración</li>
 </ul>
-<div class="rmdcomment">
-<p>
-Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
-</p>
-</div>
-<p><code>library(nombre-del-paquete)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(plant_g) <span class="co"># tipo de variables</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(plant_g) <span class="co"># exploración numérica</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exploracion numerica por tratamiento</span>
+plant_g <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">count =</span> <span class="kw">n</span>(),
+    <span class="dt">mean =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">sd =</span> <span class="kw">sd</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+  )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exploración gŕafica</span>
+plant_g <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>group, <span class="dt">y=</span>weight)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">alpha=</span><span class="fl">0.2</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_light</span>()</code></pre>
+<p>Ajuste del modelo lineal</p>
+<p><span class="math display">\[y_{ij} = \mu + \alpha_i + e_{ij}; \:\:i = 1,..., k; \:j = 1,..., n\]</span>
+<span class="math display">\[N \~ (\sigma^2, 0)\]</span></p>
+<pre class="sourceCode r"><code class="sourceCode r">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> plant_g)  </code></pre>
+<ul>
+<li>Diagnósticos</li>
+</ul>
+<p>Las varianzas (entre niveles del factor) son homogéneas?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># homocedasticidad</span>
+<span class="kw">plot</span>(mod1, <span class="dt">which =</span> <span class="dv">1</span>)
+car<span class="op">::</span><span class="kw">leveneTest</span>(mod1)</code></pre>
+<p>Los residuos se distribuyen normales?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod1, <span class="dt">which =</span> <span class="dv">2</span>)
+<span class="kw">shapiro.test</span>(mod1<span class="op">$</span>residuals)
+
+<span class="co"># my_data$fit = mod1$fitted.values</span>
+<span class="co"># my_data$res = my_data$fit - my_data$weight</span>
+<span class="co"># mean(my_data$res)</span>
+<span class="co"># names(mod1)hist(m_fix$residuals)</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod1)<span class="co"># caso balanceado</span>
+<span class="co"># car::Anova(mod1)# caso desbalanceado</span></code></pre>
+<p>Test de comparación múltiple (de medias estimadas de los tratamientos)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(emmeans)
+em &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod1, <span class="op">~</span><span class="st"> </span>group, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
+em
+
+res =<span class="st"> </span><span class="kw">CLD</span>(em, <span class="dt">Letters =</span> letters, <span class="dt">reverse =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.05</span>)
+res</code></pre>
+<p>Dos factores:</p>
+<pre class="sourceCode r"><code class="sourceCode r">?ToothGrowth
+tg &lt;-<span class="st"> </span>ToothGrowth</code></pre>
+<ul>
+<li>Exploración</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(tg) <span class="co"># tipo de variables</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">tg &lt;-<span class="st"> </span>tg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(dose), <span class="kw">funs</span>(as.factor)) </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(tg) <span class="co"># exploración numérica</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># exploracion numerica por tratamiento</span>
+tg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(supp, dose) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">count =</span> <span class="kw">n</span>(),
+    <span class="dt">mean =</span> <span class="kw">mean</span>(len, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">sd =</span> <span class="kw">sd</span>(len, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+  )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Exploración gŕafica</span>
+tg <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(dose), <span class="dt">y =</span> len, <span class="dt">colour =</span> supp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(len <span class="op">~</span><span class="st"> </span>supp <span class="op">*</span><span class="st"> </span>dose, <span class="dt">data =</span> tg) <span class="co"># equivale a supp + dose + supp:dose</span>
+<span class="kw">anova</span>(mod2)</code></pre>
+<ul>
+<li>comparaciones múltiples (un factor dentro del otro)</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># emmip(mod2, supp~ dose)</span>
+emm_tg &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod2, pairwise <span class="op">~</span><span class="st"> </span>supp <span class="op">|</span><span class="st"> </span>dose)
+<span class="kw">CLD</span>(emm_tg, <span class="dt">Letters =</span> letters, <span class="dt">reverse =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.05</span>)
+
+emm_tg2 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod2, pairwise <span class="op">~</span><span class="st"> </span>dose<span class="op">|</span>supp)
+<span class="kw">CLD</span>(emm_tg2, <span class="dt">Letters =</span> letters, <span class="dt">reverse =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.05</span>)</code></pre>
+<p><strong>Transformación potencia óptima de boxcox</strong></p>
+<p>Esta transformación solo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transforma con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial.</p>
+<p><img src="fig/boxcox.png" width="300" /></p>
+<p><img src="fig/boxcox_1.png" width="350" /><img src="fig/boxcox_02.png" width="350" /></p>
+<p>Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (lineas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo</p>
+<p>La utilización de la transformación Box-Cox requiere que todos los valores de la serie de entrada sean positivos y distintos a cero.
+Por ello es adicionada una constante a la variable original (0.5, por ej.)</p>
+<p>En el caso de la derecha, el modelo resultaria:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>((y<span class="fl">+0.5</span>)<span class="op">^</span><span class="fl">0.2</span> <span class="op">~</span><span class="st"> </span>trt <span class="op">+</span><span class="st"> </span>bk, ...)</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="config.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="workflow-componentes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -278,7 +345,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/07_modelar.Rmd",
 "text": "Edit"
 },
 "download": null,
