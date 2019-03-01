@@ -234,3 +234,20 @@ res_poi
 
 ```
 
+* Lexturas recomendadas 
+
+- [Analysis and Interpretation of Interactions in Agricultural Research](https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/748)
+
+- [Analysis of Combined Experiments Revisited](https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/763)
+
+- [Model Syntax in R](http://conjugateprior.org/2013/01/formulae-in-r-anova/)
+
+- [ANOVA: A Short Intro Using R](https://stat.ethz.ch/~meier/teaching/anova/)
+
+- [glmmFAQ](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
+
+- [A brief introduction to mixed effects modelling and multi-model inference in ecology](https://peerj.com/articles/4794/)
+
+- [Data Analysis Examples](https://stats.idre.ucla.edu/other/dae/)
+
+- [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)

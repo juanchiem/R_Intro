@@ -16,19 +16,9 @@
 
 * Recursos interesantes para el área de datos biológicos / fitopatolgía
 
-[Data Analysis Examples](https://stats.idre.ucla.edu/other/dae/)
-
-[Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)
-
 [R for Plant Pathologists](https://everhartlab.github.io/IntroR/)
 
 [Open Plant Pathology](https://www.openplantpathology.org/#talks)
-
-[glmmFAQ](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
-
-[A brief introduction to mixed effects modelling and multi-model inference in ecology](https://peerj.com/articles/4794/)
-
-[ANOVA: A Short Intro Using R](https://stat.ethz.ch/~meier/teaching/anova/)
 
 * Algunos inspiradores R users blogs
 
@@ -42,11 +32,6 @@
 
 [Alejandro Rojas](https://alejorojas2.github.io/)
 
-* Modelos lineales
-
-[ANOVA: A Short Intro Using R](https://stat.ethz.ch/~meier/teaching/anova/)
-
-[Formulae in R: ANOVA and other models, mixed and fixed](http://conjugateprior.org/2013/01/formulae-in-r-anova/)
 
 </br>
 
