@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="config.html">
-<link rel="next" href="workflow-componentes.html">
+<link rel="prev" href="multivariado.html">
+<link rel="next" href="modelos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -215,41 +215,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paquetes-de-r" class="section level2 unnumbered">
-<h2>Paquetes de R</h2>
-<p>Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.</p>
-<p>La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
-<a href="https://rweekly.org/">r weekly</a>;
-<a href="https://www.r-bloggers.com/">r-bloggers</a>;
-<a href="https://blog.revolutionanalytics.com/">revolution analytics</a>;
-<a href="https://blog.rstudio.com/categories/packages">RStudio blog</a>)</p>
-<p>En la web de R se puede consultar la <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">lista de paquetes disponibles</a>, y en la sección <a href="https://cran.r-project.org/web/views/">Task Views</a> se puede consultar los mismos ordenados por áreas de aplicación.</p>
-<p>Existen varias vias de instalación de paquetes:</p>
-<p></br></p>
-<center>
-<img src="fig/install.packages.png" />
-</center>
-<p></br></p>
-<ul>
-<li>Via CRAN (Comprehensive R Archive Network): <code>install.packages("nombre_del_paquete")</code> O simplemente en el panel de paquetes.<br />
-</li>
-<li>Paquetes no oficiales via Github: <code>devtools::install_github("rstudio/epiphy")</code>
-</br></li>
-</ul>
-<div class="rmdcomment">
-<p>
-Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
-</p>
+<div id="mapas" class="section level2">
+<h2><span class="header-section-number">7.3</span> Mapas</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(<span class="st">&quot;rnaturalearth&quot;</span>)
+<span class="co"># library(&quot;rnaturalearthdata&quot;)</span>
+<span class="kw">library</span>(<span class="st">&quot;sf&quot;</span>)</code></pre>
+<p>Ej 1: Provincias de Argentina</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())
+
+arg =<span class="st"> </span><span class="kw">ne_states</span>(<span class="dt">country =</span> <span class="st">&#39;argentina&#39;</span>, <span class="dt">returnclass =</span> <span class="st">&quot;sf&quot;</span>)
+arg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(longitude, latitude, <span class="dt">label =</span> name_fr), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)</code></pre>
+<p>Ej 2: Mortalidad infantil en Cap. Federal <a href="https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/">link</a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Datos</span>
+comunas &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/CABA_comunas.geojson&#39;</span>)
+nueva_columna &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>)
+comunas &lt;-<span class="st"> </span><span class="kw">mutate</span>(comunas, <span class="dt">ubicacion =</span> nueva_columna)
+
+mortalidad &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/mortalidad_infantil_caba_2016.csv&#39;</span>)
+mortalidad &lt;-<span class="st"> </span><span class="kw">mutate</span>(mortalidad, ubicación =<span class="st"> </span>nueva_columna)
+
+rivadavia &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/avenida_rivadavia.geojson&#39;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(comunas) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> mortalidad<span class="op">$</span>Tasa2016)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> rivadavia, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="st">&quot;Tasa mortalidad 2016&quot;</span>))</code></pre>
+
 </div>
-<p><code>library(nombre-del-paquete)</code></p>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="config.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="workflow-componentes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multivariado.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -279,7 +283,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/00-intro.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/06b-mapas.Rmd",
 "text": "Edit"
 },
 "download": null,

@@ -1,0 +1,46 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##  Mapas
+
+```{r}
+library(tidyverse)
+library("rnaturalearth")
+# library("rnaturalearthdata")
+library("sf")
+```
+
+Ej 1: Provincias de Argentina
+
+```{r}
+theme_set(theme_bw())
+
+arg = ne_states(country = 'argentina', returnclass = "sf")
+arg %>%
+  ggplot() +
+  geom_sf() +
+  geom_text(aes(longitude, latitude, label = name_fr), colour = "black", size=2)
+```
+
+
+Ej 2: Mortalidad infantil en Cap. Federal [link](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/)
+
+```{r}
+# Datos
+comunas <- st_read('https://bitsandbricks.github.io/data/CABA_comunas.geojson')
+nueva_columna <- c("Sur", "Norte", "Sur", "Sur", "Sur", "Norte", "Sur", "Sur", "Sur", "Norte", "Norte", "Norte", "Norte", "Norte", "Norte")
+comunas <- mutate(comunas, ubicacion = nueva_columna)
+
+mortalidad <- read.csv('https://bitsandbricks.github.io/data/mortalidad_infantil_caba_2016.csv')
+mortalidad <- mutate(mortalidad, ubicación = nueva_columna)
+
+rivadavia <- st_read('https://bitsandbricks.github.io/data/avenida_rivadavia.geojson')
+```
+
+```{r}
+ggplot(comunas) +
+  geom_sf(aes(fill = mortalidad$Tasa2016)) +
+  geom_sf(data = rivadavia, color = "red") +
+  scale_fill_distiller(palette = "Spectral")+
+  guides(fill = guide_legend("Tasa mortalidad 2016"))
+```
