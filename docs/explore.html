@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="caso-2-xylella-en-olivos.html">
-<link rel="next" href="comparacion-de-niveles-de-factores.html">
+<link rel="next" href="ambas-variables-continuas.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -176,15 +176,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.1</b> Comparación de niveles de factores</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.1.1</b> Observaciones + media / mediana</a></li>
-<li class="chapter" data-level="7.1.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.1.2</b> Barplot + SE</a></li>
-<li class="chapter" data-level="7.1.3" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#box-plot"><i class="fa fa-check"></i><b>7.1.3</b> Box-plot</a></li>
-<li class="chapter" data-level="7.1.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>7.1.4</b> Violin plot</a></li>
-<li class="chapter" data-level="7.1.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>7.1.5</b> Media &amp; dispersión</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="7.2.3" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#box-plot"><i class="fa fa-check"></i><b>7.2.3</b> Box-plot</a></li>
+<li class="chapter" data-level="7.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>7.2.4</b> Violin plot</a></li>
+<li class="chapter" data-level="7.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>7.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.2</b> Multivariado</a></li>
-<li class="chapter" data-level="7.3" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.3</b> Mapas</a></li>
+<li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
+<li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>8</b> Modelos</a><ul>
 <li class="chapter" data-level="8.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>8.1</b> Modelos lineales</a></li>
@@ -227,76 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><a href="http://www.ggplot2-exts.org/gallery/">Extensiones de ggplot</a></p></li>
 <li><p><a href="https://serialmentor.com/dataviz/">Fundamentals of Data Visualization</a></p></li>
 </ul>
-<p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios asi como crear figuras complejas, detalladas de alta calidad (con fines de publicaciones científicas).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<p>Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
-<center>
-<img src="fig/gglayers.png" width="500" />
-</center>
-<p>Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que</p>
-<p>o sea pueden haber varias</p>
-<ul>
-<li>aesthetics</li>
-</ul>
-<p>Se definen con aes()
-Significado de aesthetic en ggplot: “Algo que se puede ver”
-Cada geom acepta un conjunto de aesthetics
-Ejemplos:
-+ position (i.e., en el eje “x” y “y”)
-color (color “exterior”)
-fill (color “interior”)
-shape (de los puntos)
-linetype
-size</p>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length))</code></pre>
-<ul>
-<li>geoms</li>
-</ul>
-<p>Objetos geometricos son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La <a href="https://ggplot2.tidyverse.org/reference/#section-layer-geoms">lista de “geoms”</a> aumenta día a día.</p>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length, 
-             <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre>
-<ul>
-<li>facets</li>
-</ul>
-<p>Las facetas o “facets” en permiten dividir el mismo gráfico en diferentes niveles de un <strong>factor</strong>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)
-p</code></pre>
-<ul>
-<li>theme</li>
-</ul>
-<p>Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw()</p>
-<pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre>
-<p>Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad</p>
-<pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(
-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Petal.Length, <span class="dt">fill=</span>Species)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill=</span><span class="ot">FALSE</span>)
-,
-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Petal.Length, <span class="dt">fill=</span>Species)) <span class="op">+</span>
-<span class="st">   </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.7</span>)
-, 
-<span class="dt">align=</span><span class="st">&quot;h&quot;</span>
-)</code></pre> 
+<p>El paquete <a href="http://r4ds.had.co.nz/data-visualisation.html">ggplot2</a> tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios asi como crear figuras complejas, detalladas de alta calidad (con fines de publicaciones científicas).</p> 
 </div>
             </section>
 
@@ -304,7 +236,7 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>
         </div>
       </div>
 <a href="caso-2-xylella-en-olivos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="comparacion-de-niveles-de-factores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ambas-variables-continuas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

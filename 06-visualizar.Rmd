@@ -26,6 +26,8 @@ Algunas pruebas de ello son los siguientes links:
 
 El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios asi como crear figuras complejas, detalladas de alta calidad (con fines de publicaciones científicas). 
 
+## Ambas variables continuas
+
 ```{r}
 library(tidyverse)
 ```
