@@ -28,6 +28,7 @@ options(width = 90)
 
 - [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)
 
+- [RNAseq analysis with R](http://monashbioinformaticsplatform.github.io/RNAseq-DE-analysis-with-R/)
 
 ## Modelos lineales
 
