@@ -68,10 +68,9 @@ Para analizar el efecto del tratamiento fungicida necesitamos calcular el área 
 
 ```{r}
 canola %>%  
-  gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
-         key = "tt", value = "inc") %>% 
-  # ordenar las columnas 
-  select(trt, bk, tt, inc, sev_cank) -> can_long
+  select(-sev_cank) %>% 
+  gather(key = var, value = inc, contains("inc")) %>% 
+  separate(var, c(NA, "tt"), sep = '_')  -> can_long
 ```
 
 Datos **olivo**

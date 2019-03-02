@@ -230,10 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato “long”. La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos.</p>
 <p><img src="fig/wide_to_long.png" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">canola <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">15</span><span class="st">`</span>, <span class="st">`</span><span class="dt">58</span><span class="st">`</span>, <span class="st">`</span><span class="dt">95</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, 
-         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># ordenar las columnas </span>
-<span class="st">  </span><span class="kw">select</span>(trt, bk, tt, inc, sev_cank) -&gt;<span class="st"> </span>can_long</code></pre>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>sev_cank) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> inc, <span class="kw">contains</span>(<span class="st">&quot;inc&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;tt&quot;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)  -&gt;<span class="st"> </span>can_long</code></pre>
 <p>Datos <strong>olivo</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r">olivo <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st"> `</span><span class="dt">30</span><span class="st">`</span>, 
