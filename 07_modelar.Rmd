@@ -73,7 +73,7 @@ plant_g %>%
 Ajuste del modelo lineal
 
 $$y_{ij} = \mu + \alpha_i + e_{ij}; \:\:i = 1,..., k; \:j = 1,..., n$$
-$$N \~ (\sigma^2, 0)$$
+$$N \sim (\sigma^2, 0)$$
 
 ```{r}
 mod1 <- lm(weight ~ group, data = plant_g)  
