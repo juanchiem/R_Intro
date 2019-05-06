@@ -140,6 +140,8 @@ p_final <- p2 +
 p_final
 ```
 
+![](fig/bce_temp.png)
+
 
 ## Análisis de precipitaciones
 
@@ -264,4 +266,6 @@ midpoint <- function(interval) { min(interval)+(max(interval)-min(interval))/2 }
 
 # ggsave(file = "plots/bce_lluvias.png", w=80, h=50, units="mm", dpi=300, scale=2)
 ```
+
+![](fig/bce_lluvias.png)
 
