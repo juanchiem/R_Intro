@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="mapas.html">
-<link rel="next" href="modelos.html">
+<link rel="next" href="analisis-de-temperaturas.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -187,7 +187,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
 <li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a></li>
+<li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a><ul>
+<li class="chapter" data-level="8.1" data-path="analisis-de-temperaturas.html"><a href="analisis-de-temperaturas.html"><i class="fa fa-check"></i><b>8.1</b> Análisis de temperaturas</a></li>
+<li class="chapter" data-level="8.2" data-path="analisis-de-precipitaciones.html"><a href="analisis-de-precipitaciones.html"><i class="fa fa-check"></i><b>8.2</b> Análisis de precipitaciones</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>9</b> Modelos</a><ul>
 <li class="chapter" data-level="9.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>9.1</b> Modelos lineales</a></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9.2</b> GLM</a><ul>
@@ -220,97 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fechas" class="section level1">
 <h1><span class="header-section-number">8</span> Manipular fechas</h1>
 <p>Saber manipular variables de tipo fechas resulta de gran practicidad debido a que como investigadores del área de ciencias agrarias / biológicas lidiamos constantemente con el tiempo en nuestros experimentos. Aprovechar las nuevas funciones de los paquetes de R que permiten realizar cálculos o graficas variables de tipo fechas nos optimizará nuestro trabajo cotidiano ya que nos evitará tener que realizar cálculos intermedios para convertir las fechas a días, ya que R hará ese trabajo invisiblemente (y sin errores).</p>
-<p>A continuación haremos una demostración simple de cómo operar con fechas involucrando a variables meteorológicas y de fenología de cultivos.</p>
-<p>Importamos un dataset de datos meteorológicos de Balcarce desde 1971 a 2019</p>
-<pre class="sourceCode r"><code class="sourceCode r">bce &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;./data/bce_clima.xlsx&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> lubridate<span class="op">::</span><span class="kw">year</span>(date),
-         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date),
-         <span class="dt">julian =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date))
-
-<span class="kw">head</span>(bce)
-<span class="kw">tail</span>(bce)</code></pre>
-<p>Construimos la banda central de medias minimas y maximas de cada dia</p>
-<pre class="sourceCode r"><code class="sourceCode r">bce_serie &lt;-<span class="st"> </span>bce <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(year<span class="op">&lt;</span><span class="dv">2018</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(julian) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">month =</span> <span class="kw">first</span>(month),
-    <span class="dt">avg =</span> <span class="kw">mean</span>(tmean, <span class="fl">.2</span>, <span class="dt">na.rm =</span> T),
-    <span class="co"># Rango 80% de los años (rango interno)</span>
-    <span class="dt">lower_80=</span><span class="kw">quantile</span>(tmean, <span class="fl">.2</span>, <span class="dt">na.rm =</span> T),
-    <span class="dt">upper_80=</span><span class="kw">quantile</span>(tmean, <span class="fl">.8</span>, <span class="dt">na.rm =</span> T),
-    <span class="co"># Min y max de tmean (rango externo)</span>
-    <span class="dt">lower_tmean=</span><span class="kw">min</span>(tmean, <span class="dt">na.rm =</span> T),
-    <span class="dt">upper_tmean=</span><span class="kw">max</span>(tmean, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-bce_serie</code></pre>
-<p>Filtramos el dataset para la reciente campaña de grano grueso (primavera- verano - otoño)</p>
-<pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
-<span class="st">  </span>bce <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> &#39;2018-08-31&#39;</span>, date <span class="op">&lt;</span><span class="st"> &#39;2019-03-30&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">left_join</span>(bce_serie, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;julian&quot;</span>, <span class="st">&quot;month&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">droplevels</span>()
-bce_<span class="dv">18</span>_<span class="dv">19</span></code></pre>
-<p>Graficamos las bandas de 80% de la temperatura media diaria de la serie histórica y loas temperaturas medias observadas en la reciente campaña</p>
-<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-
-<span class="st">  </span><span class="kw">ggplot</span>(bce_<span class="dv">18</span>_<span class="dv">19</span>, <span class="kw">aes</span>(<span class="dt">x=</span>date)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>avg, <span class="dt">ymax=</span>upper_tmean), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>lower_tmean, <span class="dt">ymax=</span>avg), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">2</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>lower_<span class="dv">80</span>, <span class="dt">ymax=</span>upper_<span class="dv">80</span>), <span class="dt">colour =</span> <span class="st">&quot;wheat4&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> tmean)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> numform<span class="op">::</span>f_celcius, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="dv">0</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 month&quot;</span>, <span class="dt">date_labels=</span><span class="st">&quot;%b&quot;</span>, <span class="dt">expand=</span><span class="kw">expand_scale</span>(<span class="fl">0.01</span>,<span class="dv">0</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">-1.5</span>),
-        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),
-        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">linetype=</span><span class="st">&quot;dotted&quot;</span>))
-p1</code></pre>
-<p>Exploramos si huebieron días con temperatura media mayor o menor a la serie histórica</p>
-<pre class="sourceCode r"><code class="sourceCode r">rec_frio &lt;-<span class="st"> </span>bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmean<span class="op">&lt;</span>bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>lower_tmean),]
-rec_cal &lt;-<span class="st"> </span>bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmean<span class="op">&gt;</span>bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>upper_tmean),]</code></pre>
-<p>En caso de haberlos los agregamos al grafico base así como las heladas meteorológicas (Tmín&lt;=0°C) o agrometeorológicas (Tmín&lt;=3°C)</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggrepel)
-<span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">2</span>, <span class="dt">repr.plot.height =</span> <span class="dv">2</span>)
-
-p2 &lt;-<span class="st"> </span>p1 <span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregar medias record frío</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> rec_frio, <span class="kw">aes</span>(date, <span class="dt">y =</span> tmean), <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data=</span>rec_frio[<span class="dv">1</span>,], <span class="kw">aes</span>(<span class="dt">y=</span>tmean, <span class="dt">label=</span><span class="st">&quot;Récord fríos&quot;</span>), <span class="dt">size=</span><span class="dv">3</span>,
-                  <span class="dt">min.segment.length =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&#39;lines&#39;</span>), <span class="dt">nudge_y =</span> <span class="dv">-2</span>, <span class="dt">segment.color=</span><span class="st">&quot;grey50&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregar medias record cálido</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span>rec_cal, <span class="kw">aes</span>(date, <span class="dt">y =</span> tmean), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="dt">data =</span> rec_cal, <span class="kw">aes</span>(<span class="dt">y=</span>tmean, <span class="dt">label=</span><span class="st">&quot;Récord cálido&quot;</span>), <span class="dt">size=</span><span class="dv">3</span>,
-                  <span class="dt">min.segment.length =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&#39;lines&#39;</span>), <span class="dt">nudge_y=</span><span class="dv">2</span>, <span class="dt">segment.color=</span><span class="st">&quot;grey50&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregar heladas meteorologicas y agrometeorológicas</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmin<span class="op">&lt;=</span><span class="dv">0</span>),],
-             <span class="kw">aes</span>(date, <span class="dt">y =</span> <span class="dv">0</span>), <span class="dt">shape=</span><span class="dv">8</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmin<span class="op">&gt;</span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmin<span class="op">&lt;=</span><span class="dv">3</span>),],
-             <span class="kw">aes</span>(date, <span class="dt">y =</span> <span class="fl">3.5</span>), <span class="dt">shape=</span><span class="dv">8</span>, <span class="dt">colour =</span> <span class="st">&quot;chartreuse&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-09-3&quot;</span>), <span class="kw">as.Date</span>(<span class="st">&quot;2018-11-10&quot;</span>)), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">3.5</span>),
-           <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Helada meteorológica&quot;,&quot;</span>Heladas\nagronómicas&quot;), <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">hjust =</span> <span class="dv">0</span>)
-p2</code></pre>
-<p>Finalmente agregamos los estadíos reproductivos del cultivo de girasol</p>
-<p>Para ello haremos algunos cálculos con los intervalos de tiempo de los estadios reproductivos floración (r5) y llenado de granos (r6)</p>
-<pre class="sourceCode r"><code class="sourceCode r">r5 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-12-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>)); <span class="kw">diff</span>(r5)
-r6 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-03-10&quot;</span>)); <span class="kw">diff</span>(r6)
-
-midpoint &lt;-<span class="st"> </span><span class="cf">function</span>(interval) {
-  <span class="kw">min</span>(interval) <span class="op">+</span><span class="st"> </span>(<span class="kw">max</span>(interval) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(interval))<span class="op">/</span><span class="dv">2</span>
-} ; <span class="kw">midpoint</span>(r5) <span class="co">#ej</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p_final &lt;-<span class="st"> </span>p2 <span class="op">+</span>
-<span class="st">  </span><span class="co"># barras de floracion y llenado</span>
-<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="dt">xmin=</span> <span class="kw">c</span>(<span class="kw">min</span>(r5), <span class="kw">min</span>(r6)), <span class="dt">xmax=</span><span class="kw">c</span>(<span class="kw">max</span>(r5),<span class="kw">max</span>(r6)), <span class="dt">ymin=</span><span class="dv">0</span>, <span class="dt">ymax=</span><span class="dv">30</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>, <span class="dt">fill=</span><span class="kw">c</span>(<span class="st">&quot;grey80&quot;</span>,<span class="st">&quot;grey60&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">midpoint</span>(r5), <span class="kw">midpoint</span>(r6)), <span class="dt">y=</span><span class="dv">3</span>,
-           <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&#39;bold(&quot;Floración&quot;)&#39;</span>,<span class="st">&#39;bold(&quot;Llenado&quot;)&#39;</span>),
-           <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">parse =</span> <span class="ot">TRUE</span>, <span class="dt">size=</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>,
-       <span class="dt">title =</span> <span class="st">&quot;Temperatura media en Balcarce y estadíos reproductivos del girasol&quot;</span>,
-       <span class="dt">subtitle =</span> <span class="st">&quot;- Campaña 2018/19 (línea negra)</span><span class="ch">\n</span><span class="st">- Serie 1971-2017: rango 80% (banda interna) y medias extremas (bandas externas)&quot;</span>,
-       <span class="dt">caption =</span> <span class="st">&quot;Datos registrados en la estación meteorológica de la EEA INTA Balcarce&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">0</span>))
-p_final</code></pre>
-
+<p>A continuación haremos una demostración simple de cómo operar con fechas involucrando a variables meteorológicas y de fenología de cultivos.</p> 
 </div>
             </section>
 
@@ -318,7 +231,7 @@ p_final</code></pre>
         </div>
       </div>
 <a href="mapas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analisis-de-temperaturas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

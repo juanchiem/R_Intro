@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="import.html">
-<link rel="next" href="manip.html">
+<link rel="prev" href="analisis-de-temperaturas.html">
+<link rel="next" href="modelos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -220,93 +220,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vias-de-importacion" class="section level2">
-<h2><span class="header-section-number">4.1</span> Vías de importación</h2>
-<p>Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.</p>
-<p>Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos).</p>
-<p>La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión:</p>
+<div id="analisis-de-precipitaciones" class="section level2">
+<h2><span class="header-section-number">8.2</span> Análisis de precipitaciones</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressWarnings</span>(<span class="kw">suppressMessages</span>(<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="dt">quietly =</span> T)))
+<span class="kw">library</span>(lubridate)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">bce &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;./data/bce_clima.xlsx&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> lubridate<span class="op">::</span><span class="kw">year</span>(date),
+         <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date),
+         <span class="dt">julian =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date))</code></pre>
+<p>Calculamos las lluvias acumuladas por decada</p>
 <ul>
-<li>Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio</li>
-<li>Hacen click sobre el archivo<br />
-</li>
-<li>Seleccionan “import dataset”<br />
-</li>
-<li>Configuran las opciones de importación y copian el codigo generado y dan import
-(es aconsejable que peguen el codigo en el script de la sesión)</li>
+<li>Primero para la serie histórica</li>
 </ul>
-<p>O bien desde código del script:</p>
+<pre class="sourceCode r"><code class="sourceCode r">bce_serie &lt;-
+<span class="st">  </span>bce <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(year<span class="op">!=</span><span class="dv">2018</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date=</span><span class="kw">if_else</span>(<span class="kw">day</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span>,
+                        <span class="kw">floor_date</span>(date, <span class="st">&quot;20 days&quot;</span>),
+                        <span class="kw">floor_date</span>(date, <span class="st">&quot;10 days&quot;</span>))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">rain_acum =</span> <span class="kw">sum</span>(rain),
+            <span class="dt">days =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date),
+         <span class="dt">month =</span> <span class="kw">month</span>(date)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># julian = yday(date)) %&gt;%</span>
+<span class="st">  </span>ungroup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decada =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span>ungroup <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(decada) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">month =</span> <span class="kw">first</span>(month),
+            <span class="dt">med =</span> <span class="kw">quantile</span>(rain_acum, <span class="fl">.5</span>, <span class="dt">na.rm =</span> T),
+            <span class="dt">lower_80=</span><span class="kw">quantile</span>(rain_acum, <span class="fl">.2</span>, <span class="dt">na.rm =</span> T), <span class="co"># Rango 80% de los años</span>
+            <span class="dt">upper_80=</span><span class="kw">quantile</span>(rain_acum, <span class="fl">.8</span>, <span class="dt">na.rm =</span> T))</code></pre>
 <ul>
-<li>Archivos excel</li>
+<li>Luego para la reciente campaña de grano grueso</li>
 </ul>
-<blockquote>
-<p>Importar soja_mancha.xlsx, nombrandolo “soja”
-Importar can_phoma.xlsx, nombrandolo “canola”</p>
-</blockquote>
-<p>Dataset <strong>canola_phoma</strong></p>
-<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detcción de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
-<p>Dataset <strong>soja_mancha</strong></p>
-<p>Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja</p>
-<p>study: identificador arbitrario para cada experimento
-year: año del experimento
-location: localidad del experimento
-cultivar: cultivar de soja utilizado
-fungic: tratamiento fungicida
-block: repeticiones
-sev: severidad (%) evaluada en R6
-yield: rendimiento en madurez fisiológica (kg/ha)</p>
-<p>Dataset <strong>olivo_xylella</strong></p>
-<p>Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja</p>
+<pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
+<span class="st">  </span>bce <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(<span class="dt">date =</span> <span class="kw">if_else</span>(<span class="kw">day</span>(date) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span>,
+                          <span class="kw">floor_date</span>(date, <span class="st">&quot;20 days&quot;</span>),
+                          <span class="kw">floor_date</span>(date, <span class="st">&quot;10 days&quot;</span>))) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">rain_acum_season =</span> <span class="kw">sum</span>(rain)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#, days=n()) %&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date),
+         <span class="dt">month =</span> <span class="kw">month</span>(date)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decada =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> &#39;2018-08-31&#39;</span>, date <span class="op">&lt;</span><span class="st"> &#39;2019-03-30&#39;</span>)</code></pre>
 <ul>
-<li>Archivos de texto .csv</li>
+<li>Fusionamos ambos datasets en base al de la actual campaña (que es el que tiene las fechas)</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;nombre_del_archivo.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>)<span class="co"># puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.</span>
+<pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
+<span class="st">  </span>bce_<span class="dv">18</span>_<span class="dv">19</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">left_join</span>(bce_serie, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;decada&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date))
+<span class="co"># print(bce_18_19, n=Inf)</span></code></pre>
+<p>Ya estamos en condiciones de graficar ambos datasets</p>
+<ul>
+<li>Configuramos el aspecto del gráfico</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">            </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust=</span><span class="op">-</span><span class="fl">1.5</span>),
+                  <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),
+                  <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">linetype=</span><span class="st">&quot;dotted&quot;</span>),
+                  <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">11</span>, <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>),
+                  <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">hjust=</span><span class="dv">1</span>)))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># corregimos la posición de las barras desplazandolas hacia la derecha</span>
+p_<span class="dv">5</span>=<span class="kw">position_nudge</span>(<span class="dt">x =</span> <span class="dv">5</span>)
 
-dat &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;ruta/nombre_del_archivo.csv&quot;</span>)</code></pre>
+(p1 &lt;-
+<span class="st">    </span>bce_<span class="dv">18</span>_<span class="dv">19</span> <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>date)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_pointrange</span>(<span class="kw">aes</span>(<span class="dt">y=</span>med, <span class="dt">ymin=</span>lower_<span class="dv">80</span>, <span class="dt">ymax=</span>upper_<span class="dv">80</span>), <span class="dt">fill=</span><span class="st">&#39;white&#39;</span>, <span class="dt">color=</span><span class="st">&#39;deepskyblue&#39;</span>,
+                    <span class="dt">shape=</span><span class="dv">21</span>, <span class="dt">fatten=</span>.<span class="dv">7</span>, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">position=</span>p_<span class="dv">5</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y=</span>rain_acum_season), <span class="dt">col =</span><span class="st">&quot;brown1&quot;</span>,
+               <span class="dt">position=</span>p_<span class="dv">5</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>rain_acum_season, <span class="dt">group=</span><span class="dv">1</span>), <span class="dt">col =</span><span class="st">&quot;brown1&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">position=</span>p_<span class="dv">5</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="dt">expand=</span><span class="kw">c</span>(<span class="fl">0.05</span>, <span class="dv">0</span>))<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks=</span><span class="st">&quot;1 month&quot;</span>, <span class="dt">date_labels=</span><span class="st">&quot;%b&quot;</span>, <span class="dt">expand=</span><span class="kw">expand_scale</span>(<span class="fl">0.05</span>,<span class="dv">0</span>))
+)</code></pre>
 <ul>
-<li>Desde clipboard</li>
+<li>Incluimos la fenología del girasol</li>
 </ul>
-<p>Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</code></pre>
-<p><code>{datapasta}</code> - Package + addin</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;datapasta&quot;</span>)</code></pre>
-<ul>
-<li>Desde google sheets:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(&quot;gsheet&quot;)</span>
-url &lt;-<span class="st"> &quot;https://docs.google.com/spreadsheets/d/1NQ7nd2pOPQYaLzJs1D2-aOB6LDKzv9kjOcKaNeNFjpA/edit?usp=sharing&quot;</span>
-<span class="co"># browseURL(url)</span>
-dat  &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(url)
-dat</code></pre>
-<ul>
-<li>Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">header=</span>T, <span class="dt">text=</span><span class="st">&#39;</span>
-<span class="st">Crop      x1 x2 x3 x4</span>
-<span class="st">Corn      16 27 31 33</span>
-<span class="st">Corn      15 23 30 30</span>
-<span class="st">Corn      16 27 27 26</span>
-<span class="st">Corn      18 20 25 23</span>
-<span class="st">Corn      15 15 31 32</span>
-<span class="st">Corn      15 32 32 15</span>
-<span class="st">Corn      12 15 16 73</span>
-<span class="st">Soybean   20 23 23 25</span>
-<span class="st">Soybean   24 24 25 32</span>
-<span class="st">Soybean   21 25 23 24</span>
-<span class="st">Soybean   27 45 24 12</span>
-<span class="st">Soybean   12 13 15 42</span>
-<span class="st">Soybean   22 32 31 43</span>
-<span class="st">&#39;</span>)</code></pre>
-<ul>
-<li>Colección de datos en archivo .RData</li>
-</ul>
-<p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde este.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
-<p>Para traerlos nuevamente al entorno de la sesión:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
-<ul>
-<li>Exportar datasets</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">r5 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-12-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>)); <span class="kw">diff</span>(r5)
+r6 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-03-10&quot;</span>)); <span class="kw">diff</span>(r6)
+midpoint &lt;-<span class="st"> </span><span class="cf">function</span>(interval) { <span class="kw">min</span>(interval)<span class="op">+</span>(<span class="kw">max</span>(interval)<span class="op">-</span><span class="kw">min</span>(interval))<span class="op">/</span><span class="dv">2</span> }; <span class="kw">midpoint</span>(r5)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">(p_final &lt;-
+<span class="st">   </span>p1 <span class="op">+</span>
+<span class="st">   </span><span class="kw">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="dt">xmin=</span> <span class="kw">c</span>(<span class="kw">min</span>(r5), <span class="kw">min</span>(r6)), <span class="dt">xmax=</span><span class="kw">c</span>(<span class="kw">max</span>(r5),<span class="kw">max</span>(r6)), <span class="dt">ymin=</span><span class="dv">70</span>, <span class="dt">ymax=</span><span class="dv">90</span>,
+            <span class="dt">alpha=</span><span class="fl">0.3</span>, <span class="dt">fill=</span><span class="kw">c</span>(<span class="st">&quot;grey80&quot;</span>,<span class="st">&quot;grey60&quot;</span>))<span class="op">+</span>
+<span class="st">   </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">midpoint</span>(r5), <span class="kw">midpoint</span>(r6)), <span class="dt">y=</span><span class="dv">80</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">parse=</span><span class="ot">TRUE</span>, <span class="dt">size=</span><span class="dv">3</span>,
+            <span class="dt">label=</span><span class="kw">c</span>(<span class="st">&#39;bold(&quot;Floración&quot;)&#39;</span>,<span class="st">&#39;bold(&quot;Llenado&quot;)&#39;</span>)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="ot">NULL</span>, <span class="dt">y=</span><span class="ot">NULL</span>,
+        <span class="dt">title=</span><span class="st">&quot;Precipitaciones decádicas en Balcarce y estadíos reproductivos del girasol&quot;</span>,
+        <span class="dt">subtitle=</span><span class="st">&quot;- Campaña 2018/19 (en puntos rojos)</span><span class="ch">\n</span><span class="st">- Serie 1971-2017: mediana (puntos blancos) y rango 80% (barras azules)&quot;</span>,
+        <span class="dt">caption=</span><span class="st">&quot;Datos registrados en la estación meteorológica de la EEA INTA Balcarce&quot;</span>)
+)
+
+<span class="co"># ggsave(file = &quot;plots/bce_lluvias.png&quot;, w=80, h=50, units=&quot;mm&quot;, dpi=300, scale=2)</span></code></pre>
 
 </div>
 <!-- </div> -->
@@ -315,8 +325,8 @@ dat</code></pre>
           </div>
         </div>
       </div>
-<a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manip.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analisis-de-temperaturas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -346,7 +356,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/04-importar.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/09-fechas.Rmd",
 "text": "Edit"
 },
 "download": null,
