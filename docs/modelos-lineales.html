@@ -113,7 +113,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -187,13 +187,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
 <li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>8</b> Modelos</a><ul>
-<li class="chapter" data-level="8.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>8.1</b> Modelos lineales</a></li>
-<li class="chapter" data-level="8.2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8.2</b> GLM</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="glm.html"><a href="glm.html#variable-conteo"><i class="fa fa-check"></i><b>8.2.1</b> Variable <strong>conteo</strong></a></li>
+<li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a></li>
+<li class="chapter" data-level="9" data-path="modelos.html"><a href="modelos.html"><i class="fa fa-check"></i><b>9</b> Modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>9.1</b> Modelos lineales</a></li>
+<li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9.2</b> GLM</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="glm.html"><a href="glm.html#variable-conteo"><i class="fa fa-check"></i><b>9.2.1</b> Variable <strong>conteo</strong></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>9</b> Links de interés</a></li>
+<li class="chapter" data-level="10" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>10</b> Links de interés</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -217,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="modelos-lineales" class="section level2">
-<h2><span class="header-section-number">8.1</span> Modelos lineales</h2>
+<h2><span class="header-section-number">9.1</span> Modelos lineales</h2>
 <p>Un solo factor - experimento DCA: dataset <code>PlantGrowth</code></p>
 <pre class="sourceCode r"><code class="sourceCode r">?PlantGrowth
 plant_g &lt;-<span class="st"> </span>PlantGrowth <span class="co"># simplificamos el nombre del dataset</span></code></pre>
@@ -242,7 +243,7 @@ plant_g <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_light</span>()</code></pre>
 <p>Ajuste del modelo lineal</p>
 <p><span class="math display">\[y_{ij} = \mu + \alpha_i + e_{ij}; \:\:i = 1,..., k; \:j = 1,..., n\]</span>
-<span class="math display">\[N \~ (\sigma^2, 0)\]</span></p>
+<span class="math display">\[N \sim (\sigma^2, 0)\]</span></p>
 <pre class="sourceCode r"><code class="sourceCode r">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> plant_g)  </code></pre>
 <ul>
 <li>Diagnósticos</li>
@@ -347,7 +348,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/07_modelar.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/10-modelar.Rmd",
 "text": "Edit"
 },
 "download": null,

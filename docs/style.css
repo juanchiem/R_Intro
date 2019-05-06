@@ -22,6 +22,7 @@ pre code {
 p.flushright {
   text-align: right;
 }
+
 blockquote > p:last-child {
   text-align: right;
 }
@@ -32,21 +33,22 @@ blockquote > p:first-child {
   padding-right: .2em;
   font-weight: 500;
 }
-.level1 .header-section-number {
-  display: inline-block;
-  border-bottom: 3px solid;
-}
+
 .level1 h1 {
   border-bottom: 1px solid;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 h1.title {
   font-weight: 700;
 }
+.smallcaps {
+  font-variant: small-caps;
+}
 .book .book-body .page-wrapper .page-inner section.normal strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .boxed {
@@ -100,14 +102,4 @@ caption {
     font-size: 45px;
  }
 
-.left-code {
-  color: #777;
-  width: 38%;
-  height: 92%;
-  float: left;
-}
-.right-plot {
-  width: 60%;
-  float: right;
-  padding-left: 1%;
-}
+

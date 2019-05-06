@@ -36,7 +36,7 @@ Configuraciones iniciales (sugeridas). Dirigirse a la sección "Tools/Global opt
 
 ## Paquetes de R {-}
 
-Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.
+Un paquete es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.
 
 La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
 [r weekly](https://rweekly.org/); 

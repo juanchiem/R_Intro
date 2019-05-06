@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  css: css/style.css
+  css: style.css
   split_by: section
   config:
     toc:
@@ -11,6 +11,3 @@ bookdown::gitbook:
         <li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 
     edit: https://github.com/juanchiem/R_Intro/edit/master/%s
-
-bookdown::html_chapters:
-css: [css/style.css, css/toc.css]
