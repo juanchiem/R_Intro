@@ -1,5 +1,5 @@
 --- 
-title: "Introducción a R"
+title: "Introducción a R para el análisis de datos de fitopatología - protección de cultivos"
 author: ""
 output: bookdown::gitbook
 site: bookdown::bookdown_site
