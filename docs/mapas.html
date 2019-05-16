@@ -234,21 +234,53 @@ arg <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(longitude, latitude, <span class="dt">label =</span> name_fr), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)</code></pre>
-<p>Ej 2: Mortalidad infantil en Cap. Federal <a href="https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/">link</a></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Datos</span>
-comunas &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/CABA_comunas.geojson&#39;</span>)
-nueva_columna &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Norte&quot;</span>)
-comunas &lt;-<span class="st"> </span><span class="kw">mutate</span>(comunas, <span class="dt">ubicacion =</span> nueva_columna)
+<p>Ej 2: Mapa de prevalencia de enfermedades</p>
+<pre class="sourceCode r"><code class="sourceCode r">muni &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;/home/juan/Dropbox/maps/shp/muni/municipio.shp&quot;</span>, <span class="dt">quiet =</span> T)
+<span class="co"># muni %&gt;% st_bbox()</span>
 
-mortalidad &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/mortalidad_infantil_caba_2016.csv&#39;</span>)
-mortalidad &lt;-<span class="st"> </span><span class="kw">mutate</span>(mortalidad, ubicación =<span class="st"> </span>nueva_columna)
+SEBA &lt;-<span class="st"> </span>muni <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">cbind</span>(., <span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(muni<span class="op">$</span>geometry))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">between</span>(Y, <span class="dv">-40</span>, <span class="dv">-37</span>), <span class="kw">between</span>(X, <span class="dv">-59</span>, <span class="fl">-57.5</span>)) 
 
-rivadavia &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;https://bitsandbricks.github.io/data/avenida_rivadavia.geojson&#39;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(comunas) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> mortalidad<span class="op">$</span>Tasa2016)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> rivadavia, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="kw">guide_legend</span>(<span class="st">&quot;Tasa mortalidad 2016&quot;</span>))</code></pre>
+cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>as_tibble <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(IN1) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">preval_2015 =</span> <span class="kw">rnorm</span>(<span class="dv">6</span>, <span class="dv">30</span>, <span class="dv">10</span>),
+         <span class="dt">preval_2016 =</span> preval_<span class="dv">2015</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>) ,
+         <span class="dt">preval_2017 =</span> preval_<span class="dv">2016</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>),
+         <span class="dt">preval_2018 =</span> preval_<span class="dv">2017</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(preval_<span class="dv">2015</span><span class="op">:</span>preval_<span class="dv">2018</span>, 
+         <span class="dt">key =</span> var, <span class="dt">val =</span> prevalencia) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;mes&quot;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mes =</span> <span class="kw">as.integer</span>(mes)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(IN1) 
+cancro
+
+SEBA_cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">left_join</span>(cancro, <span class="dt">by=</span> <span class="st">&quot;IN1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">NAM =</span> <span class="kw">case_when</span>(NAM<span class="op">==</span><span class="st">&quot;General Alvarado&quot;</span> <span class="op">~</span><span class="st"> &quot;Gral</span><span class="ch">\n</span><span class="st">Alvarado&quot;</span>,
+                        NAM<span class="op">==</span><span class="st">&quot;General Pueyrredón&quot; ~ &quot;</span>Gral\nPueyrredón&quot;,
+                        <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(.<span class="op">$</span>NAM)))
+
+map1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(SEBA_cancro) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data=</span>SEBA)<span class="op">+</span>
+<span class="st">  </span><span class="co"># coord_sf(xlim = c(-63.5, -56), ylim = c(-36, -40), expand = FALSE)+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>prevalencia))<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">midpoint =</span> <span class="dv">35</span>,
+                       <span class="dt">low =</span> <span class="st">&#39;green2&#39;</span>,
+                       <span class="dt">mid =</span> <span class="st">&#39;yellow&#39;</span>,
+                       <span class="dt">high =</span> <span class="st">&#39;red3&#39;</span>,
+                       <span class="dt">na.value =</span> <span class="st">&#39;gray95&#39;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>X, <span class="dt">y=</span>Y, <span class="dt">label=</span> NAM), <span class="dt">size =</span> <span class="dv">3</span>,
+            <span class="dt">color =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">check_overlap =</span> <span class="ot">TRUE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="co"># transition_states(mes)+ </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;mes&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolución de la prevalencia del cancro del tallo de girasol&quot;</span>,
+       <span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Prevalencia&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<center>
+<img src="fig/mapa_prevalencia.png" width="700" />
+</center>
 
 </div>
 <!-- </div> -->

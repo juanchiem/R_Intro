@@ -23,10 +23,63 @@ arg %>%
   geom_text(aes(longitude, latitude, label = name_fr), colour = "black", size=2)
 ```
 
-
-Ej 2: Mortalidad infantil en Cap. Federal [link](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/)
+Ej 2: Mapa de prevalencia de enfermedades
 
 ```{r}
+muni <- st_read("/home/juan/Dropbox/maps/shp/muni/municipio.shp", quiet = T)
+# muni %>% st_bbox()
+
+SEBA <- muni %>% 
+  cbind(., st_coordinates(st_centroid(muni$geometry))) %>% 
+  filter(between(Y, -40, -37), between(X, -59, -57.5)) 
+
+cancro <- SEBA %>% 
+  as_tibble %>% 
+  select(IN1) %>% 
+  mutate(preval_2015 = rnorm(6, 30, 10),
+         preval_2016 = preval_2015*1.05 + rnorm(1, 3, 2) ,
+         preval_2017 = preval_2016*1.05 + rnorm(1, 3, 2),
+         preval_2018 = preval_2017*1.05 + rnorm(1, 3, 2)) %>% 
+  gather(preval_2015:preval_2018, 
+         key = var, val = prevalencia) %>% 
+  separate(var, c(NA, "mes"), sep = '_') %>% 
+  mutate(mes = as.integer(mes)) %>% 
+  arrange(IN1) 
+cancro
+
+SEBA_cancro <- SEBA %>% 
+  left_join(cancro, by= "IN1") %>% 
+  mutate(NAM = case_when(NAM=="General Alvarado" ~ "Gral\nAlvarado",
+                        NAM=="General Pueyrredón" ~ "Gral\nPueyrredón",
+                        TRUE ~ as.character(.$NAM)))
+
+map1 <- ggplot(SEBA_cancro) +
+  geom_sf(data=SEBA)+
+  # coord_sf(xlim = c(-63.5, -56), ylim = c(-36, -40), expand = FALSE)+
+  geom_sf(aes(fill=prevalencia))+
+  scale_fill_gradient2(midpoint = 35,
+                       low = 'green2',
+                       mid = 'yellow',
+                       high = 'red3',
+                       na.value = 'gray95')+
+  geom_text(aes(x=X, y=Y, label= NAM), size = 3,
+            color = "darkblue", check_overlap = TRUE)+
+  # transition_states(mes)+ 
+  facet_wrap("mes")+
+  labs(title = "Evolución de la prevalencia del cancro del tallo de girasol",
+       x = NULL, y = NULL, fill = "Prevalencia")+
+  theme_bw()
+
+```
+
+
+<center>
+![](fig/mapa_prevalencia.png){width=700px}
+</center>
+
+
+```{r, eval = FALSE, echo=FALSE}
+#Ej 2: Mortalidad infantil en Cap. Federal [link](https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/)
 # Datos
 comunas <- st_read('https://bitsandbricks.github.io/data/CABA_comunas.geojson')
 nueva_columna <- c("Sur", "Norte", "Sur", "Sur", "Sur", "Norte", "Sur", "Sur", "Sur", "Norte", "Norte", "Norte", "Norte", "Norte", "Norte")
@@ -36,9 +89,6 @@ mortalidad <- read.csv('https://bitsandbricks.github.io/data/mortalidad_infantil
 mortalidad <- mutate(mortalidad, ubicación = nueva_columna)
 
 rivadavia <- st_read('https://bitsandbricks.github.io/data/avenida_rivadavia.geojson')
-```
-
-```{r}
 ggplot(comunas) +
   geom_sf(aes(fill = mortalidad$Tasa2016)) +
   geom_sf(data = rivadavia, color = "red") +

@@ -101,9 +101,9 @@ gsub("<thead>.*</thead>", "", x)
 
 <b>Autor</b>
 
-* Juan Pablo Edwards Molina: Investigador - Epidemiología de enfermedades de cultivos (IPAVE / INTA).
+* Juan Pablo Edwards Molina: Investigador - Fitopatología (INTA Balcarce).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
-    + ORCID: <https://orcid.org/0000-0002-3685-760X>
+    + [Google scholar](https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AJsN-F5gLYB_brelSnzb1TTRxogsbxhyS6qVwhSaP-KHm-jeWxRpoHeH5iIj4ZTys10DUQLdH_3GLXxkLed9dzmZXLWtNu_gtg&user=RhjNQIsAAAAJ) 
     + Twitter: [juanchiem](https://twitter.com/juanchiem)
     + GitHub: <https://github.com/juanchiem>
 
