@@ -12,13 +12,13 @@ library(kableExtra)
 
 # Importación de datos {#import}
 
-Luego del planteo de hipótesis y planificación experimental, la toma de datos en una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir. 
+Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir. 
 
-Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado ("wide") puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración. 
+Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado ("wide") puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente etapa luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración. 
 
 Podemos tomar esta [planilla modelo](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true), para entender como es una planilla para ser analizada en R.
 
-Veamos **5 Principios básicos** de buenas prácticas en la elaboración de planillas de datos - Adaptado de [@broman2018data]
+Veamos **4 Principios básicos** de buenas prácticas en la elaboración de planillas de datos - Adaptado de [@broman2018data]
 
 Como regla global, y siguiendo lo ya comentado en la sección de [data frames](#data_frames), columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
 
