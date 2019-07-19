@@ -98,7 +98,7 @@ save(soja, canola, mani, olivo, file="data/datos_curso.RData")
 
 Dataset **canola_phoma** 
 
-Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detcción de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo. 
+Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo. 
 
 Dataset **soja_mancha** 
 
@@ -174,7 +174,7 @@ Soybean   22 32 31 43
 
 * Colección de datos en archivo .RData 
 
-Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en dias previos los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde este.
+Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en días previos los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde éste.
 
 ```{r}
 save(soja, canola, file="./data/soja_canola.RData")
