@@ -85,9 +85,9 @@ nombre_funcion <- function(arg_1, arg_2, ...) {
 
 Las diferentes partes de una función son:
 
-* Nombre de la función: este es el nombre real de la función. Se almacena en el entorno R como un objeto con este nombre. Generalmente, elnombre es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. 
+* Nombre de la función: este es el nombre real de la función. Se almacena en el entorno R como un objeto con este nombre. Generalmente, el nombre es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. 
 
-* Argumentos - Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función no puede contener argumentos. También los argumentos pueden tener valores por defecto.
+* Argumentos - Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.
 
 * Cuerpo de la función: el cuerpo de la función contiene una colección de sentencias que definen lo que hace la función.
 
