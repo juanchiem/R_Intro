@@ -1,11 +1,5 @@
 # Sintaxis básica
 
- Cualquier lenguaje de programación se componen de dos cosas fundamentales la sintaxis y la semántica:
-
-- La sintaxis define la forma correcta de escribir las sentencias y los datos de cualquier programa, especificando el orden y disposición adecuada (es el conjunto de letras o palabras).
-    
-- La semántica define el significado de las sentencias y los datos que han sido correctamente escritos (es quien le da un significado al anterior).
-
 La sintaxis en R es muy similar a la de otros lenguajes de programación como JAVA o C. Las normas básicas que definen la sintaxis de R son:
 
 - No se tienen en cuenta los espacios en blancos: podemos o no dejar espacios para que el código se puede ordenar de forma adecuada y poder entenderse.
@@ -33,8 +27,10 @@ Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al 
 
 (4 + 5 ) * 7 - (36/18)^3
 ```
+(Recordando de la primaria el orden de las operaciones: 
+paréntesis < exponentes (potencia o raiz) < productos/división < suma/resta)
 
-> Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
+> Ej 1: Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
 Agregue parentesis para que la expresión de un resultado contrario.
 
 </br>
@@ -46,13 +42,7 @@ Agregue parentesis para que la expresión de un resultado contrario.
 El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
 ```
 
-```{r}
-4.1 - 0.038 * 10
-(1-(3.72/4.1))*100
-```
-
-
-> Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+> Ej 2: Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
 
 </br>
 
@@ -70,6 +60,13 @@ round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 
 (Note que R está en inglés (decimales “.”, nombre de las funciones)
 y es “case sensitive”!!)
+
+
+```{r}
+# Ej 1: 5 + (3 * 10) %/% 3 == 15
+
+# Ej 2: 4.1 - 0.038 * 10; (1-(3.72/4.1))*100
+```
 
 ## Funciones 
 
@@ -135,16 +132,28 @@ vol_lavandina(55, # g cloro / L (Lavandina)
 
 > Al reportar los resultados de los test de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto incremento o se redujo  un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este [link](https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php) para cotejar sus resultados.  
 
-```{r, echo=FALSE}
-perc_change <- function(v1, v2)# v1 < v2 
+```{r, echo=TRUE}
+perc_change <- function(v1, v2) 
 {
   pc <- (v2-v1)/v1 *100
   return(paste(round(digits=1, pc), "%"))
 }
 perc_change(1, 1.5)
 perc_change(0.5, 1)
+
+perc_change(80, 90)
+perc_change(90, 80)
 ```
 
+Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete... 
+
+```{r}
+#percentua relative differences 
+quantmod::Delt(80,90)*100
+80+(80*0.125)
+quantmod::Delt(90,80)*100
+90+(-90*0.1111111) 
+```
 
 ## Tablas resumen {#tablas_resumen}
 

@@ -7,3 +7,4 @@ _bookdown_files
 rsconnect
 Rplots.pdf
 scripts/boxplot_basics.R
+.httr-oauth

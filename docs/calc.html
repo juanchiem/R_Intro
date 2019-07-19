@@ -233,8 +233,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
 
 (<span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ) <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">36</span><span class="op">/</span><span class="dv">18</span>)<span class="op">^</span><span class="dv">3</span></code></pre>
+<p>(Recordando de la primaria el orden de las operaciones:
+paréntesis &lt; exponentes (potencia o raiz) &lt; productos/división &lt; suma/resta)</p>
 <blockquote>
-<p>Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
+<p>Ej 1: Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
 Agregue parentesis para que la expresión de un resultado contrario.</p>
 </blockquote>
 <p></br></p>
@@ -246,10 +248,8 @@ Agregue parentesis para que la expresión de un resultado contrario.</p>
 El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">4.1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.038</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>
-(<span class="dv">1</span><span class="op">-</span>(<span class="fl">3.72</span><span class="op">/</span><span class="fl">4.1</span>))<span class="op">*</span><span class="dv">100</span></code></pre>
 <blockquote>
-<p>Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
+<p>Ej 2: Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
 </blockquote>
 <p></br></p>
 <p>Algunos cálculos</p>
@@ -262,6 +262,9 @@ El intercepto de la regresión lineal estimada (rendimiento de trigo libre de en
 <span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></code></pre>
 <p>(Note que R está en inglés (decimales “.”, nombre de las funciones)
 y es “case sensitive”!!)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ej 1: 5 + (3 * 10) %/% 3 == 15</span>
+
+<span class="co"># Ej 2: 4.1 - 0.038 * 10; (1-(3.72/4.1))*100</span></code></pre>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
