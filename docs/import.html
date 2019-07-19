@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introducción a R para el análisis de datos de fitopatología - protección de cultivos</title>
-  <meta name="description" content="Introducción a R para el análisis de datos de fitopatología - protección de cultivos">
+  <title>Aplicaciones de R en Agronomía</title>
+  <meta name="description" content="Aplicaciones de R en Agronomía">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introducción a R para el análisis de datos de fitopatología - protección de cultivos" />
+  <meta property="og:title" content="Aplicaciones de R en Agronomía" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="juanchiem/R_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a R para el análisis de datos de fitopatología - protección de cultivos" />
+  <meta name="twitter:title" content="Aplicaciones de R en Agronomía" />
   
   
   
@@ -126,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Introducción a R</a></li>
+<li><a href="./">R_UIB</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a R para el análisis de datos de fitopatología - protección de cultivos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aplicaciones de R en Agronomía</a>
           </h1>
         </div>
 
@@ -222,10 +222,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="import" class="section level1">
 <h1><span class="header-section-number">4</span> Importación de datos</h1>
-<p>Luego del planteo de hipótesis y planificación experimental, la toma de datos en una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goze de buen porvenir.</p>
-<p>Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado (“wide”) puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración.</p>
+<p>Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir.</p>
+<p>Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado (“wide”) puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente etapa luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración.</p>
 <p>Podemos tomar esta <a href="https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&amp;usp=sheets_home&amp;ths=true">planilla modelo</a>, para entender como es una planilla para ser analizada en R.</p>
-<p>Veamos <strong>5 Principios básicos</strong> de buenas prácticas en la elaboración de planillas de datos - Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span></p>
+<p>Veamos <strong>4 Principios básicos</strong> de buenas prácticas en la elaboración de planillas de datos - Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span></p>
 <p>Como regla global, y siguiendo lo ya comentado en la sección de <a href="estructura-de-datos.html#data_frames">data frames</a>, columnas (Verticales) son <strong>Variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales)</p>
 <p><strong>1 - Consistencia</strong></p>
 <p>Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:</p>
