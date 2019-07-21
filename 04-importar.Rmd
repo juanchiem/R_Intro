@@ -129,10 +129,6 @@ dat <- readr::read_csv("ruta/nombre_del_archivo.csv")
 
 Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante: 
 
-```{r}
-dat = read.delim("clipboard", dec=",")
-```
-
 `{datapasta}` - Package + addin
 
 ```{r}
@@ -191,3 +187,58 @@ load("./data/soja_canola.RData")
 ```{r}
 write.table(dat, "./data/dat.txt", sep = "\t")
 ```
+
+## Importación múltiple
+
+```{r}
+# Adaptado de:
+# browseURL("https://resources.rstudio.com/webinars/programacio-n-con-r-edgar-ruiz")
+```
+
+Muchas veces necesitamos compilar varias planillas en un solo set de datos, como por ejemplo una serie de datos meteorológicos:
+
+Supongamos que tenemos varios archivos: 
+balcar
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(fs)
+```
+
+
+```{r}
+archivos <- dir_ls(glob = "balcarce_*") 
+#(here::here("data", "balcarce"), glob = "*.xlsx")
+```
+
+Usaremos la función "map()" que es una funcion del paquete purrr, que aplica una misma accion recursivamente a una lista de objetos que le asignemos.
+
+Ej 1 - crear un dataframe a partir de multiples archivos (primeras hojas)
+
+```{r}
+archivos %>% 
+  map(read_excel)
+
+# "pegamos" una tabla arriba de la otra, 
+archivos %>% 
+  map(read_excel) %>%   
+  bind_rows()
+
+archivos %>% 
+  map_dfr(read_excel) # podemos agregar: .id = "archivos"
+```
+
+Ej 2 - crear un dataframe a partir de multiples hojas dentro de uno o varios archivos. (Usaremos algunas técnicas de programación un poco más avanzadas que anida un bucle dentro de otro)
+
+```{r}
+# https://stackoverflow.com/questions/51200887/how-to-import-multiple-sheets-from-multiple-excel-files-into-one-list-readxl-r
+
+bce_serie <- archivos %>% 
+  map_df(function(x){  
+  sheet_names <- excel_sheets(x)
+  map_df(sheet_names, ~read_excel(x, sheet = .x)) 
+  })
+```
+

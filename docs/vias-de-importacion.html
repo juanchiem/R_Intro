@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="import.html">
-<link rel="next" href="manip.html">
+<link rel="next" href="importacion-multiple.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -156,6 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4.2" data-path="importacion-multiple.html"><a href="importacion-multiple.html"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
@@ -266,7 +267,6 @@ dat &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw
 <li>Desde clipboard</li>
 </ul>
 <p>Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat =<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;clipboard&quot;</span>, <span class="dt">dec=</span><span class="st">&quot;,&quot;</span>)</code></pre>
 <p><code>{datapasta}</code> - Package + addin</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;datapasta&quot;</span>)</code></pre>
 <ul>
@@ -307,16 +307,14 @@ dat</code></pre>
 <li>Exportar datasets</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre>
-
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manip.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="importacion-multiple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
