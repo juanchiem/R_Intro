@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -248,9 +249,8 @@ p0 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class=
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (points) &amp; media&quot;</span>)
 
-p1</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># geom_dotplot(aes(fill = Species),   # Use fill = Species here not in ggplot()</span>
+p1
+<span class="co"># geom_dotplot(aes(fill = Species),   # Use fill = Species here not in ggplot()</span>
 <span class="co">#                  binaxis = &quot;y&quot;,         # which axis to bin along</span>
 <span class="co">#                  binwidth = 0.1,        # Minimal difference considered diffeerent</span>
 <span class="co">#                  stackdir = &quot;center&quot;    # Centered</span>
@@ -266,7 +266,6 @@ p1</code></pre>
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (jitter) &amp; media&quot;</span>)
 p2</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
 </div>
 <div id="barplot-se" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> Barplot + SE</h3>
@@ -280,7 +279,6 @@ p2</code></pre>
 <span class="kw">ggtitle</span>(<span class="st">&quot;Barplot &amp; SEM&quot;</span>)
   <span class="co"># geom_text(data= let, aes(label = M, x= trt, y=1, hjust=0.5),size = 4)</span>
 p3</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-15-1.png" width="576" /></p>
 </div>
 <div id="box-plot" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Box-plot</h3>
@@ -290,7 +288,6 @@ p3</code></pre>
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Boxplot &amp; mean&quot;</span>) 
 p4</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-16-1.png" width="576" /></p>
 </div>
 <div id="violin-plot" class="section level3">
 <h3><span class="header-section-number">7.2.4</span> Violin plot</h3>
@@ -300,7 +297,6 @@ p4</code></pre>
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Violin plot&quot;</span>)
 p5 </code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
 </div>
 <div id="media-dispersion" class="section level3">
 <h3><span class="header-section-number">7.2.5</span> Media &amp; dispersión</h3>
@@ -313,7 +309,6 @@ p5 </code></pre>
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Media + SE (negro) / SD (rojo) / 95% CI (negro)&quot;</span>)
 p6</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1, p2, p3, p4, p5, p6, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre>
 </div>
 </div>
@@ -373,6 +368,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

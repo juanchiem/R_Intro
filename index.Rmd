@@ -101,7 +101,7 @@ gsub("<thead>.*</thead>", "", x)
 
 <b>Autor</b>
 
-* Juan Pablo Edwards Molina: Investigador - Fitopatología (INTA Balcarce).
+* Juan Pablo Edwards Molina: Investigador :: Fitopatología (INTA Balcarce).
     + Email: [edwardsmolina@gmail.com](mailto:edwardsmolina@gmail.com)
     + [Google scholar](https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AJsN-F5gLYB_brelSnzb1TTRxogsbxhyS6qVwhSaP-KHm-jeWxRpoHeH5iIj4ZTys10DUQLdH_3GLXxkLed9dzmZXLWtNu_gtg&user=RhjNQIsAAAAJ) 
     + Twitter: [juanchiem](https://twitter.com/juanchiem)
@@ -109,7 +109,7 @@ gsub("<thead>.*</thead>", "", x)
 
 <b>Colaboradora</b>
 
-* Anabella Dinon: Docente - Investigador a - Mejoramiento genético - Estadística y Diseño (UNMdP)
+* Anabella Dinon: Docente - Investigadora :: Mejoramiento genético / Estadística y Diseño (UNMdP)
     + Email: [anabella005@yahoo.com.ar](mailto:anabella005@yahoo.com.ar)
     + GitHub: <https://github.com/anabella005>
     

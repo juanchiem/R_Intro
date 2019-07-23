@@ -46,6 +46,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -226,22 +227,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species,<span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
 <p><code>fct_relevel</code></p>
 <p>A veces queremos forzar los niveles según nuestro interés (Queremos posicionar al tratamiento control al inicio o al final)</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_relevel</span>(Species, <span class="kw">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>)), 
              <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
 <p><code>fct_reorder</code></p>
 <p>Cuando queremos ver el orden de los tratamientos rankeados segun la variable</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(Species, Sepal.Width, <span class="dt">fun=</span>median), <span class="co">#.desc=TRUE </span>
              <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="co">#+</span></code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># geom_jitter(position=position_jitter(0.1))+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="co">#+</span>
+  <span class="co"># geom_jitter(position=position_jitter(0.1))+</span>
   <span class="co"># coord_flip()</span></code></pre>
 <p><code>case_when</code></p>
 <p>Asociado a <code>mutate</code>, cuando deseamos modificar el nombre de los niveles</p>
@@ -254,7 +252,6 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">           </span><span class="co"># TRUE ~ &quot;Virginica&quot;))</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> species_new, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-23-1.png" width="576" /></p>
 <p>O queremos generar un nuevo vector categórico a partir de una variable pre-existente</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sepal_categ =</span> 
@@ -265,21 +262,18 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>
            )) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> sepal_categ)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-24-1.png" width="576" /></p>
 <p><code>fct_reorder2</code>
 Reordenar los nivels por su valor final cuando son graficados con otras dos variables</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Sepal.Width, 
              Sepal.Length, 
              <span class="dt">color =</span> <span class="kw">fct_reorder2</span>(Species, Sepal.Width, Sepal.Length))) <span class="op">+</span><span class="st">      </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span>F)</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-25-1.png" width="576" /></p>
 <p><code>fct_infreq</code></p>
 <pre class="sourceCode r"><code class="sourceCode r">starwars <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># mutate(eye_color = fct_infreq(eye_color)) %&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> eye_color)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
-<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-26-1.png" width="576" /></p>
 </div>
             </section>
 
@@ -328,6 +322,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
