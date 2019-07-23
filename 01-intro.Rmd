@@ -75,12 +75,12 @@ Varios tipos de archivos serán creados y usados durante una sesión de R:
 * gráficos
 * reportes de resultados
 
-Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender que quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...   
+Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender qué quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...   
 Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión. 
 
 ![](fig/workflow_completo.png) 
 
-Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no solo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes maquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
+Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no sólo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes áquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
 
 <center>
 ![](fig/folders.png) 
@@ -92,7 +92,7 @@ Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dent
 
 > Crear un script "1_intro"
 
-Donde se guardaria el siguiente gráfico?
+¿Dónde se guardaria el siguiente gráfico?
 
 ```{r}
 plot(pressure)
@@ -104,10 +104,10 @@ plot(pressure)
 
 - Googlear: “r generate a sequence of uppercase letters”  
 
-- **Stack Overflow**: foros de pregunta y respuesta ampliamente utilizados por todos los lenguajes de programación. En algunos paises, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!
+- **Stack Overflow**: foros de preguntas y respuestas ampliamente utilizados por todos los lenguajes de programación. En algunos países, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!
 
 **¿Cómo hacer una buena pregunta en el stack overflow?**
 
-- Ser consciso pero gentil...
+- Ser conciso pero gentil...
 
-- Ser reproducible: su código debe correr en cualquier maquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y version de R en caso necesario) `library(reprex)`. 
+- Ser reproducible: su código debe correr en cualquier máquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y versión de R en caso necesario) `library(reprex)`. 
