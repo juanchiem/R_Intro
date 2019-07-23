@@ -77,7 +77,7 @@ min(v)
 sum(v)
 ```
 
-> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)
 
 * Secuencia
 
@@ -101,7 +101,7 @@ La generación de números aleatorios es en muchas ocasiones un requerimiento es
 sample(1:30, size=10, replace=F) #sin reposición
 ```
 
-* Generar numeros aleatorios de una distribución especifica de parámetros conocidos: 
+* Generar números aleatorios de una distribución específica de parámetros conocidos: 
 
 `runif()` - números racionales aleatoriamente, uniformemente distribuidos en un intervalo
 
@@ -135,7 +135,7 @@ hist(PesoNac, prob=TRUE)
 
 * Propiedades de vectores 
 
-Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a  "1.7" se fuera creado junto con "a".
+Si colocáramos dos o más clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaría a  "1.7" si fuera creado junto con "a".
 
 ```{r}
 y <- c(1.7, "a")  ## character
@@ -143,15 +143,15 @@ y <- c(TRUE, 2)   ## numeric
 y <- c(TRUE, "a") ## character
 ```
 
-Forzando las clases explicitamente
+Forzando las clases explícitamente
 
 `as.character()`, `as.numeric()`, `as.integer()` y `as.logical()`
 
 * Factores
 
-Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (`levels`). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que estos son considerados de manera diferente a las variables continuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.  
+Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (`levels`). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.  
 
-Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (`labels`). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.
+Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (`labels`). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.
 
 Podemos comprobar que la ordenación de los niveles es simplemente alfabética. 
 
@@ -166,7 +166,7 @@ levels(clones_f)
 table(clones_f)
 ```
 
-En general deseamos algun orden especifico de nuestros niveles del factor, por ej:
+En general deseamos algun orden específico de nuestros niveles del factor, por ej:
 
 ```{r}
 clones_f_ord <- factor(clones_f, levels=c("control", "B35", "A12",  "T99"))
@@ -191,7 +191,7 @@ vec_n
 sum(vec_n); mean(vec_n)
 ```
 
-Hemos recuperado los valores numericos originales (`vec`)? que representan los numeros codificados por R en `vec_f`? 
+Hemos recuperado los valores numéricos originales (`vec`)? que representan los números codificados por R en `vec_f`? 
 
 ```{r}
 vec_f1 = as.numeric(as.character(vec_f))
@@ -238,7 +238,7 @@ is.na(y)
 > Calcule el promedio de y (use la ayuda de R en caso necesario)`mean(y)`
 
 * NaN (Not a Number) es el resultado de una operación matemática inválida, ej:  0/0 y log(-1). 
-Un NaN es un NA, pero no reciprocamente.
+Un NaN es un NA, pero no recíprocamente.
 
 ```{r}
 0/0
@@ -246,14 +246,14 @@ is.nan(0/0)
 is.na(0/0)
 ```
 
-* `NULL` es el vacio de R. Es como si el objeto no existiese
+* `NULL` es el vacío de R. Es como si el objeto no existiese
 
 ```{r}
 a = NULL
 a
 ```
 
-* `Inf` (infinito). Es el resultado de operaciones matemáticas cuyo limite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
+* `Inf` (infinito). Es el resultado de operaciones matemáticas cuyo límite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.
 
 ```{r}
 1/0
