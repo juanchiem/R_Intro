@@ -252,31 +252,91 @@ p6
 cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, nrow = 2)
 ```
 
-```{r outliers?, echo=FALSE, eval=FALSE}
-# boxplot.stats()$out
-source("https://goo.gl/4mthoF")
-outlierKD(dat_long %>% filter(trt==1), y)
-outlierKD(dat_long %>% filter(trt==2), y)
-outlierKD(dat_long %>% filter(trt==3), y)
+## forcats::
+
+Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [Sitio oficial](https://forcats.tidyverse.org/)- 
+[machete](http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf) 
+
+```{r, eval=FALSE}
+library(forcats) 
+
+iris %>% 
+  ggplot(aes(x = Species,y = Sepal.Width)) + 
+  geom_boxplot()
 ```
 
-> Siguiendo el [tutorial](https://rawgit.com/benmarwick/new-data-presentation-paradigm-using-r/master/Weissgerber_et_al_supplementary_plots.html), reproducir el graficos de los 5 grupos, de observaciones independientes.  
+`fct_relevel`
 
-```{r, include=FALSE, eval=FALSE}
-Distribuciones
- histograms
- densidades
+A veces queremos forzar los niveles según nuestro interés (Queremos posicionar al tratamiento control al inicio o al final)
 
-frecuencias 
-  pie-charts
-  stacked bar
+```{r}
+iris %>% 
+  ggplot(aes(x = fct_relevel(Species, c("virginica", "setosa", "versicolor")), 
+             y = Sepal.Width)) + 
+  geom_boxplot()
+```
 
-multivariada 
-  corr-plot
-  heat-map
+`fct_reorder`
 
-time series
-spider plot
+Cuando queremos ver el orden de los tratamientos rankeados segun la variable
+
+```{r}
+iris %>% 
+  ggplot(aes(x = fct_reorder(Species, Sepal.Width, fun=median), #.desc=TRUE 
+             y = Sepal.Width)) + 
+  geom_boxplot()#+
+  # geom_jitter(position=position_jitter(0.1))+
+  # coord_flip()
+```
+
+`case_when`
+
+Asociado a `mutate`, cuando deseamos modificar el nombre de los niveles 
+
+```{r}
+iris %>% 
+  mutate(species_new = 
+           # `nombre_nuevo` = "nombre_original" 
+           case_when(Species=="setosa" ~ "Setosa",
+                     Species=="versicolor" ~ "Versicolor",
+                     Species=="virginica" ~ "Virginica")) %>%
+           # TRUE ~ "Virginica"))
+  ggplot(aes(x = species_new, y = Sepal.Width)) + 
+  geom_boxplot()
+```
+
+O queremos generar un nuevo vector categórico a partir de una variable pre-existente
+
+```{r}
+iris %>% 
+  mutate(sepal_categ = 
+           case_when(
+             Sepal.Length > 5.5 ~ "long",
+             Sepal.Length > 5 ~ "medium",
+             TRUE ~ "short"
+           )) %>% 
+  ggplot(aes(x = Species, y = Sepal.Width, color = sepal_categ)) + 
+  geom_boxplot()
+```
+
+`fct_reorder2`
+Reordenar los nivels por su valor final cuando son graficados con otras dos variables
+
+```{r}
+iris %>% 
+  ggplot(aes(Sepal.Width, 
+             Sepal.Length, 
+             color = fct_reorder2(Species, Sepal.Width, Sepal.Length))) +      geom_smooth(se=F)
+```
+
+`fct_infreq`
+
+```{r}
+starwars %>%
+  # mutate(eye_color = fct_infreq(eye_color)) %>%
+  ggplot(aes(x = eye_color)) + 
+  geom_bar() + 
+  coord_flip()
 ```
 
 ## Multivariado

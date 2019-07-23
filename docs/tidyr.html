@@ -161,13 +161,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.2.1</b> select</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.2</b> filter</a></li>
-<li class="chapter" data-level="5.2.3" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.2.3</b> mutate</a></li>
-<li class="chapter" data-level="5.2.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.2.4</b> arrange</a></li>
-<li class="chapter" data-level="5.2.5" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.5</b> summarise</a></li>
+<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.3</b> forcats::</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
 <li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
@@ -185,8 +181,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>7.2.4</b> Violin plot</a></li>
 <li class="chapter" data-level="7.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>7.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
-<li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
+<li class="chapter" data-level="7.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>7.3</b> forcats::</a></li>
+<li class="chapter" data-level="7.4" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.4</b> Multivariado</a></li>
+<li class="chapter" data-level="7.5" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.5</b> Mapas</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a><ul>
 <li class="chapter" data-level="8.1" data-path="analisis-de-temperaturas.html"><a href="analisis-de-temperaturas.html"><i class="fa fa-check"></i><b>8.1</b> Análisis de temperaturas</a></li>
@@ -235,18 +232,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato “long”. La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos.</p>
 <p><img src="fig/wide_to_long.png" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">canola <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>sev_cank) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> inc, <span class="kw">contains</span>(<span class="st">&quot;inc&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;tt&quot;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>)  -&gt;<span class="st"> </span>can_long</code></pre>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">15</span><span class="st">`</span>, <span class="st">`</span><span class="dt">58</span><span class="st">`</span>, <span class="st">`</span><span class="dt">95</span><span class="st">`</span>, <span class="st">`</span><span class="dt">146</span><span class="st">`</span>, <span class="st">`</span><span class="dt">165</span><span class="st">`</span>, <span class="st">`</span><span class="dt">180</span><span class="st">`</span>, <span class="st">`</span><span class="dt">248</span><span class="st">`</span>, 
+         <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) -&gt;<span class="st"> </span>can_long</code></pre>
 <p>Datos <strong>olivo</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r">olivo <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st"> `</span><span class="dt">30</span><span class="st">`</span>, 
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">30</span><span class="st">`</span>,
          <span class="dt">key =</span> <span class="st">&quot;tree&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long</code></pre>
 <p>Datos <strong>soja</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> val, <span class="op">-</span>fungic) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="st">&#39;bk&#39;</span>, <span class="st">&#39;x&#39;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(x, val, <span class="dt">convert =</span> <span class="ot">TRUE</span>) -&gt;<span class="st"> </span>soja_long</code></pre>
+<span class="st">  </span><span class="kw">spread</span>(x, val, <span class="dt">convert =</span> <span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(fungic<span class="op">:</span>bk), <span class="kw">list</span>(as.factor)) -&gt;<span class="st"> </span>soja_long</code></pre>
 </div>
             </section>
 

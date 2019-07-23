@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="tidyr.html">
-<link rel="next" href="forcats.html">
+<link rel="next" href="fitopato.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -161,13 +161,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.2.1</b> select</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.2</b> filter</a></li>
-<li class="chapter" data-level="5.2.3" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.2.3</b> mutate</a></li>
-<li class="chapter" data-level="5.2.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.2.4</b> arrange</a></li>
-<li class="chapter" data-level="5.2.5" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.5</b> summarise</a></li>
+<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.3</b> forcats::</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
 <li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
@@ -185,8 +181,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>7.2.4</b> Violin plot</a></li>
 <li class="chapter" data-level="7.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>7.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
-<li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
+<li class="chapter" data-level="7.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>7.3</b> forcats::</a></li>
+<li class="chapter" data-level="7.4" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.4</b> Multivariado</a></li>
+<li class="chapter" data-level="7.5" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.5</b> Mapas</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a><ul>
 <li class="chapter" data-level="8.1" data-path="analisis-de-temperaturas.html"><a href="analisis-de-temperaturas.html"><i class="fa fa-check"></i><b>8.1</b> Análisis de temperaturas</a></li>
@@ -226,53 +223,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Los cinco verbos (funciones) principales de <code>dplyr</code> son:</p>
 <p><code>select</code> <code>filter</code> <code>mutate</code> <code>arrange</code> <code>summarise</code></p>
 <p><br></p>
-<p><code>join</code> junta dos data frames a través de puntos en común.</p>
-<p>Por ejemplo, si queremos unir las variables “sev_check” y “Dis_level” al dataset soja:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">inner_join</span>(by_check, <span class="dt">by=</span><span class="st">&quot;study&quot;</span>)</code></pre>
-<div id="select" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> select</h3>
+<p><code>select</code></p>
 <p><img src="fig/dplyr_select.png" /></p>
-<p>Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield.</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(study, year, cultivar, fungic, rep, sev, yield)</code></pre>
+<p>Vamos a seleccionar las variables: fungic, rep, sev y yield.</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(fungic, bk, sev)</code></pre>
 <p>Es posible usar intervalos de varibles con <code>:</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev)</code></pre>
 <p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Yld_level, <span class="op">-</span>YR_class, <span class="op">-</span>gr_hab, <span class="op">-</span>sev_check)</code></pre>
-</div>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>yield)</code></pre>
 <div id="filter" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> filter</h3>
+<h3><span class="header-section-number">5.2.1</span> filter</h3>
 <p><img src="fig/dplyr_filter.png" /></p>
 <p>Semejante a <code>subset</code>. Condiciones separadas por comas equivalen a <code>&amp;</code> de <code>subset</code>.
 Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">==</span><span class="st"> &#39;ZZ_CHECK&#39;</span>)</code></pre>
 <p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>))</code></pre>
-</div>
-<div id="mutate" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> mutate</h3>
-<ul>
-<li>Alistar los tipos de variables recien importados</li>
-</ul>
-<p>Haremos que las variables tipo caracter sean convertidas a factores:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja_long &lt;-<span class="st"> </span>soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(fungic<span class="op">:</span>bk), <span class="kw">funs</span>(as.factor))
+<p><code>mutate</code></p>
+<p>Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes)</p>
+<p>Convertimos columnas a factores o numéricas:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(oli_long)
+oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(year<span class="op">:</span>farm), <span class="kw">list</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;tree&quot;</span>,<span class="st">&quot;sev&quot;</span>), <span class="kw">list</span>(as.numeric))
+<span class="kw">str</span>(oli_long)
 
-<span class="kw">str</span>(soja_long)
-<span class="kw">summary</span>(soja_long)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">can_long &lt;-<span class="st"> </span>can_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(trt, bk), <span class="kw">funs</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(tt, inc), <span class="kw">funs</span>(as.numeric))
-
-<span class="kw">str</span>(can_long)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(loc, farm, tree), <span class="kw">funs</span>(as.factor))
-
-<span class="kw">str</span>(oli_long)</code></pre>
+<span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, oli_long))</code></pre>
+<p><code>arrange</code></p>
+<p>Ordenar columnas</p>
+<pre class="sourceCode r"><code class="sourceCode r">oli_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(loc, year, farm, tree) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">print</span>(<span class="dt">n=</span><span class="dv">30</span>)</code></pre>
 <p>Luego de haber chequeado los tipos de datos con <code>str()</code> agregamos al archivo “datos_curso.RData” los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
      <span class="dt">file=</span><span class="st">&quot;data/datos_curso.RData&quot;</span>)</code></pre>
@@ -280,16 +268,11 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
 <li>Creación de nuevas variables (a partir de las existentes)</li>
 </ul>
 <p><img src="fig/dplyr_mutate_new.png" /></p>
-<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen <a href="https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg">normalmente</a>, las desviaciones estándar no son homogéneas, o ambas.</p>
-<p>Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico).</p>
-<p>Como fitopatólogos, la no normalidad es lo predominante.</p>
-<p>El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)</p>
-<p>Dos transformaciones son mayormente sugeridas para la severidad:</p>
+<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen. Dos transformaciones son mayormente sugeridas para los porcentajes:</p>
 <ul>
-<li><p>Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero.</p></li>
-<li><p>Transformación logit:</p></li>
+<li>Transformacion Arcsine o logit</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">soja1 &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sev_arc =</span> <span class="kw">asin</span>(<span class="kw">sqrt</span>(sev<span class="op">/</span><span class="dv">100</span>)),
@@ -297,60 +280,32 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
          <span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) 
 
 <span class="co"># browseURL(&quot;http://strata.uga.edu/8370/rtips/proportions.html&quot;)</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/soja_mancha.csv&quot;</span>)
-soja &lt;-<span class="st"> </span>soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.character, as.factor)</code></pre>
-</div>
-<div id="arrange" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> arrange</h3>
-<p>Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar <code>desc</code> para orden decrescente.</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, cultivar)
-soja1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(year, <span class="kw">desc</span>(cultivar))</code></pre>
 </div>
 <div id="summarise" class="section level3">
-<h3><span class="header-section-number">5.2.5</span> summarise</h3>
+<h3><span class="header-section-number">5.2.2</span> summarise</h3>
 <p><img src="fig/dplyr_summarise.png" /></p>
 <p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)</p>
 <p><img src="fig/dplyr_group_by.png" /></p>
 <p>Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),
             <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </code></pre>
 <blockquote>
 <p>Calculen el rendimiento mínimo y máximo por fungicida</p>
 </blockquote>
-<p>Algunas funciones interesantes para la descripción del dataset: <code>n()</code>, <code>n_distinct()</code>.</p>
-<ul>
-<li>Cuantos ensayos fueron realizados por año:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n_distinct</span>(study)) </code></pre>
-<ul>
-<li>Cuantas parcelas tenia cada ensayo:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(study, year, cultivar) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">plots =</span> <span class="kw">n</span>()) </code></pre>
-<blockquote>
-<p>Adicione una columna de potencial de rendimento del ensayo (rend_pot), considerando el máximo rendimiento observado en ese ensayo.</p>
-</blockquote>
-<blockquote>
-<p>Usando la función <code>ifelse</code> cree una nueva variable categórica “presión de enfermedad” considerando a “sev_check”: Low o High</p>
-</blockquote>
-<pre class="sourceCode r"><code class="sourceCode r">by_check =<span class="st">  </span>soja <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">filter</span>(fungic<span class="op">==</span><span class="st">&quot;ZZ_CHECK&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(study) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">sev_check =</span> <span class="kw">round</span>(<span class="kw">mean</span>(sev, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),<span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Dis_level =</span> <span class="kw">ifelse</span>(sev_check <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>)) </code></pre>
+
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="tidyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="forcats.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitopato.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

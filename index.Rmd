@@ -24,7 +24,7 @@ options(width = 90)
 
 # Motivación {-}
 
-<img src="fig/top.jpg" width="300" height="250" align="right" alt="Cover image" />
+<img src="fig/top.jpg" width="400" height="320" align="right" alt="Cover image" />
 
 *"Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”*
 

@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="dplyr.html">
-<link rel="next" href="fitopato.html">
+<link rel="prev" href="comparacion-de-niveles-de-factores.html">
+<link rel="next" href="multivariado.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -46,7 +46,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -161,13 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.2.1</b> select</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.2</b> filter</a></li>
-<li class="chapter" data-level="5.2.3" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.2.3</b> mutate</a></li>
-<li class="chapter" data-level="5.2.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.2.4</b> arrange</a></li>
-<li class="chapter" data-level="5.2.5" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.5</b> summarise</a></li>
+<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>5.3</b> forcats::</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
 <li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
@@ -185,8 +180,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>7.2.4</b> Violin plot</a></li>
 <li class="chapter" data-level="7.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>7.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.3</b> Multivariado</a></li>
-<li class="chapter" data-level="7.4" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.4</b> Mapas</a></li>
+<li class="chapter" data-level="7.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>7.3</b> forcats::</a></li>
+<li class="chapter" data-level="7.4" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>7.4</b> Multivariado</a></li>
+<li class="chapter" data-level="7.5" data-path="mapas.html"><a href="mapas.html"><i class="fa fa-check"></i><b>7.5</b> Mapas</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>8</b> Manipular fechas</a><ul>
 <li class="chapter" data-level="8.1" data-path="analisis-de-temperaturas.html"><a href="analisis-de-temperaturas.html"><i class="fa fa-check"></i><b>8.1</b> Análisis de temperaturas</a></li>
@@ -222,31 +218,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="forcats" class="section level2">
-<h2><span class="header-section-number">5.3</span> forcats::</h2>
-<p>Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. <a href="https://forcats.tidyverse.org/">link</a></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)
-<span class="kw">library</span>(forcats)
+<h2><span class="header-section-number">7.3</span> forcats::</h2>
+<p>Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. <a href="https://forcats.tidyverse.org/">Sitio oficial</a>-
+<a href="http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf">machete</a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats) 
 
-dat <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trt1=</span> <span class="kw">fct_recode</span>(trt,
-                          <span class="st">`</span><span class="dt">Czm</span><span class="st">`</span> =<span class="st"> &quot;CZM[1]&quot;</span>, <span class="co"># `nombre_nuevo` = &quot;nombre_original&quot; </span>
-                          <span class="st">`</span><span class="dt">Czm+CM+Tebu</span><span class="st">`</span> =<span class="st"> &quot;CZM_CM_TEBU[1]&quot;</span>,
-                          <span class="st">`</span><span class="dt">Epo+Flux+Pyra (0.8L)</span><span class="st">`</span> =<span class="st"> &quot;EPO_FLUX_PYRA[0.8]&quot;</span>,
-                          <span class="st">`</span><span class="dt">Check</span><span class="st">`</span> =<span class="st"> &quot;ZZ_CHECK&quot;</span>),
-         <span class="dt">trt1=</span> <span class="kw">fct_relevel</span>(trt, <span class="co"># Asignar a trt1 nuevo orden de los factores </span>
-                           <span class="st">&quot;Check&quot;</span>, <span class="st">&quot;Czm&quot;</span>, <span class="st">&quot;Czm+CM+Tebu&quot;</span>, <span class="st">&quot;Epo+Flux+Pyra (0.8L)&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()<span class="op">+</span></code></pre>
-
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
+iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species,<span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><code>fct_relevel</code></p>
+<p>A veces queremos forzar los niveles según nuestro interés (Queremos posicionar al tratamiento control al inicio o al final)</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_relevel</span>(Species, <span class="kw">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>)), 
+             <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
+<p><code>fct_reorder</code></p>
+<p>Cuando queremos ver el orden de los tratamientos rankeados segun la variable</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(Species, Sepal.Width, <span class="dt">fun=</span>median), <span class="co">#.desc=TRUE </span>
+             <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="co">#+</span></code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># geom_jitter(position=position_jitter(0.1))+</span>
+  <span class="co"># coord_flip()</span></code></pre>
+<p><code>case_when</code></p>
+<p>Asociado a <code>mutate</code>, cuando deseamos modificar el nombre de los niveles</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species_new =</span> 
+           <span class="co"># `nombre_nuevo` = &quot;nombre_original&quot; </span>
+           <span class="kw">case_when</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">~</span><span class="st"> &quot;Setosa&quot;</span>,
+                     Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span> <span class="op">~</span><span class="st"> &quot;Versicolor&quot;</span>,
+                     Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span> <span class="op">~</span><span class="st"> &quot;Virginica&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">           </span><span class="co"># TRUE ~ &quot;Virginica&quot;))</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> species_new, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-23-1.png" width="576" /></p>
+<p>O queremos generar un nuevo vector categórico a partir de una variable pre-existente</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sepal_categ =</span> 
+           <span class="kw">case_when</span>(
+             Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.5</span> <span class="op">~</span><span class="st"> &quot;long&quot;</span>,
+             Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;medium&quot;</span>,
+             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;short&quot;</span>
+           )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> sepal_categ)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-24-1.png" width="576" /></p>
+<p><code>fct_reorder2</code>
+Reordenar los nivels por su valor final cuando son graficados con otras dos variables</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Sepal.Width, 
+             Sepal.Length, 
+             <span class="dt">color =</span> <span class="kw">fct_reorder2</span>(Species, Sepal.Width, Sepal.Length))) <span class="op">+</span><span class="st">      </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span>F)</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-25-1.png" width="576" /></p>
+<p><code>fct_infreq</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">starwars <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># mutate(eye_color = fct_infreq(eye_color)) %&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> eye_color)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-26-1.png" width="576" /></p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fitopato.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comparacion-de-niveles-de-factores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -276,7 +316,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/juanchiem/R_Intro/edit/master/05-manipular.Rmd",
+"link": "https://github.com/juanchiem/R_Intro/edit/master/07-visualizar.Rmd",
 "text": "Edit"
 },
 "download": null,
@@ -287,19 +327,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

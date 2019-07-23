@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
@@ -68,16 +73,15 @@ Para analizar el efecto del tratamiento fungicida necesitamos calcular el área 
 
 ```{r}
 canola %>%  
-  select(-sev_cank) %>% 
-  gather(key = var, value = inc, contains("inc")) %>% 
-  separate(var, c(NA, "tt"), sep = '_')  -> can_long
+  gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
+         key = "tt", value = "inc") -> can_long
 ```
 
 Datos **olivo**
 
 ```{r}
 olivo %>%  
-  gather(`1`: `30`, 
+  gather(`1`:`30`,
          key = "tree", value = "sev") -> oli_long
 ```
 
@@ -87,7 +91,8 @@ Datos **soja**
 soja %>% 
   gather(key = var, value = val, -fungic) %>% 
   separate(var, c('bk', 'x'), sep = '_', convert = TRUE) %>% 
-  spread(x, val, convert = TRUE) -> soja_long
+  spread(x, val, convert = TRUE)  %>% 
+  mutate_at(vars(fungic:bk), list(as.factor)) -> soja_long
 ```
 
 ## dplyr::
@@ -98,33 +103,31 @@ Los cinco verbos (funciones) principales de `dplyr` son:
 
 <br>
 
-
-`join` junta dos data frames a través de puntos en común.
-
-Por ejemplo, si queremos unir las variables "sev_check" y "Dis_level" al dataset soja:
-
-```{r}
-soja %>% inner_join(by_check, by="study")
-```
-
-### select
+`select`
 
 ![](fig/dplyr_select.png)
 
-Vamos a seleccionar las variables: study, year, cultivar, fungic, rep, sev y yield. 
+Vamos a seleccionar las variables: fungic, rep, sev y yield. 
 
 ```{r}
-soja %>% 
-  select(study, year, cultivar, fungic, rep, sev, yield)
+soja_long %>% 
+  select(fungic, bk, sev)
 ```
 
 Es posible usar intervalos de varibles con `:`.
 
+```{r}
+soja_long %>% 
+  select(fungic:sev)
+
+```
+
+
 Una selección “negativa” de las variables no deseadas daría un mismo resultado:
 
 ```{r}
-soja %>% 
-  select(-Yld_level, -YR_class, -gr_hab, -sev_check)
+soja_long %>% 
+  select(-yield)
 ```
 
 ### filter
@@ -135,46 +138,43 @@ Semejante a `subset`. Condiciones separadas por comas equivalen a `&` de `subset
 Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)
 
 ```{r}
-soja %>% 
-  select(study:yield) %>% 
+soja_long %>% 
+  select(fungic:sev) %>% 
   filter(fungic == 'ZZ_CHECK')
 ```
 
 Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset
 
 ```{r}
-soja %>% 
-  select(study:yield) %>% 
+soja_long %>% 
+  select(fungic:sev) %>% 
   filter(fungic %in% c("ZZ_CHECK","CZM[1]"))
 ```
 
-### mutate
+`mutate`
 
-* Alistar los tipos de variables recien importados 
+Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes)
 
-Haremos que las variables tipo caracter sean convertidas a factores:
-
-```{r}
-soja_long <- soja_long %>% 
-  mutate_at(vars(fungic:bk), funs(as.factor))
-
-str(soja_long)
-summary(soja_long)
-```
+Convertimos columnas a factores o numéricas:
 
 ```{r}
-can_long <- can_long %>% 
-  mutate_at(vars(trt, bk), funs(as.factor)) %>% 
-  mutate_at(vars(tt, inc), funs(as.numeric))
-
-str(can_long)
-```
-
-```{r}
-oli_long <- oli_long %>% 
-  mutate_at(vars(loc, farm, tree), funs(as.factor))
-
 str(oli_long)
+oli_long <- oli_long %>% 
+  mutate_at(vars(year:farm), list(as.factor)) %>% 
+  mutate_at(c("tree","sev"), list(as.numeric))
+str(oli_long)
+
+ftable(xtabs(~year+loc+farm, oli_long))
+```
+
+`arrange`
+
+Ordenar columnas 
+
+```{r}
+oli_long %>% 
+  arrange(loc, year, farm, tree) %>% 
+  print(n=30)
 ```
 
 Luego de haber chequeado los tipos de datos con `str()` agregamos al archivo "datos_curso.RData" los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas
@@ -188,22 +188,12 @@ save(soja, canola, mani, olivo, soja_long, can_long, oli_long,
 
 ![](fig/dplyr_mutate_new.png)
 
-Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen [normalmente](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule#/media/File:Empirical_rule_histogram.svg), las desviaciones estándar no son homogéneas, o ambas. 
+Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen. Dos transformaciones son mayormente sugeridas para los porcentajes: 
 
-Hay extensa bibliografia al respecto, recomendando cual transformación es la más adecuada para cada tipo de variable y asi poder ser analizada por un ANOVA tradicional (paramétrico). 
-
-Como fitopatólogos, la no normalidad es lo predominante. 
-
-El caso mas común es la severidad de enfermedades que comparamos a través de diferentes tratamientos (cultivar, fungicida, practica de manejo, etc.)
-
-Dos transformaciones son mayormente sugeridas para la severidad: 
-
-* Transformacion Arcsine:consiste en tomar el arcoseno de la raiz cuadrada de un numero. 
-
-* Transformación logit: 
+* Transformacion Arcsine o logit
 
 ```{r}
-soja1 <- soja %>% 
+soja_long %>% 
   select(study:yield) %>% 
   filter(fungic %in% c("ZZ_CHECK","CZM[1]")) %>% 
   mutate(sev_arc = asin(sqrt(sev/100)),
@@ -211,21 +201,6 @@ soja1 <- soja %>%
          yield_tn = yield/1000) 
 
 # browseURL("http://strata.uga.edu/8370/rtips/proportions.html")
-```
-
-
-```{r}
-soja <- readr::read_csv("data/soja_mancha.csv")
-soja <- soja %>% mutate_if(is.character, as.factor)
-```
-
-### arrange
-
-Ordena crecientemente de acuerdo a la columna que le indiquemos. Utilizar `desc` para orden decrescente.
-
-```{r}
-soja1 %>% arrange(year, cultivar)
-soja1 %>% arrange(year, desc(cultivar))
 ```
 
 ### summarise
@@ -239,60 +214,10 @@ Generalmente acompañada de la función `group_by` la cual permite aplicar un c�
 Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos: 
 
 ```{r}
-soja %>% 
+soja_long %>% 
   group_by(fungic) %>% 
   summarise(yield_mean =  mean(yield),
             yield_sd = sd(yield)) 
 ```
 
 > Calculen el rendimiento mínimo y máximo por fungicida
-
-Algunas funciones interesantes para la descripción del dataset: `n()`, `n_distinct()`.
-
-- Cuantos ensayos fueron realizados por año:
- 
-```{r}
-soja %>% group_by(year) %>% 
-  summarize(n = n_distinct(study)) 
-```
-
-- Cuantas parcelas tenia cada ensayo:
-
-```{r}
-soja %>% 
-  group_by(study, year, cultivar) %>% 
-  summarize(plots = n()) 
-```
-
-> Adicione una columna de potencial de rendimento del ensayo (rend_pot), considerando el máximo rendimiento observado en ese ensayo.
-
-> Usando la función `ifelse` cree una nueva variable categórica "presión de enfermedad" considerando a "sev_check": Low o High
-
-```{r}
-by_check =  soja %>%  
-  filter(fungic=="ZZ_CHECK") %>%
-  group_by(study) %>% 
-  summarize(sev_check = round(mean(sev, na.rm = TRUE),1)) %>% 
-  mutate(Dis_level = ifelse(sev_check < 30, "Low", "High")) 
-```
-
-## forcats::
-
-Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [link](https://forcats.tidyverse.org/) 
-
-```{r, eval=FALSE}
-install.packages("questionr")
-library(forcats)
-
-dat %>%
-  mutate(trt1= fct_recode(trt,
-                          `Czm` = "CZM[1]", # `nombre_nuevo` = "nombre_original" 
-                          `Czm+CM+Tebu` = "CZM_CM_TEBU[1]",
-                          `Epo+Flux+Pyra (0.8L)` = "EPO_FLUX_PYRA[0.8]",
-                          `Check` = "ZZ_CHECK"),
-         trt1= fct_relevel(trt, # Asignar a trt1 nuevo orden de los factores 
-                           "Check", "Czm", "Czm+CM+Tebu", "Epo+Flux+Pyra (0.8L)")) %>%
-  ggplot(aes(x, y)) + geom_boxplot()+
-```
-
-

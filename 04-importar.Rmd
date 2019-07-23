@@ -198,7 +198,7 @@ write.table(dat, "./data/dat.txt", sep = "\t")
 Muchas veces necesitamos compilar varias planillas en un solo set de datos, como por ejemplo una serie de datos meteorológicos:
 
 Supongamos que tenemos varios archivos: 
-balcar
+balcarce_2018.xlsx ; balcarce_2019.xlsx
 
 
 ```{r}
