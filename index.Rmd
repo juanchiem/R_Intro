@@ -50,7 +50,7 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 <hr>
 
 <div style="text-align: center">
-<b>Por qué R?</b> [@R-base]
+<b>¿Por qué R?</b> [@R-base]
 </div>
 ```{block, type='boxed', include=FALSE}
  1. Software libre - multiplataforma
@@ -63,7 +63,7 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 
  5. Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
  
- 6. Programar ya no es solo computación (CV/relevant skills) 
+ 6. Programar ya no es sólo computación (CV/relevant skills) 
 
 ```
 
@@ -80,7 +80,7 @@ x = data.frame(
     "Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)",
     "Gran flexibilidad y elegancia de los gráficos",
     "Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de ciencia de datos en inglés)",
-    "Programar ya no es solo computación (CV/relevant skills)")) %>%
+    "Programar ya no es sólo computación (CV/relevant skills)")) %>%
   kable(format = "html", escape = F) %>%
   kable_styling(bootstrap_options = 
                   c("striped", "hover", "condensed", "responsive"),
