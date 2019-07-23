@@ -2,13 +2,13 @@
 
 La sintaxis en R es muy similar a la de otros lenguajes de programación como JAVA o C. Las normas básicas que definen la sintaxis de R son:
 
-- No se tienen en cuenta los espacios en blancos: podemos o no dejar espacios para que el código se puede ordenar de forma adecuada y poder entenderse.
+- No se tienen en cuenta los espacios en blanco: podemos o no dejar espacios para que el código se pueda ordenar de forma adecuada y poder entenderse.
 
 - Se distinguen las mayúsculas y minúsculas: para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.
 
 - Se pueden incluir comentarios: como vimos anteriormente los comentarios se utilizan para añadir información en el código.
 
-- No es necesario terminar cada sentencia con el carácter de punto y coma (;): en la mayoría de lenguajes de programación, es obligatorio terminar cada sentencia con este carácter. En en cambio R podemos o no terminar de esta forma.
+- No es necesario terminar cada sentencia con el carácter de punto y coma (;): en la mayoría de lenguajes de programación, es obligatorio terminar cada sentencia con este carácter. En cambio, en R podemos o no terminar de esta forma.
   
 
 ## R calculadora {#calc}
@@ -30,8 +30,8 @@ Ver [tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos (al 
 (Recordando de la primaria el orden de las operaciones: 
 paréntesis < exponentes (potencia o raiz) < productos/división < suma/resta)
 
-> Ej 1: Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
-Agregue parentesis para que la expresión de un resultado contrario.
+> Ej 1: ¿Está bien la siguiente expresión? `5 + 3 * 10 %/% 3 == 15` 
+Agregue paréntesis para que la expresión dé un resultado contrario.
 
 </br>
 
@@ -42,7 +42,7 @@ Agregue parentesis para que la expresión de un resultado contrario.
 El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
 ```
 
-> Ej 2: Cuanto seria el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+> Ej 2: ¿Cuánto sería el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
 
 </br>
 
@@ -70,7 +70,7 @@ y es “case sensitive”!!)
 
 ## Funciones 
 
-Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son basicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente
+Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son básicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente
 
 ```{r}
 nombre_funcion <- function(arg_1, arg_2, ...) {
@@ -84,7 +84,7 @@ Las diferentes partes de una función son:
 
 * Nombre de la función: este es el nombre real de la función. Se almacena en el entorno R como un objeto con este nombre. Generalmente, el nombre es intuitivo, por ejemplo, `mean` es la función que calcula la media, `round` es la funión que redondea un número. 
 
-* Argumentos - Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.
+* Argumentos: Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.
 
 * Cuerpo de la función: el cuerpo de la función contiene una colección de sentencias que definen lo que hace la función.
 
@@ -101,7 +101,7 @@ $$c1 * v1 = c2 * v2$$
 
 Obviamente tanto $c1;c2$, como $v1;v2$, están en las mismas unidades. Para nuestra comodidad $c=\%$ y $v=ml$. 
 
-> Nos indican que preparemos 500 ml de una solución desinfectante de NaOCl al 5%, partiendo de una lavandina concentrada (55 g Cl/L). La pregunta que del millón es: qué volumen de lavandina preciso? Por lo tanto debemos despejar *V1* de la equivalencia, o sea, sería nuestro output de nuestra función. 
+> Nos indican que preparemos 500 ml de una solución desinfectante de NaOCl al 5%, partiendo de una lavandina concentrada (55 g Cl/L). La pregunta que del millón es: ¿qué volumen de lavandina preciso? Por lo tanto debemos despejar *V1* de la equivalencia, o sea, sería nuestro output de nuestra función. 
 
 Empecemos los cálculos: 
 
@@ -130,7 +130,7 @@ vol_lavandina(55, # g cloro / L (Lavandina)
           500) # ml de la solución deseada
 ```
 
-> Al reportar los resultados de los test de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto incremento o se redujo  un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este [link](https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php) para cotejar sus resultados.  
+> Al reportar los resultados de los tests de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto se incrementó o se redujo  un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este [link](https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php) para cotejar sus resultados.  
 
 ```{r, echo=TRUE}
 perc_change <- function(v1, v2) 
@@ -233,7 +233,7 @@ text_tab3 <- data.frame(
     "raiz de x",
     "exponencial de y",
     "logaritmo natural de x = ln",
-    "Logaritmo base 10 de x",
+    "logaritmo base 10 de x",
     "suma todos los elementos de x",
     "producto de todos los elementos de x",
     "redondea x a n-digitos"
@@ -270,9 +270,9 @@ text_tab4 <- data.frame(
     "panel de todos los atajos",
     "undo/redo",
     "<-",
-    "corre la linea/bloque completa de codigo",
+    "corre la línea/bloque completa de código",
     "limpia la consola",
-    "silencia la linea",
+    "silencia la línea",
     "indexa el bloque de código"
   )
 )
@@ -281,7 +281,7 @@ text_tab4 <- data.frame(
 
 
 ```{r shortcuts, tidy=FALSE, eval=TRUE, echo = FALSE}
-knitr::kable(text_tab4, caption = 'Algunos atajos comúnentes usados', booktabs = TRUE) %>% 
+knitr::kable(text_tab4, caption = 'Algunos atajos comúnmente usados', booktabs = TRUE) %>% 
     kable_styling(full_width=F, font_size=15)
 ```
 
