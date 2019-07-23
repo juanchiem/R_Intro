@@ -224,8 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="fig/gglayers.png" width="500" />
 </center>
-<p>Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que</p>
-<p>o sea pueden haber varias</p>
+<p>Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el grafico o especificamente para cada nueva capa.</p>
 <ul>
 <li>aesthetics</li>
 </ul>
@@ -256,7 +255,7 @@ size</p>
 <p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre>
 <p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
@@ -268,7 +267,7 @@ size</p>
 <ul>
 <li>facets</li>
 </ul>
-<p>Las facetas o “facets” en permiten dividir el mismo gráfico en diferentes niveles de un <strong>factor</strong>.</p>
+<p>Las facetas o “facets” permiten dividir el mismo gráfico en multiples paneles asociados a niveles de un factor.</p>
 <pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>

@@ -107,6 +107,13 @@ gsub("<thead>.*</thead>", "", x)
     + Twitter: [juanchiem](https://twitter.com/juanchiem)
     + GitHub: <https://github.com/juanchiem>
 
+<b>Colaboradora</b>
+
+* Anabella Dinon: Docente - Investigador a - Mejoramiento genético - Estadística y Diseño (UNMdP)
+    + Email: [anabella005@yahoo.com.ar](mailto:anabella005@yahoo.com.ar)
+    + GitHub: <https://github.com/anabella005>
+    
+
 </br>
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />Este obra está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional</a>.

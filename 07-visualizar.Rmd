@@ -38,9 +38,7 @@ Tiene una gramática propia y la idea original es que un gráfico puede ser elab
 ![](fig/gglayers.png){width=500px}
 </center>
 
-Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser `ggplot()` que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que 
-
-o sea pueden haber varias  
+Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser `ggplot()` que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el grafico o especificamente para cada nueva capa.   
 
 * aesthetics
 
@@ -80,7 +78,7 @@ iris %>%
 ```{r}
 iris %>% 
   ggplot(aes(x=Sepal.Length, y=Petal.Length)) + 
-  geom_point(aes(color = Species))+
+  geom_point(aes(color = Species))+ 
   geom_smooth()
 ```
 
@@ -94,7 +92,7 @@ iris %>%
 
 * facets
 
-Las facetas o “facets” en permiten dividir el mismo gráfico en diferentes niveles de un **factor**.
+Las facetas o “facets” permiten dividir el mismo gráfico en multiples paneles asociados a niveles de un factor.
 
 ```{r}
 p <- iris %>% 
@@ -257,7 +255,7 @@ cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, nrow = 2)
 Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [Sitio oficial](https://forcats.tidyverse.org/)- 
 [machete](http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf) 
 
-```{r, eval=FALSE}
+```{r}
 library(forcats) 
 
 iris %>% 
