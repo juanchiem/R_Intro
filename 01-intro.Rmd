@@ -92,7 +92,7 @@ Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dent
 
 > Crear un script "1_intro"
 
-¿Dónde se guardaria el siguiente gráfico?
+¿Dónde se guardaría el siguiente gráfico?
 
 ```{r}
 plot(pressure)
