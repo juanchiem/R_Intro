@@ -80,7 +80,7 @@ Una forma práctica de administrar todos los objetos que una sesión es crear un
 
 ![](fig/workflow_completo.png) 
 
-Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no sólo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes áquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
+Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no sólo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes máquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
 
 <center>
 ![](fig/folders.png) 
