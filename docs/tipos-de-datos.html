@@ -310,7 +310,7 @@ v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</sp
 <span class="kw">min</span>(v)
 <span class="kw">sum</span>(v)</code></pre>
 <blockquote>
-<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cubica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
+<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
 </blockquote>
 <ul>
 <li>Secuencia</li>
@@ -330,7 +330,7 @@ v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</sp
 <p><code>sample()</code></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">replace=</span>F) <span class="co">#sin reposición</span></code></pre>
 <ul>
-<li>Generar numeros aleatorios de una distribución especifica de parámetros conocidos:</li>
+<li>Generar números aleatorios de una distribución específica de parámetros conocidos:</li>
 </ul>
 <p><code>runif()</code> - números racionales aleatoriamente, uniformemente distribuidos en un intervalo</p>
 <pre class="sourceCode r"><code class="sourceCode r">num_unif &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min=</span><span class="dv">3</span>, <span class="dt">max=</span><span class="dv">4</span>)
@@ -355,17 +355,17 @@ PesoNac &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 <ul>
 <li>Propiedades de vectores</li>
 </ul>
-<p>Si colocaramos dos o mas clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaria a “1.7” se fuera creado junto con “a”.</p>
+<p>Si colocáramos dos o más clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaría a “1.7” si fuera creado junto con “a”.</p>
 <pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)  <span class="co">## character</span>
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>)   <span class="co">## numeric</span>
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="st">&quot;a&quot;</span>) <span class="co">## character</span></code></pre>
-<p>Forzando las clases explicitamente</p>
+<p>Forzando las clases explícitamente</p>
 <p><code>as.character()</code>, <code>as.numeric()</code>, <code>as.integer()</code> y <code>as.logical()</code></p>
 <ul>
 <li>Factores</li>
 </ul>
-<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que estos son considerados de manera diferente a las variables continuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
-<p>Los niveles de un factor puede estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
+<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
+<p>Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
 <p>Podemos comprobar que la ordenación de los niveles es simplemente alfabética.</p>
 <pre class="sourceCode r"><code class="sourceCode r">clones =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, 
 <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>)
@@ -375,7 +375,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE<
 clones_f =<span class="st"> </span><span class="kw">factor</span>(clones)
 <span class="kw">levels</span>(clones_f)
 <span class="kw">table</span>(clones_f)</code></pre>
-<p>En general deseamos algun orden especifico de nuestros niveles del factor, por ej:</p>
+<p>En general deseamos algun orden específico de nuestros niveles del factor, por ej:</p>
 <pre class="sourceCode r"><code class="sourceCode r">clones_f_ord &lt;-<span class="st"> </span><span class="kw">factor</span>(clones_f, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>,  <span class="st">&quot;T99&quot;</span>))
 <span class="kw">table</span>(clones_f_ord)</code></pre>
 <p>Las variables <strong>numéricas y de caracteres</strong> se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de <strong>caracteres</strong>. Podremos verlo en el siguiente ejemplo:</p>
@@ -388,7 +388,7 @@ vec_f
 vec_f
 vec_n
 <span class="kw">sum</span>(vec_n); <span class="kw">mean</span>(vec_n)</code></pre>
-<p>Hemos recuperado los valores numericos originales (<code>vec</code>)? que representan los numeros codificados por R en <code>vec_f</code>?</p>
+<p>Hemos recuperado los valores numéricos originales (<code>vec</code>)? que representan los números codificados por R en <code>vec_f</code>?</p>
 <pre class="sourceCode r"><code class="sourceCode r">vec_f1 =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(vec_f))
 <span class="kw">sum</span>(vec_f1);<span class="kw">mean</span>(vec_f1)</code></pre>
 <ul>
@@ -429,18 +429,18 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 </blockquote>
 <ul>
 <li>NaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1).
-Un NaN es un NA, pero no reciprocamente.</li>
+Un NaN es un NA, pero no recíprocamente.</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>
 <span class="kw">is.nan</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)
 <span class="kw">is.na</span>(<span class="dv">0</span><span class="op">/</span><span class="dv">0</span>)</code></pre>
 <ul>
-<li><code>NULL</code> es el vacio de R. Es como si el objeto no existiese</li>
+<li><code>NULL</code> es el vacío de R. Es como si el objeto no existiese</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> </span><span class="ot">NULL</span>
 a</code></pre>
 <ul>
-<li><code>Inf</code> (infinito). Es el resultado de operaciones matemáticas cuyo limite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</li>
+<li><code>Inf</code> (infinito). Es el resultado de operaciones matemáticas cuyo límite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span>
 <span class="dv">1</span><span class="op">/</span><span class="ot">Inf</span></code></pre>
