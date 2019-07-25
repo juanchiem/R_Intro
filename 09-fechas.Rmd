@@ -11,13 +11,13 @@ library(tidyverse)
 
 # Manipular fechas {#fechas}
 
-Saber manipular variables de tipo fechas resulta de gran practicidad debido a que como investigadores del área de ciencias agrarias / biológicas lidiamos constantemente con el tiempo en nuestros experimentos. Aprovechar las nuevas funciones de los paquetes de R que permiten realizar cálculos o graficas variables de tipo fechas nos optimizará nuestro trabajo cotidiano ya que nos evitará tener que realizar cálculos intermedios para convertir las fechas a días, ya que R hará ese trabajo invisiblemente (y sin errores).    
+Saber manipular variables de tipo fechas resulta de gran practicidad debido a que, como investigadores del área de ciencias agrarias / biológicas, lidiamos constantemente con el tiempo en nuestros experimentos. Aprovechar las nuevas funciones de los paquetes de R que permiten realizar cálculos o gráficas variables de tipo fechas nos optimizará nuestro trabajo cotidiano ya que nos evitará tener que realizar cálculos intermedios para convertir las fechas a días, ya que R hará ese trabajo invisiblemente (y sin errores).    
 
 A continuación haremos una demostración simple de cómo operar con fechas involucrando a variables meteorológicas y de fenología de cultivos.
 
 ## Análisis de temperaturas
 
-Importamos un dataset de datos meteorológicos de Balcarce desde 1971 a 2019
+Importamos un dataset de datos meteorológicos de Balcarce desde 1971 a 2019:
 
 ```{r}
 bce <- readxl::read_excel("./data/bce_clima.xlsx") %>%
@@ -29,7 +29,7 @@ head(bce)
 tail(bce)
 ```
 
-Construimos la banda central de medias minimas y maximas de cada dia
+Construimos la banda central de medias mínimas y máximas de cada día:
 
 ```{r}
 bce_serie <- bce %>%
@@ -48,7 +48,7 @@ bce_serie <- bce %>%
 bce_serie
 ```
 
-Filtramos el dataset para la reciente campaña de grano grueso (primavera- verano - otoño)
+Filtramos el dataset para la reciente campaña de grano grueso (primavera- verano - otoño):
 
 ```{r}
 bce_18_19 <-
@@ -60,7 +60,7 @@ bce_18_19 <-
 bce_18_19
 ```
 
-Graficamos las bandas de 80% de la temperatura media diaria de la serie histórica y loas temperaturas medias observadas en la reciente campaña 
+Graficamos las bandas de 80% de la temperatura media diaria de la serie histórica y las temperaturas medias observadas en la reciente campaña: 
 
 ```{r}
 p1 <-
@@ -79,14 +79,14 @@ p1
 ```
 
 
-Exploramos si huebieron días con temperatura media mayor o menor a la serie histórica 
+Exploramos si hubo días con temperatura media mayor o menor a la serie histórica: 
 
 ```{r}
 rec_frio <- bce_18_19[which(bce_18_19$tmean<bce_18_19$lower_tmean),]
 rec_cal <- bce_18_19[which(bce_18_19$tmean>bce_18_19$upper_tmean),]
 ```
 
-En caso de haberlos los agregamos al grafico base así como las heladas meteorológicas (Tmín<=0°C) o agrometeorológicas (Tmín<=3°C)
+En caso de haberlos los agregamos al gráfico base, así como las heladas meteorológicas (Tmín<=0°C) o agrometeorológicas (Tmín<=3°C):
 
 ```{r}
 library(ggrepel)
@@ -111,9 +111,9 @@ p2 <- p1 +
 p2
 ```
 
-Finalmente agregamos los estadíos reproductivos del cultivo de girasol
+Finalmente agregamos los estadíos reproductivos del cultivo de girasol.
 
-Para ello haremos algunos cálculos con los intervalos de tiempo de los estadios reproductivos floración (r5) y llenado de granos (r6)
+Para ello haremos algunos cálculos con los intervalos de tiempo de los estadíos reproductivos floración (r5) y llenado de granos (r6):
 
 ```{r}
 r5 = c(as.Date("2018-12-15"),  as.Date("2019-01-15")); diff(r5)
@@ -157,9 +157,9 @@ bce <- readxl::read_excel("./data/bce_clima.xlsx") %>%
          julian = lubridate::yday(date))
 ```
 
-Calculamos las lluvias acumuladas por decada 
+Calculamos las lluvias acumuladas por década. 
 
-- Primero para la serie histórica 
+- Primero para la serie histórica: 
 
 ```{r}
 bce_serie <-
@@ -184,7 +184,7 @@ bce_serie <-
             upper_80=quantile(rain_acum, .8, na.rm = T))
 ```
 
-- Luego para la reciente campaña de grano grueso
+- Luego para la reciente campaña de grano grueso:
 
 ```{r}
 bce_18_19 <-
@@ -200,7 +200,7 @@ bce_18_19 <-
   filter(date > '2018-08-31', date < '2019-03-30')
 ```
 
-- Fusionamos ambos datasets en base al de la actual campaña (que es el que tiene las fechas)
+- Fusionamos ambos datasets en base al de la actual campaña (que es el que tiene las fechas):
 
 ```{r}
 bce_18_19 <-
@@ -211,9 +211,9 @@ bce_18_19 <-
 ```
 
 
-Ya estamos en condiciones de graficar ambos datasets
+Ya estamos en condiciones de graficar ambos datasets.
 
-- Configuramos el aspecto del gráfico
+- Configuramos el aspecto del gráfico:
 
 ```{r}
 theme_set(theme_bw() +
@@ -243,7 +243,7 @@ p_5=position_nudge(x = 5)
 )
 ```
                   
-- Incluimos la fenología del girasol
+- Incluímos la fenología del girasol:
 
 ```{r}
 r5 = c(as.Date("2018-12-15"),  as.Date("2019-01-15")); diff(r5)
