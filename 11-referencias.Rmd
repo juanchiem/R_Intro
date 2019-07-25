@@ -1,6 +1,6 @@
 # Links de interés
 
-* Otros cursos introductorios a R 
+* Otros cursos introductorios a R: 
 
 [R for data scientists](https://r4ds.had.co.nz/)
 
@@ -14,13 +14,13 @@
 
 [Curso Emerson Del Ponte](https://emdelponte.github.io/FIP606/delineamentos-experimentais.html)
 
-* Recursos interesantes para el área de datos biológicos / fitopatolgía
+* Recursos interesantes para el área de datos biológicos / fitopatología:
 
 [R for Plant Pathologists](https://everhartlab.github.io/IntroR/)
 
 [Open Plant Pathology](https://www.openplantpathology.org/#talks)
 
-* Algunos inspiradores R users blogs
+* Algunos inspiradores R users blogs:
 
 [Robin Choudhury](https://robchoudhury.netlify.com/)
 
