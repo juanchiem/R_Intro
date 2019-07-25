@@ -48,7 +48,7 @@ $IS(\%)=\frac {\sum frecuencia \: de \: grado\: \times\: punto \: medio \: del \
 
 - Prevalencia: número de unidades de muestreo geográficas (lotes, campos, municipios, estados, regiones, etc.) donde se detectó una enfermedad o un patógeno, dividido por el número total de unidades de muestreo geográficas evaluadas.
 
-## Caso 1: carbón del mani 
+## Caso 1: carbón del maní 
 
 ![](fig/peanut_smut.png){width=200px}
 
@@ -58,7 +58,7 @@ mani <-  mani %>%
 mani
 ```
 
-Exploramos cuantas plantas (sub-muestra) fueron evaluadas por parcela:
+Exploramos cuántas plantas (sub-muestra) fueron evaluadas por parcela:
 
 ```{r}
 mani %>%
@@ -102,16 +102,16 @@ can_long %>%
 
 ![](fig/xylella.jpg)
 
-Chequeamos cuantos árboles fueron evaluados en cada año/región/lote:
+Chequeamos cuántos árboles fueron evaluados en cada año/región/lote:
 
 ```{r}
-ftable(xtabs(~year+loc+farm, olivo))
+ftable(xtabs(~year+loc+farm, oli_long))
 ```
 
 Imprimimos los 30 árboles de un mismo lote 
 
 ```{r}
-olivo %>% 
+oli_long %>% 
   arrange(loc, year) %>% 
   print(n=30)
 ```
@@ -119,7 +119,7 @@ olivo %>%
 ### Incidencia (nivel lote - evolución interanual)
 
 ```{r}
-dat_inc <- olivo %>%
+dat_inc <- oli_long %>%
   group_by(year, loc, farm) %>%
   summarise(inc = mean(sev>0, na.rm=TRUE)*100) %>% 
   ungroup %>% 
