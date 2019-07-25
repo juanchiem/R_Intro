@@ -309,29 +309,29 @@ levels(iris$Species)
 summary(iris$Sepal.Length)
 ```
 
-> Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4. 
+> Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las líneas 50 a 60 de las columnas 3 y 4. 
 
 * Función `subset`
 
-Filtremos a la variedad Species reteniendo solo a "setosa" 
+Filtremos a la variable Species reteniendo sólo a "setosa" 
 
 ```{r}
 iris_setosa <- subset(iris, Species=="setosa")
 ```
 
-Filtremos a la variedad Species reteniendo solo a "setosa" + "virginica"
+Filtremos a la variable Species reteniendo sólo a "setosa" + "virginica"
 
 ```{r}
 iris_set.virginica <- subset(iris, Species %in% c("setosa", "virginica"))
 ```
 
-Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length > 5
+Agreguemos una condición: a lo anterior quedémonos con aquellas filas en que Sepal.Length > 5
 
 ```{r}
 iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
 ```
 
-> Que pasa si cambiamos el operador `&` por `|`?
+> ¿Qué pasa si cambiamos el operador `&` por `|`?
 
 ### Listas
 
@@ -342,7 +342,7 @@ x <- list(a = 1:5, b = c("a", "b"), c = TRUE)
 x
 ```
 
-(Mas info de subsetting elementos de una lista [aqui](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists))
+(Más info de subsetting elementos de una lista [aqui](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists))
 
 ```{r}
 x$a       # 
@@ -356,7 +356,7 @@ x["c"]     #
 
 ### Matrices
 
-Indicamos el número de filas con el argumento `nrow` y con `ncol` el número de columnas; luego indicamos que valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con `byrow=TRUE`. La matriz A así construida es:
+Indicamos el número de filas con el argumento `nrow` y con `ncol` el número de columnas; luego indicamos qué valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con `byrow=TRUE`. La matriz A así construida es:
 
 ```{r}
 A <- matrix(nrow=3, ncol=3, c(1,2,3,4,5,6,7,8,9), byrow=TRUE)
