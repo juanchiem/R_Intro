@@ -12,9 +12,9 @@ options(width = 90)
 
 La visualización de datos es una pieza fundamental del flujo de trabajo del científico, tanto para explorar sus observaciones, como para explicar/comunicar sus resultados e ideas. Es decir, dominar las herramientas de visualización resulta imprescindible para un investigador cuya materia prima son los datos.
 
-La gran comunidad de usuarios de R disponibiliza sus creaciones e incluso trabajan en extensiones que amplien la potencialidad de sus paquetes. 
+La gran comunidad de usuarios de R disponibiliza sus creaciones e incluso trabaja en extensiones que amplían la potencialidad de sus paquetes. 
 
-Se podria afirmar que no hay límites para la creación. Digamos, que no importa el "**Cómo?**" si no el "**Qué?**"
+Se podría afirmar que no hay límites para la creación. Digamos, que no importa el "**¿cómo?**" si no el "**¿qué?**"
 
 Algunas pruebas de ello son los siguientes links: 
 
@@ -24,29 +24,29 @@ Algunas pruebas de ello son los siguientes links:
 
 - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
 
-El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios asi como crear figuras complejas, detalladas de alta calidad (con fines de publicaciones científicas). 
+El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios así como crear figuras complejas, detalladas, de alta calidad (con fines de publicaciones científicas). 
 
-## Ambas variables continuas
+## Ambas variables contínuas
 
 ```{r}
 library(tidyverse)
 ```
 
-Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).
+Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener éstas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).
 
 <center>
 ![](fig/gglayers.png){width=500px}
 </center>
 
-Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser `ggplot()` que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el grafico o especificamente para cada nueva capa.   
+Agregaremos una a una las capas mencionadas en la figura. Éstas no tienen un orden estricto, salvo la primera que debe ser `ggplot()` que es la función que inicializa un gráfico. A ésta estarán asociados el dataframe principal (ya que un mismo gráfico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el gráfico o específicamente para cada nueva capa.   
 
 * aesthetics
 
-Se definen con aes()
-Significado de aesthetic en ggplot: “Algo que se puede ver”
-Cada geom acepta un conjunto de aesthetics
+Se definen con aes().
+Significado de aesthetic en ggplot: “Algo que se puede ver”.
+Cada geom acepta un conjunto de aesthetics.
 Ejemplos:
-    + position (i.e., en el eje “x” y “y”)
+    + position (i.e., en el eje “x” e “y”)
       color (color “exterior”)
       fill (color “interior”)
       shape (de los puntos)
@@ -61,7 +61,7 @@ iris %>%
 
 * geoms
 
-Objetos geometricos son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La [lista de "geoms"](https://ggplot2.tidyverse.org/reference/#section-layer-geoms) aumenta día a día.  
+Objetos geométricos. Son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La [lista de "geoms"](https://ggplot2.tidyverse.org/reference/#section-layer-geoms) aumenta día a día.  
 
 ```{r}
 iris %>% 
@@ -92,7 +92,7 @@ iris %>%
 
 * facets
 
-Las facetas o “facets” permiten dividir el mismo gráfico en multiples paneles asociados a niveles de un factor.
+Las facetas o “facets” permiten dividir el mismo gráfico en múltiples paneles asociados a los niveles de un factor.
 
 ```{r}
 p <- iris %>% 
@@ -105,14 +105,14 @@ p
 
 * theme
 
-Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw()
+Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw().
 
 ```{r}
 p + theme_bw()
 ```
 
 
-Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad
+Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad.
 
 ```{r}
 cowplot::plot_grid(
@@ -131,7 +131,7 @@ align="h"
 
 ## Comparación de niveles de factores
 
-Los graficos de barra, ampliamente usados en publicaciones cientificas, son cada vez mas criticados por "ocultar" la naturaleza de las observaciones [@doi:10.1111/j.1476-5381.2011.01251.x; @10.1371/journal.pbio.1002128] (Sugerencia: leer el box 1 del ultimo paper)
+Los gráficos de barra, ampliamente usados en publicaciones científicas, son cada vez más criticados por "ocultar" la naturaleza de las observaciones [@doi:10.1111/j.1476-5381.2011.01251.x; @10.1371/journal.pbio.1002128] (Sugerencia: leer el box 1 del último paper).
 
 ![](fig/plos_bars.png)
 
@@ -265,7 +265,7 @@ iris %>%
 
 `fct_relevel`
 
-A veces queremos forzar los niveles según nuestro interés (Queremos posicionar al tratamiento control al inicio o al final)
+A veces queremos forzar los niveles según nuestro interés, por ejemplo, queremos posicionar al tratamiento control al inicio o al final.
 
 ```{r}
 iris %>% 
@@ -276,7 +276,7 @@ iris %>%
 
 `fct_reorder`
 
-Cuando queremos ver el orden de los tratamientos rankeados segun la variable
+Cuando queremos ver el orden de los tratamientos rankeados según la variable.
 
 ```{r}
 iris %>% 
@@ -289,7 +289,7 @@ iris %>%
 
 `case_when`
 
-Asociado a `mutate`, cuando deseamos modificar el nombre de los niveles 
+Asociado a `mutate`, cuando deseamos modificar el nombre de los niveles. 
 
 ```{r}
 iris %>% 
@@ -303,7 +303,7 @@ iris %>%
   geom_boxplot()
 ```
 
-O queremos generar un nuevo vector categórico a partir de una variable pre-existente
+O queremos generar un nuevo vector categórico a partir de una variable pre-existente.
 
 ```{r}
 iris %>% 
@@ -318,7 +318,7 @@ iris %>%
 ```
 
 `fct_reorder2`
-Reordenar los nivels por su valor final cuando son graficados con otras dos variables
+Reordenar los nivels por su valor final cuando son graficados con otras dos variables.
 
 ```{r}
 iris %>% 
