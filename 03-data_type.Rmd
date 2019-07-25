@@ -77,7 +77,7 @@ min(v)
 sum(v)
 ```
 
-> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raíz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)
 
 * Secuencia
 
@@ -149,9 +149,9 @@ Forzando las clases explícitamente
 
 * Factores
 
-Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (`levels`). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.  
+Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (`levels`). Son variables clasificadoras o agrupadoras de nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.  
 
-Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (`labels`). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.
+Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (`labels`). Independientemente de que el factor sea numérico o caracter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.
 
 Podemos comprobar que la ordenación de los niveles es simplemente alfabética. 
 
