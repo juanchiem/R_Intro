@@ -27,7 +27,7 @@ Muchas veces los datos que importamos ya están listos para ser explorados y ana
 library(tidyverse)
 ```
 
-Ambos paquetes utilizan el operador `%>%` (pipe, tubo en español) lo que proporcionan una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta...)
+Ambos paquetes utilizan el operador `%>%` (pipe, tubo en español) lo que proporciona una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta...)
 
 ```{r}
 x <- c(1, 2, 3, 4)
@@ -59,11 +59,11 @@ Las principales funciones son:
 
 ![](fig/tydir_join.png)
 
-Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.  
+Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, Excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.  
 
-En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos esten en formato *long*. 
+En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos estén en formato *long*. 
 
-Veamos de que se tratan ambos formatos.
+Veamos de qué se tratan ambos formatos.
 
 Datos **canola**:
 
@@ -107,18 +107,18 @@ Los cinco verbos (funciones) principales de `dplyr` son:
 
 ![](fig/dplyr_select.png)
 
-Vamos a seleccionar las variables: fungic, rep, sev y yield. 
+Vamos a seleccionar las variables: study, year y fungic del archivo soja: 
 
 ```{r}
-soja_long %>% 
-  select(fungic, bk, sev)
+soja %>% 
+  select(study, year, fungic)
 ```
 
 Es posible usar intervalos de varibles con `:`.
 
 ```{r}
-soja_long %>% 
-  select(fungic:sev)
+soja %>% 
+  select(study:fungic)
 
 ```
 
@@ -126,8 +126,8 @@ soja_long %>%
 Una selección “negativa” de las variables no deseadas daría un mismo resultado:
 
 ```{r}
-soja_long %>% 
-  select(-yield)
+soja %>% 
+  select(-("1_sev":"4_yield"))
 ```
 
 ### filter
@@ -135,7 +135,7 @@ soja_long %>%
 ![](fig/dplyr_filter.png)
 
 Semejante a `subset`. Condiciones separadas por comas equivalen a `&` de `subset`.
-Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):
 
 ```{r}
 soja_long %>% 
@@ -143,7 +143,7 @@ soja_long %>%
   filter(fungic == 'ZZ_CHECK')
 ```
 
-Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset
+Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset:
 
 ```{r}
 soja_long %>% 
@@ -153,7 +153,7 @@ soja_long %>%
 
 `mutate`
 
-Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes)
+Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes).
 
 Convertimos columnas a factores o numéricas:
 
@@ -177,7 +177,7 @@ oli_long %>%
   print(n=30)
 ```
 
-Luego de haber chequeado los tipos de datos con `str()` agregamos al archivo "datos_curso.RData" los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas
+Luego de haber chequeado los tipos de datos con `str()` agregamos al archivo "datos_curso.RData" los nuevos archivos "_long", así quedan disponibles rápidamente para las siguientes etapas
 
 ```{r}
 save(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
@@ -188,9 +188,9 @@ save(soja, canola, mani, olivo, soja_long, can_long, oli_long,
 
 ![](fig/dplyr_mutate_new.png)
 
-Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen. Dos transformaciones son mayormente sugeridas para los porcentajes: 
+Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen normalmente. Dos transformaciones son mayormente sugeridas para los porcentajes: 
 
-* Transformacion Arcsine o logit
+* Transformación Arcsine o logit
 
 ```{r}
 soja_long %>% 
@@ -207,11 +207,11 @@ soja_long %>%
 
 ![](fig/dplyr_summarise.png)
 
-Generalmente acompañada de la función `group_by` la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)  
+Generalmente acompañada de la función `group_by` la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de Excel)  
 
 ![](fig/dplyr_group_by.png)
 
-Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos: 
+Veamos cuánto fue el rendimiento promedio y el desvío standard para cada fungicida a través de todos los ensayos: 
 
 ```{r}
 soja_long %>% 
