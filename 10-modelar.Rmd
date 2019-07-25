@@ -81,7 +81,7 @@ mod1 <- lm(weight ~ group, data = plant_g)
 
 - Diagnósticos
 
-Las varianzas (entre niveles del factor) son homogéneas? 
+¿Las varianzas (entre niveles del factor) son homogéneas? 
 
 ```{r}
 # homocedasticidad
@@ -89,7 +89,7 @@ plot(mod1, which = 1)
 car::leveneTest(mod1)
 ```
 
-Los residuos se distribuyen normales?
+¿Los residuos se distribuyen normales?
 
 ```{r}
 plot(mod1, which = 2)
@@ -106,7 +106,7 @@ anova(mod1)# caso balanceado
 # car::Anova(mod1)# caso desbalanceado
 ```
 
-Test de comparación múltiple (de medias estimadas de los tratamientos)
+Test de comparaciones múltiples (de medias estimadas de los tratamientos)
 
 ```{r}
 library(emmeans)
@@ -179,18 +179,18 @@ CLD(emm_tg2, Letters = letters, reverse = FALSE, alpha = .05)
 
 **Transformación potencia óptima de boxcox**
 
-Esta transformación solo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transforma con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial. 
+Esta transformación sólo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transformación con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial. 
 
 ![](fig/boxcox.png){width=300px} 
 
 ![](fig/boxcox_1.png){width=350px}![](fig/boxcox_02.png){width=350px}
 
-Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (lineas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo 
+Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (líneas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo. 
 
 La utilización de la transformación Box-Cox requiere que todos los valores de la serie de entrada sean positivos y distintos a cero.
-Por ello es adicionada una constante a la variable original (0.5, por ej.)
+Por ello es adicionada una constante a la variable original (0.5, por ej.).
 
-En el caso de la derecha, el modelo resultaria: 
+En el caso de la derecha, el modelo resultaría: 
 
 ```{r}
 lm((y+0.5)^0.2 ~ trt + bk, ...)
@@ -216,7 +216,7 @@ ins_sp %>%
   theme_light()
 ```
 
-Modelar como modelo lineal?
+¿Modelar como modelo lineal?
 
 ```{r}
 plot(lm(count ~ spray, data = InsectSprays), which=2)
@@ -225,20 +225,20 @@ plot(lm(count ~ spray, data = InsectSprays), which=2)
 
 ```
 
-Ajuste de modelo lineal generalizado
+Ajuste de modelo lineal generalizado:
 
 ```{r}
 mod_spray = glm(count ~ spray, family=poisson, data=ins_sp) # full model
 car::Anova(mod_spray)
 ```
 
-Diagnóstico del modelo 
+Diagnóstico del modelo: 
 
 ```{r}
 ggfortify::autoplot(mod_spray, which = 1:6, label.size = 3)
 ```
 
-Estimación de media de los tratamientos y comparaciones entre ellas
+Estimación de medias de los tratamientos y comparaciones entre ellas:
 
 ```{r}
 library(emmeans)
