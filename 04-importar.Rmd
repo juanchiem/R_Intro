@@ -12,15 +12,15 @@ library(kableExtra)
 
 # Importación de datos {#import}
 
-Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir. 
+Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto del flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero sí aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir. 
 
 Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado ("wide") puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente etapa luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración. 
 
-Podemos tomar esta [planilla modelo](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true), para entender como es una planilla para ser analizada en R.
+Podemos tomar esta [planilla modelo](https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&usp=sheets_home&ths=true), para entender cómo es una planilla para ser analizada en R.
 
 Veamos **4 Principios básicos** de buenas prácticas en la elaboración de planillas de datos - Adaptado de [@broman2018data]
 
-Como regla global, y siguiendo lo ya comentado en la sección de [data frames](#data_frames), columnas (Verticales) son **Variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales)
+Como regla global, y siguiendo lo ya comentado en la sección de [data frames](#data_frames), columnas (verticales) son **variables** y filas (horizontales) son **observaciones** (generalmente de unidades experimentales/sujetos individuales).
 
 **1 - Consistencia**
 
@@ -48,8 +48,8 @@ Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades exp
 
 **2 - Rectangular**
 
-Todo set de datos tiene sus dimensiones específicas: n fila - n columnas. 
-Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida” 
+Todo set de datos tiene sus dimensiones específicas: n filas - n columnas. 
+Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y así deben definir esa observación, no poner “muerta” o “perdida”. 
 
 **3 - Cero es un dato!** 
 
@@ -58,8 +58,8 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda...
 
 **4 - Planilla plana -> DATOS CRUDOS**
 
-* SIN FORMULAS 
-* No combinar celdas
+* SIN FÓRMULAS 
+* no combinar celdas
 * no resaltar
 * no hacer bordes 
 * sin negritas
@@ -69,22 +69,22 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda...
 
 Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.
 
-Principalmente usaremos planillas excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
+Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
 
 La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: 
 
 - Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio 
 - Hacen click sobre el archivo  
 - Seleccionan "import dataset"  
-- Configuran las opciones de importación y copian el codigo generado y dan import
-(es aconsejable que peguen el codigo en el script de la sesión)   
+- Configuran las opciones de importación y copian el código generado y dan import
+(es aconsejable que peguen el código en el script de la sesión)   
 
 O bien desde código del script:
     
-* Archivos excel 
+* Archivos Excel 
 
-> Importar soja_mancha.xlsx, nombrandolo "soja"
-> Importar can_phoma.xlsx, nombrandolo "canola"
+> Importar soja_mancha.xlsx, nombrándolo "soja"
+> Importar can_phoma.xlsx, nombrándolo "canola"
 
 ```{r, include=FALSE}
 library(readxl)
@@ -102,7 +102,7 @@ Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicida
 
 Dataset **soja_mancha** 
 
-Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja
+Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja:
 
 study: identificador arbitrario para cada experimento
 year: año del experimento
@@ -115,19 +115,19 @@ yield: rendimiento en madurez fisiológica (kg/ha)
 
 Dataset **olivo_xylella**
 
-Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja
+Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja.
 
 * Archivos de texto .csv
     
 ```{r}
-dat <- read.csv("nombre_del_archivo.csv", header = TRUE, sep = ",", dec = ".")# puede variar el simbolo de como se separan las columnas. Siempre chequear el banco de datos importados.
+dat <- read.csv("nombre_del_archivo.csv", header = TRUE, sep = ",", dec = ".")# puede variar el símbolo de cómo se separan las columnas. Siempre chequear el banco de datos importados.
 
 dat <- readr::read_csv("ruta/nombre_del_archivo.csv")
 ```
 
 * Desde clipboard 
 
-Muchas veces necesitamos replicar rapidamente un fragmento del dataset desde excel, o bien un vector lo que es posible mediante: 
+Muchas veces necesitamos replicar rápidamente un fragmento del dataset desde Excel, o bien un vector lo que es posible mediante: 
 
 `{datapasta}` - Package + addin
 
@@ -146,7 +146,7 @@ dat  <- gsheet::gsheet2tbl(url)
 dat
 ```
 
-* Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles)
+* Crear dataframes tipo SAS (bueno para crear ejemplos reproducibles):
 
 ```{r}
 dat <- read.table(header=T, text='
@@ -170,7 +170,7 @@ Soybean   22 32 31 43
 
 * Colección de datos en archivo .RData 
 
-Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberia tenerse rapidamente disponibles todos los objetos creados en días previos los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde éste.
+Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberían tenerse rpidamente disponibles todos los objetos creados en días previos, los que pueden recopilarse en un archivo de múltiples objetos ".RData" e importarse directamente desde éste.
 
 ```{r}
 save(soja, canola, file="./data/soja_canola.RData")
@@ -213,9 +213,9 @@ archivos <- dir_ls(glob = "balcarce_*")
 #(here::here("data", "balcarce"), glob = "*.xlsx")
 ```
 
-Usaremos la función "map()" que es una funcion del paquete purrr, que aplica una misma accion recursivamente a una lista de objetos que le asignemos.
+Usaremos la función "map()" que es una función del paquete purrr, que aplica una misma acción recursivamente a una lista de objetos que le asignemos.
 
-Ej 1 - crear un dataframe a partir de multiples archivos (primeras hojas)
+Ej 1 - crear un dataframe a partir de múltiples archivos (primeras hojas)
 
 ```{r}
 archivos %>% 
@@ -230,7 +230,7 @@ archivos %>%
   map_dfr(read_excel) # podemos agregar: .id = "archivos"
 ```
 
-Ej 2 - crear un dataframe a partir de multiples hojas dentro de uno o varios archivos. (Usaremos algunas técnicas de programación un poco más avanzadas que anida un bucle dentro de otro)
+Ej 2 - crear un dataframe a partir de múltiples hojas dentro de uno o varios archivos. (Usaremos algunas técnicas de programación un poco más avanzadas que anida un bucle dentro de otro).
 
 ```{r}
 # https://stackoverflow.com/questions/51200887/how-to-import-multiple-sheets-from-multiple-excel-files-into-one-list-readxl-r
