@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -225,29 +225,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p><code>select</code></p>
 <p><img src="fig/dplyr_select.png" /></p>
-<p>Vamos a seleccionar las variables: fungic, rep, sev y yield.</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(fungic, bk, sev)</code></pre>
+<p>Vamos a seleccionar las variables: study, year y fungic del archivo soja:</p>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study, year, fungic)</code></pre>
 <p>Es posible usar intervalos de varibles con <code>:</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>fungic)</code></pre>
 <p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>yield)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">soja <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>(<span class="st">&quot;1_sev&quot;</span><span class="op">:</span><span class="st">&quot;4_yield&quot;</span>))</code></pre>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> filter</h3>
 <p><img src="fig/dplyr_filter.png" /></p>
 <p>Semejante a <code>subset</code>. Condiciones separadas por comas equivalen a <code>&amp;</code> de <code>subset</code>.
-Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK)</p>
+Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">==</span><span class="st"> &#39;ZZ_CHECK&#39;</span>)</code></pre>
-<p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset</p>
+<p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(fungic<span class="op">:</span>sev) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>))</code></pre>
 <p><code>mutate</code></p>
-<p>Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes)</p>
+<p>Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes).</p>
 <p>Convertimos columnas a factores o numéricas:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(oli_long)
 oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><span class="st"> </span>
@@ -261,16 +261,16 @@ oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><s
 <pre class="sourceCode r"><code class="sourceCode r">oli_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(loc, year, farm, tree) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">print</span>(<span class="dt">n=</span><span class="dv">30</span>)</code></pre>
-<p>Luego de haber chequeado los tipos de datos con <code>str()</code> agregamos al archivo “datos_curso.RData” los nuevos archivos "_long", asi quedan disponibles rápidamente para las siguientes etapas</p>
+<p>Luego de haber chequeado los tipos de datos con <code>str()</code> agregamos al archivo “datos_curso.RData” los nuevos archivos "_long", así quedan disponibles rápidamente para las siguientes etapas</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
      <span class="dt">file=</span><span class="st">&quot;data/datos_curso.RData&quot;</span>)</code></pre>
 <ul>
 <li>Creación de nuevas variables (a partir de las existentes)</li>
 </ul>
 <p><img src="fig/dplyr_mutate_new.png" /></p>
-<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen. Dos transformaciones son mayormente sugeridas para los porcentajes:</p>
+<p>Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas paramétricas: no se distribuyen normalmente. Dos transformaciones son mayormente sugeridas para los porcentajes:</p>
 <ul>
-<li>Transformacion Arcsine o logit</li>
+<li>Transformación Arcsine o logit</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(study<span class="op">:</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -284,9 +284,9 @@ oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><s
 <div id="summarise" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> summarise</h3>
 <p><img src="fig/dplyr_summarise.png" /></p>
-<p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de excel)</p>
+<p>Generalmente acompañada de la función <code>group_by</code> la cual permite aplicar un cálculo a las observaciones agrupando por niveles de algún factor (equivale a una tabla dinámica de Excel)</p>
 <p><img src="fig/dplyr_group_by.png" /></p>
-<p>Veamos cuanto fue el rendimiento promedio y el desvio standard para cada fungicida a través de todos los ensayos:</p>
+<p>Veamos cuánto fue el rendimiento promedio y el desvío standard para cada fungicida a través de todos los ensayos:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),

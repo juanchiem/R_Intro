@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -249,11 +249,11 @@ plant_g <span class="op">%&gt;%</span><span class="st"> </span>
 <ul>
 <li>Diagnósticos</li>
 </ul>
-<p>Las varianzas (entre niveles del factor) son homogéneas?</p>
+<p>¿Las varianzas (entre niveles del factor) son homogéneas?</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># homocedasticidad</span>
 <span class="kw">plot</span>(mod1, <span class="dt">which =</span> <span class="dv">1</span>)
 car<span class="op">::</span><span class="kw">leveneTest</span>(mod1)</code></pre>
-<p>Los residuos se distribuyen normales?</p>
+<p>¿Los residuos se distribuyen normales?</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(mod1, <span class="dt">which =</span> <span class="dv">2</span>)
 <span class="kw">shapiro.test</span>(mod1<span class="op">$</span>residuals)
 
@@ -263,7 +263,7 @@ car<span class="op">::</span><span class="kw">leveneTest</span>(mod1)</code></pr
 <span class="co"># names(mod1)hist(m_fix$residuals)</span></code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod1)<span class="co"># caso balanceado</span>
 <span class="co"># car::Anova(mod1)# caso desbalanceado</span></code></pre>
-<p>Test de comparación múltiple (de medias estimadas de los tratamientos)</p>
+<p>Test de comparaciones múltiples (de medias estimadas de los tratamientos)</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(emmeans)
 em &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod1, <span class="op">~</span><span class="st"> </span>group, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)
 em
@@ -304,13 +304,13 @@ emm_tg &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod2, pairw
 emm_tg2 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod2, pairwise <span class="op">~</span><span class="st"> </span>dose<span class="op">|</span>supp)
 <span class="kw">CLD</span>(emm_tg2, <span class="dt">Letters =</span> letters, <span class="dt">reverse =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.05</span>)</code></pre>
 <p><strong>Transformación potencia óptima de boxcox</strong></p>
-<p>Esta transformación solo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transforma con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial.</p>
+<p>Esta transformación sólo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transformación con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial.</p>
 <p><img src="fig/boxcox.png" width="300" /></p>
 <p><img src="fig/boxcox_1.png" width="350" /><img src="fig/boxcox_02.png" width="350" /></p>
-<p>Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (lineas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo</p>
+<p>Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (líneas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo.</p>
 <p>La utilización de la transformación Box-Cox requiere que todos los valores de la serie de entrada sean positivos y distintos a cero.
-Por ello es adicionada una constante a la variable original (0.5, por ej.)</p>
-<p>En el caso de la derecha, el modelo resultaria:</p>
+Por ello es adicionada una constante a la variable original (0.5, por ej.).</p>
+<p>En el caso de la derecha, el modelo resultaría:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>((y<span class="fl">+0.5</span>)<span class="op">^</span><span class="fl">0.2</span> <span class="op">~</span><span class="st"> </span>trt <span class="op">+</span><span class="st"> </span>bk, ...)</code></pre>
 </div>
             </section>

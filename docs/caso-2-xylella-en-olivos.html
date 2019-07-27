@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -221,15 +221,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="caso-2-xylella-en-olivos" class="section level2">
 <h2><span class="header-section-number">6.2</span> Caso 2: xylella en olivos</h2>
 <p><img src="fig/xylella.jpg" /></p>
-<p>Chequeamos cuantos árboles fueron evaluados en cada año/región/lote:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, olivo))</code></pre>
+<p>Chequeamos cuántos árboles fueron evaluados en cada año/región/lote:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, oli_long))</code></pre>
 <p>Imprimimos los 30 árboles de un mismo lote</p>
-<pre class="sourceCode r"><code class="sourceCode r">olivo <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">oli_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">arrange</span>(loc, year) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">print</span>(<span class="dt">n=</span><span class="dv">30</span>)</code></pre>
 <div id="incidencia-nivel-lote---evolucion-interanual" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Incidencia (nivel lote - evolución interanual)</h3>
-<pre class="sourceCode r"><code class="sourceCode r">dat_inc &lt;-<span class="st"> </span>olivo <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">dat_inc &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year, loc, farm) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">inc =</span> <span class="kw">mean</span>(sev<span class="op">&gt;</span><span class="dv">0</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span>

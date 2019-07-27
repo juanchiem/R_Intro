@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -219,21 +219,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="ambas-variables-continuas" class="section level2">
-<h2><span class="header-section-number">7.1</span> Ambas variables continuas</h2>
+<h2><span class="header-section-number">7.1</span> Ambas variables contínuas</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<p>Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener estas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
+<p>Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener éstas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).</p>
 <center>
 <img src="fig/gglayers.png" width="500" />
 </center>
-<p>Agregaremos una a una las capas mencionadas en la figura. Estas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la funcion que inicializa un grafico. A esta estarán asociada el dataframe principal (ya que un mismo grafico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el grafico o especificamente para cada nueva capa.</p>
+<p>Agregaremos una a una las capas mencionadas en la figura. Éstas no tienen un orden estricto, salvo la primera que debe ser <code>ggplot()</code> que es la función que inicializa un gráfico. A ésta estarán asociados el dataframe principal (ya que un mismo gráfico acepta tomar información de distintos datasets), y las aesthetics que pueden ser seteadas globalmente para todo el gráfico o específicamente para cada nueva capa.</p>
 <ul>
 <li>aesthetics</li>
 </ul>
-<p>Se definen con aes()
-Significado de aesthetic en ggplot: “Algo que se puede ver”
-Cada geom acepta un conjunto de aesthetics
+<p>Se definen con aes().
+Significado de aesthetic en ggplot: “Algo que se puede ver”.
+Cada geom acepta un conjunto de aesthetics.
 Ejemplos:
-+ position (i.e., en el eje “x” y “y”)
++ position (i.e., en el eje “x” e “y”)
 color (color “exterior”)
 fill (color “interior”)
 shape (de los puntos)
@@ -244,7 +244,7 @@ size</p>
 <ul>
 <li>geoms</li>
 </ul>
-<p>Objetos geometricos son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La <a href="https://ggplot2.tidyverse.org/reference/#section-layer-geoms">lista de “geoms”</a> aumenta día a día.</p>
+<p>Objetos geométricos. Son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La <a href="https://ggplot2.tidyverse.org/reference/#section-layer-geoms">lista de “geoms”</a> aumenta día a día.</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length, <span class="dt">y=</span>Petal.Length)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
@@ -263,7 +263,7 @@ size</p>
 <ul>
 <li>facets</li>
 </ul>
-<p>Las facetas o “facets” permiten dividir el mismo gráfico en multiples paneles asociados a niveles de un factor.</p>
+<p>Las facetas o “facets” permiten dividir el mismo gráfico en múltiples paneles asociados a los niveles de un factor.</p>
 <pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
@@ -273,9 +273,9 @@ p</code></pre>
 <ul>
 <li>theme</li>
 </ul>
-<p>Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw()</p>
+<p>Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw().</p>
 <pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre>
-<p>Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad</p>
+<p>Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad.</p>
 <pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(
 iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Petal.Length, <span class="dt">fill=</span>Species)) <span class="op">+</span>

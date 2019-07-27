@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -230,8 +230,8 @@ balcarce_2018.xlsx ; balcarce_2019.xlsx</p>
 <span class="kw">library</span>(fs)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">archivos &lt;-<span class="st"> </span><span class="kw">dir_ls</span>(<span class="dt">glob =</span> <span class="st">&quot;balcarce_*&quot;</span>) 
 <span class="co">#(here::here(&quot;data&quot;, &quot;balcarce&quot;), glob = &quot;*.xlsx&quot;)</span></code></pre>
-<p>Usaremos la función “map()” que es una funcion del paquete purrr, que aplica una misma accion recursivamente a una lista de objetos que le asignemos.</p>
-<p>Ej 1 - crear un dataframe a partir de multiples archivos (primeras hojas)</p>
+<p>Usaremos la función “map()” que es una función del paquete purrr, que aplica una misma acción recursivamente a una lista de objetos que le asignemos.</p>
+<p>Ej 1 - crear un dataframe a partir de múltiples archivos (primeras hojas)</p>
 <pre class="sourceCode r"><code class="sourceCode r">archivos <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">map</span>(read_excel)
 
@@ -242,7 +242,7 @@ archivos <span class="op">%&gt;%</span><span class="st"> </span>
 
 archivos <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">map_dfr</span>(read_excel) <span class="co"># podemos agregar: .id = &quot;archivos&quot;</span></code></pre>
-<p>Ej 2 - crear un dataframe a partir de multiples hojas dentro de uno o varios archivos. (Usaremos algunas técnicas de programación un poco más avanzadas que anida un bucle dentro de otro)</p>
+<p>Ej 2 - crear un dataframe a partir de múltiples hojas dentro de uno o varios archivos. (Usaremos algunas técnicas de programación un poco más avanzadas que anida un bucle dentro de otro).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://stackoverflow.com/questions/51200887/how-to-import-multiple-sheets-from-multiple-excel-files-into-one-list-readxl-r</span>
 
 bce_serie &lt;-<span class="st"> </span>archivos <span class="op">%&gt;%</span><span class="st"> </span>

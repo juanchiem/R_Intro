@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -310,7 +310,7 @@ v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</sp
 <span class="kw">min</span>(v)
 <span class="kw">sum</span>(v)</code></pre>
 <blockquote>
-<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raiz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
+<p>Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raíz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)</p>
 </blockquote>
 <ul>
 <li>Secuencia</li>
@@ -364,8 +364,8 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE<
 <ul>
 <li>Factores</li>
 </ul>
-<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de los nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
-<p>Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o carácter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
+<p>Conceptualmente, en R, los factores son variables categóricas con un número finito de valores o niveles (<code>levels</code>). Son variables clasificadoras o agrupadoras de nuestros datos. Uno de los usos más importantes de los factores es en el modelado estadístico, dado que éstos son considerados de manera diferente a las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: fungicidas, genotipos, bloques, etc.</p>
+<p>Los niveles de un factor pueden estar codificados como valores numéricos o como caracteres (<code>labels</code>). Independientemente de que el factor sea numérico o caracter, sus valores son siempre almacenados internamente por R como números enteros, con lo que se consigue economizar memoria.</p>
 <p>Podemos comprobar que la ordenación de los niveles es simplemente alfabética.</p>
 <pre class="sourceCode r"><code class="sourceCode r">clones =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, 
 <span class="st">&quot;control&quot;</span>, <span class="st">&quot;A12&quot;</span>, <span class="st">&quot;B35&quot;</span>, <span class="st">&quot;T99&quot;</span>, <span class="st">&quot;control&quot;</span>)

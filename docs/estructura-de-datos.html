@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -253,19 +253,19 @@ iris<span class="op">$</span>Sepal.Length
 <span class="kw">levels</span>(iris<span class="op">$</span>Species)
 <span class="kw">summary</span>(iris<span class="op">$</span>Sepal.Length)</code></pre>
 <blockquote>
-<p>Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las lineas 50 a 60 de las columnas 3 y 4.</p>
+<p>Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las líneas 50 a 60 de las columnas 3 y 4.</p>
 </blockquote>
 <ul>
 <li>Función <code>subset</code></li>
 </ul>
-<p>Filtremos a la variedad Species reteniendo solo a “setosa”</p>
+<p>Filtremos a la variable Species reteniendo sólo a “setosa”</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris_setosa &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>)</code></pre>
-<p>Filtremos a la variedad Species reteniendo solo a “setosa” + “virginica”</p>
+<p>Filtremos a la variable Species reteniendo sólo a “setosa” + “virginica”</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris_set.virginica &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>))</code></pre>
-<p>Agreguemos una condición: a lo anterior quedemonos con aquellas filas en que Sepal.Length &gt; 5</p>
+<p>Agreguemos una condición: a lo anterior quedémonos con aquellas filas en que Sepal.Length &gt; 5</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris2 &lt;-<span class="st"> </span><span class="kw">subset</span>(iris, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</code></pre>
 <blockquote>
-<p>Que pasa si cambiamos el operador <code>&amp;</code> por <code>|</code>?</p>
+<p>¿Qué pasa si cambiamos el operador <code>&amp;</code> por <code>|</code>?</p>
 </blockquote>
 </div>
 <div id="listas" class="section level3">
@@ -273,7 +273,7 @@ iris<span class="op">$</span>Sepal.Length
 <p>Objetos que aceptan elementos de clases diferentes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">c =</span> <span class="ot">TRUE</span>)
 x</code></pre>
-<p>(Mas info de subsetting elementos de una lista <a href="https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists">aqui</a>)</p>
+<p>(Más info de subsetting elementos de una lista <a href="https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists">aqui</a>)</p>
 <pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>a       <span class="co"># </span>
 x[<span class="dv">1</span>]       <span class="co"># </span>
 <span class="co">#sum(x[1])</span>
@@ -283,7 +283,7 @@ x[<span class="st">&quot;c&quot;</span>]     <span class="co"># </span></code></
 </div>
 <div id="matrices" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Matrices</h3>
-<p>Indicamos el número de filas con el argumento <code>nrow</code> y con <code>ncol</code> el número de columnas; luego indicamos que valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con <code>byrow=TRUE</code>. La matriz A así construida es:</p>
+<p>Indicamos el número de filas con el argumento <code>nrow</code> y con <code>ncol</code> el número de columnas; luego indicamos qué valores forman la matriz (del 1 al 9), y le hemos pedido a R que use esos valores para rellenar la matriz A por filas con <code>byrow=TRUE</code>. La matriz A así construida es:</p>
 <pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>), <span class="dt">byrow=</span><span class="ot">TRUE</span>)</code></pre>
 <p>Al igual que para los dataframes, se pueden seleccionar partes de una matriz utilizando los índices de posición [fila, columna] entre corchetes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">A[<span class="dv">2</span>,<span class="dv">3</span>]   <span class="co"># Se selecciona el valor de la fila 2, columna 3</span></code></pre>

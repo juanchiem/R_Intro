@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -220,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="analisis-de-temperaturas" class="section level2">
 <h2><span class="header-section-number">8.1</span> Análisis de temperaturas</h2>
-<p>Importamos un dataset de datos meteorológicos de Balcarce desde 1971 a 2019</p>
+<p>Importamos un dataset de datos meteorológicos de Balcarce desde 1971 a 2019:</p>
 <pre class="sourceCode r"><code class="sourceCode r">bce &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;./data/bce_clima.xlsx&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> lubridate<span class="op">::</span><span class="kw">year</span>(date),
          <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date),
@@ -228,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <span class="kw">head</span>(bce)
 <span class="kw">tail</span>(bce)</code></pre>
-<p>Construimos la banda central de medias minimas y maximas de cada dia</p>
+<p>Construimos la banda central de medias mínimas y máximas de cada día:</p>
 <pre class="sourceCode r"><code class="sourceCode r">bce_serie &lt;-<span class="st"> </span>bce <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(year<span class="op">&lt;</span><span class="dv">2018</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(julian) <span class="op">%&gt;%</span>
@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="dt">upper_tmean=</span><span class="kw">max</span>(tmean, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>()
 bce_serie</code></pre>
-<p>Filtramos el dataset para la reciente campaña de grano grueso (primavera- verano - otoño)</p>
+<p>Filtramos el dataset para la reciente campaña de grano grueso (primavera- verano - otoño):</p>
 <pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
 <span class="st">  </span>bce <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> &#39;2018-08-31&#39;</span>, date <span class="op">&lt;</span><span class="st"> &#39;2019-03-30&#39;</span>) <span class="op">%&gt;%</span>
@@ -251,7 +251,7 @@ bce_serie</code></pre>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">droplevels</span>()
 bce_<span class="dv">18</span>_<span class="dv">19</span></code></pre>
-<p>Graficamos las bandas de 80% de la temperatura media diaria de la serie histórica y loas temperaturas medias observadas en la reciente campaña</p>
+<p>Graficamos las bandas de 80% de la temperatura media diaria de la serie histórica y las temperaturas medias observadas en la reciente campaña:</p>
 <pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-
 <span class="st">  </span><span class="kw">ggplot</span>(bce_<span class="dv">18</span>_<span class="dv">19</span>, <span class="kw">aes</span>(<span class="dt">x=</span>date)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>avg, <span class="dt">ymax=</span>upper_tmean), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">2</span>)<span class="op">+</span>
@@ -265,10 +265,10 @@ bce_<span class="dv">18</span>_<span class="dv">19</span></code></pre>
         <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),
         <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">linetype=</span><span class="st">&quot;dotted&quot;</span>))
 p1</code></pre>
-<p>Exploramos si huebieron días con temperatura media mayor o menor a la serie histórica</p>
+<p>Exploramos si hubo días con temperatura media mayor o menor a la serie histórica:</p>
 <pre class="sourceCode r"><code class="sourceCode r">rec_frio &lt;-<span class="st"> </span>bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmean<span class="op">&lt;</span>bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>lower_tmean),]
 rec_cal &lt;-<span class="st"> </span>bce_<span class="dv">18</span>_<span class="dv">19</span>[<span class="kw">which</span>(bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>tmean<span class="op">&gt;</span>bce_<span class="dv">18</span>_<span class="dv">19</span><span class="op">$</span>upper_tmean),]</code></pre>
-<p>En caso de haberlos los agregamos al grafico base así como las heladas meteorológicas (Tmín&lt;=0°C) o agrometeorológicas (Tmín&lt;=3°C)</p>
+<p>En caso de haberlos los agregamos al gráfico base, así como las heladas meteorológicas (Tmín&lt;=0°C) o agrometeorológicas (Tmín&lt;=3°C):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggrepel)
 <span class="kw">options</span>(<span class="dt">repr.plot.width =</span> <span class="dv">2</span>, <span class="dt">repr.plot.height =</span> <span class="dv">2</span>)
 
@@ -289,8 +289,8 @@ p2 &lt;-<span class="st"> </span>p1 <span class="op">+</span>
 <span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-09-3&quot;</span>), <span class="kw">as.Date</span>(<span class="st">&quot;2018-11-10&quot;</span>)), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">3.5</span>),
            <span class="dt">label =</span> <span class="kw">c</span>(<span class="st">&quot;Helada meteorológica&quot;,&quot;</span>Heladas\nagronómicas&quot;), <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">hjust =</span> <span class="dv">0</span>)
 p2</code></pre>
-<p>Finalmente agregamos los estadíos reproductivos del cultivo de girasol</p>
-<p>Para ello haremos algunos cálculos con los intervalos de tiempo de los estadios reproductivos floración (r5) y llenado de granos (r6)</p>
+<p>Finalmente agregamos los estadíos reproductivos del cultivo de girasol.</p>
+<p>Para ello haremos algunos cálculos con los intervalos de tiempo de los estadíos reproductivos floración (r5) y llenado de granos (r6):</p>
 <pre class="sourceCode r"><code class="sourceCode r">r5 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-12-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>)); <span class="kw">diff</span>(r5)
 r6 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-03-10&quot;</span>)); <span class="kw">diff</span>(r6)
 

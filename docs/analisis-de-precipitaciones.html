@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -226,9 +226,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> lubridate<span class="op">::</span><span class="kw">year</span>(date),
          <span class="dt">month =</span> lubridate<span class="op">::</span><span class="kw">month</span>(date),
          <span class="dt">julian =</span> lubridate<span class="op">::</span><span class="kw">yday</span>(date))</code></pre>
-<p>Calculamos las lluvias acumuladas por decada</p>
+<p>Calculamos las lluvias acumuladas por década.</p>
 <ul>
-<li>Primero para la serie histórica</li>
+<li>Primero para la serie histórica:</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">bce_serie &lt;-
 <span class="st">  </span>bce <span class="op">%&gt;%</span>
@@ -251,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <span class="dt">lower_80=</span><span class="kw">quantile</span>(rain_acum, <span class="fl">.2</span>, <span class="dt">na.rm =</span> T), <span class="co"># Rango 80% de los años</span>
             <span class="dt">upper_80=</span><span class="kw">quantile</span>(rain_acum, <span class="fl">.8</span>, <span class="dt">na.rm =</span> T))</code></pre>
 <ul>
-<li>Luego para la reciente campaña de grano grueso</li>
+<li>Luego para la reciente campaña de grano grueso:</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
 <span class="st">  </span>bce <span class="op">%&gt;%</span>
@@ -265,16 +265,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decada =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&gt;</span><span class="st"> &#39;2018-08-31&#39;</span>, date <span class="op">&lt;</span><span class="st"> &#39;2019-03-30&#39;</span>)</code></pre>
 <ul>
-<li>Fusionamos ambos datasets en base al de la actual campaña (que es el que tiene las fechas)</li>
+<li>Fusionamos ambos datasets en base al de la actual campaña (que es el que tiene las fechas):</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">bce_<span class="dv">18</span>_<span class="dv">19</span> &lt;-
 <span class="st">  </span>bce_<span class="dv">18</span>_<span class="dv">19</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">left_join</span>(bce_serie, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;decada&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date))
 <span class="co"># print(bce_18_19, n=Inf)</span></code></pre>
-<p>Ya estamos en condiciones de graficar ambos datasets</p>
+<p>Ya estamos en condiciones de graficar ambos datasets.</p>
 <ul>
-<li>Configuramos el aspecto del gráfico</li>
+<li>Configuramos el aspecto del gráfico:</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>() <span class="op">+</span>
 <span class="st">            </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust=</span><span class="op">-</span><span class="fl">1.5</span>),
@@ -297,7 +297,7 @@ p_<span class="dv">5</span>=<span class="kw">position_nudge</span>(<span class="
 <span class="st">    </span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks=</span><span class="st">&quot;1 month&quot;</span>, <span class="dt">date_labels=</span><span class="st">&quot;%b&quot;</span>, <span class="dt">expand=</span><span class="kw">expand_scale</span>(<span class="fl">0.05</span>,<span class="dv">0</span>))
 )</code></pre>
 <ul>
-<li>Incluimos la fenología del girasol</li>
+<li>Incluímos la fenología del girasol:</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">r5 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2018-12-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>)); <span class="kw">diff</span>(r5)
 r6 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2019-01-15&quot;</span>),  <span class="kw">as.Date</span>(<span class="st">&quot;2019-03-10&quot;</span>)); <span class="kw">diff</span>(r6)

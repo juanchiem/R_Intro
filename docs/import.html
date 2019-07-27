@@ -166,14 +166,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="fitopato.html"><a href="fitopato.html"><i class="fa fa-check"></i><b>6</b> Cálculos fitopatométricos</a><ul>
-<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del mani</a></li>
+<li class="chapter" data-level="6.1" data-path="caso-1-carbon-del-mani.html"><a href="caso-1-carbon-del-mani.html"><i class="fa fa-check"></i><b>6.1</b> Caso 1: carbón del maní</a></li>
 <li class="chapter" data-level="6.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html"><i class="fa fa-check"></i><b>6.2</b> Caso 2: xylella en olivos</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#incidencia-nivel-lote---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.1</b> Incidencia (nivel lote - evolución interanual)</a></li>
 <li class="chapter" data-level="6.2.2" data-path="caso-2-xylella-en-olivos.html"><a href="caso-2-xylella-en-olivos.html#prevalencia-nivel-region---evolucion-interanual"><i class="fa fa-check"></i><b>6.2.2</b> Prevalencia (nivel región - evolución interanual)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>7</b> Visualizar</a><ul>
-<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables continuas</a></li>
+<li class="chapter" data-level="7.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>7.1</b> Ambas variables contínuas</a></li>
 <li class="chapter" data-level="7.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>7.2</b> Comparación de niveles de factores</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>7.2.1</b> Observaciones + media / mediana</a></li>
 <li class="chapter" data-level="7.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>7.2.2</b> Barplot + SE</a></li>
@@ -220,11 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="import" class="section level1">
 <h1><span class="header-section-number">4</span> Importación de datos</h1>
-<p>Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto de flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero si aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir.</p>
+<p>Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto del flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero sí aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir.</p>
 <p>Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado (“wide”) puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente etapa luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración.</p>
-<p>Podemos tomar esta <a href="https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&amp;usp=sheets_home&amp;ths=true">planilla modelo</a>, para entender como es una planilla para ser analizada en R.</p>
+<p>Podemos tomar esta <a href="https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&amp;usp=sheets_home&amp;ths=true">planilla modelo</a>, para entender cómo es una planilla para ser analizada en R.</p>
 <p>Veamos <strong>4 Principios básicos</strong> de buenas prácticas en la elaboración de planillas de datos - Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span></p>
-<p>Como regla global, y siguiendo lo ya comentado en la sección de <a href="estructura-de-datos.html#data_frames">data frames</a>, columnas (Verticales) son <strong>Variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales)</p>
+<p>Como regla global, y siguiendo lo ya comentado en la sección de <a href="estructura-de-datos.html#data_frames">data frames</a>, columnas (verticales) son <strong>variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales).</p>
 <p><strong>1 - Consistencia</strong></p>
 <p>Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:</p>
 <ul>
@@ -248,15 +248,15 @@ Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades exp
 <li><p>Crear diccionario de términos: Agreguen una planilla con el detalle por extenso de las variables y sus unidades. Piensen que esa planilla la debería entender cualquier persona sin auxilio de sus propios comentarios.</p></li>
 </ul>
 <p><strong>2 - Rectangular</strong></p>
-<p>Todo set de datos tiene sus dimensiones específicas: n fila - n columnas.
-Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y asi deben definir esa observación, no poner “muerta” o “perdida”</p>
+<p>Todo set de datos tiene sus dimensiones específicas: n filas - n columnas.
+Si se perdió alguna parcela/planta por algún motivo extra-tratamiento simplemente es un NA, y así deben definir esa observación, no poner “muerta” o “perdida”.</p>
 <p><strong>3 - Cero es un dato!</strong></p>
 <p>Cero no significa ausencia de observación, en este caso podemos usar “NA”, “-”, “.” o dejar en blanco (si se usa .xlsx)
 En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…</p>
 <p><strong>4 - Planilla plana -&gt; DATOS CRUDOS</strong></p>
 <ul>
-<li>SIN FORMULAS</li>
-<li>No combinar celdas</li>
+<li>SIN FÓRMULAS</li>
+<li>no combinar celdas</li>
 <li>no resaltar</li>
 <li>no hacer bordes</li>
 <li>sin negritas</li>
