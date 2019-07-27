@@ -36,7 +36,10 @@ Configuraciones iniciales (sugeridas). Dirigirse a la sección "Tools/Global opt
 
 ## Paquetes de R {-}
 
-Un paquete es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). A la fecha (febrero de 2019) hay 13753 paquetes oficiales.
+Un paquete es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). 
+
+_Currently, the CRAN package repository features 14620 available packages. (Julio 2019)_ 
+
 
 La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
 [r weekly](https://rweekly.org/); 
@@ -104,9 +107,11 @@ plot(pressure)
 
 - Googlear: “r generate a sequence of uppercase letters”  
 
-- **Stack Overflow**: foros de preguntas y respuestas ampliamente utilizados por todos los lenguajes de programación. En algunos países, llegan hasta a usar la reputación de los usuarios como diferencial en el currículum!
+- [Stack Overflow](https://stackoverflow.com/) / [RStudio](https://community.rstudio.com/): comunidades altamente activas por los usuarios de R y otros lenguajes de programación.
 
-**¿Cómo hacer una buena pregunta en el stack overflow?**
+- [R Mailing Lists](https://www.r-project.org/mail.html): especificas de cada área de la ciencia. 
+
+**¿Cómo hacer una buena pregunta en las comunidades?**
 
 - Ser conciso pero gentil...
 

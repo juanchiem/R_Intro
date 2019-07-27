@@ -235,7 +235,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r">numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
 <span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></code></pre>
-<p>Si es necesario, el usuario puede generar sus propias funciones. Un clásico ejemplo de la utilidad de estas funciones “user-defined” es la preparación de soluciones partiendo de un stock o fuente a diluir, usando la equivalencia:</p>
+<p>Si es necesario, el usuario puede generar sus propias funciones.</p>
+<blockquote>
+<p>Al reportar los resultados de los tests de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto se incrementó o se redujo un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este <a href="https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php">link</a> para cotejar sus resultados.</p>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r">perc_change &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2) 
+{
+  pc &lt;-<span class="st"> </span>(v2<span class="op">-</span>v1)<span class="op">/</span>v1 <span class="op">*</span><span class="dv">100</span>
+  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">1</span>, pc), <span class="st">&quot;%&quot;</span>))
+}
+<span class="kw">perc_change</span>(<span class="dv">1</span>, <span class="fl">1.5</span>)
+<span class="kw">perc_change</span>(<span class="fl">0.5</span>, <span class="dv">1</span>)
+
+<span class="kw">perc_change</span>(<span class="dv">80</span>, <span class="dv">90</span>)
+<span class="kw">perc_change</span>(<span class="dv">90</span>, <span class="dv">80</span>)</code></pre>
+<p>Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete…</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#percentua relative differences </span>
+quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">80</span>,<span class="dv">90</span>)<span class="op">*</span><span class="dv">100</span>
+<span class="dv">80</span><span class="op">+</span>(<span class="dv">80</span><span class="op">*</span><span class="fl">0.125</span>)
+quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">90</span>,<span class="dv">80</span>)<span class="op">*</span><span class="dv">100</span>
+<span class="dv">90</span><span class="op">+</span>(<span class="op">-</span><span class="dv">90</span><span class="op">*</span><span class="fl">0.1111111</span>) </code></pre>
+<p>Otro ejemplo de la utilidad de estas funciones “user-defined” es la preparación de soluciones partiendo de un stock o fuente a diluir, usando la equivalencia:</p>
 <p><span class="math display">\[c1 * v1 = c2 * v2\]</span></p>
 <p>Obviamente tanto <span class="math inline">\(c1;c2\)</span>, como <span class="math inline">\(v1;v2\)</span>, están en las mismas unidades. Para nuestra comodidad <span class="math inline">\(c=\%\)</span> y <span class="math inline">\(v=ml\)</span>.</p>
 <blockquote>
@@ -263,24 +283,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <span class="dv">500</span>) <span class="co"># ml de la solución deseada</span></code></pre>
 <pre><code>## [1] &quot;Coloque 216.4 ml de lavandina y enrase con agua hasta completar 500 ml&quot;</code></pre>
 <blockquote>
-<p>Al reportar los resultados de los tests de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto se incrementó o se redujo un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este <a href="https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php">link</a> para cotejar sus resultados.</p>
+<p>Ej: Generar funciones que automaticen los cálculos de:</br>
+i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados; espigas obtenidas, peso seco medio de espiga)</br>
+ii) Rendimiento de soja ajustado 13,5% humedad (inputs: tamaño de parcela; kg de soja; humedad)</br>
+iii) Grados celsius a fahrenheit </br>
+iv) Cálculo de dosis de urea a fertilizar en un trigo al macollaje (inputs: N disponible, rinde objetivo, N/Ton de grano, % de N en fertilizante) </br>
+v) cálculo de kg de semilla a sembrar (inputs: densidad objetivo; P1000; PG%)</p>
 </blockquote>
-<pre class="sourceCode r"><code class="sourceCode r">perc_change &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2) 
-{
-  pc &lt;-<span class="st"> </span>(v2<span class="op">-</span>v1)<span class="op">/</span>v1 <span class="op">*</span><span class="dv">100</span>
-  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">1</span>, pc), <span class="st">&quot;%&quot;</span>))
-}
-<span class="kw">perc_change</span>(<span class="dv">1</span>, <span class="fl">1.5</span>)
-<span class="kw">perc_change</span>(<span class="fl">0.5</span>, <span class="dv">1</span>)
-
-<span class="kw">perc_change</span>(<span class="dv">80</span>, <span class="dv">90</span>)
-<span class="kw">perc_change</span>(<span class="dv">90</span>, <span class="dv">80</span>)</code></pre>
-<p>Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete…</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#percentua relative differences </span>
-quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">80</span>,<span class="dv">90</span>)<span class="op">*</span><span class="dv">100</span>
-<span class="dv">80</span><span class="op">+</span>(<span class="dv">80</span><span class="op">*</span><span class="fl">0.125</span>)
-quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">90</span>,<span class="dv">80</span>)<span class="op">*</span><span class="dv">100</span>
-<span class="dv">90</span><span class="op">+</span>(<span class="op">-</span><span class="dv">90</span><span class="op">*</span><span class="fl">0.1111111</span>) </code></pre>
 </div>
             </section>
 
