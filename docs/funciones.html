@@ -242,13 +242,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="sourceCode r"><code class="sourceCode r">perc_change &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2) 
 {
   pc &lt;-<span class="st"> </span>(v2<span class="op">-</span>v1)<span class="op">/</span>v1 <span class="op">*</span><span class="dv">100</span>
-  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">1</span>, pc), <span class="st">&quot;%&quot;</span>))
+  <span class="kw">return</span>(<span class="kw">paste</span>(pc, <span class="st">&quot;%&quot;</span>))
 }
-<span class="kw">perc_change</span>(<span class="dv">1</span>, <span class="fl">1.5</span>)
-<span class="kw">perc_change</span>(<span class="fl">0.5</span>, <span class="dv">1</span>)
 
-<span class="kw">perc_change</span>(<span class="dv">80</span>, <span class="dv">90</span>)
-<span class="kw">perc_change</span>(<span class="dv">90</span>, <span class="dv">80</span>)</code></pre>
+<span class="kw">perc_change</span>(<span class="dv">80</span>, <span class="dv">90</span>)</code></pre>
+<blockquote>
+<p>es lo mismo aumentar de 0.5 a 1 que de 1 a 1.5?</p>
+</blockquote>
+<blockquote>
+<p>cuánto es la diferencia porcentual de tener 20% de fusarium en un trigo primaveral en relación a uno invernal?</p>
+</blockquote>
 <p>Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete…</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#percentua relative differences </span>
 quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">80</span>,<span class="dv">90</span>)<span class="op">*</span><span class="dv">100</span>
@@ -284,7 +287,7 @@ quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">
 <pre><code>## [1] &quot;Coloque 216.4 ml de lavandina y enrase con agua hasta completar 500 ml&quot;</code></pre>
 <blockquote>
 <p>Ej: Generar funciones que automaticen los cálculos de:</br>
-i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados; espigas obtenidas, peso seco medio de espiga)</br>
+i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados, ancho de hileras, espigas obtenidas, peso seco medio de espiga)</br>
 ii) Rendimiento de soja ajustado 13,5% humedad (inputs: tamaño de parcela; kg de soja; humedad)</br>
 iii) Grados celsius a fahrenheit </br>
 iv) Cálculo de dosis de urea a fertilizar en un trigo al macollaje (inputs: N disponible, rinde objetivo, N/Ton de grano, % de N en fertilizante) </br>

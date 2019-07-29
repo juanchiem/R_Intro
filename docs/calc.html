@@ -243,12 +243,17 @@ Agregue paréntesis para que la expresión dé un resultado contrario.</p>
 <strong>Rendimiento de trigo en función de la severidad de fusariosis de la espiga</strong> <span class="citation"><span class="citation">(Madden and Paul <a href="#ref-madden2009assessing">2009</a>)</span></span>
 </p>
 <p>
-El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
+El intercepto de la regresión lineal estimada (rendimiento de trigo primaveral libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo inviernal tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo primaveral.
 </p>
 </div>
 <blockquote>
-<p>Ej 2: ¿Cuánto sería el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?</p>
+<p>¿Cuánto sería el rendimiento de ambas variedades de trigo con 0, 1, 10 o 20% de severidad de la enfermedad?</p>
 </blockquote>
+<pre class="sourceCode r"><code class="sourceCode r">rto_prim_sev &lt;-
+rto_prim_<span class="dv">0</span> &lt;-
+
+rto_inv_sev &lt;-
+rto_inv_<span class="dv">0</span> &lt;-</code></pre>
 <p></br></p>
 <p>Algunos cálculos</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">3</span>) <span class="co"># 3^0.5</span>
@@ -258,8 +263,9 @@ El intercepto de la regresión lineal estimada (rendimiento de trigo libre de en
 <span class="kw">log</span>(<span class="dv">10</span>, <span class="dt">base=</span><span class="dv">10</span>)
 
 <span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></code></pre>
-<p>(Note que R está en inglés (decimales “.”, nombre de las funciones)
-y es “case sensitive”!!)</p>
+<blockquote>
+<p>que pasa cuando redondeamos a 0 digitos 4.5 y 3.5?</p>
+</blockquote>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ej 1: 5 + (3 * 10) %/% 3 == 15</span>
 
 <span class="co"># Ej 2: 4.1 - 0.038 * 10; (1-(3.72/4.1))*100</span></code></pre>

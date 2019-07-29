@@ -4,12 +4,37 @@ La sintaxis en R es muy similar a la de otros lenguajes de programación como JA
 
 - No se tienen en cuenta los espacios en blanco: podemos o no dejar espacios para que el código se pueda ordenar de forma adecuada y poder entenderse.
 
-- Se distinguen las mayúsculas y minúsculas: para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.
+```{r}
+plot(pressur e)
+plot( pressure )
+```
+
+- Se distinguen las mayúsculas y minúsculas (“case sensitive”): para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.
+
+```{r}
+LETTERS
+letters
+```
 
 - Se pueden incluir comentarios: como vimos anteriormente los comentarios se utilizan para añadir información en el código.
 
+```{r}
+plot(pressur e) # da error
+
+# grafico press vs temp
+plot(pressure)
+
+plot(pressure, # grafico press vs temp
+     pch = 19, # cambio el tipo de puntos vacios a puntos llenos 
+     col= "blue" # uso color azul para rellenarlos  
+     )
+```
+
 - No es necesario terminar cada sentencia con el carácter de punto y coma (;): en la mayoría de lenguajes de programación, es obligatorio terminar cada sentencia con este carácter. En cambio, en R podemos o no terminar de esta forma.
-  
+
+```{r}
+pressure; plot(pressure)
+```
 
 ## R calculadora {#calc}
 
@@ -39,10 +64,21 @@ Agregue paréntesis para que la expresión dé un resultado contrario.
 **Rendimiento de trigo en función de la severidad de fusariosis de la espiga**
 [@madden2009assessing]
 
-El intercepto de la regresión lineal estimada (rendimiento de trigo libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo de invierno tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo de primavera.
+El intercepto de la regresión lineal estimada (rendimiento de trigo primaveral libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo inviernal tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo primaveral.
 ```
 
-> Ej 2: ¿Cuánto sería el rendimiento de ambas variedades de trigo con 1, 10 o 20% de severidad de la enfermedad?
+> ¿Cuánto sería el rendimiento de ambas variedades de trigo con 0, 1, 10 o 20% de severidad de la enfermedad?
+
+```{r}
+rto_prim_sev <-
+rto_prim_0 <-
+
+rto_inv_sev <-
+rto_inv_0 <-
+
+```
+
+
 
 </br>
 
@@ -58,9 +94,7 @@ log(10, base=10)
 round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 ```
 
-(Note que R está en inglés (decimales “.”, nombre de las funciones)
-y es “case sensitive”!!)
-
+> que pasa cuando redondeamos a 0 digitos 4.5 y 3.5?
 
 ```{r}
 # Ej 1: 5 + (3 * 10) %/% 3 == 15
@@ -103,14 +137,15 @@ Si es necesario, el usuario puede generar sus propias funciones.
 perc_change <- function(v1, v2) 
 {
   pc <- (v2-v1)/v1 *100
-  return(paste(round(digits=1, pc), "%"))
+  return(paste(pc, "%"))
 }
-perc_change(1, 1.5)
-perc_change(0.5, 1)
 
 perc_change(80, 90)
-perc_change(90, 80)
 ```
+
+> es lo mismo aumentar de 0.5 a 1 que de 1 a 1.5?
+
+> cuánto es la diferencia porcentual de tener 20% de fusarium en un trigo primaveral en relación a uno invernal?
 
 Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete... 
 
@@ -158,7 +193,7 @@ vol_lavandina(55, # g cloro / L (Lavandina)
 ```
 
 > Ej: Generar funciones que automaticen los cálculos de:</br>
-i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados; espigas obtenidas, peso seco medio de espiga)</br>
+i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados, ancho de hileras, espigas obtenidas, peso seco medio de espiga)</br>
 ii) Rendimiento de soja ajustado 13,5% humedad (inputs: tamaño de parcela; kg de soja; humedad)</br>
 iii) Grados celsius a fahrenheit </br> 
 iv) Cálculo de dosis de urea a fertilizar en un trigo al macollaje (inputs: N disponible, rinde objetivo, N/Ton de grano, % de N en fertilizante) </br>
@@ -273,6 +308,7 @@ text_tab4 <- data.frame(
     "Ctrl+r",
     "Ctrl+l",
     "Ctrl+Shift+c",
+    "Ctrl+Shift+d",
     "Ctrl+i"
   ),
   
@@ -282,7 +318,8 @@ text_tab4 <- data.frame(
     "<-",
     "corre la línea/bloque completa de código",
     "limpia la consola",
-    "silencia la línea",
+    "silencia la línea de código",
+    "duplica la línea de código",
     "indexa el bloque de código"
   )
 )

@@ -69,6 +69,8 @@ Una vez instalado, hay que cargar los paquetes que contienen las funciones que v
 
 `library(nombre-del-paquete)`
 
+> instale el paquete `gsheet`, explique brevemente para que sirve y ejecute alguna de sus funciones
+
 ## Workflow componentes {-}
 
 Varios tipos de archivos serán creados y usados durante una sesión de R: 
@@ -103,9 +105,9 @@ plot(pressure)
 
 ## S.O.S. {-}
 
-- En el mismo R: `?auc`;  `??auc`; F1 sobre la función 
+- En el mismo R: `?sd`;  `??sd`; F1 sobre la función 
 
-- Googlear: “r generate a sequence of uppercase letters”  
+- Googlear: *r generate a sequence of uppercase letters* 
 
 - [Stack Overflow](https://stackoverflow.com/) / [RStudio](https://community.rstudio.com/): comunidades altamente activas por los usuarios de R y otros lenguajes de programación.
 
