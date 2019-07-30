@@ -39,8 +39,10 @@ class(v)
 
 (b <- c("A", "b"))
 class(b)
-is.character(b)
-is.numeric(b)
+
+(b1 <- c("12", "30"))
+is.numeric(b1)
+is.character(b1)
 
 (m <- c(TRUE, FALSE, T, F)) ; class(m)
 
@@ -48,7 +50,6 @@ is.numeric(b)
 # ?length
 length(v)  
 summary(v) 
-#v <- edit(v)
 sort(v)
 ```
 
@@ -65,19 +66,25 @@ median(v)
 var(v)
 sd(v)
 sqrt(var(v))
-
 IQR(v)
 range(v)
-
-quantile(v, 0.1)
-ecdf(v)(7)
-
 max(v)
 min(v)
 sum(v)
+
+#v1 <- edit(v) #typo
+v1
+hist(v1)
+plot(density(v1))
+p10 = quantile(v1, 0.1)
+abline(v = p10, col = "red")
+
+summary(v)
 ```
 
-> Cree tres nuevos vectores que sean: i) la potencia cuadrada de 3.5 de v; ii) la raíz cúbica de v; iii) el logaritmo natural de la diferencia de i) y ii)
+> Regenerar summary() a traves de funciones individuales
+
+> Cree tres nuevos vectores que sean: a) la potencia cuadrada de 3.5 de v; b) la raíz cúbica de v; c) el logaritmo natural de la diferencia de a) y b)
 
 * Secuencia
 
@@ -138,9 +145,26 @@ hist(PesoNac, prob=TRUE)
 Si colocáramos dos o más clases diferentes dentro de un mismo vector, R va forzar a que todos los elementos pasen a pertenecer a una misma clase. El número 1.7 cambiaría a  "1.7" si fuera creado junto con "a".
 
 ```{r}
-y <- c(1.7, "a")  ## character
-y <- c(TRUE, 2)   ## numeric
-y <- c(TRUE, "a") ## character
+y1 <- c(1.7, "a")  ## character
+class(y1)
+
+y2 <- c(TRUE, 0, 10)   ## numeric
+class(y2)
+
+y3 <- c(TRUE, "a") ## character
+class(y3)
+
+y4 <- c(T, F)
+class(y4)
+
+as.numeric(y1)
+as.numeric(y3)
+as.numeric(y4)
+
+as.logical(y2)
+
+# character > numerico > logico
+
 ```
 
 Forzando las clases explícitamente
@@ -166,48 +190,29 @@ levels(clones_f)
 table(clones_f)
 ```
 
-En general deseamos algun orden específico de nuestros niveles del factor, por ej:
-
-```{r}
-clones_f_ord <- factor(clones_f, levels=c("control", "B35", "A12",  "T99"))
-table(clones_f_ord)
-```
-
 Las variables **numéricas y de caracteres** se pueden convertir en factores (factorizar), pero los niveles de un factor siempre serán valores de **caracteres**. Podremos verlo en el siguiente ejemplo:
 
 ```{r}
 vec <- c(3, 5, 7, 1)
 sum(vec);mean(vec)
+
 vec_f <- factor(vec)
 vec_f
 levels(vec_f)
-```
+sum(vec_f);mean(vec_f)
 
-
-```{r}
 vec_n  <- as.numeric(vec_f)
 vec_f
 vec_n
 sum(vec_n); mean(vec_n)
 ```
 
-Hemos recuperado los valores numéricos originales (`vec`)? que representan los números codificados por R en `vec_f`? 
+> Como hizo la transformación R? Hemos recuperado los valores numéricos originales (`vec`)? que representan los números codificados por R en `vec_f`? 
 
 ```{r}
 vec_f1 = as.numeric(as.character(vec_f))
 sum(vec_f1);mean(vec_f1)
 ```
-
-* Indexación
-
-```{r}
-y <- 1:10
-y[ ]
-y[2]
-y[1:3]
-```
-
-> Seleccione los elementos 1° y 3°
 
 * Condición
 
@@ -221,6 +226,17 @@ Se evaluaron 10 clones de porta-injertos de cítricos según su resistencia a Go
 ```
 
 > Crear un vector "resist" con las categorías S o R, "S" aquellos clones con lesiones por encima de la mediana, y "R" clones con lesiones por debajo de la mediana.
+
+* Indexación
+
+```{r}
+y <- 1:10
+y[ ]
+y[2]
+y[1:3]
+```
+
+> Seleccione los elementos 1° y 3°
 
 </br>
 
