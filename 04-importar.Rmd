@@ -71,6 +71,12 @@ Son múltiples las necesidades y vías de importación de datos a nuestro entorn
 
 Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
 
+Desde el menu de contenidos de esta página (izquierda - abajo), entrar a "datasets" y bajar los archivos excel a importar:
+
+<center>
+![](fig/github_data.png) 
+</center>
+
 La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: 
 
 - Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio 
