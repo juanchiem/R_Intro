@@ -302,13 +302,15 @@ En numerosos paquetes de R, hay data frames disponibles para ejemplos de aplicac
 ?iris
 View(iris) # ya activo desde inicio de sesión por default
 ```
+> hacer lo mismo con los respectivos shortcuts
+
 
 <center>
 ![](fig/iris_petal_sepal.png){width=400px}
 </center>
 
 > Explore el dataset iris con las siguientes funciones con iris y anote sus resultados:  
-head(); tail(); dim(); names(); str(); row.names()
+dim(); head(); tail();names(); str(); summary()
 
 
 * Filtrado de datasets
@@ -322,10 +324,12 @@ iris[1,1]
 
 iris$Sepal.Length
 levels(iris$Species)
-summary(iris$Sepal.Length)
+
+identical(iris$Petal.Width, iris[,2])
 ```
 
-> Selecione la segunda i) fila; ii) columna. iii) Seleccione la observación ubicada en la 2° fila y 3° columna iv) Seleccione las observaciones de las líneas 50 a 60 de las columnas 3 y 4. 
+
+> Selecione: i) la segunda fila; ii) la segunda columna; iii) la observación ubicada en la 2° fila y 3° columna; iv) las observaciones de las líneas 50 a 60 de las columnas 3 y 4; v) las observaciones de las líneas 50 a 60 de las columnas 2 y 4. 
 
 * Función `subset`
 
@@ -341,13 +345,41 @@ Filtremos a la variable Species reteniendo sólo a "setosa" + "virginica"
 iris_set.virginica <- subset(iris, Species %in% c("setosa", "virginica"))
 ```
 
+Anteponiendo el `!` a la condición estaremos aplicando la negativa de la condición.
+
+> regenere `iris_set.virginica` usando `!` para mejorar el código
+
 Agreguemos una condición: a lo anterior quedémonos con aquellas filas en que Sepal.Length > 5
 
 ```{r}
 iris2 <- subset(iris, Species %in% c("setosa", "virginica") & Sepal.Length > 5)
+iris2
+dim(iris2)
 ```
 
 > ¿Qué pasa si cambiamos el operador `&` por `|`?
+
+```{r}
+iris3 <- subset(iris, Species %in% c("setosa", "virginica") | Sepal.Length > 5)
+iris3
+dim(iris3)
+```
+
+> `iris4` no es un codigo suscinto... reformulelo en iris5 para que `identical(iris4, iris5) == TRUE`
+
+```{r}
+iris4 <- subset(iris, 
+                !(Species %in% c("setosa", "virginica") |
+                    Sepal.Length > 5)
+                )
+iris4
+dim(iris4)
+```
+
+```{r, echo=FALSE}
+iris5 <- subset(iris, Species == "versicolor" & Sepal.Length <= 5)
+```
+
 
 ### Listas
 
