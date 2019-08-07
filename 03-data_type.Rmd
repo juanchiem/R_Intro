@@ -390,7 +390,7 @@ x <- list(a = 1:5, b = c("a", "b"), c = TRUE)
 x
 ```
 
-(Más info de subsetting elementos de una lista [aqui](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists))
+(Más info de subsetting elementos de una lista [aquí](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists))
 
 ```{r}
 x$a       # 
