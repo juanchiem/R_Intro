@@ -207,7 +207,7 @@ vec_n
 sum(vec_n); mean(vec_n)
 ```
 
-> Como hizo la transformación R? Hemos recuperado los valores numéricos originales (`vec`)? que representan los números codificados por R en `vec_f`? 
+> ¿Cómo hizo la transformación R? Hemos recuperado los valores numéricos originales (`vec`)? que representan los números codificados por R en `vec_f`? 
 
 ```{r}
 vec_f1 = as.numeric(as.character(vec_f))
