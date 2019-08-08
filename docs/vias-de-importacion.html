@@ -247,23 +247,11 @@ Importar can_phoma.xlsx, nombrándolo “canola”</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
 soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja.xls&quot;</span>)
 canola &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/canola_maculas.xlsx&quot;</span>)
-olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/olivo_xylella.xls&quot;</span>)
-
-<span class="kw">save</span>(soja, canola, olivo, <span class="dt">file=</span><span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
-<p>Dataset <strong>canola_phoma</strong></p>
-<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
-<p>Dataset <strong>soja_mancha</strong></p>
-<p>Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja:</p>
-<p>study: identificador arbitrario para cada experimento
-year: año del experimento
-location: localidad del experimento
-cultivar: cultivar de soja utilizado
-fungic: tratamiento fungicida
-block: repeticiones
-sev: severidad (%) evaluada en R6
-yield: rendimiento en madurez fisiológica (kg/ha)</p>
+olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/olivo_xylella.xls&quot;</span>)</code></pre>
 <p>Dataset <strong>olivo_xylella</strong></p>
 <p>Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja.</p>
+<p>Dataset <strong>canola_phoma</strong></p>
+<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
 <ul>
 <li>Archivos de texto .csv</li>
 </ul>

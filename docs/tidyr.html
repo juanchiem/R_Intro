@@ -226,15 +226,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, Excel) nos resulta más cómodo que las planillas de papel tengan un formato <em>wide</em>.</p>
 <p>En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos estén en formato <em>long</em>.</p>
 <p>Para esto vamos a transponer can_phoma al formato “long”. La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos.</p>
-<p>Importemos los datos_crudos.RData</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, olivo, <span class="dt">file=</span><span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
 <p>Datos <strong>olivo_xylella</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># olivo &lt;- read_excel(&quot;data/olivo_xylella.xls&quot;)</span>
 
-olivo <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">30</span><span class="st">`</span>,
-         <span class="dt">key =</span> <span class="st">&quot;tree&quot;</span>, 
-         <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long</code></pre>
+olivo <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># dataset wide (planilla de campo, con 30 columnas de sev por arbol individual)</span>
+<span class="st">  </span><span class="co"># le pedimos que apile las columnas conteniendo a las plantas 1 a 30</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">30</span><span class="st">`</span>, 
+  <span class="co"># el nombre de las columnas las apile en una columna llamada &quot;tree&quot;</span>
+         <span class="dt">key =</span> <span class="st">&quot;tree&quot;</span>,
+  <span class="co"># la observaciones de severidad las apile en una columna llamada sev</span>
+         <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long <span class="co"># el producto de este re-arreglo se llamará &quot;oli_long&quot;</span></code></pre>
 <p>Datos <strong>soja</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># soja &lt;- read_excel(&quot;data/soja.xls&quot;)</span>
 
@@ -242,6 +243,7 @@ soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="op">-</span>trt, 
          <span class="dt">key =</span> bk, 
          <span class="dt">value =</span> yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># al proceso anterior le agrego la factorización de las col trt y bk </span>
 <span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(trt<span class="op">:</span>bk), as.factor) -&gt;<span class="st"> </span>soja_long</code></pre>
 <p>Datos <strong>canola_maculas</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canola &lt;- read_excel(&quot;data/canola_maculas.xlsx&quot;)</span>
@@ -250,6 +252,7 @@ canola <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">gather</span>(inc_<span class="dv">15</span><span class="op">:</span>inc_<span class="dv">248</span>, 
          <span class="dt">key =</span> <span class="st">&quot;tt&quot;</span>, 
          <span class="dt">value =</span> <span class="st">&quot;inc&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># ahora tengo deshacerme de la palabra &quot;inc&quot; de la columna tt para quedarme con los tiempos de evaluación </span>
 <span class="st">  </span><span class="kw">separate</span>(tt, 
            <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;tt&quot;</span>), 
            <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>, 

@@ -265,7 +265,7 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):</p>
 <p><img src="fig/dplyr_group_by.png" /></p>
 <p>Veamos cuánto fue el rendimiento promedio y el desvío standard para cada fungicida a través de todos los ensayos:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(fungic) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(trt) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),
             <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </code></pre>
 <blockquote>

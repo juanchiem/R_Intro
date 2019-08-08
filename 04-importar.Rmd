@@ -98,30 +98,15 @@ library(readxl)
 soja <- read_excel("data/soja.xls")
 canola <- read_excel("data/canola_maculas.xlsx")
 olivo <- read_excel("data/olivo_xylella.xls")
-
-save(soja, canola, olivo, file="data/datos_crudos.RData")
 ```
-
-Dataset **canola_phoma** 
-
-Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo. 
-
-Dataset **soja_mancha** 
-
-Experimentos individuales en microparcelas correspondientes a la Red de ensayos uniformes coordinada por EMBRAPA Soja (Brasil) de fungicidas para el control de mancha anillada en soja:
-
-study: identificador arbitrario para cada experimento
-year: año del experimento
-location: localidad del experimento
-cultivar: cultivar de soja utilizado
-fungic: tratamiento fungicida
-block: repeticiones
-sev: severidad (%) evaluada en R6
-yield: rendimiento en madurez fisiológica (kg/ha)
 
 Dataset **olivo_xylella**
 
 Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja.
+
+Dataset **canola_phoma** 
+
+Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de *Phoma lingam* a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo. 
 
 * Archivos de texto .csv
     
@@ -140,7 +125,6 @@ Muchas veces necesitamos replicar rápidamente un fragmento del dataset desde Ex
 ```{r}
 install.packages("datapasta")
 ```
-
 
 * Desde google sheets:
 

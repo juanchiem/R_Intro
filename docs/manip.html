@@ -221,6 +221,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="manip" class="section level1">
 <h1><span class="header-section-number">5</span> Manipular</h1>
 <p>Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset “analítico”.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja.xls&quot;</span>)
+canola &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/canola_maculas.xlsx&quot;</span>)
+olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/olivo_xylella.xls&quot;</span>)</code></pre>
 <p><code>tidyr</code> y <code>dplyr</code> integran parte de la colección de paquetes de <code>tidyverse</code> y facilitan la manipulación de los data frames <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r">2016</a>)</span></p>
 <center>
 <img src="fig/tidyverse-hex.png" width="600" />

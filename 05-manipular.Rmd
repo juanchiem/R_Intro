@@ -17,6 +17,14 @@ library(tidyverse)
 
 Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset "analítico". 
 
+```{r}
+library(readxl)
+soja <- read_excel("data/soja.xls")
+canola <- read_excel("data/canola_maculas.xlsx")
+olivo <- read_excel("data/olivo_xylella.xls")
+```
+
+
 `tidyr` y `dplyr` integran parte de la colección de paquetes de `tidyverse` y facilitan la manipulación de los data frames [@wickham2016r] 
 
 <center>
@@ -54,21 +62,19 @@ En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos est
 
 Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
 
-Importemos los datos_crudos.RData
-
-```{r}
-save(soja, canola, olivo, file="data/datos_crudos.RData")
-```
-
 Datos **olivo_xylella**
 
 ```{r}
+
 # olivo <- read_excel("data/olivo_xylella.xls")
 
-olivo %>%  
-  gather(`1`:`30`,
-         key = "tree", 
-         value = "sev") -> oli_long
+olivo %>%  # dataset wide (planilla de campo, con 30 columnas de sev por arbol individual)
+  # le pedimos que apile las columnas conteniendo a las plantas 1 a 30
+  gather(`1`:`30`, 
+  # el nombre de las columnas las apile en una columna llamada "tree"
+         key = "tree",
+  # la observaciones de severidad las apile en una columna llamada sev
+         value = "sev") -> oli_long # el producto de este re-arreglo se llamará "oli_long"
 ```
 
 Datos **soja**
@@ -80,6 +86,7 @@ soja %>%
   gather(-trt, 
          key = bk, 
          value = yield) %>% 
+  # al proceso anterior le agrego la factorización de las col trt y bk 
   mutate_at(vars(trt:bk), as.factor) -> soja_long
 ```
 
@@ -92,6 +99,7 @@ canola %>%
   gather(inc_15:inc_248, 
          key = "tt", 
          value = "inc") %>% 
+  # ahora tengo deshacerme de la palabra "inc" de la columna tt para quedarme con los tiempos de evaluación 
   separate(tt, 
            c(NA, "tt"), 
            sep = '_', 
@@ -202,7 +210,7 @@ Veamos cuánto fue el rendimiento promedio y el desvío standard para cada fungi
 
 ```{r}
 soja_long %>% 
-  group_by(fungic) %>% 
+  group_by(trt) %>% 
   summarise(yield_mean =  mean(yield),
             yield_sd = sd(yield)) 
 ```
