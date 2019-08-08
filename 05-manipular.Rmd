@@ -31,21 +31,20 @@ olivo <- read_excel("data/olivo_xylella.xls")
 ![](fig/tidyverse-hex.png){width=600px}
 </center>
 
-```{r}
-library(tidyverse)
-```
-
 Ambos paquetes utilizan el operador `%>%` (pipe, tubo en español) lo que proporciona una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta...)
+
+Hasta el momento hemos visto que:
 
 ```{r}
 x <- c(1, 2, 3, 4)
-x %>% sum %>% sqrt
+sqrt(sum(x))
 ```
 
-Su equivalente de código básico es:
+Como sería su equivalente bajo la sintaxis de tidyverse? 
 
 ```{r}
-sqrt(sum(x))
+library(tidyverse)
+x %>% sum %>% sqrt
 ```
 
 ## tidyr::
@@ -62,11 +61,27 @@ En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos est
 
 Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
 
-Datos **olivo_xylella**
+Datos **soja**
+
+```{r}
+# soja <- readxl::read_excel("data/soja.xls")
+
+soja %>% 
+  gather(bk_1:bk_4, 
+         key = bk, 
+         value = yield) -> soja_long
+
+
+```
+
+Esto se leería: al dataset `soja` apilar las columnas de `bk_1` al `bk_4`, a los nombres de las 4 columnas organizalos en una columna llamada bk (del inglés "block") y a los valores de rendimiento apilar en una única columna llamada `yield`. `tidyr`se encargrá de repetir los niveles de la variable `trt`tantas veces como sea necesario...  al producto resultante llamarlo `soja_long`
+
+Si bien este ejemplo no representaría demasiado trabajo en excel, pensemos en datasets de mayor dimensión como ser **olivo_xylella**
 
 ```{r}
 
-# olivo <- read_excel("data/olivo_xylella.xls")
+# olivo <- readxl::read_excel("data/olivo_xylella.xls")
+dim(olivo)
 
 olivo %>%  # dataset wide (planilla de campo, con 30 columnas de sev por arbol individual)
   # le pedimos que apile las columnas conteniendo a las plantas 1 a 30
@@ -77,23 +92,10 @@ olivo %>%  # dataset wide (planilla de campo, con 30 columnas de sev por arbol i
          value = "sev") -> oli_long # el producto de este re-arreglo se llamará "oli_long"
 ```
 
-Datos **soja**
-
-```{r}
-# soja <- read_excel("data/soja.xls")
-
-soja %>% 
-  gather(-trt, 
-         key = bk, 
-         value = yield) %>% 
-  # al proceso anterior le agrego la factorización de las col trt y bk 
-  mutate_at(vars(trt:bk), as.factor) -> soja_long
-```
-
 Datos **canola_maculas**
 
 ```{r}
-# canola <- read_excel("data/canola_maculas.xlsx")
+# canola <- readxl::read_excel("data/canola_maculas.xlsx")
 
 canola %>%  
   gather(inc_15:inc_248, 

@@ -229,12 +229,13 @@ olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 <center>
 <img src="fig/tidyverse-hex.png" width="600" />
 </center>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
 <p>Ambos paquetes utilizan el operador <code>%&gt;%</code> (pipe, tubo en español) lo que proporciona una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta…)</p>
+<p>Hasta el momento hemos visto que:</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
-x <span class="op">%&gt;%</span><span class="st"> </span>sum <span class="op">%&gt;%</span><span class="st"> </span>sqrt</code></pre>
-<p>Su equivalente de código básico es:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">sum</span>(x))</code></pre> 
+<span class="kw">sqrt</span>(<span class="kw">sum</span>(x))</code></pre>
+<p>Como sería su equivalente bajo la sintaxis de tidyverse?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+x <span class="op">%&gt;%</span><span class="st"> </span>sum <span class="op">%&gt;%</span><span class="st"> </span>sqrt</code></pre> 
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
