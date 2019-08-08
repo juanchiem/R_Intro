@@ -63,7 +63,7 @@ save(soja, canola, olivo, file="data/datos_crudos.RData")
 Datos **olivo_xylella**
 
 ```{r}
-olivo <- read_excel("data/olivo_xylella.xls")
+# olivo <- read_excel("data/olivo_xylella.xls")
 
 olivo %>%  
   gather(`1`:`30`,
@@ -74,7 +74,7 @@ olivo %>%
 Datos **soja**
 
 ```{r}
-soja <- read_excel("data/soja.xls")
+# soja <- read_excel("data/soja.xls")
 
 soja %>% 
   gather(-trt, 
@@ -86,6 +86,7 @@ soja %>%
 Datos **canola_maculas**
 
 ```{r}
+# canola <- read_excel("data/canola_maculas.xlsx")
 
 canola %>%  
   gather(inc_15:inc_248, 
