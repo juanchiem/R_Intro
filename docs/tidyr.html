@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="fig/tidyr_func.png" /></p>
 <p>Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, Excel) nos resulta más cómodo que las planillas de papel tengan un formato <em>wide</em>.</p>
 <p>En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos estén en formato <em>long</em>.</p>
-<p>Para esto vamos a transponer can_phoma al formato “long”. La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos.</p>
+<p>La función <code>gather</code> (del inglés “reunir”, paquete <code>tidyr</code>) apila las columnas que indiquemos, re-arregandlo los datos de un formato “wide” a “long”:</p>
 <p>Datos <strong>soja</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># soja &lt;- readxl::read_excel(&quot;data/soja.xls&quot;)</span>
 
@@ -233,7 +233,7 @@ soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">gather</span>(bk_<span class="dv">1</span><span class="op">:</span>bk_<span class="dv">4</span>, 
          <span class="dt">key =</span> bk, 
          <span class="dt">value =</span> yield) -&gt;<span class="st"> </span>soja_long</code></pre>
-<p>Esto se leería: al dataset <code>soja</code> apilar las columnas de <code>bk_1</code> al <code>bk_4</code>, a los nombres de las 4 columnas organizalos en una columna llamada bk (del inglés “block”) y a los valores de rendimiento apilar en una única columna llamada <code>yield</code>. <code>tidyr</code>se encargrá de repetir los niveles de la variable <code>trt</code>tantas veces como sea necesario… al producto resultante llamarlo <code>soja_long</code></p>
+<p>Esto se leería: al dataset <code>soja</code> apilar las columnas de <code>bk_1</code> a <code>bk_4</code> de manera tal que los nombres de estas 4 columnas queden contenidos en una columna llamada “bk” (del inglés “block”) y a los valores de rendimiento de las mismas apilarlos en una única columna llamada <code>yield</code>. <code>tidyr</code>se encargrá de repetir los niveles de la variable <code>trt</code>tantas veces como sea necesario… al producto resultante lo llamaremos <code>soja_long</code></p>
 <p>Si bien este ejemplo no representaría demasiado trabajo en excel, pensemos en datasets de mayor dimensión como ser <strong>olivo_xylella</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># olivo &lt;- readxl::read_excel(&quot;data/olivo_xylella.xls&quot;)</span>
 <span class="kw">dim</span>(olivo)
@@ -244,7 +244,9 @@ olivo <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#
   <span class="co"># el nombre de las columnas las apile en una columna llamada &quot;tree&quot;</span>
          <span class="dt">key =</span> <span class="st">&quot;tree&quot;</span>,
   <span class="co"># la observaciones de severidad las apile en una columna llamada sev</span>
-         <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long <span class="co"># el producto de este re-arreglo se llamará &quot;oli_long&quot;</span></code></pre>
+         <span class="dt">value =</span> <span class="st">&quot;sev&quot;</span>) -&gt;<span class="st"> </span>oli_long <span class="co"># el producto de este re-arreglo se llamará &quot;oli_long&quot;</span>
+
+<span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, oli_long))</code></pre>
 <p>Datos <strong>canola_maculas</strong></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canola &lt;- readxl::read_excel(&quot;data/canola_maculas.xlsx&quot;)</span>
 
@@ -256,18 +258,17 @@ canola <span class="op">%&gt;%</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">separate</span>(tt, 
            <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;tt&quot;</span>), 
            <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>, 
-           <span class="dt">convert =</span> T) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(tt),as.numeric) -&gt;<span class="st"> </span>can_long</code></pre>
+           <span class="dt">convert =</span> T) -&gt;<span class="st"> </span>can_long</code></pre>
 <p>Compilemos los 3 datasets formato long en un solo archivo .RData:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja_long, can_long, oli_long, <span class="dt">file=</span><span class="st">&quot;data/datos_curso.RData&quot;</span>)
 <span class="co">#load(&quot;data/datos_curso.RData&quot;)</span></code></pre>
 <p>(Avanzado) Datos <strong>soja_mancha</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja_mancha.xls&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">soja &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja_mancha.xls&quot;</span>)
 
 soja <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> var, <span class="dt">value =</span> val, <span class="op">-</span>fungic) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="st">&#39;bk&#39;</span>, <span class="st">&#39;x&#39;</span>), <span class="dt">sep =</span> <span class="st">&#39;_&#39;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">spread</span>(x, val, <span class="dt">convert =</span> <span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(x, val, <span class="dt">convert =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(fungic<span class="op">:</span>bk), as.factor) -&gt;<span class="st"> </span>soja_long</code></pre>
 <ul>
 <li>Otras funciones interesantes de <code>tidyr</code></li>

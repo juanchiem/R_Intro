@@ -227,10 +227,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="fig/dplyr_select.png" /></p>
 <p>Vamos a seleccionar las variables: study, year y fungic del archivo soja:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(trt, yield)</code></pre>
-<p>Una selección “negativa” de las variables no deseadas daría un mismo resultado:</p>
-<pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bk)</code></pre>
+<span class="st">  </span><span class="kw">select</span>(trt, yield)
+
+<span class="co"># Una selección “negativa” de las variables no deseadas daría un mismo resultado:</span>
+<span class="co"># soja_long %&gt;% </span>
+<span class="co">#   select(-bk)</span></code></pre>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> filter</h3>
 <p><img src="fig/dplyr_filter.png" /></p>
@@ -239,7 +240,7 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(trt, yield) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(trt <span class="op">==</span><span class="st"> &#39;check&#39;</span>)</code></pre>
-<p>Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset:</p>
+<p>Ahora, agreguemos el trt A al dataset filtrado:</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(trt, yield) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(trt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;check&quot;</span>,<span class="st">&quot;A&quot;</span>))</code></pre>
@@ -249,14 +250,23 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):</p>
 <li>Creación de nuevas variables (a partir de las existentes)</li>
 </ul>
 <p><img src="fig/dplyr_mutate_new.png" /></p>
+<p>Supongamos que queremos analizar a yield en escala de tn</p>
 <pre class="sourceCode r"><code class="sourceCode r">soja_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(trt, yield) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(fungic <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ZZ_CHECK&quot;</span>,<span class="st">&quot;CZM[1]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) 
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>yield)</code></pre>
+<ul>
+<li>Conversión de tipos de variables:</li>
+</ul>
+<p>Ahora que hemos re-organizado los datos, queremos chequear los tipos de variables que tiene el dataset:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(soja_long)
 
-<span class="co"># sev_arc = asin(sqrt(sev/100)),</span>
-<span class="co"># sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  </span>
-<span class="co"># browseURL(&quot;http://strata.uga.edu/8370/rtips/proportions.html&quot;)</span></code></pre>
+soja_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yield_tn =</span> yield<span class="op">/</span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>yield) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(trt, bk), as.factor) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(yield_tn), as.numeric) -&gt;<span class="st"> </span>soja_long1
+
+<span class="kw">str</span>(soja_long1) </code></pre>
 </div>
 <div id="summarise" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> summarise</h3>
@@ -269,18 +279,8 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):</p>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">yield_mean =</span>  <span class="kw">mean</span>(yield),
             <span class="dt">yield_sd =</span> <span class="kw">sd</span>(yield)) </code></pre>
 <blockquote>
-<p>Calculen el rendimiento mínimo y máximo por fungicida</p>
+<p>Calculen el rendimiento mínimo y máximo de cada tratamiento</p>
 </blockquote>
-<ul>
-<li>Conversión de tipos de variables:</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(oli_long)
-oli_long &lt;-<span class="st"> </span>oli_long <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(year<span class="op">:</span>farm), <span class="kw">list</span>(as.factor)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">c</span>(<span class="st">&quot;tree&quot;</span>,<span class="st">&quot;sev&quot;</span>), <span class="kw">list</span>(as.numeric))
-<span class="kw">str</span>(oli_long)
-
-<span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span>year<span class="op">+</span>loc<span class="op">+</span>farm, oli_long))</code></pre>
 <p><code>arrange</code></p>
 <p>Ordenar columnas</p>
 <pre class="sourceCode r"><code class="sourceCode r">oli_long <span class="op">%&gt;%</span><span class="st"> </span>

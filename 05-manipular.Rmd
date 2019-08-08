@@ -59,7 +59,7 @@ Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente p
 
 En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos estén en formato *long*. 
 
-Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
+La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos, re-arregandlo los datos de un formato "wide" a "long":
 
 Datos **soja**
 
@@ -70,16 +70,13 @@ soja %>%
   gather(bk_1:bk_4, 
          key = bk, 
          value = yield) -> soja_long
-
-
 ```
 
-Esto se leería: al dataset `soja` apilar las columnas de `bk_1` al `bk_4`, a los nombres de las 4 columnas organizalos en una columna llamada bk (del inglés "block") y a los valores de rendimiento apilar en una única columna llamada `yield`. `tidyr`se encargrá de repetir los niveles de la variable `trt`tantas veces como sea necesario...  al producto resultante llamarlo `soja_long`
+Esto se leería: al dataset `soja` apilar las columnas de `bk_1` a `bk_4` de manera tal que los nombres de estas 4 columnas queden contenidos en una columna llamada "bk" (del inglés "block") y a los valores de rendimiento de las mismas apilarlos en una única columna llamada `yield`. `tidyr`se encargrá de repetir los niveles de la variable `trt`tantas veces como sea necesario... al producto resultante lo llamaremos `soja_long`
 
 Si bien este ejemplo no representaría demasiado trabajo en excel, pensemos en datasets de mayor dimensión como ser **olivo_xylella**
 
 ```{r}
-
 # olivo <- readxl::read_excel("data/olivo_xylella.xls")
 dim(olivo)
 
@@ -90,6 +87,8 @@ olivo %>%  # dataset wide (planilla de campo, con 30 columnas de sev por arbol i
          key = "tree",
   # la observaciones de severidad las apile en una columna llamada sev
          value = "sev") -> oli_long # el producto de este re-arreglo se llamará "oli_long"
+
+ftable(xtabs(~year+loc+farm, oli_long))
 ```
 
 Datos **canola_maculas**
@@ -105,8 +104,7 @@ canola %>%
   separate(tt, 
            c(NA, "tt"), 
            sep = '_', 
-           convert = T) %>% 
-  mutate_at(vars(tt),as.numeric) -> can_long
+           convert = T) -> can_long
 ```
 
 Compilemos los 3 datasets formato long en un solo archivo .RData:
@@ -119,12 +117,12 @@ save(soja_long, can_long, oli_long, file="data/datos_curso.RData")
 (Avanzado) Datos **soja_mancha**
 
 ```{r}
-soja <- read_excel("data/soja_mancha.xls")
+soja <- readxl::read_excel("data/soja_mancha.xls")
 
 soja %>% 
   gather(key = var, value = val, -fungic) %>% 
   separate(var, c('bk', 'x'), sep = '_', convert = TRUE) %>% 
-  spread(x, val, convert = TRUE)  %>% 
+  spread(x, val, convert = TRUE) %>% 
   mutate_at(vars(fungic:bk), as.factor) -> soja_long
 ```
 
@@ -151,13 +149,11 @@ Vamos a seleccionar las variables: study, year y fungic del archivo soja:
 ```{r}
 soja_long %>% 
   select(trt, yield)
-```
 
-Una selección “negativa” de las variables no deseadas daría un mismo resultado:
+# Una selección “negativa” de las variables no deseadas daría un mismo resultado:
+# soja_long %>% 
+#   select(-bk)
 
-```{r}
-soja_long %>% 
-  select(-bk)
 ```
 
 ### filter
@@ -173,7 +169,7 @@ soja_long %>%
   filter(trt == 'check')
 ```
 
-Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset:
+Ahora, agreguemos el trt A al dataset filtrado:
 
 ```{r}
 soja_long %>% 
@@ -189,15 +185,34 @@ Permite operar sobre las columnas, modificando su naturaleza o haciendo operacio
 
 ![](fig/dplyr_mutate_new.png)
 
+Supongamos que queremos analizar a yield en escala de tn
+
 ```{r}
 soja_long %>% 
-  select(trt, yield) %>% 
-  filter(fungic %in% c("ZZ_CHECK","CZM[1]")) %>% 
-  mutate(yield_tn = yield/1000) 
+  mutate(yield_tn = yield/1000) %>% 
+  select(-yield)
+```
 
+```{r, include=FALSE}
 # sev_arc = asin(sqrt(sev/100)),
 # sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
 # browseURL("http://strata.uga.edu/8370/rtips/proportions.html")
+```
+
+* Conversión de tipos de variables:
+
+Ahora que hemos re-organizado los datos, queremos chequear los tipos de variables que tiene el dataset:
+
+```{r}
+str(soja_long)
+
+soja_long %>% 
+  mutate(yield_tn = yield/1000) %>% 
+  select(-yield) %>% 
+  mutate_at(vars(trt, bk), as.factor) %>% 
+  mutate_at(vars(yield_tn), as.numeric) -> soja_long1
+
+str(soja_long1) 
 ```
 
 ### summarise
@@ -217,19 +232,7 @@ soja_long %>%
             yield_sd = sd(yield)) 
 ```
 
-> Calculen el rendimiento mínimo y máximo por fungicida
-
-* Conversión de tipos de variables:
-
-```{r}
-str(oli_long)
-oli_long <- oli_long %>% 
-  mutate_at(vars(year:farm), list(as.factor)) %>% 
-  mutate_at(c("tree","sev"), list(as.numeric))
-str(oli_long)
-
-ftable(xtabs(~year+loc+farm, oli_long))
-```
+> Calculen el rendimiento mínimo y máximo de cada tratamiento
 
 `arrange`
 
