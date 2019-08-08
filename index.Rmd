@@ -55,7 +55,7 @@ El curso pretende proveer herramientas de programación básicas para llevar ade
 ```{block, type='boxed', include=FALSE}
  1. Software libre - multiplataforma
 
- 2. Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho mas ameno)
+ 2. Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho más ameno)
 
  3. Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
 
