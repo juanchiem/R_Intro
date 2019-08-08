@@ -83,7 +83,6 @@ La forma más rápida es vía clicks de mouse en el panel de entorno de la sesi�
 - Hacen click sobre el archivo  
 - Seleccionan "import dataset"  
 - Configuran las opciones de importación y copian el código generado y dan import
-(es aconsejable que peguen el código en el script de la sesión)   
 
 O bien desde código del script:
     
@@ -92,14 +91,15 @@ O bien desde código del script:
 > Importar soja_mancha.xlsx, nombrándolo "soja"
 > Importar can_phoma.xlsx, nombrándolo "canola"
 
-```{r, include=FALSE}
-library(readxl)
-soja <- read_excel("data/soja_mancha.xls")
-canola <- read_excel("data/canola_phoma.xlsx")
-mani <- read_excel("data/mani_carbon.xlsx")
-olivo  <- read_excel("data/olivo_xylella.xls")
+Importemos los datos "crudos" (planillas de campo). Via clicks y pegamos los codigos auto-generados en nuestro script 
 
-save(soja, canola, mani, olivo, file="data/datos_curso.RData")
+```{r}
+library(readxl)
+soja <- read_excel("data/soja.xls")
+canola <- read_excel("data/canola_maculas.xlsx")
+olivo <- read_excel("data/olivo_xylella.xls")
+
+save(soja, canola, olivo, file="data/datos_crudos.RData")
 ```
 
 Dataset **canola_phoma** 
@@ -186,12 +186,6 @@ Para traerlos nuevamente al entorno de la sesión:
 
 ```{r}
 load("./data/soja_canola.RData")
-```
-
-* Exportar datasets
-
-```{r}
-write.table(dat, "./data/dat.txt", sep = "\t")
 ```
 
 ## Importación múltiple

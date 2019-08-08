@@ -1,7 +1,7 @@
 ---
 output: html_document
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 ```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
@@ -40,13 +40,6 @@ Su equivalente de código básico es:
 sqrt(sum(x))
 ```
 
-Importemos los datos "crudos" que tenemos almacenados en el archivo .RData
-
-```{r}
-load("./data/datos_curso.RData")
-# browseURL("https://osf.io/jpfet/")
-```
-
 ## tidyr::
 
 Las principales funciones son:
@@ -55,51 +48,86 @@ Las principales funciones son:
 
 ![](fig/tidyr_func.png)
 
-`join`
-
-![](fig/tydir_join.png)
-
 Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, Excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.  
 
 En muchas ocasiones necesitamos (para graficar o modelar) que nuestros datos estén en formato *long*. 
 
-Veamos de qué se tratan ambos formatos.
+Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
 
-Datos **canola**:
-
-Para analizar el efecto del tratamiento fungicida necesitamos calcular el área bajo la curva (AUC) del progreso de la enfermedad. Para esto vamos a transponer can_phoma al formato "long". La función `gather` (del inglés "reunir", paquete `tidyr`) apila las columnas que indiquemos.
-
-![](fig/wide_to_long.png)
+Importemos los datos_crudos.RData
 
 ```{r}
-canola %>%  
-  gather(`15`, `58`, `95`, `146`, `165`, `180`, `248`, 
-         key = "tt", value = "inc") -> can_long
+save(soja, canola, olivo, file="data/datos_crudos.RData")
 ```
 
-Datos **olivo**
+Datos **olivo_xylella**
 
 ```{r}
+olivo <- read_excel("data/olivo_xylella.xls")
+
 olivo %>%  
   gather(`1`:`30`,
-         key = "tree", value = "sev") -> oli_long
+         key = "tree", 
+         value = "sev") -> oli_long
 ```
 
 Datos **soja**
 
 ```{r}
+soja <- read_excel("data/soja.xls")
+
+soja %>% 
+  gather(-trt, 
+         key = bk, 
+         value = yield) %>% 
+  mutate_at(vars(trt:bk), as.factor) -> soja_long
+```
+
+Datos **canola_maculas**
+
+```{r}
+
+canola %>%  
+  gather(inc_15:inc_248, 
+         key = "tt", 
+         value = "inc") %>% 
+  separate(tt, 
+           c(NA, "tt"), 
+           sep = '_', 
+           convert = T) %>% 
+  mutate_at(vars(tt),as.numeric) -> can_long
+```
+
+Compilemos los 3 datasets formato long en un solo archivo .RData:
+
+```{r}
+save(soja_long, can_long, oli_long, file="data/datos_curso.RData")
+#load("data/datos_curso.RData")
+```
+
+(Avanzado) Datos **soja_mancha**
+
+```{r}
+soja <- read_excel("data/soja_mancha.xls")
+
 soja %>% 
   gather(key = var, value = val, -fungic) %>% 
   separate(var, c('bk', 'x'), sep = '_', convert = TRUE) %>% 
   spread(x, val, convert = TRUE)  %>% 
-  mutate_at(vars(fungic:bk), list(as.factor)) -> soja_long
+  mutate_at(vars(fungic:bk), as.factor) -> soja_long
 ```
+
+ - Otras funciones interesantes de `tidyr`
+
+`join`
+
+![](fig/tydir_join.png)
 
 ## dplyr::
 
 Los cinco verbos (funciones) principales de `dplyr` son:
 
-`select` `filter` `mutate` `arrange` `summarise` 
+`select` `filter` `mutate` `summarise` `arrange`
 
 <br>
 
@@ -110,24 +138,15 @@ Los cinco verbos (funciones) principales de `dplyr` son:
 Vamos a seleccionar las variables: study, year y fungic del archivo soja: 
 
 ```{r}
-soja %>% 
-  select(study, year, fungic)
+soja_long %>% 
+  select(trt, yield)
 ```
-
-Es posible usar intervalos de varibles con `:`.
-
-```{r}
-soja %>% 
-  select(study:fungic)
-
-```
-
 
 Una selección “negativa” de las variables no deseadas daría un mismo resultado:
 
 ```{r}
-soja %>% 
-  select(-("1_sev":"4_yield"))
+soja_long %>% 
+  select(-bk)
 ```
 
 ### filter
@@ -139,67 +158,34 @@ Filtremos la variable fungicida (fungic) por el testigo (ZZ_CHECK):
 
 ```{r}
 soja_long %>% 
-  select(fungic:sev) %>% 
-  filter(fungic == 'ZZ_CHECK')
+  select(trt, yield) %>% 
+  filter(trt == 'check')
 ```
 
 Ahora, agreguemos el fungicida carbendazim a dosis de 1 litro (CZM[1]) al dataset:
 
 ```{r}
 soja_long %>% 
-  select(fungic:sev) %>% 
-  filter(fungic %in% c("ZZ_CHECK","CZM[1]"))
+  select(trt, yield) %>% 
+  filter(trt %in% c("check","A"))
 ```
 
 `mutate`
 
 Permite operar sobre las columnas, modificando su naturaleza o haciendo operaciones sobre ellas (incluso generando nuevas columnas a partir de pre-existentes).
 
-Convertimos columnas a factores o numéricas:
-
-```{r}
-str(oli_long)
-oli_long <- oli_long %>% 
-  mutate_at(vars(year:farm), list(as.factor)) %>% 
-  mutate_at(c("tree","sev"), list(as.numeric))
-str(oli_long)
-
-ftable(xtabs(~year+loc+farm, oli_long))
-```
-
-`arrange`
-
-Ordenar columnas 
-
-```{r}
-oli_long %>% 
-  arrange(loc, year, farm, tree) %>% 
-  print(n=30)
-```
-
-Luego de haber chequeado los tipos de datos con `str()` agregamos al archivo "datos_curso.RData" los nuevos archivos "_long", así quedan disponibles rápidamente para las siguientes etapas
-
-```{r}
-save(soja, canola, mani, olivo, soja_long, can_long, oli_long, 
-     file="data/datos_curso.RData")
-```
-
 * Creación de nuevas variables (a partir de las existentes)
 
 ![](fig/dplyr_mutate_new.png)
 
-Muchas variables biológicas no cumplen con los supuestos de las pruebas estadísticas  paramétricas: no se distribuyen normalmente. Dos transformaciones son mayormente sugeridas para los porcentajes: 
-
-* Transformación Arcsine o logit
-
 ```{r}
 soja_long %>% 
-  select(study:yield) %>% 
+  select(trt, yield) %>% 
   filter(fungic %in% c("ZZ_CHECK","CZM[1]")) %>% 
-  mutate(sev_arc = asin(sqrt(sev/100)),
-         sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
-         yield_tn = yield/1000) 
+  mutate(yield_tn = yield/1000) 
 
+# sev_arc = asin(sqrt(sev/100)),
+# sev_logit =  car::logit(sev, percents=TRUE),# log(sev/100/(1-sev/100)), #  
 # browseURL("http://strata.uga.edu/8370/rtips/proportions.html")
 ```
 
@@ -221,3 +207,25 @@ soja_long %>%
 ```
 
 > Calculen el rendimiento mínimo y máximo por fungicida
+
+* Conversión de tipos de variables:
+
+```{r}
+str(oli_long)
+oli_long <- oli_long %>% 
+  mutate_at(vars(year:farm), list(as.factor)) %>% 
+  mutate_at(c("tree","sev"), list(as.numeric))
+str(oli_long)
+
+ftable(xtabs(~year+loc+farm, oli_long))
+```
+
+`arrange`
+
+Ordenar columnas 
+
+```{r}
+oli_long %>% 
+  arrange(loc, year, farm, tree) %>% 
+  print(n=30)
+```

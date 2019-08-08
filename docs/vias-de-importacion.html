@@ -233,8 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>Seleccionan “import dataset”<br />
 </li>
-<li>Configuran las opciones de importación y copian el código generado y dan import
-(es aconsejable que peguen el código en el script de la sesión)</li>
+<li>Configuran las opciones de importación y copian el código generado y dan import</li>
 </ul>
 <p>O bien desde código del script:</p>
 <ul>
@@ -244,6 +243,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Importar soja_mancha.xlsx, nombrándolo “soja”
 Importar can_phoma.xlsx, nombrándolo “canola”</p>
 </blockquote>
+<p>Importemos los datos “crudos” (planillas de campo). Via clicks y pegamos los codigos auto-generados en nuestro script</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja.xls&quot;</span>)
+canola &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/canola_maculas.xlsx&quot;</span>)
+olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/olivo_xylella.xls&quot;</span>)
+
+<span class="kw">save</span>(soja, canola, olivo, <span class="dt">file=</span><span class="st">&quot;data/datos_crudos.RData&quot;</span>)</code></pre>
 <p>Dataset <strong>canola_phoma</strong></p>
 <p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
 <p>Dataset <strong>soja_mancha</strong></p>
@@ -304,10 +310,6 @@ dat</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
 <p>Para traerlos nuevamente al entorno de la sesión:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
-<ul>
-<li>Exportar datasets</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(dat, <span class="st">&quot;./data/dat.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre>
 </div>
             </section>
 
