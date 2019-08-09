@@ -11,7 +11,7 @@ library(tidyverse)
 
 # Manipular fechas {#fechas}
 
-Saber manipular variables de tipo fechas resulta de gran practicidad debido a que, como investigadores del área de ciencias agrarias / biológicas, lidiamos constantemente con el tiempo en nuestros experimentos. Aprovechar las nuevas funciones de los paquetes de R que permiten realizar cálculos o gráficas variables de tipo fechas nos optimizará nuestro trabajo cotidiano ya que nos evitará tener que realizar cálculos intermedios para convertir las fechas a días, ya que R hará ese trabajo invisiblemente (y sin errores).    
+Saber manipular variables de tipo fechas resulta de gran practicidad debido a que, como investigadores del área de ciencias agrarias / biológicas, lidiamos constantemente con el tiempo en nuestros experimentos. Aprovechar las nuevas funciones de los paquetes de R que permiten realizar cálculos o graficar variables de tipo fechas nos optimizará nuestro trabajo cotidiano ya que nos evitará tener que realizar cálculos intermedios para convertir las fechas a días, ya que R hará ese trabajo invisiblemente (y sin errores).    
 
 A continuación haremos una demostración simple de cómo operar con fechas involucrando a variables meteorológicas y de fenología de cultivos.
 
