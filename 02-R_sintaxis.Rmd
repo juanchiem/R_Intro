@@ -104,7 +104,7 @@ round(4.3478, digits=3)  # ceiling(4.3478) floor(4.3478)
 
 ## Funciones 
 
-Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son básicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente
+Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son básicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente:
 
 ```{r}
 nombre_funcion <- function(arg_1, arg_2, ...) {
