@@ -326,6 +326,7 @@ text_tab4 <- data.frame(
 
 ```
 
+* Más [hotkeys]("https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts")
 
 ```{r shortcuts, tidy=FALSE, eval=TRUE, echo = FALSE}
 knitr::kable(text_tab4, caption = 'Algunos atajos comúnmente usados', booktabs = TRUE) %>% 
