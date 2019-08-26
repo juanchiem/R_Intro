@@ -222,10 +222,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Vías de importación</h2>
 <p>Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.</p>
 <p>Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos).</p>
-<p>Desde el menu de contenidos de esta página (izquierda - abajo), entrar a “datasets” y bajar los archivos Excel a importar:</p>
-<center>
-<img src="fig/github_data.png" />
-</center>
+<ul>
+<li>Importamos los datos del curso:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">usethis<span class="op">::</span><span class="kw">use_zip</span>(
+  <span class="st">&quot;https://github.com/juanchiem/R_Intro/raw/master/data/data.zip&quot;</span>)</code></pre>
 <p>La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión:</p>
 <ul>
 <li>Buscan el archivo a importar en el explorador de archivos del panel multipropósito de RStudio</li>
@@ -239,10 +240,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Archivos Excel</li>
 </ul>
-<blockquote>
-<p>Importar soja_mancha.xlsx, nombrándolo “soja”
-Importar can_phoma.xlsx, nombrándolo “canola”</p>
-</blockquote>
 <p>Importemos los datos “crudos” (planillas de campo). Via clicks y pegamos los códigos auto-generados en nuestro script</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
 soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja.xls&quot;</span>)

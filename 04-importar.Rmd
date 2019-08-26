@@ -71,11 +71,13 @@ Son múltiples las necesidades y vías de importación de datos a nuestro entorn
 
 Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos). 
 
-Desde el menu de contenidos de esta página (izquierda - abajo), entrar a "datasets" y bajar los archivos Excel a importar:
+- Importamos los datos del curso:
 
-<center>
-![](fig/github_data.png) 
-</center>
+```{r}
+usethis::use_zip(
+  "https://github.com/juanchiem/R_Intro/raw/master/data/data.zip")
+```
+
 
 La forma más rápida es vía clicks de mouse en el panel de entorno de la sesión: 
 
@@ -87,9 +89,6 @@ La forma más rápida es vía clicks de mouse en el panel de entorno de la sesi�
 O bien desde código del script:
     
 * Archivos Excel 
-
-> Importar soja_mancha.xlsx, nombrándolo "soja"
-> Importar can_phoma.xlsx, nombrándolo "canola"
 
 Importemos los datos "crudos" (planillas de campo). Via clicks y pegamos los códigos auto-generados en nuestro script 
 
