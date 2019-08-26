@@ -197,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="links-de-interes.html"><a href="links-de-interes.html"><i class="fa fa-check"></i><b>10</b> Links de interés</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/juanchiem/R_Intro/tree/master/data" target="blank">Datasets</a></li>
+<li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
 <li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Vías de importación</h2>
 <p>Son múltiples las necesidades y vías de importación de datos a nuestro entorno de sesión de R.</p>
 <p>Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos pueden estar guardados en formato .xlsx (planillas tradicionales) o .csv (texto separado con comas, mucho más livianos).</p>
-<p>Desde el menu de contenidos de esta página (izquierda - abajo), entrar a “datasets” y bajar los archivos excel a importar:</p>
+<p>Desde el menu de contenidos de esta página (izquierda - abajo), entrar a “datasets” y bajar los archivos Excel a importar:</p>
 <center>
 <img src="fig/github_data.png" />
 </center>
@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Importar soja_mancha.xlsx, nombrándolo “soja”
 Importar can_phoma.xlsx, nombrándolo “canola”</p>
 </blockquote>
-<p>Importemos los datos “crudos” (planillas de campo). Via clicks y pegamos los codigos auto-generados en nuestro script</p>
+<p>Importemos los datos “crudos” (planillas de campo). Via clicks y pegamos los códigos auto-generados en nuestro script</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
 soja &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/soja.xls&quot;</span>)
 canola &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/canola_maculas.xlsx&quot;</span>)
@@ -251,7 +251,7 @@ olivo &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span cla
 <p>Dataset <strong>olivo_xylella</strong></p>
 <p>Datos simulados de muestreos de severidad de xylella en localidades productoras de olivo en Córdoba y La Rioja.</p>
 <p>Dataset <strong>canola_phoma</strong></p>
-<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo termico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
+<p>Experimento de canola conducido en Balcarce, donde fueron testeados 10 fungicidas (mas un control sin protección con fungicida) con 3 bloques en que se registró el progreso de manchas foliares de <em>Phoma lingam</em> a través del tiempo (tiempo térmico desde la detección de la primera mancha), y la severidad del consiguiente cancro desarrollado en la base del tallo.</p>
 <ul>
 <li>Archivos de texto .csv</li>
 </ul>
@@ -294,7 +294,7 @@ dat</code></pre>
 <ul>
 <li>Colección de datos en archivo .RData</li>
 </ul>
-<p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberían tenerse rpidamente disponibles todos los objetos creados en días previos, los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde éste.</p>
+<p>Muchas veces en una misma sesión se generan nuevos datasets a partir de uno importado. Al reiniciar una sesión deberían tenerse rápidamente disponibles todos los objetos creados en días previos, los que pueden recopilarse en un archivo de múltiples objetos “.RData” e importarse directamente desde éste.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(soja, canola, <span class="dt">file=</span><span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
 <p>Para traerlos nuevamente al entorno de la sesión:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/soja_canola.RData&quot;</span>)</code></pre>
