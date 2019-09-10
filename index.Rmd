@@ -1,5 +1,5 @@
 --- 
-title: "Aplicaciones de R en Agronomía"
+title: "Exploración, manipulación y visualización de datos con tidyverse"
 author: ""
 output: bookdown::gitbook
 site: bookdown::bookdown_site
