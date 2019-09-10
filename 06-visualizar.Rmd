@@ -28,7 +28,7 @@ El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) tiene una fl
 
 ## Ambas variables contínuas
 
-```{r}
+```{r, eval=T}
 library(tidyverse)
 ```
 
@@ -54,7 +54,7 @@ Ejemplos:
     size
     
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x = Sepal.Length, y = Petal.Length))
 ```
@@ -63,26 +63,26 @@ iris %>%
 
 Objetos geométricos. Son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La [lista de "geoms"](https://ggplot2.tidyverse.org/reference/#section-layer-geoms) aumenta día a día.  
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x=Sepal.Length, y=Petal.Length)) + 
   geom_point()
 ```
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x=Sepal.Length, y=Petal.Length)) + 
   geom_point(aes(color = Species))
 ```
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x=Sepal.Length, y=Petal.Length)) + 
   geom_point(aes(color = Species))+ 
   geom_smooth()
 ```
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x = Sepal.Length, y = Petal.Length, 
              color = Species)) + 
@@ -94,7 +94,7 @@ iris %>%
 
 Las facetas o “facets” permiten dividir el mismo gráfico en múltiples paneles asociados a los niveles de un factor.
 
-```{r}
+```{r, eval=T}
 p <- iris %>% 
   ggplot(aes(x = Sepal.Length, y = Petal.Length)) + 
   geom_point()+
@@ -107,14 +107,13 @@ p
 
 Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw().
 
-```{r}
+```{r, eval=T}
 p + theme_bw()
 ```
 
-
 Si deseamos explorar las distribuciones de las variables podemos optar por un histograma o por diagramas de densidad.
 
-```{r}
+```{r, eval=T}
 cowplot::plot_grid(
 iris %>% 
   ggplot(aes(Petal.Length, fill=Species)) +
@@ -148,7 +147,7 @@ The full data may suggest different conclusions from the summary statistics. The
 A continuación presentamos algunas opciones gráficas que surgen de la  combinación de medidas de posición y de dispersión.
 
 
-```{r, eval=FALSE}
+```{r, eval=T}
 #Aprovechamos para customizar el `theme` a nuestro gusto y agregar algunos detalles:
 p0 <- iris %>% 
   ggplot(aes(x=Species, y=Sepal.Length)) +
@@ -158,16 +157,14 @@ p0 <- iris %>%
 
 ### Observaciones + media / mediana
 
-```{r}
-p1 <-iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p1 <-p0 + 
   geom_point(shape = 1, alpha=0.2)+
   stat_summary(fun.y = mean,  #median
                fun.ymin= mean,
                fun.ymax = mean,
                geom = "point", 
                size = 2)+
-  theme_light(base_size = 10)+
   ggtitle("Observaciones (points) & media")
 
 p1
@@ -178,32 +175,27 @@ p1
 #                  )
 ```
 
-```{r}
-p2 <- iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p2 <- p0 + 
   geom_jitter(width = 0.2, alpha=0.2)+
   stat_summary(fun.y = mean,  #median
                fun.ymin= mean,
                fun.ymax = mean,
                geom = "crossbar", 
                size = 0.5)+
-  theme_light(base_size = 10)+
   ggtitle("Observaciones (jitter) & media")
 p2
-
 ```
 
 
 ### Barplot + SE
 
-```{r}
-p3 <-iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p3 <-p0 + 
   # geom_bar(stat="identity") +
   stat_summary(fun.y=mean, position=position_dodge(width=0.95),geom="bar",
                colour="black",fill="grey90")+
   stat_summary(fun.data=mean_cl_normal, geom="errorbar", width=0.2) + 
-    theme_light(base_size = 10)+
 ggtitle("Barplot & SEM")
   # geom_text(data= let, aes(label = M, x= trt, y=1, hjust=0.5),size = 4)
 p3
@@ -211,42 +203,35 @@ p3
 
 ### Box-plot 
 
-```{r}
-p4 <-iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p4 <-p0 + 
   geom_boxplot(fill = "grey90") +
-  theme_light(base_size = 10)+
   ggtitle("Boxplot & mean") 
 p4
 ```
 
 ### Violin plot
 
-```{r}
-p5 <-iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p5 <-p0 + 
   geom_violin(trim=FALSE,fill = "grey90")+
-  theme_light(base_size = 10)+
   ggtitle("Violin plot")
 p5 
 ```
 
 ### Media & dispersión
 
-```{r}
-p6 <-iris %>% 
-  ggplot(aes(x=Species, y=Sepal.Length)) + 
+```{r, eval=T}
+p6 <-p0 + 
   stat_summary(fun.y="mean", geom="point", size=2)+
   stat_summary(fun.data = mean_se, geom = "errorbar", width=0.2)+
   stat_summary(fun.data= mean_sdl, geom = "errorbar", color="red", width=0.2)+
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", color="blue", width=0.2)+
-  theme_light(base_size = 10)+
   ggtitle("Media + SE (negro) / SD (rojo) / 95% CI (negro)")
 p6
 ```
 
-
-```{r, eval=FALSE}
+```{r, eval=T, fig.width = 9, fig.height = 6}
 cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, nrow = 2)
 ```
 
@@ -255,9 +240,11 @@ cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, nrow = 2)
 Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [Sitio oficial](https://forcats.tidyverse.org/)- 
 [machete](http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf) 
 
-```{r}
+```{r, eval=T}
 library(forcats) 
+```
 
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x = Species,y = Sepal.Width)) + 
   geom_boxplot()
@@ -267,7 +254,7 @@ iris %>%
 
 A veces queremos forzar los niveles según nuestro interés, por ejemplo, queremos posicionar al tratamiento control al inicio o al final.
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x = fct_relevel(Species, c("virginica", "setosa", "versicolor")), 
              y = Sepal.Width)) + 
@@ -278,7 +265,7 @@ iris %>%
 
 Cuando queremos ver el orden de los tratamientos rankeados según la variable.
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(x = fct_reorder(Species, Sepal.Width, fun=median), #.desc=TRUE 
              y = Sepal.Width)) + 
@@ -291,7 +278,7 @@ iris %>%
 
 Asociado a `mutate`, cuando deseamos modificar el nombre de los niveles. 
 
-```{r}
+```{r, eval=T}
 iris %>% 
   mutate(species_new = 
            # `nombre_nuevo` = "nombre_original" 
@@ -305,7 +292,7 @@ iris %>%
 
 O queremos generar un nuevo vector categórico a partir de una variable pre-existente.
 
-```{r}
+```{r, eval=T}
 iris %>% 
   mutate(sepal_categ = 
            case_when(
@@ -320,95 +307,22 @@ iris %>%
 `fct_reorder2`
 Reordenar los nivels por su valor final cuando son graficados con otras dos variables.
 
-```{r}
+```{r, eval=T}
 iris %>% 
   ggplot(aes(Sepal.Width, 
              Sepal.Length, 
-             color = fct_reorder2(Species, Sepal.Width, Sepal.Length))) +      geom_smooth(se=F)
+             color = fct_reorder2(Species, Sepal.Width, Sepal.Length)))+
+  geom_smooth(se=F)
 ```
 
 `fct_infreq`
 
-```{r}
-starwars %>%
-  # mutate(eye_color = fct_infreq(eye_color)) %>%
-  ggplot(aes(x = eye_color)) + 
-  geom_bar() + 
-  coord_flip()
+Reorder factors levels by first appearance or frequency
+
+```{r, eval=T}
+iris %>%
+  count(Sepal.Length) %>% 
+  mutate(n=n %>% as.factor %>% fct_infreq) %>% 
+  ggplot(aes(n)) +  
+  geom_bar()
 ```
-
-## Multivariado
-
-```{r}
-library(ggplot2)
-
-corr <- round(cor(iris[,-5]), 1)
-```
-
-```{r}
-library(GGally)
-ggpairs(iris, columns = 1:4)
-ggpairs(iris, columns = 1:4, ggplot2::aes(colour=Species))
-```
-
-```{r}
-library(ggcorrplot)
-ggcorrplot(corr, p.mat = cor_pmat(iris[,-5]),
-           hc.order = TRUE, type = "lower",
-           color = c("#FC4E07", "white", "#00AFBB"),
-           outline.col = "white", lab = TRUE)
-```
-
-
-```{r}
-library(FactoMineR)
-library(factoextra)
-
-iris.pca <- PCA(iris[,-5], graph = FALSE)
-```
-
-```{r}
-fviz_pca_var(iris.pca)
-```
-
-```{r}
-fviz_pca_ind(iris.pca,
-             col.ind.sup = "blue",
-             repel = FALSE)
-```
-
-```{r}
-fviz_pca_biplot(iris.pca,
-                geom.ind = "point" # Individuals
-                )
-
-
-```
-
-```{r}
-fviz_pca_biplot(iris.pca,
-                col.ind = iris$Species, palette = "jco",
-                addEllipses = TRUE, #ellipse.type = "confidence",
-                label = "var",
-                col.var = "black", repel = TRUE,
-                legend.title = "Species")
-
-```
-
-```{r}
-fviz_pca_biplot(iris.pca,
-                # Individuals
-                geom.ind = "point",
-                fill.ind = iris$Species, col.ind = "black",
-                pointshape = 21, pointsize = 2,
-                palette = "jco",
-                addEllipses = TRUE,
-
-                # Variables
-                # alpha.var ="contrib",
-                col.var = "contrib",
-                gradient.cols = "RdYlBu",
-                legend.title = list(fill = "Species", colour = "Contribution")
-)
-```
-

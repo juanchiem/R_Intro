@@ -175,7 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
-<li class="chapter" data-level="6.4" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>6.4</b> Multivariado</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
@@ -219,78 +218,73 @@ p0 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class=
 <span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)</code></pre>
 <div id="observaciones-media-mediana" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Observaciones + media / mediana</h3>
-<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,  <span class="co">#median</span>
                <span class="dt">fun.ymin=</span> mean,
                <span class="dt">fun.ymax =</span> mean,
                <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, 
                <span class="dt">size =</span> <span class="dv">2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (points) &amp; media&quot;</span>)
 
-p1
-<span class="co"># geom_dotplot(aes(fill = Species),   # Use fill = Species here not in ggplot()</span>
+p1</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-100-1.png" width="576" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># geom_dotplot(aes(fill = Species),   # Use fill = Species here not in ggplot()</span>
 <span class="co">#                  binaxis = &quot;y&quot;,         # which axis to bin along</span>
 <span class="co">#                  binwidth = 0.1,        # Minimal difference considered diffeerent</span>
 <span class="co">#                  stackdir = &quot;center&quot;    # Centered</span>
 <span class="co">#                  )</span></code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">p2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p2 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean,  <span class="co">#median</span>
                <span class="dt">fun.ymin=</span> mean,
                <span class="dt">fun.ymax =</span> mean,
                <span class="dt">geom =</span> <span class="st">&quot;crossbar&quot;</span>, 
                <span class="dt">size =</span> <span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Observaciones (jitter) &amp; media&quot;</span>)
 p2</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-101-1.png" width="576" /></p>
 </div>
 <div id="barplot-se" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Barplot + SE</h3>
-<pre class="sourceCode r"><code class="sourceCode r">p3 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p3 &lt;-p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># geom_bar(stat=&quot;identity&quot;) +</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span>mean, <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dt">width=</span><span class="fl">0.95</span>),<span class="dt">geom=</span><span class="st">&quot;bar&quot;</span>,
                <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;grey90&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span>mean_cl_normal, <span class="dt">geom=</span><span class="st">&quot;errorbar&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="kw">ggtitle</span>(<span class="st">&quot;Barplot &amp; SEM&quot;</span>)
   <span class="co"># geom_text(data= let, aes(label = M, x= trt, y=1, hjust=0.5),size = 4)</span>
 p3</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-102-1.png" width="576" /></p>
 </div>
 <div id="box-plot" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Box-plot</h3>
-<pre class="sourceCode r"><code class="sourceCode r">p4 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p4 &lt;-p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill =</span> <span class="st">&quot;grey90&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Boxplot &amp; mean&quot;</span>) 
 p4</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-103-1.png" width="576" /></p>
 </div>
 <div id="violin-plot" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Violin plot</h3>
-<pre class="sourceCode r"><code class="sourceCode r">p5 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p5 &lt;-p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim=</span><span class="ot">FALSE</span>,<span class="dt">fill =</span> <span class="st">&quot;grey90&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Violin plot&quot;</span>)
 p5 </code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-104-1.png" width="576" /></p>
 </div>
 <div id="media-dispersion" class="section level3">
 <h3><span class="header-section-number">6.2.5</span> Media &amp; dispersión</h3>
-<pre class="sourceCode r"><code class="sourceCode r">p6 &lt;-iris <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">p6 &lt;-p0 <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span><span class="st">&quot;mean&quot;</span>, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span> mean_sdl, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_boot, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">width=</span><span class="fl">0.2</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_light</span>(<span class="dt">base_size =</span> <span class="dv">10</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Media + SE (negro) / SD (rojo) / 95% CI (negro)&quot;</span>)
 p6</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-105-1.png" width="576" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1, p2, p3, p4, p5, p6, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-106-1.png" width="864" /></p>
 </div>
 </div>
 <h3>References</h3>

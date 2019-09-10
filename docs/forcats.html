@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="comparacion-de-niveles-de-factores.html">
-<link rel="next" href="multivariado.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -175,7 +175,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
-<li class="chapter" data-level="6.4" data-path="multivariado.html"><a href="multivariado.html"><i class="fa fa-check"></i><b>6.4</b> Multivariado</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
@@ -203,24 +202,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> forcats::</h2>
 <p>Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. <a href="https://forcats.tidyverse.org/">Sitio oficial</a>-
 <a href="http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf">machete</a></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats) 
-
-iris <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats) </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species,<span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-108-1.png" width="576" /></p>
 <p><code>fct_relevel</code></p>
 <p>A veces queremos forzar los niveles según nuestro interés, por ejemplo, queremos posicionar al tratamiento control al inicio o al final.</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_relevel</span>(Species, <span class="kw">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>)), 
              <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-109-1.png" width="576" /></p>
 <p><code>fct_reorder</code></p>
 <p>Cuando queremos ver el orden de los tratamientos rankeados según la variable.</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(Species, Sepal.Width, <span class="dt">fun=</span>median), <span class="co">#.desc=TRUE </span>
              <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="co">#+</span>
-  <span class="co"># geom_jitter(position=position_jitter(0.1))+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="co">#+</span></code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-110-1.png" width="576" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># geom_jitter(position=position_jitter(0.1))+</span>
   <span class="co"># coord_flip()</span></code></pre>
 <p><code>case_when</code></p>
 <p>Asociado a <code>mutate</code>, cuando deseamos modificar el nombre de los niveles.</p>
@@ -233,6 +234,7 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">           </span><span class="co"># TRUE ~ &quot;Virginica&quot;))</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> species_new, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-111-1.png" width="576" /></p>
 <p>O queremos generar un nuevo vector categórico a partir de una variable pre-existente.</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sepal_categ =</span> 
@@ -243,26 +245,59 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>
            )) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> sepal_categ)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-112-1.png" width="576" /></p>
 <p><code>fct_reorder2</code>
 Reordenar los nivels por su valor final cuando son graficados con otras dos variables.</p>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Sepal.Width, 
              Sepal.Length, 
-             <span class="dt">color =</span> <span class="kw">fct_reorder2</span>(Species, Sepal.Width, Sepal.Length))) <span class="op">+</span><span class="st">      </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span>F)</code></pre>
+             <span class="dt">color =</span> <span class="kw">fct_reorder2</span>(Species, Sepal.Width, Sepal.Length)))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se=</span>F)</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-113-1.png" width="576" /></p>
 <p><code>fct_infreq</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">starwars <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># mutate(eye_color = fct_infreq(eye_color)) %&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> eye_color)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
+<p>Reorder factors levels by first appearance or frequency</p>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>(Sepal.Length) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n=</span>n <span class="op">%&gt;%</span><span class="st"> </span>as.factor <span class="op">%&gt;%</span><span class="st"> </span>fct_infreq) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n)) <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre>
+<p><img src="R-Intro_Juanchiem_files/figure-html/unnamed-chunk-114-1.png" width="576" /></p>
+
+<div id="refs" class="references">
+<div>
+<p>Broman, Karl W, and Kara H Woo. 2018. “Data Organization in Spreadsheets.” <em>The American Statistician</em> 72 (1): 2–10.</p>
 </div>
+<div>
+<p>Drummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal Them.” <em>British Journal of Pharmacology</em> 163 (2): 208–10. <a href="https://doi.org/10.1111/j.1476-5381.2011.01251.x">https://doi.org/10.1111/j.1476-5381.2011.01251.x</a>.</p>
+</div>
+<div>
+<p>Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” <em>Sinauer, Sunderland, Massachusetts, USA</em>.</p>
+</div>
+<div>
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7): 850–60.</p>
+</div>
+<div>
+<p>Parra-Bracamonte, Gaspar Manuel, Juan Carlos Martı́nez-González, Francisco Javier Garcı́a-Esquivel, Arnoldo González-Reyna, Florencio Briones-Encinia, and Eugenia Guadalupe Cienfuegos-Rivas. 2007. “Tendencias Genéticas Y Fenotı́picas de Caracterı́sticas de Crecimiento En El Ganado Brahman de Registro de México.” <em>Revista Cientı́fica</em> 17 (3): 262–67.</p>
+</div>
+<div>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Weissgerber, Natasa M. AND Winham, Tracey L. AND Milic. 2015. “Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm.” <em>PLOS Biology</em> 13 (4): 1–10. <a href="https://doi.org/10.1371/journal.pbio.1002128">https://doi.org/10.1371/journal.pbio.1002128</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
+</div>
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="comparacion-de-niveles-de-factores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="multivariado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comparacion-de-niveles-de-factores.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

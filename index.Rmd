@@ -13,11 +13,11 @@ github-repo: juanchiem/R_Intro
 ```{r include=FALSE}
 library(knitr)
 opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE, 
-                      eval=FALSE, 
-                      fig.width = 12,
-                      fig.height = 8)
+               warning = FALSE, 
+               message = FALSE, 
+               eval=FALSE, 
+               fig.width = 6,
+               fig.height = 4)
 
 options(width = 90)
 ```
