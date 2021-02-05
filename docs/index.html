@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Exploración, manipulación y visualización de datos con tidyverse</title>
-  <meta name="description" content="Exploración, manipulación y visualización de datos con tidyverse">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Exploración, manipulación y visualización de datos con tidyverse" />
   <meta property="og:type" content="book" />
@@ -22,23 +21,25 @@
   
   
 
-<meta name="author" content="">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="config.html">
+<link rel="next" href="01-intro.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,30 +47,34 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -78,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -129,53 +134,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R_Intro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a><ul>
-<li class="chapter" data-level="" data-path="paquetes-de-r.html"><a href="paquetes-de-r.html"><i class="fa fa-check"></i>Paquetes de R</a></li>
-<li class="chapter" data-level="" data-path="workflow-componentes.html"><a href="workflow-componentes.html"><i class="fa fa-check"></i>Workflow componentes</a></li>
-<li class="chapter" data-level="" data-path="s-o-s-.html"><a href="s-o-s-.html"><i class="fa fa-check"></i>S.O.S.</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#paquetes-de-r"><i class="fa fa-check"></i>Paquetes de R</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#workflow-componentes"><i class="fa fa-check"></i>Workflow componentes</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#s.o.s."><i class="fa fa-check"></i>S.O.S.</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sintaxis-basica.html"><a href="sintaxis-basica.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a><ul>
-<li class="chapter" data-level="2.1" data-path="calc.html"><a href="calc.html"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
-<li class="chapter" data-level="2.2" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
-<li class="chapter" data-level="2.3" data-path="tablas-resumen.html"><a href="tablas-resumen.html"><i class="fa fa-check"></i><b>2.3</b> Tablas resumen</a></li>
+<li class="chapter" data-level="2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#calc"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
+<li class="chapter" data-level="2.3" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#tablas_resumen"><i class="fa fa-check"></i><b>2.3</b> Tablas resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a><ul>
-<li class="chapter" data-level="3.1" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="3.1.2" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#numeros-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
-<li class="chapter" data-level="3.1.3" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#valores-especiales"><i class="fa fa-check"></i><b>3.1.3</b> Valores especiales</a></li>
+<li class="chapter" data-level="3" data-path="03-data_type.html"><a href="03-data_type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-data_type.html"><a href="03-data_type.html#tipos-de-datos"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-data_type.html"><a href="03-data_type.html#vectores"><i class="fa fa-check"></i><b>3.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-data_type.html"><a href="03-data_type.html#números-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-data_type.html"><a href="03-data_type.html#valores-especiales"><i class="fa fa-check"></i><b>3.1.3</b> Valores especiales</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#data_frames"><i class="fa fa-check"></i><b>3.2.1</b> Data frames</a></li>
-<li class="chapter" data-level="3.2.2" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#listas"><i class="fa fa-check"></i><b>3.2.2</b> Listas</a></li>
-<li class="chapter" data-level="3.2.3" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
-<li class="chapter" data-level="4.2" data-path="importacion-multiple.html"><a href="importacion-multiple.html"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
-<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
-<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
+<li class="chapter" data-level="3.2" data-path="03-data_type.html"><a href="03-data_type.html#estructura-de-datos"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-data_type.html"><a href="03-data_type.html#data_frames"><i class="fa fa-check"></i><b>3.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-data_type.html"><a href="03-data_type.html#listas"><i class="fa fa-check"></i><b>3.2.2</b> Listas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-data_type.html"><a href="03-data_type.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
-<li class="chapter" data-level="6.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
-<li class="chapter" data-level="6.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
-<li class="chapter" data-level="6.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
-<li class="chapter" data-level="6.2.3" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
-<li class="chapter" data-level="6.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
-<li class="chapter" data-level="6.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
+<li class="chapter" data-level="4" data-path="04-importar.html"><a href="04-importar.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-importar.html"><a href="04-importar.html#vías-de-importación"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4.2" data-path="04-importar.html"><a href="04-importar.html#importación-múltiple"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
+<li class="chapter" data-level="4.3" data-path="04-googlesheets.html"><a href="04-googlesheets.html"><i class="fa fa-check"></i><b>4.3</b> googlesheets</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
+<li class="chapter" data-level="5" data-path="05-manipular.html"><a href="05-manipular.html"><i class="fa fa-check"></i><b>5</b> Manipular</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-tidyr.html"><a href="05-tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
+<li class="chapter" data-level="5.2" data-path="05-dplyr.html"><a href="05-dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="05-dplyr.html"><a href="05-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="05-dplyr.html"><a href="05-dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="05-stringr.html"><a href="05-stringr.html"><i class="fa fa-check"></i><b>5.3</b> stringr::</a></li>
+<li class="chapter" data-level="5.4" data-path="05-lubridate.html"><a href="05-lubridate.html"><i class="fa fa-check"></i><b>5.4</b> lubridate::</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-visualizar.html"><a href="06-visualizar.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-visualizar.html"><a href="06-visualizar.html#ambas-variables-contínuas"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
+<li class="chapter" data-level="6.2" data-path="06-visualizar.html"><a href="06-visualizar.html#comparación-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="06-visualizar.html"><a href="06-visualizar.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.2.2" data-path="06-visualizar.html"><a href="06-visualizar.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.2.3" data-path="06-visualizar.html"><a href="06-visualizar.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.2.4" data-path="06-visualizar.html"><a href="06-visualizar.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.2.5" data-path="06-visualizar.html"><a href="06-visualizar.html#media-dispersión"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="06-forcats.html"><a href="06-forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
+<li class="chapter" data-level="6.4" data-path="06-mapas.html"><a href="06-mapas.html"><i class="fa fa-check"></i><b>6.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="07-referencias.html"><a href="07-referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
@@ -200,34 +221,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Exploración, manipulación y visualización de datos con tidyverse</h1>
+<p class="author"><em></em></p>
 </div>
-<div id="motivacion" class="section level1 unnumbered">
+<div id="motivación" class="section level1 unnumbered" number="">
 <h1>Motivación</h1>
 <p><img src="fig/top.jpg" width="400" height="320" align="right" alt="Cover image" /></p>
 <p><em>“Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.”</em></p>
 <div style="text-align: right">
-~ Adaptación de <span class="citation">(Ellison and Gotelli <a href="#ref-ellison2004primer">2004</a>)</span> ~
+~ Adaptación de <span class="citation">(Ellison and Gotelli <a href="#ref-ellison2004primer" role="doc-biblioref">2004</a>)</span> ~
 </div>
 <hr />
 <p>Podríamos resumir nuestro trabajo como científicos, desde la recolección de datos en el campo, hasta su divulgación a través del siguiente esquema:</p>
 <p><img src="fig/workflow.jpg" /></p>
 <div style="text-align: right">
-~ Adaptación de “R for Data Science” <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r">2016</a>)</span> ~
+~ Adaptación de “R for Data Science” <span class="citation">(Wickham and Grolemund <a href="#ref-wickham2016r" role="doc-biblioref">2016</a>)</span> ~
 </div>
 <p></br></p>
 <hr />
-<div id="objetivos" class="section level3 unnumbered">
+<div id="objetivos" class="section level3 unnumbered" number="">
 <h3>Objetivos</h3>
 <p>El curso pretende proveer herramientas de programación básicas para llevar adelante el proceso de investigación tomando como base el esquema de trabajo anterior. Para ello, usaremos datos (reales o simulados) típicos del área de Ciencias Agrarias. Importante: i) no es un curso de estadística; ii) entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguiremos siendo fitopatólogos, fisiólogos, bioquímicos, etc.; iii) maximizaremos la adopción de la filosofía <a href="https://www.tidyverse.org/">tidyverse</a>; y iv) obtendrán mayor provecho aquellas personas que se inician en R, ya que los contenidos pretenden ser de baja complejidad, posibilitando profundizar el conocimiento por los propios medios del alumno.</p>
 <hr>
 <div style="text-align: center">
-<p><b>¿Por qué R?</b> <span class="citation">(R Core Team <a href="#ref-R-base">2017</a>)</span></p>
+<p><b>¿Por qué R?</b> <span class="citation">(R Core Team <a href="#ref-R-base" role="doc-biblioref">2017</a>)</span></p>
 </div>
 <table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">1</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">1</span></span>
 </td>
 <td style="text-align:left;">
 Software libre - multiplataforma
@@ -235,7 +257,7 @@ Software libre - multiplataforma
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">2</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">2</span></span>
 </td>
 <td style="text-align:left;">
 Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estadística resulta mucho mas ameno)
@@ -243,7 +265,7 @@ Aprender un lenguaje de programación: ejercicio mental/lógica (Aprender estad�
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">3</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">3</span></span>
 </td>
 <td style="text-align:left;">
 Software actualizado y con una amplia gama de paquetes específicos (drc, agricolae, epiphy…)
@@ -251,7 +273,7 @@ Software actualizado y con una amplia gama de paquetes específicos (drc, agrico
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">4</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">4</span></span>
 </td>
 <td style="text-align:left;">
 Gran flexibilidad y elegancia de los gráficos
@@ -259,7 +281,7 @@ Gran flexibilidad y elegancia de los gráficos
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">5</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">5</span></span>
 </td>
 <td style="text-align:left;">
 Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de ciencia de datos en inglés)
@@ -267,7 +289,7 @@ Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666;text-align: c;">6</span></span>
+<span style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); display: inline-block; "><span style="     color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #666666 !important;text-align: c;">6</span></span>
 </td>
 <td style="text-align:left;">
 Programar ya no es sólo computación (CV/relevant skills)
@@ -290,30 +312,22 @@ Programar ya no es sólo computación (CV/relevant skills)
 <li>GitHub: <a href="https://github.com/juanchiem" class="uri">https://github.com/juanchiem</a></li>
 </ul></li>
 </ul>
-<p><b>Colaboradora</b></p>
-<ul>
-<li>Anabella Dinon: Docente - Investigadora :: Mejoramiento genético / Estadística y Diseño (UNMdP)
-<ul>
-<li>Email: <a href="mailto:anabella005@yahoo.com.ar">anabella005@yahoo.com.ar</a></li>
-<li>GitHub: <a href="https://github.com/anabella005" class="uri">https://github.com/anabella005</a></li>
-</ul></li>
-</ul>
 <p></br></p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br />Este obra está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Atribuição-NãoComercial-SemDerivações 4.0 Internacional</a>.</p>
 <p></br></p>
 
 </div>
 </div>
-<h3>References</h3>
+<h3>Referencias</h3>
 <div id="refs" class="references">
 <div id="ref-ellison2004primer">
 <p>Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” <em>Sinauer, Sunderland, Massachusetts, USA</em>.</p>
 </div>
-<div id="ref-wickham2016r">
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
-</div>
 <div id="ref-R-base">
 <p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-wickham2016r">
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
 </div>
 </div>
             </section>
@@ -322,30 +336,22 @@ Programar ya no es sólo computación (CV/relevant skills)
         </div>
       </div>
 
-<a href="config.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="01-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": null,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -354,6 +360,14 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/juanchiem/R_Intro/edit/master/index.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
@@ -369,9 +383,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

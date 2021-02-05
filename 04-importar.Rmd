@@ -1,15 +1,3 @@
-```{r include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      message = FALSE, 
-                      eval=FALSE, 
-                      fig.width = 12,
-                      fig.height = 8)
-options(width = 90)
-library(knitr)
-library(kableExtra)
-```
-
 # Importación de datos {#import}
 
 Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto del flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero sí aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir. 

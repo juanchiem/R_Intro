@@ -1,0 +1,40 @@
+# Manipular
+
+
+
+Muchas veces los datos que importamos ya están listos para ser explorados y analizados. Otras veces precisan ser manipulados previamente para ello. En estos casos se parte de un dataset “crudo” y se transforma hacia un dataset "analítico". 
+
+
+```r
+# library(tidyverse)
+library(readxl)
+soja <- read_excel("data/soja.xls")
+canola <- read_excel("data/canola_maculas.xlsx")
+olivo <- read_excel("data/olivo_xylella.xls")
+```
+
+
+`tidyr` y `dplyr` integran parte de la colección de paquetes de `tidyverse` y facilitan la manipulación de los data frames [@wickham2016r] 
+
+<center>
+![](fig/tidyverse-hex.png){width=600px}
+</center>
+
+Ambos paquetes utilizan el operador `%>%` (pipe, tubo en español) lo que proporciona una mejor interpretación lógica: utiliza el resultado de su lado izquierdo como primer argumento de la función del lado derecho (asemejándose a una receta de torta...)
+
+Hasta el momento hemos visto que:
+
+
+```r
+x <- c(1, 2, 3, 4)
+sqrt(sum(x))
+```
+
+Como sería su equivalente bajo la sintaxis de tidyverse? 
+
+
+```r
+library(tidyverse)
+x %>% sum %>% sqrt
+```
+

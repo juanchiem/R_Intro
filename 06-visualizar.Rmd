@@ -26,11 +26,6 @@ Algunas pruebas de ello son los siguientes links:
 
 El paquete [ggplot2](http://r4ds.had.co.nz/data-visualisation.html) tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios así como crear figuras complejas, detalladas, de alta calidad (con fines de publicaciones científicas). 
 
-## Ambas variables contínuas
-
-```{r, eval=T}
-library(tidyverse)
-```
 
 Tiene una gramática propia y la idea original es que un gráfico puede ser elaborado a partir de la combinación de capas, pudiendo tener éstas diferentes bases de datos y objetos gráficos (puntos, líneas, barras, etc).
 
@@ -53,6 +48,11 @@ Ejemplos:
       linetype
     size
     
+## Ambas variables contínuas
+
+```{r, eval=T}
+library(tidyverse)
+```
 
 ```{r, eval=T}
 iris %>% 
@@ -160,9 +160,9 @@ p0 <- iris %>%
 ```{r, eval=T}
 p1 <-p0 + 
   geom_point(shape = 1, alpha=0.2)+
-  stat_summary(fun.y = mean,  #median
-               fun.ymin= mean,
-               fun.ymax = mean,
+  stat_summary(fun= mean,  #median
+               fun.min= mean,
+               fun.max = mean,
                geom = "point", 
                size = 2)+
   ggtitle("Observaciones (points) & media")
@@ -178,9 +178,9 @@ p1
 ```{r, eval=T}
 p2 <- p0 + 
   geom_jitter(width = 0.2, alpha=0.2)+
-  stat_summary(fun.y = mean,  #median
-               fun.ymin= mean,
-               fun.ymax = mean,
+  stat_summary(fun = mean,  #median
+               fun.min= mean,
+               fun.max = mean,
                geom = "crossbar", 
                size = 0.5)+
   ggtitle("Observaciones (jitter) & media")
@@ -193,7 +193,7 @@ p2
 ```{r, eval=T}
 p3 <-p0 + 
   # geom_bar(stat="identity") +
-  stat_summary(fun.y=mean, position=position_dodge(width=0.95),geom="bar",
+  stat_summary(fun=mean, position=position_dodge(width=0.95),geom="bar",
                colour="black",fill="grey90")+
   stat_summary(fun.data=mean_cl_normal, geom="errorbar", width=0.2) + 
 ggtitle("Barplot & SEM")
@@ -223,7 +223,7 @@ p5
 
 ```{r, eval=T}
 p6 <-p0 + 
-  stat_summary(fun.y="mean", geom="point", size=2)+
+  stat_summary(fun="mean", geom="point", size=2)+
   stat_summary(fun.data = mean_se, geom = "errorbar", width=0.2)+
   stat_summary(fun.data= mean_sdl, geom = "errorbar", color="red", width=0.2)+
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", color="blue", width=0.2)+
@@ -233,96 +233,4 @@ p6
 
 ```{r, eval=T, fig.width = 9, fig.height = 6}
 cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, nrow = 2)
-```
-
-## forcats::
-
-Es un excelente aliado para manipular factores, principalmente cuando de graficar se trata. [Sitio oficial](https://forcats.tidyverse.org/)- 
-[machete](http://www.flutterbys.com.au/stats/downloads/slides/figure/factors.pdf) 
-
-```{r, eval=T}
-library(forcats) 
-```
-
-```{r, eval=T}
-iris %>% 
-  ggplot(aes(x = Species,y = Sepal.Width)) + 
-  geom_boxplot()
-```
-
-`fct_relevel`
-
-A veces queremos forzar los niveles según nuestro interés, por ejemplo, queremos posicionar al tratamiento control al inicio o al final.
-
-```{r, eval=T}
-iris %>% 
-  ggplot(aes(x = fct_relevel(Species, c("virginica", "setosa", "versicolor")), 
-             y = Sepal.Width)) + 
-  geom_boxplot()
-```
-
-`fct_reorder`
-
-Cuando queremos ver el orden de los tratamientos rankeados según la variable.
-
-```{r, eval=T}
-iris %>% 
-  ggplot(aes(x = fct_reorder(Species, Sepal.Width, fun=median), #.desc=TRUE 
-             y = Sepal.Width)) + 
-  geom_boxplot()#+
-  # geom_jitter(position=position_jitter(0.1))+
-  # coord_flip()
-```
-
-`case_when`
-
-Asociado a `mutate`, cuando deseamos modificar el nombre de los niveles. 
-
-```{r, eval=T}
-iris %>% 
-  mutate(species_new = 
-           # `nombre_nuevo` = "nombre_original" 
-           case_when(Species=="setosa" ~ "Setosa",
-                     Species=="versicolor" ~ "Versicolor",
-                     Species=="virginica" ~ "Virginica")) %>%
-           # TRUE ~ "Virginica"))
-  ggplot(aes(x = species_new, y = Sepal.Width)) + 
-  geom_boxplot()
-```
-
-O queremos generar un nuevo vector categórico a partir de una variable pre-existente.
-
-```{r, eval=T}
-iris %>% 
-  mutate(sepal_categ = 
-           case_when(
-             Sepal.Length > 5.5 ~ "long",
-             Sepal.Length > 5 ~ "medium",
-             TRUE ~ "short"
-           )) %>% 
-  ggplot(aes(x = Species, y = Sepal.Width, color = sepal_categ)) + 
-  geom_boxplot()
-```
-
-`fct_reorder2`
-Reordenar los nivels por su valor final cuando son graficados con otras dos variables.
-
-```{r, eval=T}
-iris %>% 
-  ggplot(aes(Sepal.Width, 
-             Sepal.Length, 
-             color = fct_reorder2(Species, Sepal.Width, Sepal.Length)))+
-  geom_smooth(se=F)
-```
-
-`fct_infreq`
-
-Reorder factors levels by first appearance or frequency
-
-```{r, eval=T}
-iris %>%
-  count(Sepal.Length) %>% 
-  mutate(n=n %>% as.factor %>% fct_infreq) %>% 
-  ggplot(aes(n)) +  
-  geom_bar()
 ```

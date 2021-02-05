@@ -1,3 +1,4 @@
+new_session: true
 book_filename: "R-Intro_Juanchiem"
 output_dir: "docs"
 language:
@@ -5,3 +6,26 @@ language:
     chapter_name: ""
     references_name: "Referencias "
 delete_merged_file: true
+
+rmd_files: [
+  "index.Rmd",
+  "01-intro.Rmd",
+  "02-R_sintaxis.Rmd",
+  "03-data_type.Rmd",
+  "04-importar.Rmd",
+  "04-googlesheets.Rmd",
+  "05-manipular.Rmd",
+  "05-tidyr.Rmd",
+  "05-dplyr.Rmd",
+  "05-stringr.Rmd",
+  "05-lubridate.Rmd",
+  "06-visualizar.Rmd",
+  "06-forcats.Rmd",
+  "06-mapas.Rmd",
+  "07-referencias.Rmd",
+
+  ]
+
+before_chapter_script: "_common.R"
+
+# https://github.com/dcl-docs/wrangle/blob/master/_bookdown.yml

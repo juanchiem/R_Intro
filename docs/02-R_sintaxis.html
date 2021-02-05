@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Sintaxis básica | Exploración, manipulación y visualización de datos con tidyverse</title>
+  <meta name="description" content="2 Sintaxis básica | Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Sintaxis básica | Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="juanchiem/R_Intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Sintaxis básica | Exploración, manipulación y visualización de datos con tidyverse" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="01-intro.html"/>
+<link rel="next" href="03-data_type.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R_Intro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#paquetes-de-r"><i class="fa fa-check"></i>Paquetes de R</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#workflow-componentes"><i class="fa fa-check"></i>Workflow componentes</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#s.o.s."><i class="fa fa-check"></i>S.O.S.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#calc"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
+<li class="chapter" data-level="2.3" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#tablas_resumen"><i class="fa fa-check"></i><b>2.3</b> Tablas resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-data_type.html"><a href="03-data_type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-data_type.html"><a href="03-data_type.html#tipos-de-datos"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-data_type.html"><a href="03-data_type.html#vectores"><i class="fa fa-check"></i><b>3.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-data_type.html"><a href="03-data_type.html#números-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-data_type.html"><a href="03-data_type.html#valores-especiales"><i class="fa fa-check"></i><b>3.1.3</b> Valores especiales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-data_type.html"><a href="03-data_type.html#estructura-de-datos"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-data_type.html"><a href="03-data_type.html#data_frames"><i class="fa fa-check"></i><b>3.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-data_type.html"><a href="03-data_type.html#listas"><i class="fa fa-check"></i><b>3.2.2</b> Listas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-data_type.html"><a href="03-data_type.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-importar.html"><a href="04-importar.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-importar.html"><a href="04-importar.html#vías-de-importación"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4.2" data-path="04-importar.html"><a href="04-importar.html#importación-múltiple"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
+<li class="chapter" data-level="4.3" data-path="04-googlesheets.html"><a href="04-googlesheets.html"><i class="fa fa-check"></i><b>4.3</b> googlesheets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-manipular.html"><a href="05-manipular.html"><i class="fa fa-check"></i><b>5</b> Manipular</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-tidyr.html"><a href="05-tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
+<li class="chapter" data-level="5.2" data-path="05-dplyr.html"><a href="05-dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="05-dplyr.html"><a href="05-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="05-dplyr.html"><a href="05-dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="05-stringr.html"><a href="05-stringr.html"><i class="fa fa-check"></i><b>5.3</b> stringr::</a></li>
+<li class="chapter" data-level="5.4" data-path="05-lubridate.html"><a href="05-lubridate.html"><i class="fa fa-check"></i><b>5.4</b> lubridate::</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-visualizar.html"><a href="06-visualizar.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-visualizar.html"><a href="06-visualizar.html#ambas-variables-contínuas"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
+<li class="chapter" data-level="6.2" data-path="06-visualizar.html"><a href="06-visualizar.html#comparación-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="06-visualizar.html"><a href="06-visualizar.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.2.2" data-path="06-visualizar.html"><a href="06-visualizar.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.2.3" data-path="06-visualizar.html"><a href="06-visualizar.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.2.4" data-path="06-visualizar.html"><a href="06-visualizar.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.2.5" data-path="06-visualizar.html"><a href="06-visualizar.html#media-dispersión"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="06-forcats.html"><a href="06-forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
+<li class="chapter" data-level="6.4" data-path="06-mapas.html"><a href="06-mapas.html"><i class="fa fa-check"></i><b>6.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="07-referencias.html"><a href="07-referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
+<li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploración, manipulación y visualización de datos con tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sintaxis-básica" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Sintaxis básica</h1>
+<p>La sintaxis en R es muy similar a la de otros lenguajes de programación como JAVA o C. Las normas básicas que definen la sintaxis de R son:</p>
+<ul>
+<li>No se tienen en cuenta los espacios en blanco: podemos o no dejar espacios para que el código se pueda ordenar de forma adecuada y poder entenderse.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="02-R_sintaxis.html#cb2-1"></a><span class="kw">plot</span>(pressur e)</span>
+<span id="cb2-2"><a href="02-R_sintaxis.html#cb2-2"></a><span class="kw">plot</span>( pressure )</span></code></pre></div>
+<ul>
+<li>Se distinguen las mayúsculas y minúsculas (“case sensitive”): para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="02-R_sintaxis.html#cb3-1"></a>LETTERS</span>
+<span id="cb3-2"><a href="02-R_sintaxis.html#cb3-2"></a>letters</span></code></pre></div>
+<ul>
+<li>Se pueden incluir comentarios: como vimos anteriormente los comentarios se utilizan para añadir información en el código.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="02-R_sintaxis.html#cb4-1"></a><span class="kw">plot</span>(pressur e) <span class="co"># da error</span></span>
+<span id="cb4-2"><a href="02-R_sintaxis.html#cb4-2"></a></span>
+<span id="cb4-3"><a href="02-R_sintaxis.html#cb4-3"></a><span class="co"># grafico press vs temp</span></span>
+<span id="cb4-4"><a href="02-R_sintaxis.html#cb4-4"></a><span class="kw">plot</span>(pressure)</span>
+<span id="cb4-5"><a href="02-R_sintaxis.html#cb4-5"></a></span>
+<span id="cb4-6"><a href="02-R_sintaxis.html#cb4-6"></a><span class="kw">plot</span>(pressure, <span class="co"># grafico press vs temp</span></span>
+<span id="cb4-7"><a href="02-R_sintaxis.html#cb4-7"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="co"># cambio el tipo de puntos vacios a puntos llenos </span></span>
+<span id="cb4-8"><a href="02-R_sintaxis.html#cb4-8"></a>     <span class="dt">col=</span> <span class="st">&quot;blue&quot;</span> <span class="co"># uso color azul para rellenarlos  </span></span>
+<span id="cb4-9"><a href="02-R_sintaxis.html#cb4-9"></a>     )</span></code></pre></div>
+<ul>
+<li>No es necesario terminar cada sentencia con el carácter de punto y coma (;): en la mayoría de lenguajes de programación, es obligatorio terminar cada sentencia con este carácter. En cambio, en R podemos o no terminar de esta forma.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="02-R_sintaxis.html#cb5-1"></a>pressure; <span class="kw">plot</span>(pressure)</span></code></pre></div>
+<div id="calc" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> R calculadora</h2>
+<p>Ver <a href="02-R_sintaxis.html#tablas_resumen">tablas resumen</a> de operadores aritméticos y lógicos (al final del capítulo)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="02-R_sintaxis.html#cb6-1"></a><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span></span>
+<span id="cb6-2"><a href="02-R_sintaxis.html#cb6-2"></a><span class="dv">4</span> <span class="op">-</span><span class="st"> </span></span>
+<span id="cb6-3"><a href="02-R_sintaxis.html#cb6-3"></a><span class="st">  </span><span class="dv">3</span> <span class="op">*</span></span>
+<span id="cb6-4"><a href="02-R_sintaxis.html#cb6-4"></a><span class="st">  </span><span class="dv">1</span></span>
+<span id="cb6-5"><a href="02-R_sintaxis.html#cb6-5"></a><span class="co"># 4%1</span></span>
+<span id="cb6-6"><a href="02-R_sintaxis.html#cb6-6"></a><span class="dv">4</span><span class="op">&gt;</span><span class="dv">3</span></span>
+<span id="cb6-7"><a href="02-R_sintaxis.html#cb6-7"></a><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb6-8"><a href="02-R_sintaxis.html#cb6-8"></a><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb6-9"><a href="02-R_sintaxis.html#cb6-9"></a></span>
+<span id="cb6-10"><a href="02-R_sintaxis.html#cb6-10"></a>(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> ) <span class="op">*</span><span class="st"> </span><span class="dv">7</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">36</span><span class="op">/</span><span class="dv">18</span>)<span class="op">^</span><span class="dv">3</span></span></code></pre></div>
+<p>(Recordando de la primaria el orden de las operaciones:
+paréntesis &lt; exponentes (potencia o raiz) &lt; productos/división &lt; suma/resta)</p>
+<blockquote>
+<p>Ej 1: ¿Está bien la siguiente expresión? <code>5 + 3 * 10 %/% 3 == 15</code>
+Agregue paréntesis para que la expresión dé un resultado contrario.</p>
+</blockquote>
+<p></br></p>
+<div class="rmdnote">
+<p>
+<strong>Rendimiento de trigo en función de la severidad de fusariosis de la espiga</strong> <span class="citation"><span class="citation">(Madden and Paul <a href="#ref-madden2009assessing" role="doc-biblioref">2009</a>)</span></span>
+</p>
+<p>
+El intercepto de la regresión lineal estimada (rendimiento de trigo primaveral libre de enfermedad) fue de 4.10 t/ha, y la pendiente fue de 0.038 t/ha por unidad de aumento de la severidad de la enfermedad. El tipo de trigo tuvo efecto significativo en el intercepto pero no en la pendiente: trigo inviernal tuvo, en promedio, 0.85 t/ha mas rendimiento que el trigo primaveral.
+</p>
+</div>
+<blockquote>
+<p>¿Cuánto sería el rendimiento de ambas variedades de trigo con 0, 1, 10 o 20% de severidad de la enfermedad?</p>
+</blockquote>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="02-R_sintaxis.html#cb7-1"></a>rto_prim_sev &lt;-</span>
+<span id="cb7-2"><a href="02-R_sintaxis.html#cb7-2"></a>rto_prim_<span class="dv">0</span> &lt;-</span>
+<span id="cb7-3"><a href="02-R_sintaxis.html#cb7-3"></a></span>
+<span id="cb7-4"><a href="02-R_sintaxis.html#cb7-4"></a>rto_inv_sev &lt;-</span>
+<span id="cb7-5"><a href="02-R_sintaxis.html#cb7-5"></a>rto_inv_<span class="dv">0</span> &lt;-</span></code></pre></div>
+<p></br></p>
+<p>Algunos cálculos</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="02-R_sintaxis.html#cb8-1"></a><span class="kw">sqrt</span>(<span class="dv">3</span>) <span class="co"># 3^0.5</span></span>
+<span id="cb8-2"><a href="02-R_sintaxis.html#cb8-2"></a><span class="dv">2</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="co"># ^(1/n)</span></span>
+<span id="cb8-3"><a href="02-R_sintaxis.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="02-R_sintaxis.html#cb8-4"></a><span class="kw">log</span>(<span class="dv">10</span>)</span>
+<span id="cb8-5"><a href="02-R_sintaxis.html#cb8-5"></a><span class="kw">log</span>(<span class="dv">10</span>, <span class="dt">base=</span><span class="dv">10</span>)</span>
+<span id="cb8-6"><a href="02-R_sintaxis.html#cb8-6"></a></span>
+<span id="cb8-7"><a href="02-R_sintaxis.html#cb8-7"></a><span class="kw">round</span>(<span class="fl">4.3478</span>, <span class="dt">digits=</span><span class="dv">3</span>)  <span class="co"># ceiling(4.3478) floor(4.3478)</span></span></code></pre></div>
+<blockquote>
+<p>que pasa cuando redondeamos a 0 digitos 4.5 y 3.5?</p>
+</blockquote>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="02-R_sintaxis.html#cb9-1"></a><span class="co"># Ej 1: 5 + (3 * 10) %/% 3 == 15</span></span>
+<span id="cb9-2"><a href="02-R_sintaxis.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="02-R_sintaxis.html#cb9-3"></a><span class="co"># Ej 2: 4.1 - 0.038 * 10; (1-(3.72/4.1))*100</span></span></code></pre></div>
+</div>
+<div id="funciones" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Funciones</h2>
+<p>Una función es un conjunto de sentencias organizadas conjuntamente para realizar una tarea específica. Los paquetes son básicamente un set de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones. La sintaxis básica de una función de R es la siguiente:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="02-R_sintaxis.html#cb10-1"></a>nombre_funcion &lt;-<span class="st"> </span><span class="cf">function</span>(arg_<span class="dv">1</span>, arg_<span class="dv">2</span>, ...) {</span>
+<span id="cb10-2"><a href="02-R_sintaxis.html#cb10-2"></a>   cuerpo_de_la_función</span>
+<span id="cb10-3"><a href="02-R_sintaxis.html#cb10-3"></a>  </span>
+<span id="cb10-4"><a href="02-R_sintaxis.html#cb10-4"></a>   output <span class="co"># return()</span></span>
+<span id="cb10-5"><a href="02-R_sintaxis.html#cb10-5"></a>}</span></code></pre></div>
+<p>Las diferentes partes de una función son:</p>
+<ul>
+<li><p>Nombre de la función: este es el nombre real de la función. Se almacena en el entorno R como un objeto con este nombre. Generalmente, el nombre es intuitivo, por ejemplo, <code>mean</code> es la función que calcula la media, <code>round</code> es la funión que redondea un número.</p></li>
+<li><p>Argumentos: Un argumento es un marcador de posición. Cuando se invoca una función, se pasa un valor al argumento. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.</p></li>
+<li><p>Cuerpo de la función: el cuerpo de la función contiene una colección de sentencias que definen lo que hace la función.</p></li>
+<li><p>Valor de retorno: el valor de retorno de una función es la última expresión en el cuerpo de la función que se va a evaluar.</p></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="02-R_sintaxis.html#cb11-1"></a>numb &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span></span>
+<span id="cb11-2"><a href="02-R_sintaxis.html#cb11-2"></a><span class="kw">round</span>(<span class="kw">mean</span>(numb)) <span class="co"># floor() # ceiling() trunc() </span></span></code></pre></div>
+<p>Si es necesario, el usuario puede generar sus propias funciones.</p>
+<blockquote>
+<p>Al reportar los resultados de los tests de comparaciones de medias obtenidas luego del análisis de varianza es interesante agregar en los párrafos de los resultados cuánto se incrementó o se redujo un tratamiento en referencia a un testigo en términos porcentuales. Genere una función que permita realizar estos cálculos. Tome como ayuda este <a href="https://www.calculatorsoup.com/calculators/algebra/percent-change-calculator.php">link</a> para cotejar sus resultados.</p>
+</blockquote>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="02-R_sintaxis.html#cb12-1"></a>perc_change &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2) </span>
+<span id="cb12-2"><a href="02-R_sintaxis.html#cb12-2"></a>{</span>
+<span id="cb12-3"><a href="02-R_sintaxis.html#cb12-3"></a>  pc &lt;-<span class="st"> </span>(v2<span class="op">-</span>v1)<span class="op">/</span>v1 <span class="op">*</span><span class="dv">100</span></span>
+<span id="cb12-4"><a href="02-R_sintaxis.html#cb12-4"></a>  <span class="kw">return</span>(<span class="kw">paste</span>(pc, <span class="st">&quot;%&quot;</span>))</span>
+<span id="cb12-5"><a href="02-R_sintaxis.html#cb12-5"></a>}</span>
+<span id="cb12-6"><a href="02-R_sintaxis.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="02-R_sintaxis.html#cb12-7"></a><span class="kw">perc_change</span>(<span class="dv">80</span>, <span class="dv">90</span>)</span></code></pre></div>
+<blockquote>
+<p>es lo mismo aumentar de 0.5 a 1 que de 1 a 1.5?</p>
+</blockquote>
+<blockquote>
+<p>cuánto es la diferencia porcentual de tener 20% de fusarium en un trigo primaveral en relación a uno invernal?</p>
+</blockquote>
+<p>Claro que en la inmensa comunidad de usuario de R, ya hubo alguien que incluyó esa función en un paquete…</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="02-R_sintaxis.html#cb13-1"></a><span class="co">#percentua relative differences </span></span>
+<span id="cb13-2"><a href="02-R_sintaxis.html#cb13-2"></a>quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">80</span>,<span class="dv">90</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb13-3"><a href="02-R_sintaxis.html#cb13-3"></a><span class="dv">80</span><span class="op">+</span>(<span class="dv">80</span><span class="op">*</span><span class="fl">0.125</span>)</span>
+<span id="cb13-4"><a href="02-R_sintaxis.html#cb13-4"></a>quantmod<span class="op">::</span><span class="kw">Delt</span>(<span class="dv">90</span>,<span class="dv">80</span>)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb13-5"><a href="02-R_sintaxis.html#cb13-5"></a><span class="dv">90</span><span class="op">+</span>(<span class="op">-</span><span class="dv">90</span><span class="op">*</span><span class="fl">0.1111111</span>) </span></code></pre></div>
+<p>Otro ejemplo de la utilidad de estas funciones “user-defined” es la preparación de soluciones partiendo de un stock o fuente a diluir, usando la equivalencia:</p>
+<p><span class="math display">\[c1 * v1 = c2 * v2\]</span></p>
+<p>Obviamente tanto <span class="math inline">\(c1;c2\)</span>, como <span class="math inline">\(v1;v2\)</span>, están en las mismas unidades. Para nuestra comodidad <span class="math inline">\(c=\%\)</span> y <span class="math inline">\(v=ml\)</span>.</p>
+<blockquote>
+<p>Nos indican que preparemos 500 ml de una solución desinfectante de NaOCl al 5%, partiendo de una lavandina concentrada (55 g Cl/L). La pregunta que del millón es: ¿qué volumen de lavandina preciso? Por lo tanto debemos despejar <em>V1</em> de la equivalencia, o sea, sería nuestro output de nuestra función.</p>
+</blockquote>
+<p>Empecemos los cálculos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Si el NaOCl tiene un peso molecular de 74.5 g y el Cl pesa 35.5 g, este representa el <em>47.6%</em> de la molécula de NaOCl. Por lo tanto podemos decir que la lavandina comercial posee x NaOCl = Cl/0.476 en 1 L, o bien x NaOCl % = x NaoCl/10</p></li>
+<li><p>Si deseamos preparar 500 ml de NaOCl al 5% para la desinfección (2.5% de Cl activo, aprox.) debemos obtener:
+<span class="math display">\[v1 = (c2*v2)/c1\]</span></p></li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="02-R_sintaxis.html#cb14-1"></a>vol_lavandina  &lt;-<span class="st"> </span><span class="cf">function</span>(c1, c2, v2){</span>
+<span id="cb14-2"><a href="02-R_sintaxis.html#cb14-2"></a>  c1 &lt;-<span class="st"> </span>(c1<span class="op">/</span><span class="fl">0.476</span>)<span class="op">/</span><span class="dv">10</span> <span class="co"># pasar g/L a %</span></span>
+<span id="cb14-3"><a href="02-R_sintaxis.html#cb14-3"></a>  c2 &lt;-<span class="st"> </span>c2            <span class="co"># concentración que me pide el protocolo (%)</span></span>
+<span id="cb14-4"><a href="02-R_sintaxis.html#cb14-4"></a>  v2 &lt;-<span class="st"> </span>v2            <span class="co"># volumen de la solución que deseo (ml)</span></span>
+<span id="cb14-5"><a href="02-R_sintaxis.html#cb14-5"></a>  v1 &lt;-<span class="st"> </span>(c2<span class="op">*</span>v2)<span class="op">/</span>c1    <span class="co"># aliquota que debo usar</span></span>
+<span id="cb14-6"><a href="02-R_sintaxis.html#cb14-6"></a>  </span>
+<span id="cb14-7"><a href="02-R_sintaxis.html#cb14-7"></a>  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Coloque&quot;</span>, </span>
+<span id="cb14-8"><a href="02-R_sintaxis.html#cb14-8"></a>               <span class="kw">round</span>(v1,<span class="dv">1</span>), </span>
+<span id="cb14-9"><a href="02-R_sintaxis.html#cb14-9"></a>               <span class="st">&quot;ml de lavandina y enrase con agua hasta completar&quot;</span>, </span>
+<span id="cb14-10"><a href="02-R_sintaxis.html#cb14-10"></a>               v2, <span class="st">&quot;ml&quot;</span>))</span>
+<span id="cb14-11"><a href="02-R_sintaxis.html#cb14-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="02-R_sintaxis.html#cb15-1"></a><span class="kw">vol_lavandina</span>(<span class="dv">55</span>, <span class="co"># g cloro / L (Lavandina)</span></span>
+<span id="cb15-2"><a href="02-R_sintaxis.html#cb15-2"></a>          <span class="dv">5</span>, <span class="co"># % ClONa deseada</span></span>
+<span id="cb15-3"><a href="02-R_sintaxis.html#cb15-3"></a>          <span class="dv">500</span>) <span class="co"># ml de la solución deseada</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;Coloque 216.4 ml de lavandina y enrase con agua hasta completar 500 ml&quot;</code></pre>
+<blockquote>
+<p>Ej: Generar funciones que automaticen los cálculos de:</br>
+i) Pasar un muestreo de espigas/m a kg/ha (inputs: metros muestreados, ancho de hileras, espigas obtenidas, peso seco medio de espiga)</br>
+ii) Rendimiento de soja ajustado 13,5% humedad (inputs: tamaño de parcela; kg de soja; humedad)</br>
+iii) Grados celsius a fahrenheit </br>
+iv) Cálculo de dosis de urea a fertilizar en un trigo al macollaje (inputs: N disponible, rinde objetivo, N/Ton de grano, % de N en fertilizante) </br>
+v) cálculo de kg de semilla a sembrar (inputs: densidad objetivo; P1000; PG%)</p>
+</blockquote>
+</div>
+<div id="tablas_resumen" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Tablas resumen</h2>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:op-arit">Table 2.1: </span>Operadores aritméticos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>x + y</code>
+</td>
+<td style="text-align:left;">
+Suma de x e y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x - y</code>
+</td>
+<td style="text-align:left;">
+Resta de x menos y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x * y</code>
+</td>
+<td style="text-align:left;">
+Multiplicación
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x / y</code>
+</td>
+<td style="text-align:left;">
+División de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x %/% y</code>
+</td>
+<td style="text-align:left;">
+Parte entera de la división de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x %% y</code>
+</td>
+<td style="text-align:left;">
+Resto de la división de x por y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>x ^ y</code>
+</td>
+<td style="text-align:left;">
+x elevado a y-ésima potencia (equivalente a **)
+</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:op-logi">Table 2.2: </span>Operadores lógicos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Prueba.lógica
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x &lt; y
+</td>
+<td style="text-align:left;">
+x menor que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &lt;= y
+</td>
+<td style="text-align:left;">
+x menor o igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &gt; y
+</td>
+<td style="text-align:left;">
+x mayor que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x &gt;= y
+</td>
+<td style="text-align:left;">
+x mayor o igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x == y
+</td>
+<td style="text-align:left;">
+x igual que y?
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+x != y
+</td>
+<td style="text-align:left;">
+x diferente que y?
+</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:matem">Table 2.3: </span>Funciones matemáticas
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Operador
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>sqrt(x)</code>
+</td>
+<td style="text-align:left;">
+raiz de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>exp(y)</code>
+</td>
+<td style="text-align:left;">
+exponencial de y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>log(x)</code>
+</td>
+<td style="text-align:left;">
+logaritmo natural de x = ln
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>log10(x)</code>
+</td>
+<td style="text-align:left;">
+logaritmo base 10 de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sum(x)</code>
+</td>
+<td style="text-align:left;">
+suma todos los elementos de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>prod(x)</code>
+</td>
+<td style="text-align:left;">
+producto de todos los elementos de x
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>round(x, n)</code>
+</td>
+<td style="text-align:left;">
+redondea x a n-digitos
+</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<ul>
+<li>Más <a href="%22https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts%22">hotkeys</a></li>
+</ul>
+<table class="table" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:shortcuts">Table 2.4: </span>Algunos atajos comúnmente usados
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Teclas
+</th>
+<th style="text-align:left;">
+Detalle
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Alt+Shift+K
+</td>
+<td style="text-align:left;">
+panel de todos los atajos
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+Z / Ctrl+Shift+Z
+</td>
+<td style="text-align:left;">
+undo/redo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alt+ -
+</td>
+<td style="text-align:left;">
+&lt;-
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+r
+</td>
+<td style="text-align:left;">
+corre la línea/bloque completa de código
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+l
+</td>
+<td style="text-align:left;">
+limpia la consola
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+Shift+c
+</td>
+<td style="text-align:left;">
+silencia la línea de código
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+Shift+d
+</td>
+<td style="text-align:left;">
+duplica la línea de código
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ctrl+i
+</td>
+<td style="text-align:left;">
+indexa el bloque de código
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<h3>Referencias</h3>
+<div id="refs" class="references">
+<div id="ref-madden2009assessing">
+<p>Madden, LV, and PA Paul. 2009. “Assessing Heterogeneity in the Relationship Between Wheat Yield and Fusarium Head Blight Intensity Using Random-Coefficient Mixed Models.” <em>Phytopathology</em> 99 (7): 850–60.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="01-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="03-data_type.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juanchiem/R_Intro/edit/master/02-R_sintaxis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

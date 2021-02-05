@@ -1,0 +1,108 @@
+# Configuraciones básicas {#config}
+
+<b>Instalación de programas</b>
+
+1° [R](https://cran.r-project.org/) 
+
+2° [R Studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
+
+<img src="fig/rstudio.png" width="678" style="display: block; margin: auto;" />
+
+RStudio es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, o sea es la interface por medio de la cual se ejecutan acciones en R. 
+
+Configuraciones iniciales (sugeridas). Dirigirse a la sección "Tools/Global options"
+
+<center>
+![](fig/rstudio_config1.png)
+
+![](fig/rstudio_config2.png)
+
+![](fig/rstudio_config3.png)
+</center>
+
+
+## Paquetes de R {-}
+
+Un paquete es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R. Hay paquetes oficiales (disponibles en CRAN) y no oficiales (disponibles a través de plataformas como github). 
+
+_Currently, the CRAN package repository features 14620 available packages. (Julio 2019)_ 
+
+
+La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios (ver novedades en:
+[r weekly](https://rweekly.org/); 
+[r-bloggers](https://www.r-bloggers.com/);
+[revolution analytics](https://blog.revolutionanalytics.com/); 
+[RStudio blog](https://blog.rstudio.com/categories/packages)) 
+
+En la web de R se puede consultar la [lista de paquetes disponibles](https://cran.r-project.org/web/packages/available_packages_by_date.html), y en la sección [Task Views](https://cran.r-project.org/web/views/) se puede consultar los mismos ordenados por áreas de aplicación.
+
+Existen varias vias de instalación de paquetes:
+
+</br>
+
+<center>
+![](fig/install.packages.png) 
+</center>
+
+</br>
+
+- Via CRAN (Comprehensive R Archive Network): `install.packages("nombre_del_paquete")` O simplemente en el panel de paquetes.  
+- Paquetes no oficiales via Github: `devtools::install_github("rstudio/epiphy")` 
+</br>
+
+<div class="rmdcomment">
+<p>Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión</p>
+</div>
+
+`library(nombre-del-paquete)`
+
+> instale el paquete `gsheet`, explique brevemente para que sirve y ejecute alguna de sus funciones
+
+## Workflow componentes {-}
+
+Varios tipos de archivos serán creados y usados durante una sesión de R: 
+
+* datos crudos (hojas de cálculo) - datos manipulados
+* scripts
+* gráficos
+* reportes de resultados
+
+Una sesión de análisis debe poder ser retomada en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender qué quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...   
+Una forma práctica de administrar todos los objetos que una sesión es crear un proyecto de R para cada sesión. 
+
+![](fig/workflow_completo.png) 
+
+Una sugerencia es generar subcarpetas en nuestras máquinas, en preferencia dentro de dropbox / google drive. Esto no sólo mantendrá nuestro trabajo resguardado de posibles pérdidas (backup), retomarlo desde diferentes máquinas (trabajo/casa), sino que también le permitirá compartir en tiempo real sus avances con los colaboradores de su trabajo.
+
+<center>
+![](fig/folders.png) 
+</center>
+
+> Crear una carpeta Intro_R en sus máquinas
+
+> Crear una nuevo proyecto "Intro_R.Rproj"
+
+> Crear un script "1_intro"
+
+¿Dónde se guardaría el siguiente gráfico?
+
+
+```r
+plot(pressure)
+```
+
+## S.O.S. {-}
+
+- En el mismo R: `?sd`;  `??sd`; F1 sobre la función 
+
+- Googlear: *r generate a sequence of uppercase letters* 
+
+- [Stack Overflow](https://stackoverflow.com/) / [RStudio](https://community.rstudio.com/): comunidades altamente activas por los usuarios de R y otros lenguajes de programación.
+
+- [R Mailing Lists](https://www.r-project.org/mail.html): especificas de cada área de la ciencia. 
+
+**¿Cómo hacer una buena pregunta en las comunidades?**
+
+- Ser conciso pero gentil...
+
+- Ser reproducible: su código debe correr en cualquier máquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y versión de R en caso necesario) `library(reprex)`. 

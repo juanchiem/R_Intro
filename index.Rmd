@@ -107,11 +107,7 @@ gsub("<thead>.*</thead>", "", x)
     + Twitter: [juanchiem](https://twitter.com/juanchiem)
     + GitHub: <https://github.com/juanchiem>
 
-<b>Colaboradora</b>
 
-* Anabella Dinon: Docente - Investigadora :: Mejoramiento genético / Estadística y Diseño (UNMdP)
-    + Email: [anabella005@yahoo.com.ar](mailto:anabella005@yahoo.com.ar)
-    + GitHub: <https://github.com/anabella005>
     
 
 </br>

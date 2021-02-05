@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.4 Mapas | Exploración, manipulación y visualización de datos con tidyverse</title>
+  <meta name="description" content="6.4 Mapas | Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.4 Mapas | Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="juanchiem/R_Intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.4 Mapas | Exploración, manipulación y visualización de datos con tidyverse" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="06-forcats.html"/>
+<link rel="next" href="07-referencias.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R_Intro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#paquetes-de-r"><i class="fa fa-check"></i>Paquetes de R</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#workflow-componentes"><i class="fa fa-check"></i>Workflow componentes</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html#s.o.s."><i class="fa fa-check"></i>S.O.S.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#calc"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
+<li class="chapter" data-level="2.2" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#funciones"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
+<li class="chapter" data-level="2.3" data-path="02-R_sintaxis.html"><a href="02-R_sintaxis.html#tablas_resumen"><i class="fa fa-check"></i><b>2.3</b> Tablas resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-data_type.html"><a href="03-data_type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-data_type.html"><a href="03-data_type.html#tipos-de-datos"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-data_type.html"><a href="03-data_type.html#vectores"><i class="fa fa-check"></i><b>3.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-data_type.html"><a href="03-data_type.html#números-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-data_type.html"><a href="03-data_type.html#valores-especiales"><i class="fa fa-check"></i><b>3.1.3</b> Valores especiales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-data_type.html"><a href="03-data_type.html#estructura-de-datos"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-data_type.html"><a href="03-data_type.html#data_frames"><i class="fa fa-check"></i><b>3.2.1</b> Data frames</a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-data_type.html"><a href="03-data_type.html#listas"><i class="fa fa-check"></i><b>3.2.2</b> Listas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-data_type.html"><a href="03-data_type.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-importar.html"><a href="04-importar.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-importar.html"><a href="04-importar.html#vías-de-importación"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4.2" data-path="04-importar.html"><a href="04-importar.html#importación-múltiple"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
+<li class="chapter" data-level="4.3" data-path="04-googlesheets.html"><a href="04-googlesheets.html"><i class="fa fa-check"></i><b>4.3</b> googlesheets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-manipular.html"><a href="05-manipular.html"><i class="fa fa-check"></i><b>5</b> Manipular</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-tidyr.html"><a href="05-tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
+<li class="chapter" data-level="5.2" data-path="05-dplyr.html"><a href="05-dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="05-dplyr.html"><a href="05-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
+<li class="chapter" data-level="5.2.2" data-path="05-dplyr.html"><a href="05-dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="05-stringr.html"><a href="05-stringr.html"><i class="fa fa-check"></i><b>5.3</b> stringr::</a></li>
+<li class="chapter" data-level="5.4" data-path="05-lubridate.html"><a href="05-lubridate.html"><i class="fa fa-check"></i><b>5.4</b> lubridate::</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-visualizar.html"><a href="06-visualizar.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-visualizar.html"><a href="06-visualizar.html#ambas-variables-contínuas"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
+<li class="chapter" data-level="6.2" data-path="06-visualizar.html"><a href="06-visualizar.html#comparación-de-niveles-de-factores"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="06-visualizar.html"><a href="06-visualizar.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.2.2" data-path="06-visualizar.html"><a href="06-visualizar.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.2.3" data-path="06-visualizar.html"><a href="06-visualizar.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.2.4" data-path="06-visualizar.html"><a href="06-visualizar.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.2.5" data-path="06-visualizar.html"><a href="06-visualizar.html#media-dispersión"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="06-forcats.html"><a href="06-forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
+<li class="chapter" data-level="6.4" data-path="06-mapas.html"><a href="06-mapas.html"><i class="fa fa-check"></i><b>6.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="07-referencias.html"><a href="07-referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/juanchiem/R_Intro/blob/master/data/data.zip?raw=true" target="blank">Datasets</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/" target="blank">Cheatsheets</a></li>
+<li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploración, manipulación y visualización de datos con tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mapas" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Mapas</h2>
+<p>Cargamos paquetes</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="06-mapas.html#cb98-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb98-2"><a href="06-mapas.html#cb98-2"></a><span class="kw">library</span>(sf)</span>
+<span id="cb98-3"><a href="06-mapas.html#cb98-3"></a><span class="co"># library(rnaturalearth)</span></span>
+<span id="cb98-4"><a href="06-mapas.html#cb98-4"></a><span class="co"># library(&quot;rnaturalearthdata&quot;)</span></span>
+<span id="cb98-5"><a href="06-mapas.html#cb98-5"></a><span class="kw">library</span>(georefar)</span></code></pre></div>
+<p>Para obtener un listado de provincias:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="06-mapas.html#cb99-1"></a><span class="kw">get_provincias</span>(<span class="dt">orden =</span> <span class="st">&quot;id&quot;</span>, <span class="dt">max =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Para obtener un listado de departamentos:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="06-mapas.html#cb100-1"></a><span class="kw">get_departamentos</span>(<span class="dt">provincia =</span> <span class="st">&quot;Corrientes&quot;</span>, <span class="dt">orden =</span> <span class="st">&quot;id&quot;</span>, <span class="dt">max =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Para obtener un listado de municipios:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="06-mapas.html#cb101-1"></a>muni &lt;-<span class="st"> </span><span class="kw">get_municipios</span>(<span class="dt">provincia =</span> <span class="st">&quot;Buenos Aires&quot;</span>)</span></code></pre></div>
+<p>Para obtener un listado de localidades:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="06-mapas.html#cb102-1"></a><span class="kw">get_localidades</span>(<span class="dt">provincia =</span> <span class="st">&quot;Chubut&quot;</span>, <span class="dt">max =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Para obtener la ubicacion de un punto (reverse-geocoding):</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="06-mapas.html#cb103-1"></a><span class="kw">get_ubicacion</span>(<span class="op">-</span><span class="fl">31.6515236</span>,<span class="op">-</span><span class="fl">64.4358794</span>)</span></code></pre></div>
+<p>Provincias de Argentina</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="06-mapas.html#cb104-1"></a><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</span>
+<span id="cb104-2"><a href="06-mapas.html#cb104-2"></a>arg =<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw">ne_states</span>(<span class="dt">country =</span> <span class="st">&#39;argentina&#39;</span>, <span class="dt">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb104-3"><a href="06-mapas.html#cb104-3"></a></span>
+<span id="cb104-4"><a href="06-mapas.html#cb104-4"></a>map_arg &lt;-<span class="st"> </span>arg <span class="op">%&gt;%</span></span>
+<span id="cb104-5"><a href="06-mapas.html#cb104-5"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb104-6"><a href="06-mapas.html#cb104-6"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb104-7"><a href="06-mapas.html#cb104-7"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(longitude, latitude, <span class="dt">label =</span> name_fr), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>)</span></code></pre></div>
+<p>Random points</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="06-mapas.html#cb105-1"></a>puntos &lt;-<span class="st"> </span><span class="kw">st_sample</span>(arg, <span class="dv">30</span>) <span class="co"># arg[1:3, ], 6)</span></span>
+<span id="cb105-2"><a href="06-mapas.html#cb105-2"></a>puntos_coords &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">st_geometry</span>(puntos)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-3"><a href="06-mapas.html#cb105-3"></a><span class="st">    </span><span class="kw">matrix</span>(<span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-4"><a href="06-mapas.html#cb105-4"></a><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-5"><a href="06-mapas.html#cb105-5"></a><span class="st">    </span><span class="kw">setNames</span>(<span class="kw">c</span>(<span class="st">&quot;lon&quot;</span>,<span class="st">&quot;lat&quot;</span>))</span>
+<span id="cb105-6"><a href="06-mapas.html#cb105-6"></a></span>
+<span id="cb105-7"><a href="06-mapas.html#cb105-7"></a>map_arg<span class="op">+</span></span>
+<span id="cb105-8"><a href="06-mapas.html#cb105-8"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data =</span> puntos_coords,</span>
+<span id="cb105-9"><a href="06-mapas.html#cb105-9"></a>             <span class="kw">aes</span>(<span class="dt">x =</span> lon,</span>
+<span id="cb105-10"><a href="06-mapas.html#cb105-10"></a>                 <span class="dt">y =</span> lat),</span>
+<span id="cb105-11"><a href="06-mapas.html#cb105-11"></a>             <span class="dt">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Tunneo fino</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="06-mapas.html#cb106-1"></a><span class="co"># library(googlesheets4)</span></span>
+<span id="cb106-2"><a href="06-mapas.html#cb106-2"></a><span class="co"># googlesheets4::gs4_auth() </span></span>
+<span id="cb106-3"><a href="06-mapas.html#cb106-3"></a><span class="co"># dat &lt;- gs4_find(&quot;localidades_map&quot;) %&gt;% range_read()</span></span>
+<span id="cb106-4"><a href="06-mapas.html#cb106-4"></a></span>
+<span id="cb106-5"><a href="06-mapas.html#cb106-5"></a>dat &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tribble</span>(</span>
+<span id="cb106-6"><a href="06-mapas.html#cb106-6"></a>  <span class="op">~</span>state,                     <span class="op">~</span>name,         <span class="op">~</span>lat,         <span class="op">~</span>lon,</span>
+<span id="cb106-7"><a href="06-mapas.html#cb106-7"></a>  <span class="st">&quot;Buenos Aires&quot;</span>,          <span class="st">&quot;Junin&quot;</span>, <span class="st">&quot;-34.593922&quot;</span>, <span class="st">&quot;-60.946446&quot;</span>,</span>
+<span id="cb106-8"><a href="06-mapas.html#cb106-8"></a>  <span class="st">&quot;Santiago del Estero&quot;</span>,     <span class="st">&quot;Santiago del Estero&quot;</span>, <span class="st">&quot;-27.784444&quot;</span>, <span class="st">&quot;-64.266944&quot;</span>,</span>
+<span id="cb106-9"><a href="06-mapas.html#cb106-9"></a>  <span class="st">&quot;Córdoba&quot;</span>,                 <span class="st">&quot;Córdoba&quot;</span>, <span class="st">&quot;-31.416667&quot;</span>, <span class="st">&quot;-64.183333&quot;</span>,</span>
+<span id="cb106-10"><a href="06-mapas.html#cb106-10"></a>  <span class="st">&quot;Córdoba&quot;</span>, <span class="st">&quot;San José de la Quintana&quot;</span>, <span class="st">&quot;-31.807335&quot;</span>, <span class="st">&quot;-64.416866&quot;</span>,</span>
+<span id="cb106-11"><a href="06-mapas.html#cb106-11"></a>  <span class="st">&quot;Mendoza&quot;</span>,              <span class="st">&quot;San Rafael&quot;</span>,   <span class="st">&quot;-34.6175&quot;</span>, <span class="st">&quot;-68.335556&quot;</span>,</span>
+<span id="cb106-12"><a href="06-mapas.html#cb106-12"></a>  <span class="st">&quot;Misiones&quot;</span>,              <span class="st">&quot;Cerro Azul&quot;</span>, <span class="st">&quot;-27.633535&quot;</span>, <span class="st">&quot;-55.497152&quot;</span></span>
+<span id="cb106-13"><a href="06-mapas.html#cb106-13"></a>)</span>
+<span id="cb106-14"><a href="06-mapas.html#cb106-14"></a></span>
+<span id="cb106-15"><a href="06-mapas.html#cb106-15"></a>sites &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb106-16"><a href="06-mapas.html#cb106-16"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(lat<span class="op">:</span>lon), as.character) <span class="op">%&gt;%</span></span>
+<span id="cb106-17"><a href="06-mapas.html#cb106-17"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(lat<span class="op">:</span>lon), as.numeric) <span class="op">%&gt;%</span></span>
+<span id="cb106-18"><a href="06-mapas.html#cb106-18"></a><span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;lon&quot;</span>,<span class="st">&quot;lat&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb106-19"><a href="06-mapas.html#cb106-19"></a><span class="st">  </span><span class="kw">st_set_crs</span>(<span class="dv">4326</span>) <span class="op">%&gt;%</span></span>
+<span id="cb106-20"><a href="06-mapas.html#cb106-20"></a><span class="st">  </span><span class="kw">st_transform</span>(<span class="dv">3857</span>)</span>
+<span id="cb106-21"><a href="06-mapas.html#cb106-21"></a></span>
+<span id="cb106-22"><a href="06-mapas.html#cb106-22"></a>p1 &lt;-<span class="st"> </span>arg <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb106-23"><a href="06-mapas.html#cb106-23"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb106-24"><a href="06-mapas.html#cb106-24"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb106-25"><a href="06-mapas.html#cb106-25"></a><span class="st">  </span><span class="kw">geom_rect</span>(<span class="dt">xmin=</span> <span class="dv">-64</span>, <span class="dt">ymin=</span> <span class="dv">-40</span>, <span class="dt">xmax=</span> <span class="dv">-56</span>, <span class="dt">ymax=</span> <span class="dv">-30</span>, </span>
+<span id="cb106-26"><a href="06-mapas.html#cb106-26"></a>            <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb106-27"><a href="06-mapas.html#cb106-27"></a><span class="st">  </span><span class="kw">theme_void</span>()</span>
+<span id="cb106-28"><a href="06-mapas.html#cb106-28"></a>p1</span>
+<span id="cb106-29"><a href="06-mapas.html#cb106-29"></a></span>
+<span id="cb106-30"><a href="06-mapas.html#cb106-30"></a>p2 &lt;-<span class="st"> </span>arg <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb106-31"><a href="06-mapas.html#cb106-31"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb106-32"><a href="06-mapas.html#cb106-32"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb106-33"><a href="06-mapas.html#cb106-33"></a><span class="st">  </span>ggrepel<span class="op">::</span><span class="kw">geom_label_repel</span>(<span class="dt">data =</span> sites,</span>
+<span id="cb106-34"><a href="06-mapas.html#cb106-34"></a>                            <span class="kw">aes</span>(<span class="dt">label =</span> name, </span>
+<span id="cb106-35"><a href="06-mapas.html#cb106-35"></a>                                <span class="dt">geometry =</span> geometry),</span>
+<span id="cb106-36"><a href="06-mapas.html#cb106-36"></a>                            <span class="dt">stat =</span> <span class="st">&quot;sf_coordinates&quot;</span>,</span>
+<span id="cb106-37"><a href="06-mapas.html#cb106-37"></a>                            <span class="dt">min.segment.length =</span> <span class="dv">0</span>)<span class="op">+</span></span>
+<span id="cb106-38"><a href="06-mapas.html#cb106-38"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data=</span>sites, <span class="dt">size=</span><span class="fl">1.5</span>)<span class="op">+</span></span>
+<span id="cb106-39"><a href="06-mapas.html#cb106-39"></a><span class="st">  </span>ggspatial<span class="op">::</span><span class="kw">annotation_scale</span>(<span class="dt">location =</span> <span class="st">&quot;bl&quot;</span>,</span>
+<span id="cb106-40"><a href="06-mapas.html#cb106-40"></a>                              <span class="dt">width_hint =</span> <span class="fl">0.3</span>,</span>
+<span id="cb106-41"><a href="06-mapas.html#cb106-41"></a>                              <span class="dt">pad_x =</span> <span class="kw">unit</span>(<span class="fl">1.5</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb106-42"><a href="06-mapas.html#cb106-42"></a>                              <span class="dt">pad_y =</span> <span class="kw">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;in&quot;</span>)) <span class="op">+</span></span>
+<span id="cb106-43"><a href="06-mapas.html#cb106-43"></a><span class="st">  </span>ggspatial<span class="op">::</span><span class="kw">annotation_north_arrow</span>(<span class="dt">location =</span> <span class="st">&quot;bl&quot;</span>,</span>
+<span id="cb106-44"><a href="06-mapas.html#cb106-44"></a>                                    <span class="dt">which_north =</span> <span class="st">&quot;true&quot;</span>,</span>
+<span id="cb106-45"><a href="06-mapas.html#cb106-45"></a>                                    <span class="dt">pad_x =</span> <span class="kw">unit</span>(<span class="fl">4.4</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb106-46"><a href="06-mapas.html#cb106-46"></a>                                    <span class="dt">pad_y =</span> <span class="kw">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;in&quot;</span>),</span>
+<span id="cb106-47"><a href="06-mapas.html#cb106-47"></a>                                    <span class="dt">style =</span> ggspatial<span class="op">::</span>north_arrow_fancy_orienteering) <span class="op">+</span></span>
+<span id="cb106-48"><a href="06-mapas.html#cb106-48"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="kw">st_crs</span>(<span class="dv">4326</span>),</span>
+<span id="cb106-49"><a href="06-mapas.html#cb106-49"></a>           <span class="co">#          xlim = c(-64, -56.5), </span></span>
+<span id="cb106-50"><a href="06-mapas.html#cb106-50"></a>           <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="dv">-22</span>),</span>
+<span id="cb106-51"><a href="06-mapas.html#cb106-51"></a>           <span class="dt">expand =</span> <span class="ot">TRUE</span>)<span class="op">+</span></span>
+<span id="cb106-52"><a href="06-mapas.html#cb106-52"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>)<span class="op">+</span></span>
+<span id="cb106-53"><a href="06-mapas.html#cb106-53"></a><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></span>
+<span id="cb106-54"><a href="06-mapas.html#cb106-54"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.margin=</span><span class="kw">margin</span>(<span class="dt">r=</span><span class="dv">3</span>, <span class="dt">unit=</span><span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb106-55"><a href="06-mapas.html#cb106-55"></a>p2</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="06-mapas.html#cb107-1"></a><span class="kw">ggdraw</span>(p2) <span class="op">+</span></span>
+<span id="cb107-2"><a href="06-mapas.html#cb107-2"></a><span class="st">  </span><span class="kw">draw_plot</span>(p1, <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">height =</span> <span class="fl">0.5</span>, <span class="dt">x =</span> <span class="fl">0.8</span>, <span class="dt">y =</span> <span class="fl">0.48</span>) </span>
+<span id="cb107-3"><a href="06-mapas.html#cb107-3"></a></span>
+<span id="cb107-4"><a href="06-mapas.html#cb107-4"></a><span class="kw">ggsave</span>(<span class="dt">w=</span><span class="dv">85</span>, <span class="dt">h=</span><span class="dv">100</span>, <span class="dt">units=</span><span class="st">&quot;mm&quot;</span>, <span class="dt">scale=</span><span class="dv">2</span>, <span class="dt">dpi=</span><span class="dv">150</span>, <span class="st">&quot;map2.tiff&quot;</span>)</span></code></pre></div>
+<p>Mapa de prevalencia de enfermedades</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="06-mapas.html#cb108-1"></a><span class="kw">library</span>(polAr)</span>
+<span id="cb108-2"><a href="06-mapas.html#cb108-2"></a>BSAS &lt;-<span class="st"> </span><span class="kw">get_geo</span>(<span class="dt">geo =</span>  <span class="st">&quot;BUENOS AIRES&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="06-mapas.html#cb109-1"></a>BSAS<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_bbox</span>()</span>
+<span id="cb109-2"><a href="06-mapas.html#cb109-2"></a>SEBA &lt;-<span class="st"> </span><span class="kw">st_crop</span>(BSAS, </span>
+<span id="cb109-3"><a href="06-mapas.html#cb109-3"></a>                <span class="dt">xmin =</span> <span class="dv">-60</span>, <span class="dt">xmax =</span> <span class="dv">-57</span>, </span>
+<span id="cb109-4"><a href="06-mapas.html#cb109-4"></a>                <span class="dt">ymin =</span> <span class="dv">-39</span>, <span class="dt">ymax =</span> <span class="dv">-37</span>)</span>
+<span id="cb109-5"><a href="06-mapas.html#cb109-5"></a><span class="co"># SEBA %&gt;%</span></span>
+<span id="cb109-6"><a href="06-mapas.html#cb109-6"></a><span class="co">#   ggplot() +</span></span>
+<span id="cb109-7"><a href="06-mapas.html#cb109-7"></a><span class="co">#   geom_sf()</span></span>
+<span id="cb109-8"><a href="06-mapas.html#cb109-8"></a></span>
+<span id="cb109-9"><a href="06-mapas.html#cb109-9"></a>cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-10"><a href="06-mapas.html#cb109-10"></a><span class="st">  </span>as_tibble <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-11"><a href="06-mapas.html#cb109-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">preval_2015 =</span> <span class="kw">rnorm</span>(<span class="dv">18</span>, <span class="dv">30</span>, <span class="dv">10</span>),</span>
+<span id="cb109-12"><a href="06-mapas.html#cb109-12"></a>         <span class="dt">preval_2016 =</span> preval_<span class="dv">2015</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>) ,</span>
+<span id="cb109-13"><a href="06-mapas.html#cb109-13"></a>         <span class="dt">preval_2017 =</span> preval_<span class="dv">2016</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>),</span>
+<span id="cb109-14"><a href="06-mapas.html#cb109-14"></a>         <span class="dt">preval_2018 =</span> preval_<span class="dv">2017</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-15"><a href="06-mapas.html#cb109-15"></a><span class="st">  </span><span class="kw">pivot_longer</span>(preval_<span class="dv">2015</span><span class="op">:</span>preval_<span class="dv">2018</span>, </span>
+<span id="cb109-16"><a href="06-mapas.html#cb109-16"></a>         <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;prevalencia&quot;</span>, </span>
+<span id="cb109-17"><a href="06-mapas.html#cb109-17"></a>         <span class="dt">names_prefix =</span> <span class="st">&quot;preval_&quot;</span>) </span>
+<span id="cb109-18"><a href="06-mapas.html#cb109-18"></a>cancro</span>
+<span id="cb109-19"><a href="06-mapas.html#cb109-19"></a></span>
+<span id="cb109-20"><a href="06-mapas.html#cb109-20"></a>SEBA_cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-21"><a href="06-mapas.html#cb109-21"></a><span class="st">  </span><span class="kw">left_join</span>(cancro, <span class="dt">by=</span> <span class="st">&quot;coddepto&quot;</span>) <span class="co">#%&gt;% </span></span>
+<span id="cb109-22"><a href="06-mapas.html#cb109-22"></a></span>
+<span id="cb109-23"><a href="06-mapas.html#cb109-23"></a>SEBA_cancro <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-24"><a href="06-mapas.html#cb109-24"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb109-25"><a href="06-mapas.html#cb109-25"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data=</span>SEBA)<span class="op">+</span></span>
+<span id="cb109-26"><a href="06-mapas.html#cb109-26"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>prevalencia))<span class="op">+</span></span>
+<span id="cb109-27"><a href="06-mapas.html#cb109-27"></a><span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">midpoint =</span> <span class="dv">35</span>,</span>
+<span id="cb109-28"><a href="06-mapas.html#cb109-28"></a>                       <span class="dt">low =</span> <span class="st">&#39;green2&#39;</span>,</span>
+<span id="cb109-29"><a href="06-mapas.html#cb109-29"></a>                       <span class="dt">mid =</span> <span class="st">&#39;yellow&#39;</span>,</span>
+<span id="cb109-30"><a href="06-mapas.html#cb109-30"></a>                       <span class="dt">high =</span> <span class="st">&#39;red3&#39;</span>,</span>
+<span id="cb109-31"><a href="06-mapas.html#cb109-31"></a>                       <span class="dt">na.value =</span> <span class="st">&#39;gray95&#39;</span>)<span class="op">+</span></span>
+<span id="cb109-32"><a href="06-mapas.html#cb109-32"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;anio&quot;</span>)<span class="op">+</span></span>
+<span id="cb109-33"><a href="06-mapas.html#cb109-33"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolución de la prevalencia del cancro del tallo de girasol&quot;</span>,</span>
+<span id="cb109-34"><a href="06-mapas.html#cb109-34"></a>       <span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Prevalencia&quot;</span>)<span class="op">+</span></span>
+<span id="cb109-35"><a href="06-mapas.html#cb109-35"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="06-mapas.html#cb110-1"></a>fina2020 &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;https://github.com/juanchiem/agro_data/raw/master/Sitios_experimentales_2020_Juan.kml&quot;</span>)</span>
+<span id="cb110-2"><a href="06-mapas.html#cb110-2"></a>nc_centers &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(fina2020)</span>
+<span id="cb110-3"><a href="06-mapas.html#cb110-3"></a>bbox &lt;-<span class="st"> </span><span class="kw">expand_bbox</span>(<span class="kw">st_bbox</span>(nc_centers), <span class="dt">X =</span> <span class="dv">0</span>, <span class="dt">Y =</span> <span class="dv">150000</span>)</span>
+<span id="cb110-4"><a href="06-mapas.html#cb110-4"></a></span>
+<span id="cb110-5"><a href="06-mapas.html#cb110-5"></a><span class="kw">library</span>(basemapR)</span>
+<span id="cb110-6"><a href="06-mapas.html#cb110-6"></a></span>
+<span id="cb110-7"><a href="06-mapas.html#cb110-7"></a>BSAS <span class="op">%&gt;%</span></span>
+<span id="cb110-8"><a href="06-mapas.html#cb110-8"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb110-9"><a href="06-mapas.html#cb110-9"></a><span class="st">  </span><span class="kw">base_map</span>(bbox, <span class="dt">increase_zoom =</span> <span class="dv">2</span>, <span class="dt">basemap =</span> <span class="st">&#39;google-terrain&#39;</span>) <span class="op">+</span></span>
+<span id="cb110-10"><a href="06-mapas.html#cb110-10"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">color=</span><span class="kw">alpha</span>(<span class="st">&quot;red&quot;</span>,<span class="fl">0.1</span>) , <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb110-11"><a href="06-mapas.html#cb110-11"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> fina2020[<span class="dv">1</span>], <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb110-12"><a href="06-mapas.html#cb110-12"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">xlim=</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">61</span>, <span class="dv">-57</span>),<span class="dt">ylim=</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">39</span>,<span class="op">-</span><span class="fl">36.5</span>))<span class="op">+</span></span>
+<span id="cb110-13"><a href="06-mapas.html#cb110-13"></a><span class="st">  </span><span class="kw">theme_void</span>()  <span class="co"># geom_sf_label(aes(label = coddepto), label.padding = unit(1, &quot;mm&quot;))</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="06-forcats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="07-referencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/juanchiem/R_Intro/edit/master/06-mapas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

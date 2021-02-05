@@ -1,6 +1,6 @@
 bookdown::gitbook:
   css: style.css
-  split_by: section
+  split_by: rmd
   config:
     toc:
       before: |
@@ -11,3 +11,5 @@ bookdown::gitbook:
         <li><a href="https://bookdown.org/" target="blank">Creado con Bookdown</a></li>
 
     edit: https://github.com/juanchiem/R_Intro/edit/master/%s
+    download: null
+    sharing: null

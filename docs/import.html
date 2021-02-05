@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Exploración, manipulación y visualización de datos con tidyverse</title>
-  <meta name="description" content="Exploración, manipulación y visualización de datos con tidyverse">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Importación de datos | Exploración, manipulación y visualización de datos con tidyverse</title>
+  <meta name="description" content="4 Importación de datos | Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta property="og:title" content="4 Importación de datos | Exploración, manipulación y visualización de datos con tidyverse" />
   <meta property="og:type" content="book" />
   
   
@@ -17,28 +16,30 @@
   <meta name="github-repo" content="juanchiem/R_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Exploración, manipulación y visualización de datos con tidyverse" />
+  <meta name="twitter:title" content="4 Importación de datos | Exploración, manipulación y visualización de datos con tidyverse" />
   
   
   
 
-<meta name="author" content="">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="estructura-de-datos.html">
-<link rel="next" href="vias-de-importacion.html">
+<link rel="prev" href="estructura-de-datos.html"/>
+<link rel="next" href="vías-de-importación.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,30 +47,36 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -78,9 +85,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -129,50 +136,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R_Intro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Motivación</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a><ul>
+<li class="chapter" data-level="1" data-path="config.html"><a href="config.html"><i class="fa fa-check"></i><b>1</b> Configuraciones básicas</a>
+<ul>
 <li class="chapter" data-level="" data-path="paquetes-de-r.html"><a href="paquetes-de-r.html"><i class="fa fa-check"></i>Paquetes de R</a></li>
 <li class="chapter" data-level="" data-path="workflow-componentes.html"><a href="workflow-componentes.html"><i class="fa fa-check"></i>Workflow componentes</a></li>
 <li class="chapter" data-level="" data-path="s-o-s-.html"><a href="s-o-s-.html"><i class="fa fa-check"></i>S.O.S.</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sintaxis-basica.html"><a href="sintaxis-basica.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a><ul>
+<li class="chapter" data-level="2" data-path="sintaxis-básica.html"><a href="sintaxis-básica.html"><i class="fa fa-check"></i><b>2</b> Sintaxis básica</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="calc.html"><a href="calc.html"><i class="fa fa-check"></i><b>2.1</b> R calculadora</a></li>
 <li class="chapter" data-level="2.2" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>2.2</b> Funciones</a></li>
 <li class="chapter" data-level="2.3" data-path="tablas-resumen.html"><a href="tablas-resumen.html"><i class="fa fa-check"></i><b>2.3</b> Tablas resumen</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a><ul>
-<li class="chapter" data-level="3.1" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="3" data-path="data-type.html"><a href="data-type.html"><i class="fa fa-check"></i><b>3</b> Datos: tipos y estructuras</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html"><i class="fa fa-check"></i><b>3.1</b> Tipos de datos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.1.1</b> Vectores</a></li>
-<li class="chapter" data-level="3.1.2" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#numeros-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
+<li class="chapter" data-level="3.1.2" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#números-aleatorios"><i class="fa fa-check"></i><b>3.1.2</b> Números aleatorios</a></li>
 <li class="chapter" data-level="3.1.3" data-path="tipos-de-datos.html"><a href="tipos-de-datos.html#valores-especiales"><i class="fa fa-check"></i><b>3.1.3</b> Valores especiales</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a><ul>
+<li class="chapter" data-level="3.2" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html"><i class="fa fa-check"></i><b>3.2</b> Estructura de datos</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#data_frames"><i class="fa fa-check"></i><b>3.2.1</b> Data frames</a></li>
 <li class="chapter" data-level="3.2.2" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#listas"><i class="fa fa-check"></i><b>3.2.2</b> Listas</a></li>
 <li class="chapter" data-level="3.2.3" data-path="estructura-de-datos.html"><a href="estructura-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.2.3</b> Matrices</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="vias-de-importacion.html"><a href="vias-de-importacion.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
-<li class="chapter" data-level="4.2" data-path="importacion-multiple.html"><a href="importacion-multiple.html"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
+<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Importación de datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="vías-de-importación.html"><a href="vías-de-importación.html"><i class="fa fa-check"></i><b>4.1</b> Vías de importación</a></li>
+<li class="chapter" data-level="4.2" data-path="importación-múltiple.html"><a href="importación-múltiple.html"><i class="fa fa-check"></i><b>4.2</b> Importación múltiple</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a><ul>
+<li class="chapter" data-level="5" data-path="manip.html"><a href="manip.html"><i class="fa fa-check"></i><b>5</b> Manipular</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5.1</b> tidyr::</a></li>
-<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a><ul>
+<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5.2</b> dplyr::</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.2.1</b> filter</a></li>
 <li class="chapter" data-level="5.2.2" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.2.2</b> summarise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a><ul>
-<li class="chapter" data-level="6.1" data-path="ambas-variables-continuas.html"><a href="ambas-variables-continuas.html"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
-<li class="chapter" data-level="6.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
-<li class="chapter" data-level="6.2.2" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
-<li class="chapter" data-level="6.2.3" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
-<li class="chapter" data-level="6.2.4" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
-<li class="chapter" data-level="6.2.5" data-path="comparacion-de-niveles-de-factores.html"><a href="comparacion-de-niveles-de-factores.html#media-dispersion"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
+<li class="chapter" data-level="6" data-path="explore.html"><a href="explore.html"><i class="fa fa-check"></i><b>6</b> Visualizar</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ambas-variables-contínuas.html"><a href="ambas-variables-contínuas.html"><i class="fa fa-check"></i><b>6.1</b> Ambas variables contínuas</a></li>
+<li class="chapter" data-level="6.2" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html"><i class="fa fa-check"></i><b>6.2</b> Comparación de niveles de factores</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html#observaciones-media-mediana"><i class="fa fa-check"></i><b>6.2.1</b> Observaciones + media / mediana</a></li>
+<li class="chapter" data-level="6.2.2" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html#barplot-se"><i class="fa fa-check"></i><b>6.2.2</b> Barplot + SE</a></li>
+<li class="chapter" data-level="6.2.3" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html#box-plot"><i class="fa fa-check"></i><b>6.2.3</b> Box-plot</a></li>
+<li class="chapter" data-level="6.2.4" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html#violin-plot"><i class="fa fa-check"></i><b>6.2.4</b> Violin plot</a></li>
+<li class="chapter" data-level="6.2.5" data-path="comparación-de-niveles-de-factores.html"><a href="comparación-de-niveles-de-factores.html#media-dispersión"><i class="fa fa-check"></i><b>6.2.5</b> Media &amp; dispersión</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="forcats.html"><a href="forcats.html"><i class="fa fa-check"></i><b>6.3</b> forcats::</a></li>
 </ul></li>
@@ -198,18 +216,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import" class="section level1">
+<div id="import" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Importación de datos</h1>
 <p>Luego del planteo de hipótesis y planificación experimental, la toma de datos es una etapa determinante para el resto del flujo de trabajo. Un buen diseño experimental, con correcta toma de datos de calidad, no garantizan, pero sí aumentan significativamente las probabilidades que nuestro trabajo goce de buen porvenir.</p>
 <p>Conocer las distintas etapas del workflow de investigación confiere la gran ventaja de poder pensar nuestras acciones como parte de un todo, y no como algo aislado. Por ejemplo, una planilla de campo de papel de formato apaisado (“wide”) puede que aún no esté lista para ser analizada, pero este formato confiere ciertas ventajas prácticas (confección de planilla de papel, control interno de las evaluaciones, pasaje a planilla electrónica). Por lo tanto en una siguiente etapa luego de la importación al entorno de nuestra sesión, puede que necesitemos re-estructurarla y asi poder continuar hacia la exploración.</p>
 <p>Podemos tomar esta <a href="https://docs.google.com/spreadsheets/d/1cyn8WLKgaQWpOkc9YG_YpSEOgGTmKIg8W7GQwsLBnK8/edit?ouid=111258596380074362084&amp;usp=sheets_home&amp;ths=true">planilla modelo</a>, para entender cómo es una planilla para ser analizada en R.</p>
-<p>Veamos <strong>4 Principios básicos</strong> de buenas prácticas en la elaboración de planillas de datos - Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data">2018</a>)</span></p>
+<p>Veamos <strong>4 Principios básicos</strong> de buenas prácticas en la elaboración de planillas de datos - Adaptado de <span class="citation">(Broman and Woo <a href="#ref-broman2018data" role="doc-biblioref">2018</a>)</span></p>
 <p>Como regla global, y siguiendo lo ya comentado en la sección de <a href="estructura-de-datos.html#data_frames">data frames</a>, columnas (verticales) son <strong>variables</strong> y filas (horizontales) son <strong>observaciones</strong> (generalmente de unidades experimentales/sujetos individuales).</p>
 <p><strong>1 - Consistencia</strong></p>
 <p>Sean creativos al nombrar las variables: usen 3-4 letras (minúsculas) por palabra y en caso de necesitar usar “_”. No usar acentos ni ñ. Nunca dejen espacios y maximicen el ahorro de letras, siempre y cuando se justifique:</p>
 <ul>
-<li>severidad = sev
-<ul>
+<li>severidad = sev</li>
 <li>incidencia = inc</li>
 <li>rendimiento = rto</li>
 <li>hoja = hj (bien podría ser “hoja” también)</li>
@@ -218,7 +235,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>placa = placa</li>
 <li>temperatura = temp</li>
 <li>máxima = max</li>
-</ul></li>
 </ul>
 <p>En particular prefiero usar el inglés, ya que no tiene acentos ni caracteres especiales.
 Siempre, siempre, identifiquen hasta el más mínimo detalle de las unidades experimentales (placas, macetas, plantas dentro de las macetas, etc.), al final se recuperará en creces el tiempo extra inicialmente invertido en ello (stand-alone).</p>
@@ -241,7 +257,7 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…<
 <li>no hacer bordes</li>
 <li>sin negritas</li>
 <li>caracteres puros</li>
-</ul> 
+</ul>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
@@ -255,16 +271,18 @@ En preferencia, llenen todas las celdas, pero siempre un solo dato por celda…<
         </div>
       </div>
 <a href="estructura-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="vias-de-importacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vías-de-importación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -272,12 +290,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -287,6 +304,14 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/juanchiem/R_Intro/edit/master/04-importar.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
@@ -302,9 +327,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
