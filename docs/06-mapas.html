@@ -320,41 +320,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mapa de prevalencia de enfermedades</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="06-mapas.html#cb108-1"></a><span class="kw">library</span>(polAr)</span>
 <span id="cb108-2"><a href="06-mapas.html#cb108-2"></a>BSAS &lt;-<span class="st"> </span><span class="kw">get_geo</span>(<span class="dt">geo =</span>  <span class="st">&quot;BUENOS AIRES&quot;</span>) </span></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="06-mapas.html#cb109-1"></a>BSAS<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_bbox</span>()</span>
-<span id="cb109-2"><a href="06-mapas.html#cb109-2"></a>SEBA &lt;-<span class="st"> </span><span class="kw">st_crop</span>(BSAS, </span>
-<span id="cb109-3"><a href="06-mapas.html#cb109-3"></a>                <span class="dt">xmin =</span> <span class="dv">-60</span>, <span class="dt">xmax =</span> <span class="dv">-57</span>, </span>
-<span id="cb109-4"><a href="06-mapas.html#cb109-4"></a>                <span class="dt">ymin =</span> <span class="dv">-39</span>, <span class="dt">ymax =</span> <span class="dv">-37</span>)</span>
-<span id="cb109-5"><a href="06-mapas.html#cb109-5"></a><span class="co"># SEBA %&gt;%</span></span>
-<span id="cb109-6"><a href="06-mapas.html#cb109-6"></a><span class="co">#   ggplot() +</span></span>
-<span id="cb109-7"><a href="06-mapas.html#cb109-7"></a><span class="co">#   geom_sf()</span></span>
-<span id="cb109-8"><a href="06-mapas.html#cb109-8"></a></span>
-<span id="cb109-9"><a href="06-mapas.html#cb109-9"></a>cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-10"><a href="06-mapas.html#cb109-10"></a><span class="st">  </span>as_tibble <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-11"><a href="06-mapas.html#cb109-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">preval_2015 =</span> <span class="kw">rnorm</span>(<span class="dv">18</span>, <span class="dv">30</span>, <span class="dv">10</span>),</span>
-<span id="cb109-12"><a href="06-mapas.html#cb109-12"></a>         <span class="dt">preval_2016 =</span> preval_<span class="dv">2015</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>) ,</span>
-<span id="cb109-13"><a href="06-mapas.html#cb109-13"></a>         <span class="dt">preval_2017 =</span> preval_<span class="dv">2016</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>),</span>
-<span id="cb109-14"><a href="06-mapas.html#cb109-14"></a>         <span class="dt">preval_2018 =</span> preval_<span class="dv">2017</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-15"><a href="06-mapas.html#cb109-15"></a><span class="st">  </span><span class="kw">pivot_longer</span>(preval_<span class="dv">2015</span><span class="op">:</span>preval_<span class="dv">2018</span>, </span>
-<span id="cb109-16"><a href="06-mapas.html#cb109-16"></a>         <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;prevalencia&quot;</span>, </span>
-<span id="cb109-17"><a href="06-mapas.html#cb109-17"></a>         <span class="dt">names_prefix =</span> <span class="st">&quot;preval_&quot;</span>) </span>
-<span id="cb109-18"><a href="06-mapas.html#cb109-18"></a>cancro</span>
-<span id="cb109-19"><a href="06-mapas.html#cb109-19"></a></span>
-<span id="cb109-20"><a href="06-mapas.html#cb109-20"></a>SEBA_cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-21"><a href="06-mapas.html#cb109-21"></a><span class="st">  </span><span class="kw">left_join</span>(cancro, <span class="dt">by=</span> <span class="st">&quot;coddepto&quot;</span>) <span class="co">#%&gt;% </span></span>
-<span id="cb109-22"><a href="06-mapas.html#cb109-22"></a></span>
-<span id="cb109-23"><a href="06-mapas.html#cb109-23"></a>SEBA_cancro <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-24"><a href="06-mapas.html#cb109-24"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb109-25"><a href="06-mapas.html#cb109-25"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data=</span>SEBA)<span class="op">+</span></span>
-<span id="cb109-26"><a href="06-mapas.html#cb109-26"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>prevalencia))<span class="op">+</span></span>
-<span id="cb109-27"><a href="06-mapas.html#cb109-27"></a><span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">midpoint =</span> <span class="dv">35</span>,</span>
-<span id="cb109-28"><a href="06-mapas.html#cb109-28"></a>                       <span class="dt">low =</span> <span class="st">&#39;green2&#39;</span>,</span>
-<span id="cb109-29"><a href="06-mapas.html#cb109-29"></a>                       <span class="dt">mid =</span> <span class="st">&#39;yellow&#39;</span>,</span>
-<span id="cb109-30"><a href="06-mapas.html#cb109-30"></a>                       <span class="dt">high =</span> <span class="st">&#39;red3&#39;</span>,</span>
-<span id="cb109-31"><a href="06-mapas.html#cb109-31"></a>                       <span class="dt">na.value =</span> <span class="st">&#39;gray95&#39;</span>)<span class="op">+</span></span>
-<span id="cb109-32"><a href="06-mapas.html#cb109-32"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;anio&quot;</span>)<span class="op">+</span></span>
-<span id="cb109-33"><a href="06-mapas.html#cb109-33"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolución de la prevalencia del cancro del tallo de girasol&quot;</span>,</span>
-<span id="cb109-34"><a href="06-mapas.html#cb109-34"></a>       <span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Prevalencia&quot;</span>)<span class="op">+</span></span>
-<span id="cb109-35"><a href="06-mapas.html#cb109-35"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="06-mapas.html#cb109-1"></a><span class="co"># https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/</span></span>
+<span id="cb109-2"><a href="06-mapas.html#cb109-2"></a>BSAS<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_bbox</span>()</span>
+<span id="cb109-3"><a href="06-mapas.html#cb109-3"></a>SEBA &lt;-<span class="st"> </span><span class="kw">st_crop</span>(BSAS, </span>
+<span id="cb109-4"><a href="06-mapas.html#cb109-4"></a>                <span class="dt">xmin =</span> <span class="dv">-60</span>, <span class="dt">xmax =</span> <span class="dv">-57</span>, </span>
+<span id="cb109-5"><a href="06-mapas.html#cb109-5"></a>                <span class="dt">ymin =</span> <span class="dv">-39</span>, <span class="dt">ymax =</span> <span class="dv">-37</span>)</span>
+<span id="cb109-6"><a href="06-mapas.html#cb109-6"></a><span class="co"># SEBA %&gt;%</span></span>
+<span id="cb109-7"><a href="06-mapas.html#cb109-7"></a><span class="co">#   ggplot() +</span></span>
+<span id="cb109-8"><a href="06-mapas.html#cb109-8"></a><span class="co">#   geom_sf()</span></span>
+<span id="cb109-9"><a href="06-mapas.html#cb109-9"></a></span>
+<span id="cb109-10"><a href="06-mapas.html#cb109-10"></a>cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-11"><a href="06-mapas.html#cb109-11"></a><span class="st">  </span>as_tibble <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-12"><a href="06-mapas.html#cb109-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">preval_2015 =</span> <span class="kw">rnorm</span>(<span class="dv">18</span>, <span class="dv">30</span>, <span class="dv">10</span>),</span>
+<span id="cb109-13"><a href="06-mapas.html#cb109-13"></a>         <span class="dt">preval_2016 =</span> preval_<span class="dv">2015</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>) ,</span>
+<span id="cb109-14"><a href="06-mapas.html#cb109-14"></a>         <span class="dt">preval_2017 =</span> preval_<span class="dv">2016</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>),</span>
+<span id="cb109-15"><a href="06-mapas.html#cb109-15"></a>         <span class="dt">preval_2018 =</span> preval_<span class="dv">2017</span><span class="op">*</span><span class="fl">1.05</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-16"><a href="06-mapas.html#cb109-16"></a><span class="st">  </span><span class="kw">pivot_longer</span>(preval_<span class="dv">2015</span><span class="op">:</span>preval_<span class="dv">2018</span>, </span>
+<span id="cb109-17"><a href="06-mapas.html#cb109-17"></a>         <span class="dt">names_to =</span> <span class="st">&quot;anio&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;prevalencia&quot;</span>, </span>
+<span id="cb109-18"><a href="06-mapas.html#cb109-18"></a>         <span class="dt">names_prefix =</span> <span class="st">&quot;preval_&quot;</span>) </span>
+<span id="cb109-19"><a href="06-mapas.html#cb109-19"></a>cancro</span>
+<span id="cb109-20"><a href="06-mapas.html#cb109-20"></a></span>
+<span id="cb109-21"><a href="06-mapas.html#cb109-21"></a>SEBA_cancro &lt;-<span class="st"> </span>SEBA <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-22"><a href="06-mapas.html#cb109-22"></a><span class="st">  </span><span class="kw">left_join</span>(cancro, <span class="dt">by=</span> <span class="st">&quot;coddepto&quot;</span>) <span class="co">#%&gt;% </span></span>
+<span id="cb109-23"><a href="06-mapas.html#cb109-23"></a></span>
+<span id="cb109-24"><a href="06-mapas.html#cb109-24"></a>SEBA_cancro <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-25"><a href="06-mapas.html#cb109-25"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb109-26"><a href="06-mapas.html#cb109-26"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data=</span>SEBA)<span class="op">+</span></span>
+<span id="cb109-27"><a href="06-mapas.html#cb109-27"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>prevalencia))<span class="op">+</span></span>
+<span id="cb109-28"><a href="06-mapas.html#cb109-28"></a><span class="st">  </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">midpoint =</span> <span class="dv">35</span>,</span>
+<span id="cb109-29"><a href="06-mapas.html#cb109-29"></a>                       <span class="dt">low =</span> <span class="st">&#39;green2&#39;</span>,</span>
+<span id="cb109-30"><a href="06-mapas.html#cb109-30"></a>                       <span class="dt">mid =</span> <span class="st">&#39;yellow&#39;</span>,</span>
+<span id="cb109-31"><a href="06-mapas.html#cb109-31"></a>                       <span class="dt">high =</span> <span class="st">&#39;red3&#39;</span>,</span>
+<span id="cb109-32"><a href="06-mapas.html#cb109-32"></a>                       <span class="dt">na.value =</span> <span class="st">&#39;gray95&#39;</span>)<span class="op">+</span></span>
+<span id="cb109-33"><a href="06-mapas.html#cb109-33"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;anio&quot;</span>)<span class="op">+</span></span>
+<span id="cb109-34"><a href="06-mapas.html#cb109-34"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolución de la prevalencia del cancro del tallo de girasol&quot;</span>,</span>
+<span id="cb109-35"><a href="06-mapas.html#cb109-35"></a>       <span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">fill =</span> <span class="st">&quot;Prevalencia&quot;</span>)<span class="op">+</span></span>
+<span id="cb109-36"><a href="06-mapas.html#cb109-36"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="06-mapas.html#cb110-1"></a>fina2020 &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;https://github.com/juanchiem/agro_data/raw/master/Sitios_experimentales_2020_Juan.kml&quot;</span>)</span>
 <span id="cb110-2"><a href="06-mapas.html#cb110-2"></a>nc_centers &lt;-<span class="st"> </span><span class="kw">st_centroid</span>(fina2020)</span>
 <span id="cb110-3"><a href="06-mapas.html#cb110-3"></a>bbox &lt;-<span class="st"> </span><span class="kw">expand_bbox</span>(<span class="kw">st_bbox</span>(nc_centers), <span class="dt">X =</span> <span class="dv">0</span>, <span class="dt">Y =</span> <span class="dv">150000</span>)</span>

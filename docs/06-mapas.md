@@ -152,6 +152,7 @@ BSAS <- get_geo(geo =  "BUENOS AIRES")
 
 
 ```r
+# https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/
 BSAS%>% st_bbox()
 SEBA <- st_crop(BSAS, 
                 xmin = -60, xmax = -57, 
