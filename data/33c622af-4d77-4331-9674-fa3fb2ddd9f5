@@ -1,0 +1,53 @@
+<!DOCTYPE html
+  SYSTEM "html">
+<html ng-app="gn_search_default" lang="spa" id="ng-app">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Datos Abiertos Geoespaciales - Ministerio de Agricultura Ganadería y Pesca de la Nación </title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" href="../../images/logos/favicon.png">
+      <link href="rss.search?sortBy=changeDate" rel="alternate" type="application/rss+xml" title="Datos Abiertos Geoespaciales - Ministerio de Agricultura Ganadería y Pesca de la Nación ">
+      <link href="portal.opensearch" rel="search" type="application/opensearchdescription+xml" title="Datos Abiertos Geoespaciales - Ministerio de Agricultura Ganadería y Pesca de la Nación ">
+      <link href="/geonetwork/static/gn_search_default.css" rel="stylesheet" media="screen">
+      <link href="/geonetwork/static/bootstrap-table.min.css" rel="stylesheet" media="screen">
+      <link href="/geonetwork/static/ng-skos.css" rel="stylesheet" media="screen">
+      <link href="/geonetwork/static/srv_custom_style.css" rel="stylesheet" media="screen">
+   </head>
+   <body data-ng-controller="GnCatController">
+      <div data-gn-alert-manager=""></div>
+      <noscript>
+         <div class="alert alert-warning" data-ng-hide=""><strong>¡Alerta!</strong> 
+            <nojs>Javascript no habilitado. Habilítelo o vaya al
+               <a href="../search">here to search
+                  </a>
+               modo degradado.
+               
+            </nojs>
+         </div>
+      </noscript>
+      <div data-ng-include="'../../catalog/views/default/templates/index.html'" class="gn-full"></div><script src="/geonetwork/static/lib.js"></script><script src="/geonetwork/static/gn_search_default.js"></script><script src="../../catalog/lib/d3_timeseries/d3.min.js"></script><script src="../../catalog/lib/timeline/timeline-zoomable.js"></script><link rel="stylesheet" href="../../catalog/lib/timeline/timeline.css">
+      <link rel="stylesheet" href="../../catalog/lib/d3_timeseries/nv.d3.min.css"><script type="text/javascript">
+        var module = angular.module('gn_search');
+        module.config(['gnViewerSettings', 'gnGlobalSettings',
+        function(gnViewerSettings, gnGlobalSettings) {
+        
+        gnGlobalSettings.shibbolethEnabled = false;
+        }]);
+      </script><script type="text/javascript">
+      var module = angular.module('gn_search');
+
+      // Init GN config which is a dependency of gn
+      // in order to be initialized quite early
+      var cfgModule = angular.module('gn_config', []);
+      cfgModule.config(['gnViewerSettings', 'gnSearchSettings', 'gnGlobalSettings',
+      function(gnViewerSettings, gnSearchSettings, gnGlobalSettings) {
+      gnGlobalSettings.init(
+      {"langDetector":{"fromHtmlTag":false,"regexp":"^/[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+/([a-z]{3})/","default":"eng"},"nodeDetector":{"regexp":"^/[a-zA-Z0-9_-]+/([a-zA-Z0-9_-]+)/[a-z]{3}/","default":"srv"},"mods":{"header":{"enabled":true,"languages":{"spa":"es"}},"home":{"enabled":true,"appUrl":"../../srv/{{lang}}/catalog.search#/home"},"search":{"enabled":true,"appUrl":"../../srv/{{lang}}/catalog.search#/search","hitsperpageValues":[20,50,100],"paginationInfo":{"hitsPerPage":20},"facetsSummaryType":"details","facetTabField":"","facetConfig":[],"filters":{},"sortbyValues":[{"sortBy":"relevance","sortOrder":""},{"sortBy":"changeDate","sortOrder":""},{"sortBy":"title","sortOrder":"reverse"},{"sortBy":"rating","sortOrder":""},{"sortBy":"popularity","sortOrder":""},{"sortBy":"denominatorDesc","sortOrder":""},{"sortBy":"denominatorAsc","sortOrder":"reverse"}],"sortBy":"relevance","resultViewTpls":[{"tplUrl":"../../catalog/components/search/resultsview/partials/viewtemplates/grid.html","tooltip":"Grid","icon":"fa-th"}],"resultTemplate":"../../catalog/components/search/resultsview/partials/viewtemplates/grid.html","formatter":{"list":[{"label":"full","url":"../api/records/{{uuid}}/formatters/xsl-view?root=div&view=advanced"}]},"grid":{"related":["parent","children","services","datasets"]},"linkTypes":{"links":["LINK","kml"],"downloads":["DOWNLOAD"],"layers":["OGC"],"maps":["ows"]},"isFilterTagsDisplayedInSearch":false},"map":{"enabled":true,"appUrl":"../../srv/{{lang}}/catalog.search#/map","is3DModeAllowed":false,"isSaveMapInCatalogAllowed":false,"isExportMapAsImageEnabled":false,"storage":"sessionStorage","listOfServices":{"wms":[{"name":"Ministerio de Agricultura","url":"http://geoserver.agroindustria.gob.ar/geoserver/wms? service=wms& version=1.1.1& request=GetCapabilities"}],"wmts":[]},"projection":"EPSG:3857","projectionList":[{"code":"EPSG:4326","label":"WGS84(EPSG:4326)"},{"code":"EPSG:3857","label":"Googlemercator(EPSG:3857)"}],"disabledTools":{"processes":true,"addLayers":false,"layers":false,"filter":true,"contexts":true,"print":false,"mInteraction":false,"graticule":false,"syncAllLayers":true,"drawVector":false},"graticuleOgcService":{},"map-viewer":{"context":"../../map/config-viewer.xml","extent":[0,0,0,0],"layers":[]},"map-search":{"context":"../../map/config-viewer.xml","extent":[0,0,0,0],"layers":[]},"map-editor":{"context":"","extent":[0,0,0,0],"layers":[{"type":"osm"}]},"bingKey":"C1FQ3ZFBStqJ2GfYpn7~QERVyr1ps7I9qfhlZv3uRQ~Av_Cuxl9ewqADh2Zf_mZt3abLB1hO-osVE79o9zCYAG8SkD3vz8XxSvQCLdLYvZO","map":"../../map/config-viewer.xml","useOSM":true,"context":"","layer":{"url":"http://www2.demis.nl/mapserver/wms.asp?","layers":"Countries","version":"1.1.1"},"searchMapLayers":[],"viewerMapLayers":[]},"geocoder":"https://secure.geonames.org/searchJSON","editor":{"enabled":true,"appUrl":"../../srv/{{lang}}/catalog.edit","isUserRecordsOnly":false,"isFilterTagsDisplayed":false,"createPageTpl":"../../catalog/templates/editor/new-metadata-horizontal.html"},"admin":{"enabled":true,"appUrl":"../../srv/{{lang}}/admin.console"},"signin":{"enabled":true,"appUrl":"../../srv/{{lang}}/catalog.signin"},"signout":{"appUrl":"../../signout"}}},
+      null, gnViewerSettings, gnSearchSettings);
+      }]);
+    </script></body>
+</html>
