@@ -63,8 +63,10 @@ Principalmente usaremos planillas Excel guardados en nuestra computadora. Estos 
 
 
 ```r
-usethis::use_zip(
-  "https://github.com/juanchiem/R_Intro/raw/master/data/data.zip")
+temp <- tempfile()
+download.file("https://github.com/juanchiem/R_Intro/raw/master/data/archivos.zip", 
+              temp)
+unzip(zipfile = temp, exdir = "data")
 ```
 
 
